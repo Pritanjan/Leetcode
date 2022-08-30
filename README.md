@@ -11,4 +11,4 @@ My C++ Codes
   
   
   
- 1007	|		Minimum Domino Rotations For Equal Row	|	50.90%	|
+ 
