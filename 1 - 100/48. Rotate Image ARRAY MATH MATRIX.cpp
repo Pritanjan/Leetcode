@@ -1,0 +1,108 @@
+//https://leetcode.com/problems/rotate-image/
+// company tag microsoft amazon
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        // transpose the matrix
+        int n = matrix.size();
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<i; j++) {
+                swap(matrix[i][j], matrix[j][i]);
+                cout<<i<<" "<<j<<endl;
+            }
+        }
+        // reverse the matrix
+        for(int i=0; i<n; i++)
+            reverse(matrix[i].begin(), matrix[i].end());
+    }
+};
+
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int R = matrix.size();
+        int C = matrix[0].size();
+        
+        for(int i=0; i<R-1; i++){
+            for(int j=i+1; j<C; j++){
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+        
+        for(int i=0; i<(C/2); i++){
+            for(int j=0; j<R; j++){
+                swap(matrix[j][i], matrix[j][C-1-i]);
+            }
+        }
+    }
+};
+
+
+
+// 00 01 02 
+// 10 11 12 
+// 20 21 22 
+    
+// 20 10 00
+// 21 11 01
+// 22 12 02
+
+
+
+
+//https://leetcode.com/problems/rotate-image/
+// company tag microsoft amazon
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        
+        int L = 0;
+        int R = matrix.size() - 1;
+        
+        while(L < R){
+            for(int i=0; i<(R-L); i++){
+                swap(matrix[L][L+i], matrix[L+i][R]);
+                swap(matrix[L][L+i], matrix[R][R-i]);
+                swap(matrix[L][L+i], matrix[R-i][L]);
+            }
+            L++;
+            R--;
+        }
+        
+    }
+};
+
+/*
+    Input 
+    1, 2, 3
+    4, 5, 6
+    7, 8, 9 
+
+
+    for-loop 1 
+    swap1               swap2               swap3
+    1<->3               3<->9              9<->7
+
+    3, 2, 1            9, 2, 1            7, 2, 1
+    4, 5, 6    =>      4, 5, 6    =>      4, 5, 6
+    7, 8, 9            7, 8, 3            9, 8, 3
+
+    
+
+    for-loop 2 
+    swap1              swap2              swap3
+    2<->6              6<->8              8<->4
+
+    7, 6, 1            7, 8, 1            7, 4, 1
+    4, 5, 2    =>      4, 5, 2    =>      8, 5, 2
+    9, 8, 3            9, 6, 3            9, 6, 3
+    
+
+    output     
+    7, 4, 1,
+    8, 5, 2,
+    9, 6, 3,
+*/
