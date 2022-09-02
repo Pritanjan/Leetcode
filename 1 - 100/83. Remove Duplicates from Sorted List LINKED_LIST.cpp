@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+// https://www.codingninjas.com/codestudio/problems/unique-sorted-list_2420283?topList=amazon-sde-challenge&leftPanelTab=0
 
 /**
  * Definition for singly-linked list.
@@ -10,6 +11,11 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+ 
+ // in CN 
+ // ListNode  -> Node
+ // val -> data
+ 
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
