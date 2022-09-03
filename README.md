@@ -15,8 +15,20 @@ My C++ Codes
   278 |  <a href = "https://leetcode.com/problems/first-bad-version/">  First Bad Version | <a href = "https://leetcode.com/problems/first-bad-version/discuss/1943399/c-easy-solution-binary-search" > LC </a>  
   704 |  <a href = "https://leetcode.com/problems/binary-search/"> Binary Search | <a href = "https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative">  LC </a>
   1752 | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/"> Check if Array Is Sorted and Rotated  | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/discuss/2506388/c%2B%2B-7ms-Solution-with-explanation"> LC </a>
-  
+  1958 | <a href="https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/"> Find the Kth Largest Integer in the Array | <a href= "https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/discuss/2523326/C%2B%2B-solution-or-Using-Sorting-("> LC </a>
   
    
  
+
+
+
+
+
+
+
+
+
+
+
+
 
