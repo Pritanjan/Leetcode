@@ -12,7 +12,6 @@ My C++ Codes
   73  |   <a href="https://leetcode.com/problems/set-matrix-zeroes/">Set Matrix Zeroes | <a href="https://leetcode.com/problems/set-matrix-zeroes/discuss/2508791/C%2B%2B-Solution-with-explanation"> LC </a> <a href="https://github.com/Pritanjan/Question/blob/main/CN%20AMAZON%20SDE%20CHALLENGE/73.%20Set%20Matrix%20Zeroes.cpp"> Github </a>
   83   | <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/"> Remove Duplicates from Sorted List | <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/discuss/2001839/c-solution-easy"> LC </a>  
   189  | <a href="https://leetcode.com/problems/rotate-array/">  Rotate Array | <a href="https://leetcode.com/problems/rotate-array/discuss/2050602/c-solution-brute-force"> LC </a>
-  
   215 |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/"> Kth Largest Element in an Array |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/1925038/c-solution-using-stl-215-kth-largest-element-in-an-array"> LC </a>
   278 |  <a href = "https://leetcode.com/problems/first-bad-version/">  First Bad Version | <a href = "https://leetcode.com/problems/first-bad-version/discuss/1943399/c-easy-solution-binary-search" > LC </a>  
   704 |  <a href = "https://leetcode.com/problems/binary-search/"> Binary Search | <a href = "https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative">  LC </a>
