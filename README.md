@@ -15,6 +15,7 @@ My C++ Codes
   189  | <a href="https://leetcode.com/problems/rotate-array/">  Rotate Array | <a href="https://leetcode.com/problems/rotate-array/discuss/2050602/c-solution-brute-force"> LC </a>
   215 |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/"> Kth Largest Element in an Array |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/1925038/c-solution-using-stl-215-kth-largest-element-in-an-array"> LC </a>
   278 |  <a href = "https://leetcode.com/problems/first-bad-version/">  First Bad Version | <a href = "https://leetcode.com/problems/first-bad-version/discuss/1943399/c-easy-solution-binary-search" > LC </a>  
+  283 |  <a href="https://leetcode.com/problems/move-zeroes/">  Move Zeroes | <a href="https://leetcode.com/problems/move-zeroes/discuss/1987193/c-solution-2nd-easy-solution"> | LC </a>
   704 |  <a href = "https://leetcode.com/problems/binary-search/"> Binary Search | <a href = "https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative">  LC </a>
   977 |  <a href="https://leetcode.com/problems/squares-of-a-sorted-array/"> Squares of a Sorted Array | <a href="https://leetcode.com/problems/squares-of-a-sorted-array/discuss/2044259/c-solution-2-pointer" > LC </a>
   1752 | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/"> Check if Array Is Sorted and Rotated  | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/discuss/2506388/c%2B%2B-7ms-Solution-with-explanation"> LC </a>
