@@ -17,6 +17,7 @@ My C++ Codes
   215 |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/"> Kth Largest Element in an Array |  <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/1925038/c-solution-using-stl-215-kth-largest-element-in-an-array"> LC </a>
   278 |  <a href = "https://leetcode.com/problems/first-bad-version/">  First Bad Version | <a href="https://leetcode.com/problems/first-bad-version/discuss/1943399/c-easy-solution-binary-search" > LC </a> 
   283 |  <a href="https://leetcode.com/problems/move-zeroes/">  Move Zeroes | <a href="https://leetcode.com/problems/move-zeroes/discuss/1987193/c-solution-2nd-easy-solution">  LC </a>
+  443 |  <a href="https://leetcode.com/problems/string-compression/"> String Compression | <a href="https://leetcode.com/problems/string-compression/discuss/2550129/C%2B%2B-Solution-with-explanation"> LC </a>
   557  | <a href="https://leetcode.com/problems/reverse-words-in-a-string-iii/"> Reverse Words in a String III | <a href="https://leetcode.com/problems/reverse-words-in-a-string-iii/discuss/2052689/c-solution"> LC </a>
   704 |  <a href = "https://leetcode.com/problems/binary-search/"> Binary Search | <a href = "https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative">  LC </a>
   977 |  <a href="https://leetcode.com/problems/squares-of-a-sorted-array/"> Squares of a Sorted Array | <a href="https://leetcode.com/problems/squares-of-a-sorted-array/discuss/2044259/c-solution-2-pointer" > LC </a>
