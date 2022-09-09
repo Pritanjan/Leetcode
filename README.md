@@ -22,6 +22,7 @@ My C++ Codes
   704 |  <a href = "https://leetcode.com/problems/binary-search/"> Binary Search | <a href = "https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative">  LC </a>
   977 |  <a href="https://leetcode.com/problems/squares-of-a-sorted-array/"> Squares of a Sorted Array | <a href="https://leetcode.com/problems/squares-of-a-sorted-array/discuss/2044259/c-solution-2-pointer" > LC </a>
   1047|  <a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/">  Remove All Adjacent Duplicates In String | <a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/discuss/1978314/c-solution"> LC
+  1455|  <a href="https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/"> Check If a Word Occurs As a Prefix of Any Word in a Sentence | <a href="https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/discuss/2554434/C%2B%2B-Solution-with-explanation"> LC  
   1752 | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/"> Check if Array Is Sorted and Rotated  | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/discuss/2506388/c%2B%2B-7ms-Solution-with-explanation"> LC </a>
   1958 | <a href="https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/"> Find the Kth Largest Integer in the Array | <a href= "https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/discuss/2523326/C%2B%2B-solution-or-Using-Sorting-("> LC </a>
   
