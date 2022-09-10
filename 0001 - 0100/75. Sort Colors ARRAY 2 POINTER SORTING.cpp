@@ -44,6 +44,38 @@ public:
 };
 
 
+// APPROACH 3
+
+class Solution {
+public:
+    void sortColors(vector<int>& a) {
+        int L = 0;
+        int n = a.size();
+        int R = n-1;
+        int mid = 0;
+        
+        while(mid <= R ){
+            if(a[mid] == 0){
+                swap(a[L], a[mid]);
+                L++;
+                mid++;
+                // break;
+            }
+            
+            else if(a[mid] == 1){
+                mid++;
+                // break;
+            }
+            
+            else{
+                swap(a[mid], a[R]);
+                R--;
+                // break;
+            }
+        }
+        // return 0;
+    }
+};
 
 
 
