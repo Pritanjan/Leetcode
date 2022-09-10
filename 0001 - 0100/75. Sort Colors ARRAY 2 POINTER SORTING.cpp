@@ -1,8 +1,26 @@
 //https://leetcode.com/problems/sort-colors/
 
+APPROACH 1
+    
+DUTCH NATIONAL FLAG (DNF)
+Explanation : -
+This programming problem was proposed by Edsger Dijkstra. The flag of the Netherlands consists 
+of three colors: white, red, and blue. The task is to randomly arrange balls of red, white, and 
+blue in such a way that balls of the same color are placed together. For DNF (Dutch National Flag),
+we sort an array of 0, 1, and 2's in linear time that does not consume any extra space. We have 
+to keep in mind that this algorithm can be implemented only on an array that has three unique 
+elements.
 
-// APPROACH 1
+ALGORITHM : -
+Take three-pointers, namely - L , mid , high.
+We use L and mid pointers at the start, and the R pointer will point at the end of the given array.
 
+CASES : -
+If array [mid] =0 , then swap array [mid] with array [L] and increment both pointers once.
+If array [mid] = 1 , then no swapping is required. Increment mid pointer once.
+If array [mid] = 2 , then we swap array [mid] with array [R] and decrement the high pointer once.
+
+    
 class Solution {
 public:
     void sortColors(vector<int>& a) {
