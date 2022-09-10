@@ -1,0 +1,41 @@
+// https://leetcode.com/problems/fizz-buzz/
+
+class Solution {
+public:
+    vector<string> fizzBuzz(int n) {
+        vector<string> ans(n);
+        
+        for(int i=1;i<=n;i++){
+            if(i%3 ==0)
+                ans[i-1] += "Fizz";
+            if(i%5 ==0)
+                ans[i-1] += "Buzz";
+            // if(i%3 ==0  && i%5==0)
+            //     ans[i-1] += "FizzBuzz";
+            if(ans[i-1].empty())
+                ans[i-1] += to_string(i);
+        }
+        return ans;
+    }
+};
+
+// class Solution {
+// public:
+//     vector<string> fizzBuzz(int n) {
+//         vector<string> ans(n);
+        
+//         for(int i=1;i<=n;i++)
+//             ans[i-1] = to_string(i);
+        
+//         for(int i=2; i<=n; i+=3)
+//             ans[i] = "Fizz";
+        
+//         for(int i=4; i<=n; i+5)
+//             ans[i] = "Buzz";
+        
+//         for(int i=14; i<=n; i+=15)
+//             ans[i] = "FizzBuzz";
+        
+//         return ans;
+//     }
+// };
