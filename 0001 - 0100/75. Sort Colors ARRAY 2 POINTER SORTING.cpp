@@ -1,9 +1,11 @@
 //https://leetcode.com/problems/sort-colors/
 
+
+// APPROACH 1
+
 class Solution {
 public:
     void sortColors(vector<int>& a) {
-        // sort(nums.begin(),nums.end());
         int L = 0;
         int n = a.size();
         int R = n-1;
@@ -25,30 +27,25 @@ public:
                     swap(a[mid], a[R]);
                     R--;
                     break;
-                }
-                    
+                }   
             }
-//             if(a[mid] == 0){
-//                 swap(a[L], a[mid]);
-//                 L++;
-//                 mid++;
-//                 // break;
-//             }
-            
-//             if(a[mid] == 1){
-//                 mid++;
-//                 // break;
-//             }
-            
-//             else{
-//                 swap(a[mid], a[R]);
-//                 R--;
-//                 // break;
-//             }
         }
-        // return 0;
     }
 };
 
 
+// APPROACH 2 STL
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+    }
+};
+
+
+
+
+
+    
 
