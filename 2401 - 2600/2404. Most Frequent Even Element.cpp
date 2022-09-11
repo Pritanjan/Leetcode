@@ -1,5 +1,10 @@
 // https://leetcode.com/contest/weekly-contest-310/problems/most-frequent-even-element/
 
+// Explanation
+// https://www.studytonight.com/c-programs/c-program-to-find-the-maximum-repeating-element-in-an-array
+
+
+// APPROACH 1
 class Solution {
 public:
     int mostFrequentEven(vector<int>& nums) {
@@ -40,4 +45,37 @@ public:
         return ans;
     }
 };
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums) {
+        // vector<int> v;
+        // for(int i=0; i<nums.size(); i++){
+        //     if(nums[i] % 2 == 0)
+        //         v.push_back(nums[i]);
+        // }
+        
+        map<int, int> ump;
+        for(int i=0; i<nums.size(); i++){
+            ump[nums[i]]++;
+        }
+        
+        int max_cnt = 0;
+        int ans = -1;
+        for(auto i : ump){
+            if (i.first % 2 == 0 and max_cnt < i.second) {
+                ans = i.first;
+                max_cnt = i.second;
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
 
