@@ -44,7 +44,6 @@ int main()
 void rotate(int arr[], int n)
 {
     int p = arr[n-1];
-    
     for(int i=n; i>0; i--){
         arr[i] = arr[i-1];
     }
@@ -65,6 +64,9 @@ void rotate(int arr[], int n)
 // i = 3,   arr[3] = arr[2] = 2
 // i = 2,   arr[2] = arr[1] = 1
 
+// Time Complexity: O(n), as we need to iterate through all the elements. 
+// Where n is the number of elements in the array.
+// Auxiliary Space: O(1), as we are using constant space.
 
 
 
@@ -97,10 +99,32 @@ void reverse(int arr[],int s,int e){
     }
 }
 
-void rotate(int arr[], int n){
+void rotate(int arr[], int n)
+{
    reverse(arr,0,n-2);
    reverse(arr,0,n-1);
 }
+
+
+// APPROACH 5
+// We can use two pointers, say i and j which point to first and last element of array respectively.
+// As we know in cyclic rotation we will bring last element to first and shift rest in forward 
+// direction, so start swaping arr[i] and arr[j] and keep j fixed and i moving towards j.  
+// Repeat till i is not equal to j.
+
+void rotate(int arr[], int n)
+{
+    int i = 0, j = n-1; // i and j pointing to first and last element respectively
+      while(i != j){
+      swap(arr[i], arr[j]);
+      i++;
+    }
+}
+
+// Time Complexity: O(n), as we need to iterate through all the elements. 
+// Where n is the number of elements in the array.
+// Auxiliary Space: O(1), as we are using constant space.
+
 
 
 
