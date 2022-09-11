@@ -2,6 +2,14 @@
 
 
 // APPROACH 1
+
+// Explanation
+//     Following are steps.
+//     1) Store last element in a variable say x.
+//     2) Shift all elements one position ahead.
+//     3) Replace first element of array with x.
+    
+    
 //{ Driver Code Starts
 //Initial Template for C++
 
@@ -59,6 +67,40 @@ void rotate(int arr[], int n)
 
 
 
+
+// APPROACH 2
+
+void rotate(int arr[], int n)
+{
+    for(int i = n-1;i>0;i--){
+//         swap(arr[i],arr[n-1]);
+        int temp = arr[i];
+        arr[i] = arr[i-1];
+        arr[i-1] = temp;
+    }
+}
+
+
+// APPROACH 3
+
+void rotate(int arr[], int n)
+{
+   reverse(arr,arr+n);
+   reverse(arr+1,arr+n);
+}
+
+// APPROACH 4
+
+void reverse(int arr[],int s,int e){
+    while(s<=e){
+        swap(arr[s++],arr[e--]);
+    }
+}
+
+void rotate(int arr[], int n){
+   reverse(arr,0,n-2);
+   reverse(arr,0,n-1);
+}
 
 
 
