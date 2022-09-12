@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/rotate-array/
 
+
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -31,3 +32,6 @@ public:
         reverse(nums.begin()+k,nums.end());			// [1,2,3,5,4] 
     }
 };
+
+
+
