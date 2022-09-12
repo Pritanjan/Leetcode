@@ -11,9 +11,9 @@ public:
         for (int j=n-k; j<n; j++){
             ans[i] = nums[j];
             i++;
-        }
-        for(int l=0; l<n-k; l++){
-            ans[i] = nums[l];
+        }           
+        for(int j=0; j<n-k; j++){
+            ans[i] = nums[j];
             i++;
         }
         nums = ans;
