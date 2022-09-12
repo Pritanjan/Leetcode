@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/rotate-array/
 
+// Reveral Algorithm 
+// https://www.geeksforgeeks.org/array-rotation/
 
 class Solution {
 public:
