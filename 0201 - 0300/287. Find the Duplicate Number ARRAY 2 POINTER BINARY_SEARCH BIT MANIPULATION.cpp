@@ -1,5 +1,21 @@
 // https://leetcode.com/problems/find-the-duplicate-number/
 
+// APPROACH 1 BRUTE FORCE
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]==nums[i+1])
+                return nums[i];
+        }
+        return -1;
+    }
+};
+
+
+// APPROACH 2 HASH MAP
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -14,19 +30,8 @@ public:
     }
 };
 
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        
-        for(int i=0; i<nums.size(); i++){
-            if(nums[i]==nums[i+1])
-                return nums[i];
-        }
-        return -1;
-    }
-};
 
+// APPROACH 3 BINARY_SEARCH 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
