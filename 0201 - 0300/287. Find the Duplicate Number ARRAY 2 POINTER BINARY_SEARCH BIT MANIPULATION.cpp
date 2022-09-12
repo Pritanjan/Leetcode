@@ -3,8 +3,36 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
+        unordered_set <int> ust;
+        for(auto &i : nums ){
+            if(ust.count(i))
+                return i;
+            
+            ust.insert(i);
+        }
+        return -1;
+    }
+};
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]==nums[i+1])
+                return nums[i];
+        }
+        return -1;
+    }
+};
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size() - 1;
         int left  = 1;
-        int right = nums.size() - 1;
+        int right = n;
         int mid;
         
         while(left < right){
@@ -22,21 +50,5 @@ public:
             
         }
         return left;
-    }
-};
-
-//APPROACH 2
-
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        unordered_set <int> ust;
-        for(auto &i : nums ){
-            if(ust.count(i))
-                return i;
-            else
-                ust.insert(i);
-        }
-        return -1;
     }
 };
