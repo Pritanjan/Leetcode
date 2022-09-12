@@ -2,6 +2,8 @@
 
 // Reveral Algorithm 
 // https://www.geeksforgeeks.org/array-rotation/
+// https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+
 
 class Solution {
 public:
