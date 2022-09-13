@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/next-permutation/
 
+
+// APPROACH 1
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
@@ -28,7 +30,7 @@ public:
 };
 
 
-
+// APPROACH 2
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
