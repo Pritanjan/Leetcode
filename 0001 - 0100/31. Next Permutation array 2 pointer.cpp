@@ -1,12 +1,8 @@
-// https://leetcode.com/problems/next-permutation/submissions/
+// https://leetcode.com/problems/next-permutation/
 
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-    	// approach 1
-        // next_permutation(nums.begin(), nums.end());
-        
-        // approach 2
         int n = nums.size();
         int i,j;
         for(i=n-2; i>=0; i--){
@@ -30,3 +26,14 @@ public:
        
     }
 };
+
+
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+         next_permutation(nums.begin(), nums.end());
+    }
+};
+
+
