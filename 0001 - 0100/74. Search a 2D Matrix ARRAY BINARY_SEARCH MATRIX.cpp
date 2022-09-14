@@ -23,7 +23,7 @@ public:
 };
 
 // matrix[index/column][index%column]
-
+// O(log mn)
 
 
 
