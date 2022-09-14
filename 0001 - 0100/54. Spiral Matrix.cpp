@@ -1,4 +1,6 @@
 // https://leetcode.com/problems/spiral-matrix/
+// https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix/0
+
 
 // APPROACH 1 Using 1 extra variable x
 
@@ -6,8 +8,8 @@ class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         vector<int> ans;
-        int n = matrix.size();
-        int m = matrix[0].size();
+        int n = matrix.size();      // NO. OF ROWS
+        int m = matrix[0].size();   // NO. OF COLS
                 
         int top = 0, bottom = n - 1, left = 0, right = m - 1;
         int x = 1;
