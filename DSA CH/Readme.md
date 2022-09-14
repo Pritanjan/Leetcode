@@ -6,6 +6,6 @@
   0006  |  <a href="https://practice.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1">Write a program to cyclically rotate an array by one | <a href="https://github.com/Pritanjan/Leetcode/blob/main/DSA%20CH/0007%20Write%20a%20program%20to%20cyclically%20rotate%20an%20array%20by%20one.cpp"> github </a> <a href="https://leetcode.com/problems/rotate-array/">  LC - 189
   0009  | <a href="https://practice.geeksforgeeks.org/problems/minimize-the-heights3351/1">Minimize the Heights II | <a href="https://github.com/Pritanjan/Leetcode/blob/main/DSA%20CH/0009%20Minimize%20the%20Heights%20II.cpp"> Github
   0010  |  <a href="https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1"> Merge Without Extra Space | <a href="https://github.com/Pritanjan/Leetcode/blob/main/DSA%20CH/0010%20Merge%20Without%20Extra%20Space.cpp"> Github 
-  00014 | <a href="https://practice.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1"> Median in a row-wise sorted Matrix| <a href="https://github.com/Pritanjan/Leetcode/blob/main/DSA%20CH/0014%20Median%20in%20a%20row-wise%20sorted%20Matrix.cpp"> Github
+  0014 | <a href="https://practice.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1"> Median in a row-wise sorted Matrix| <a href="https://github.com/Pritanjan/Leetcode/blob/main/DSA%20CH/0014%20Median%20in%20a%20row-wise%20sorted%20Matrix.cpp"> Github
   
   
