@@ -1,6 +1,9 @@
-//https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/submissions/
+// QUESTION 
+// https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/submissions/
 // https://practice.geeksforgeeks.org/problems/kth-element-in-matrix/1
 
+// SOLUTION 
+// https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/
 
 // APPROACH 1 using MAX_HEAP priority_queue 
 
