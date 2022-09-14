@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/spiral-matrix/
 
+// APPROACH 1 Using 1 extra variable x
+
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -39,6 +41,51 @@ public:
                 left++;
                 x = 1;
             }
+        }
+        return ans;
+    }
+};
+
+
+
+// APPROACH 2 Without Using  extra variable x
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int n = matrix.size();
+        int m = matrix[0].size();
+                
+        int top = 0, bottom = n - 1, left = 0, right = m - 1;
+        int cnt = 0;
+                
+        while(cnt < m*n){
+            
+            for(int i=left; cnt < m*n and i<=right; i++){
+                ans.push_back(matrix[top][i]);
+                cnt++;
+            }
+            top++;
+            
+            for(int i=top; cnt < m*n and i<=bottom; i++){
+                ans.push_back(matrix[i][right]);
+                cnt++;
+            }
+            right--;
+                
+            for(int i=right; cnt < m*n and i>=left; i--){
+                ans.push_back(matrix[bottom][i]);
+                cnt++;
+            }
+            bottom--;
+            
+
+            for(int i=bottom; cnt < m*n and i>=top; i--){
+                ans.push_back(matrix[i][left]);
+                cnt++;
+            }
+            left++;   
         }
         return ans;
     }
