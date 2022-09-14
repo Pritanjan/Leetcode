@@ -1,24 +1,10 @@
-//https://leetcode.com/problems/rotate-image/
+// https://leetcode.com/problems/rotate-image/
 // company tag microsoft amazon
 
-class Solution {
-public:
-    void rotate(vector<vector<int>>& matrix) {
-        // transpose the matrix
-        int n = matrix.size();
-        for(int i=0; i<n; i++) {
-            for(int j=0; j<i; j++) {
-                swap(matrix[i][j], matrix[j][i]);
-                cout<<i<<" "<<j<<endl;
-            }
-        }
-        // reverse the matrix
-        for(int i=0; i<n; i++)
-            reverse(matrix[i].begin(), matrix[i].end());
-    }
-};
+// ROTATING 90 DEGREE CLOCKWISE
 
 
+// APPROACH 1
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -39,8 +25,6 @@ public:
     }
 };
 
-
-
 // 00 01 02 
 // 10 11 12 
 // 20 21 22 
@@ -51,10 +35,7 @@ public:
 
 
 
-
-//https://leetcode.com/problems/rotate-image/
-// company tag microsoft amazon
-
+// APPROACH 2
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -106,3 +87,64 @@ public:
     8, 5, 2,
     9, 6, 3,
 */
+
+
+// APPROACH 3
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        // transpose the matrix
+        int n = matrix.size();
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<i; j++) {
+                swap(matrix[i][j], matrix[j][i]);
+                cout<<i<<" "<<j<<endl;
+            }
+        }
+        
+        // row reverse code below
+        int k;
+        for(int i = 0; i < n; i++){
+            k = n-1;
+            for(int j = 0; j < k; j++){
+                swap(matrix[i][j], matrix[i][k]);
+                k--;
+            }
+        }
+        
+//         // reverse the matrix
+//         for(int i=0; i<n; i++)
+//             reverse(matrix[i].begin(), matrix[i].end());
+    }
+};
+
+
+
+// ROTATING 90 DEGREE ANTI-CLOCKWISE\
+// APPROACH 1
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // transpose
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < i; j++){
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+        
+        // column reverse code below
+        int k;
+        for(int i = 0; i < n; i++){
+            k = n-1;
+            for(int j = 0; j < k; j++){
+                swap(matrix[j][i], matrix[k][i]);    // chage occur at here
+                k--;
+            }
+        }
+        
+    }
+};
+
+
+
