@@ -4,29 +4,6 @@
 // https://github.com/Pritanjan/Leetcode/edit/main/0101%20-%200200/169.%20Majority%20Element%20ARRAY%20HASH_TABLE%20DIVIDE_AND_CONQUER%20SORTING%20COUNTING.cpp
 
 // APPROACH 1
-class Solution {
-public:
-    vector<int> majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        // sort(nums.begin(), nums.end());
-        
-        vector<int> v;
-        map<int, int> um;
-        
-        for(auto i : nums)
-            um[i]++;
-        
-        for(auto it : um)
-            if(it.second > n/3){
-                v.push_back(it.first);
-            }
-        return v;
-        
-        
-    }
-};
-
-// APPROACH 2
 
 class Solution {
 public:
