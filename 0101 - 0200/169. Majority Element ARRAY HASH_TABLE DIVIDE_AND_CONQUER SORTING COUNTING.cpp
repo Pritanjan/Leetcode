@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/majority-element/
-
+// Similar question LC 229
+// https://github.com/Pritanjan/Leetcode/blob/main/0201%20-%200300/229.%20Majority%20Element%20II%20%20ARRAY%20HASH_TABLE%20SORTING%20COUNTING.cpp
 
 // APPROACH 1 Brute Force  -> TLE
 class Solution {
