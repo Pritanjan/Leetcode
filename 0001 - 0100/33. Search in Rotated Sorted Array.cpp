@@ -1,5 +1,8 @@
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
 
+
+// APPROACH 1
+
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
@@ -12,6 +15,8 @@ public:
     }
 };
 
+
+// APPROACH 2 BINARY_SEARCH 
 
 class Solution {
 public:
@@ -29,5 +34,7 @@ public:
         return l==r &&  nums[l] == target ? l : -1;
     }
 };
+
+
 
 
