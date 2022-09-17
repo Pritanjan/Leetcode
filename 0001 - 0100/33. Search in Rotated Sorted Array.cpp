@@ -11,3 +11,23 @@ public:
         return -1;
     }
 };
+
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int l = 0;
+        int r = nums.size() - 1;
+        
+        while(l < r){
+            int mid = l + (r-l) / 2;
+            if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid]))
+                l = mid + 1;
+            else
+                r = mid;
+        }
+        return l==r &&  nums[l] == target ? l : -1;
+    }
+};
+
+
