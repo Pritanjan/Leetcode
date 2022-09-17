@@ -1,6 +1,26 @@
 // https://leetcode.com/problems/majority-element/
 
-APPROACH 1
+
+// APPROACH 1 Brute Force  -> TLE
+class Solution {
+public:
+    int majorityElement(vector<int>& a) {
+        int n = a.size();
+        for(int i : a){
+            int cnt = 0;
+            for(int j : a){
+                if(i == j)
+                    cnt++;
+            }
+            if(cnt > n/2)
+                return i;
+        }
+        return -1;
+    }
+};
+
+
+// APPROACH 2   Boyer-Moore Voting
 
 class Solution {
 public:
@@ -23,10 +43,16 @@ public:
     }
 };
 
+// Time complexity : O(n) 
+// Boyer-Moore performs constant work exactly nn times, so the algorithm runs in linear time.
+// Space complexity : O(1) 
+// Boyer-Moore allocates only constant additional memory.
 
-APPROACH 2
 
-    class Solution {
+
+// APPROACH 3 Using STL
+
+class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         int n = nums.size();
@@ -34,6 +60,32 @@ public:
         return nums[n/2];
     }
 };
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    int majorityElement(vector<int>& a) {
+        int n = a.size();
+        map<int,int> mp;
+        for(int i=0;i<n;i++){
+            mp[a[i]]++;
+        }
+        int ans=-1;
+        
+        for(auto x: mp) {
+        if(x.second > (n /2))
+            ans=x.first;
+        }
+        return ans;
+    }
+};
+
+
+
+
 
 
 
