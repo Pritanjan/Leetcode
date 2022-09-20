@@ -9,7 +9,7 @@ My C++ Codes
   11  |   <a href="https://leetcode.com/problems/container-with-most-water/"> Container With Most Water | <a href="https://leetcode.com/problems/container-with-most-water/discuss/2594527/C%2B%2B-oror-2-Solution-oror-2-Pointer-with-explanation"> LC </a>  <a href="https://www.codingninjas.com/codestudio/problems/container-with-maximum-water_892982?topList=amazon-sde-challenge&leftPanelTab=0"> CN </a>
   19  |  <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">  Remove Nth Node From End of List | <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/discuss/2541202/c-2-pointer-with-explanation"> LC 
   35  |   <a href="https://leetcode.com/problems/search-insert-position/"> Search Insert Position |  <a href="https://leetcode.com/problems/search-insert-position/discuss/2519388/C%2B%2B-2-Solution-oror-STL-oror-Binary-Search"> LC 
-  41  |   <a href="https://leetcode.com/problems/first-missing-positive/">  First Missing Positive | <a href = "41. First Missing Positive" > LC
+  41  |   <a href="https://leetcode.com/problems/first-missing-positive/">  First Missing Positive | <a href = "https://leetcode.com/problems/first-missing-positive/discuss/1928890/c-solution-first-missing-positive" > LC
   43  |   <a href="https://leetcode.com/problems/multiply-strings/">Multiple String  | <a href="https://leetcode.com/problems/first-missing-positive/discuss/1928890/c-solution-first-missing-positive"
   >    LC </a> 
   70  |   <a href="https://leetcode.com/problems/climbing-stairs/"> Climbing Stairs  | <a href="https://leetcode.com/problems/climbing-stairs/discuss/2459960/C%2B%2B-oror-0ms-solution"> LC </a>  <a href="https://github.com/Pritanjan/Leetcode/blob/main/70.%20Climbing%20Stairs"> Github </a> 
