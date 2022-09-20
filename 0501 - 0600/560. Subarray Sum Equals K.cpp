@@ -24,6 +24,7 @@ public:
 
 // return subarrays whose sum equals to k.
 // https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1?page=1&category[]=Arrays&sortBy=submissions
+// Company Tags - Amazon Facebook Google Visa
 
 class Solution
 {
@@ -50,7 +51,6 @@ class Solution
         return {-1};
     }
 };
-
 
 
 
