@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/subarray-sum-equals-k/
 
+// return the total number of subarrays whose sum equals to k.
+
 class Solution {
 public:
     int subarraySum(vector<int>& A, int k) {
@@ -18,5 +20,40 @@ public:
         return ans; 
     }
 };
+
+
+// return subarrays whose sum equals to k.
+// https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1?page=1&category[]=Arrays&sortBy=submissions
+
+class Solution
+{
+    public:
+    //Function to find a continuous sub-array which adds up to a given number.
+    vector<int> subarraySum(int A[], int n, long long k)
+    {
+        int L = 0;
+        int R = 0;
+        int sum = 0;
+        
+        while(L < n){
+            sum += A[L];
+            
+            if(sum == k)
+                return {R+1, L+1};
+            if(sum > k){
+                sum = 0;
+                R++;
+                L = R - 1;
+            }
+            L++;
+        }
+        return {-1};
+    }
+};
+
+
+
+
+
 
 
