@@ -2,6 +2,9 @@
 // Company Tag - Amazon Samsung Snapdeal hike
 // https://leetcode.com/problems/first-missing-positive/discuss/1928890/c-solution-first-missing-positive
 
+// CN Solution 
+// https://www.codingninjas.com/codestudio/problems/first-missing-positive_699946?leftPanelTab=2
+
 ##### APPROACH 1
 **Searching (TLE) : -**
 
