@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
+// https://www.codingninjas.com/codestudio/problems/first-non-repeating-character_920324?topList=top-amazon-coding-interview-questions&leftPanelTab=2
 
 Brute force solution, traverse string s 2 times. First time, store counts of every character
 into the hash table, second time, find the first character that appears only once.
