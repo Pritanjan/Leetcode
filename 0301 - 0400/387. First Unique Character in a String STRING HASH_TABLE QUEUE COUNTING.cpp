@@ -1,5 +1,8 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
+Brute force solution, traverse string s 2 times. First time, store counts of every character
+into the hash table, second time, find the first character that appears only once.
+
 class Solution {
 public:
     int firstUniqChar(string s) {
