@@ -25,3 +25,72 @@ public:
         return true;
     }
 };
+
+
+
+class Solution {
+public:
+    bool isValid(char ch){
+        if((ch >= 'a' and ch <='z') or (ch >= 'A' and ch <='Z') or (ch >= '0' and ch <='9'))
+            return 1;
+        return 0;
+    }
+    
+    // convert upper to lower but if lower it remains unchanged
+    char toLower(char ch){
+        if((ch >= 'a' and ch <= 'z') or (ch >= '0' and ch <= '9'))
+            return ch;
+        else{
+            char temp = ch - 'A' +'a';
+            return temp;
+        }
+    }
+    
+    bool checkPalindrome(string s){
+        int L = 0;
+        int R = s.size() - 1;
+        
+        while(L <= R){
+            if(s[L] != s[R]){
+                return 0;
+            }
+            else{
+                L++;
+                R--;
+            }
+        }
+        return 1;
+    }
+    
+    bool isPalindrome(string s) {
+        string temp = "";
+        
+        // removing extra charracter
+        for(int i=0; i<s.size(); i++){
+            if(isValid(s[i]))
+                temp.push_back(s[i]);
+        }
+        
+        // converting to lower case
+        for(int i=0; i<temp.size(); i++){
+            temp[i] = toLower(temp[i]);
+        }
+        // check palidrome 
+        return checkPalindrome(temp);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
