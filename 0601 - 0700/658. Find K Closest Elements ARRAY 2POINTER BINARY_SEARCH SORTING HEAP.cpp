@@ -24,3 +24,36 @@ public:
 
 // T.C. --> O(n-k)  as size is keep reducing intinally from n to k, Therefor it is equal to n-k 
 // S.C. --> O(1)
+
+
+
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<int> ans;
+        for(int i=0; i<arr.size(); i++){
+            arr[i] -= x;
+        }
+        
+        sort(arr.begin(), arr.end(),[](int a, int s){
+            if(abs(a) == abs(s))
+                return a < s;
+            else
+                return abs(a) < abs(s);
+        });
+        
+        for(int i=0; i<k; i++){
+            ans.push_back(arr[i]+x);
+        }
+            
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
+
+
+
+
+
+
