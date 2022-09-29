@@ -8,17 +8,13 @@ public:
         int L = 0;
         int R = nums.size() - 1;
             
-        while(R - L >= k) 
-        {
+        while(R - L >= k) {
             if(abs(nums[L] - x) <= abs(nums[R] - x))
                 R--;
             else
                 L++;
         }
-        
-        return vector<int> (nums.begin() + L, nums.begin() + R + 1);
-        
-        
+        return vector<int> (nums.begin() + L, nums.begin() + R + 1);        
     }
 };
 
@@ -51,6 +47,10 @@ public:
         return ans;
     }
 };
+
+
+
+
 
 
 
