@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/valid-parentheses/
-// AMAZON BLOOMBERG FB MICROSOFT LINKDEIN UBER
+// AMAZON BLOOMBERG FB GOOGLE MICROSOFT LINKDEIN UBER
 
 
 // APPROACH 1
