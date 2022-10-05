@@ -1,6 +1,37 @@
-//https://leetcode.com/problems/valid-parentheses/
+// https://leetcode.com/problems/valid-parentheses/
 // AMAZON BLOOMBERG FB MICROSOFT LINKDEIN UBER
 
+
+// APPROACH 1
+class Solution {
+public:
+    bool isValid(string s) {
+        
+        stack <char> st;
+        
+        for(char i : s){
+            if(i == '(' || i == '{' || i == '[')
+                st.push(i);
+            
+            else {
+                if(st.empty())
+                    return false;
+                else if(st.top() != '(' && i == ')' && !st.empty())
+                    return false;
+                else if (st.top() != '{' && i == '}' && !st.empty())
+                    return false;
+                else if (st.top() != '[' && i == ']' && !st.empty())
+                    return false;
+                st.pop();
+            }
+            
+        }
+        return st.empty();
+    }
+};
+
+
+// APPROACH 2
 class Solution {
 public:
     bool isValid(string s) {
@@ -28,4 +59,63 @@ public:
             return false;
         return true;
     }
+};
+
+
+// APPROACH 3
+class Solution {
+public:
+
+bool isValid(string s) {        
+    stack<char> parenthis;
+    
+    for (char& c : s)
+    {
+        switch (c) 
+        {
+                
+            case '(': 
+            case '{': 
+            case '[': 
+            parenthis.push(c); 
+                
+            break;
+                
+            case ')':
+                if (parenthis.empty() || parenthis.top()!='(') 
+                    return false;
+                else  
+                
+                parenthis.pop(); 
+                
+                break;
+                
+                 case '}':
+                
+                if (parenthis.empty() || parenthis.top()!='{') 
+                    
+                return false; 
+                
+                else
+                    
+                parenthis.pop(); break;
+
+                
+                case ']':
+                
+                if (parenthis.empty() ||parenthis.top()!='[') 
+                    
+                return false;
+                
+                else
+                
+                parenthis.pop(); 
+                
+                break;
+                
+            default: ; 
+        }
+    }
+    return parenthis.empty() ;
+}
 };
