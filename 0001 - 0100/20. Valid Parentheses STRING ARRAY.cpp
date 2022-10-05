@@ -6,13 +6,10 @@
 class Solution {
 public:
     bool isValid(string s) {
-        
         stack <char> st;
-        
         for(char i : s){
             if(i == '(' || i == '{' || i == '[')
                 st.push(i);
-            
             else {
                 if(st.empty())
                     return false;
@@ -35,13 +32,10 @@ public:
 class Solution {
 public:
     bool isValid(string s) {
-        
         stack <char> bracket;
-        
         for(int i=0; i<s.size(); i++){
             if(s[i] == '(' || s[i] == '{' || s[i] == '[')
                 bracket.push(s[i]);
-            
             else if(!bracket.empty()){
                 if(bracket.top() == '(' && s[i] == ')' && !bracket.empty())
                     bracket.pop();
@@ -65,57 +59,48 @@ public:
 // APPROACH 3
 class Solution {
 public:
-
-bool isValid(string s) {        
-    stack<char> parenthis;
-    
-    for (char& c : s)
-    {
-        switch (c) 
+    bool isValid(string s) {        
+        stack<char> parenthis;
+        for (char& c : s)
         {
-                
-            case '(': 
-            case '{': 
-            case '[': 
-            parenthis.push(c); 
-                
-            break;
-                
-            case ')':
-                if (parenthis.empty() || parenthis.top()!='(') 
-                    return false;
-                else  
-                
-                parenthis.pop(); 
+            switch (c) 
+            {
+                case '(': 
+                case '{': 
+                case '[': 
+                parenthis.push(c); 
                 
                 break;
+                
+                case ')':
+                    if (parenthis.empty() || parenthis.top()!='(') 
+                        return false;
+                    else                  
+                        parenthis.pop(); 
+                    
+                    break;
                 
                  case '}':
                 
-                if (parenthis.empty() || parenthis.top()!='{') 
+                    if (parenthis.empty() || parenthis.top()!='{') 
+                        return false; 
+                    else
+                        parenthis.pop(); 
                     
-                return false; 
-                
-                else
-                    
-                parenthis.pop(); break;
+                    break;
 
-                
                 case ']':
                 
-                if (parenthis.empty() ||parenthis.top()!='[') 
-                    
-                return false;
+                    if (parenthis.empty() ||parenthis.top()!='[') 
+                        return false;
+                    else
+                        parenthis.pop(); 
                 
-                else
+                    break;
                 
-                parenthis.pop(); 
-                
-                break;
-                
-            default: ; 
+                default: ; 
+            }
         }
+        return parenthis.empty() ;
     }
-    return parenthis.empty() ;
-}
 };
