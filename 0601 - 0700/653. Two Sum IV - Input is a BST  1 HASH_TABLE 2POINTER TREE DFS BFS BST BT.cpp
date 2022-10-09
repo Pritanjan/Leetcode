@@ -17,29 +17,33 @@
 //Time Complexity: O(n), Space Complexity: O(n).
 
 class Solution {
-public:
-    void 
-    bool findTarget(TreeNode* root, int k) {
-        vector<int> nums;
-        int L = 0;
-        int R = nums.size() - 1;
-        inorder(root, nums);
-        while(L < R){
-            if(nums[L] + nums[R] == k)
-                return true;
-            if(nums[L] + nums[R] > k)
-                R--;
-            if(nums[L] + nums[R] < k)
-                L++;
-            return false;
-        }
+private:
+    void inorder(TreeNode* root, vector<int>& A){
+        if(root == NULL)   
+            return ;
+        inorder(root -> left, A);
+        A.push_back(root -> val);
+        inorder(root -> right, A);
     }
-    void inorder(TreeNode* root, vector<int>& nums){
-        if(root == NULL)
-            return NULL;
-        inorder(root->left, nums);
-        nums.push_back(root->val);
-        inorder(root->right, nums);
+    
+public:
+    bool findTarget(TreeNode* root, int K) {
+        vector<int> A;
+        inorder(root, A);
+        int L = 0;
+        int R = A.size() - 1;
+        
+        while(L < R){
+            if(A[L] + A[R] == K)
+                return true;
+            else if(A[L] + A[R] > K)
+                R--;
+            // if(A[L] + A[R] < K)
+            else
+                L++;
+            
+        }
+        return false;
     }
 };
 
