@@ -38,3 +38,48 @@ public:
         return {};
     }
 };
+
+
+
+#include <bits/stdc++.h> 
+vector<vector<int>> pairSum(vector<int> &arr, int s){
+    vector<vector<int>> ans;
+    for(int i=0; i<arr.size(); i++){
+       for(int j=i+1; j<arr.size(); j++){
+           if(arr[i] + arr[j] == s){
+               vector<int> v;
+               v.push_back(min(arr[i], arr[j]));
+               v.push_back(max(arr[i], arr[j]));
+               ans.push_back(v);
+           }
+       }
+   }
+    sort(ans.begin(), ans.end());
+    return ans;
+}
+
+
+
+// If there is more than 1 pair it is used
+
+#include <bits/stdc++.h> 
+vector<vector<int>> pairSum(vector<int> &arr, int s){
+    vector<vector<int>> ans;
+    for(int i=0; i<arr.size(); i++){
+       for(int j=i+1; j<arr.size(); j++){
+           if(arr[i] + arr[j] == s){
+               vector<int> v;
+               v.push_back(min(arr[i], arr[j]));
+               v.push_back(max(arr[i], arr[j]));
+               ans.push_back(v);
+           }
+       }
+   }
+    sort(ans.begin(), ans.end());
+    return ans;
+}
+
+
+
+
+
