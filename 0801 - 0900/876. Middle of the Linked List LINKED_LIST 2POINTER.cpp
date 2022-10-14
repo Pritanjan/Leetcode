@@ -53,3 +53,38 @@ public:
 //Time Complexity: O(N), where NN is the number of nodes in the given list.
 //Space Complexity: O(1), the space used by slow and fast.
 
+
+
+
+// APP 3
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* temp = head;
+        int len = 0; 
+        // Traverse temp till the end of linked list to find the length. 
+        while(temp){
+            temp = temp -> next;
+            len++;
+        }
+        int middle = len/2;
+        temp = head;
+        
+        while(middle--){
+            temp = temp -> next;
+        }
+        
+        return temp;
+    }
+};
