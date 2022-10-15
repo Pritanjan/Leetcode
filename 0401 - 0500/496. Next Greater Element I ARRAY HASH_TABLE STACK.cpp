@@ -16,3 +16,10 @@ public:
         return ans;
     }
 };
+
+
+// amazon 
+// microsoft
+// flipkart
+// adobe 
+// make my trip
