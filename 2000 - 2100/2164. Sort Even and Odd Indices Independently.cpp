@@ -1,3 +1,7 @@
+
+
+
+// APPROACH 1
 class Solution {
 public:
     vector<int> sortEvenOdd(vector<int>& nums) {
@@ -24,6 +28,7 @@ public:
     }
 };
 
+TC : O(NlogN) , SC : O(N)
 
 
 
