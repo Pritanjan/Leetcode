@@ -31,13 +31,33 @@ public:
 
 
 
+2-pointer
+The idea is to maintain two pointers, one of which stores the list of nodes at odd positions and the other stores the list of nodes at an even position and then finally merge them.
 
+ 
 
+The steps are as follows:
 
+Maintain a pointer ‘res’ which stores the final head, which we will return as the final result, also a pointer ‘evenHeadBegin’, which points to the beginning of the linked list of even positioned nodes.
+Maintain a pointer ‘oddHead’, which is used to tag along with the nodes at odd positions, similarly ‘evenHead’, which is used to tag along with nodes at even positions.
+Loop till ‘evenHead’ and next of ‘evenHead’ is not NULL:
+The ‘next’ pointer of ‘oddHead’should point to ‘next’ of ‘evenHead’
+Move the ‘oddHead’ pointer ahead.
+Similarly, now the ‘next’ pointer of ‘evenHead’ should point to the ‘next’ pointer of 'oddHead'.
+And then move the ‘evenHead’ pointer ahead.
+After exiting the loop, ‘oddHead’ next should point to ‘evenHeadBegin’ so that both linked lists are concatenated.
+Return ‘res’ as the final head of the newly formed linked list.
+Time Complexity
+O(N), where ‘N’ is the size of the linked list.
 
-// Complexity Analysis
+ 
 
-// Time complexity : O(n)O(n). There are total nn nodes and we visit each node once.
+We are just doing a linear traversal of the linked list. Hence, the final time complexity will be O(N). 
 
-// Space complexity : O(1)O(1). All we need is the four pointers.
+Space Complexity
+O(1).
+
+ 
+
+Since we are not using any extra space, the overall space complexity is O(1).
 
