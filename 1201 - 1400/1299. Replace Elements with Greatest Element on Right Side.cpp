@@ -1,3 +1,5 @@
+// https://www.codingninjas.com/codestudio/problems/leaders-in-an-array_873144?leftPanelTab=2
+
 class Solution {
 public:
     vector<int> replaceElements(vector<int>& a) {
