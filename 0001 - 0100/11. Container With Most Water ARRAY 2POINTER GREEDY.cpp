@@ -1,6 +1,9 @@
 // https://leetcode.com/problems/container-with-most-water/
 // https://leetcode.com/problems/container-with-most-water/discuss/2594527/C%2B%2B-oror-2-Solution-oror-2-Pointer-with-explanation
 
+// https://medium.com/enjoy-algorithm/container-with-most-water-bdbd1a29481c
+
+
 
 // APPROACH 1  ( TLE ) Brute Force
 
