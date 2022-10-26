@@ -63,8 +63,8 @@ public:
 };
 
 // COMPLEXITY ANALYSIS : -
-// Time Complexity : -**  `O(N)`
-// Space Complexity :-** ` O(1)`
+// Time Complexity : -**  `O(N)`   Since we traverse the sequence once to find the container with maximum water
+// Space Complexity :-** ` O(1)`   We are using constant space.
 
 
 // APPROACH 2 ???
