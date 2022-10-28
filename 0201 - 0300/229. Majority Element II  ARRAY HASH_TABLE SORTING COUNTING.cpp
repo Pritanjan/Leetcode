@@ -3,6 +3,8 @@
 // Similar question LC 169
 // https://github.com/Pritanjan/Leetcode/edit/main/0101%20-%200200/169.%20Majority%20Element%20ARRAY%20HASH_TABLE%20DIVIDE_AND_CONQUER%20SORTING%20COUNTING.cpp
 
+// https://www.codingninjas.com/codestudio/problems/majority-element-ii_893027?leftPanelTab=0
+
 // APPROACH 1
 
 class Solution {
