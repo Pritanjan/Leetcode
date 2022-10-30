@@ -7,7 +7,7 @@ public:
         if(n < 3) return 0;
         int ans = 0;
         
-            for(int i=1; i<n-1; ){
+        for(int i=1; i<n-1; ){
         if(arr[i] > arr[i+1] and arr[i-1] < arr[i]) {
             int cnt = 0;
             int j = i;
