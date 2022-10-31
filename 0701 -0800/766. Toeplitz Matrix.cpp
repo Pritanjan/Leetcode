@@ -12,3 +12,10 @@ public:
         return true;
     }
 };
+
+Time Complexity: O(M∗N), as defined in the problem statement.
+
+Space Complexity: O(1).
+    
+    
+    
