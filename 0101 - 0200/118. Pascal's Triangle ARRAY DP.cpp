@@ -1,6 +1,7 @@
-//just do it in a straightforward, each time generate a new line, first push all 1 vector into res and then update the elements from 1 to i-1.
+//just do it in a straightforward, each time generate a new line, first push all 1
+// vector into res and then update the elements from 1 to i-1.
 
-//https://leetcode.com/problems/pascals-triangle/
+// Amazon Google
 
 class Solution {
 public:
