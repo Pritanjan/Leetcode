@@ -1,5 +1,8 @@
 //https://leetcode.com/problems/maximum-subarray/
 
+// Amazon D. E. Shaw Facebook Goldman Sachs Google LinkedIn Microsoft
+// Ola PayPal PayU Samsung Snapdeal Teradata Visa Yahoo Zoho
+
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
