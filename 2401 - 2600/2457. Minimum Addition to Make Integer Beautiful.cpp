@@ -23,28 +23,8 @@ public:
 };
 
 
-//     if(digsum(n)<=target)return 0;
-//         long long count=10;
-//         long long temp=n;
-        
-//         while(digsum(temp)> target){
-//             long long mod=n%count;
-//              temp=n+count-mod;
-            
-//             count*=10;
-//         }
-//         return temp-n;
 
 
 
-// class Solution {
-// public:
-//     long long makeIntegerBeautiful(long long n, int target) {
-//         long long t = 10;
-//         if(calc(n) <= target) return 0;
-//         for(;t <= n* 100;t*=10){
-//             if(calc(n+(t-n%t)) <= target) return t-n%t;
-//         }
-//         return -1;
-//     }
-// };
+
+
