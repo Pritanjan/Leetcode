@@ -11,6 +11,7 @@
  * };
  */
  
+1ST 
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -36,7 +37,7 @@ public:
 
 
 
-// Iterative solution 
+// 2ND Iterative solution 
 // pg 9
 
 class Solution {
@@ -65,7 +66,7 @@ public:
 
 
 
-// Recursion
+// 3RD Recursion
 
 class Solution {
 public:
@@ -91,3 +92,34 @@ public:
         
     }
 };
+
+
+// T.C. O(N)
+// S.C. O(N)
+
+// 4TH RECURISON
+class Solution {
+public:
+    ListNode* Recursion(ListNode* head){
+        // base case
+        if(head == NULL or head -> next == NULL)
+            return head;
+        
+        ListNode* temp = Recursion(head -> next);
+        
+        head -> next -> next = head;
+        head -> next = NULL;
+        
+        return temp;
+    }
+    
+    ListNode* reverseList(ListNode* head) {
+        return Recursion(head);
+            
+    }   
+};
+
+// T.C. O(N)
+// S.C. O(N)
+
+
