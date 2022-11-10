@@ -80,7 +80,7 @@ public:
 };
 
 
-// APP 4
+// APP 4 same as APP 3
 // Find the length of the LL then travesrse for n/2
 
 class Solution {
