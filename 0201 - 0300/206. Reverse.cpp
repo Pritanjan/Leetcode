@@ -64,3 +64,30 @@ public:
 
 
 
+
+// Recursion
+
+class Solution {
+public:
+    void Recursion(ListNode* &head, ListNode* curr, ListNode* prev){
+        // base case ie we reached at last element
+        if(curr == NULL){
+            head = prev;
+            return ;
+        }
+        
+        Recursion(head,  curr -> next, curr);          
+        // curr -> next = prev;
+        
+    }
+    
+    ListNode* reverseList(ListNode* head) {
+        ListNode * curr = head;
+        ListNode * prev = NULL;
+            
+        Recursion(head, curr, prev);
+        
+        return head;
+        
+    }
+};
