@@ -34,3 +34,33 @@ public:
 //finally, we update head with the value we stored in nextNode and go on with the loop until we can. After the loop, we return prevNode.
 //I know it is complex, but I find this gif from another platform to make the whole logic much easier to understand (bear in mind we do not need curr and will just use head in its place):
 
+
+
+// Iterative solution 
+// pg 9
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == NULL or head -> next == NULL)
+            return head; 
+        
+        ListNode * prev = NULL;
+        ListNode * curr = head;
+        
+        while(curr != NULL){
+            ListNode * fd = NULL;
+            fd = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = fd;
+        }
+        return prev;
+    }
+};
+
+// T.C. O(N)
+// S.C. O(1)
+
+
+
