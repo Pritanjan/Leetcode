@@ -51,6 +51,40 @@ Time Complexity : O(N)
 Space Complexity : O(1)
 
 
+	
+// APPRAOCH 3 HASH MAP
+	
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        // empty list
+        if(head == NULL){
+            return false;
+        }
+    
+        map<ListNode*, bool> visited;
+        ListNode* temp = head;
+        
+        while(temp != NULL) {
+            // cycle is present 
+            if(visited[temp] == true){
+                return 1;           
+            }
+        
+            visited[temp] = true;
+        
+            temp = temp -> next;
+        
+        }       
+        return false;
+    }
+};
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+	
 
 // check cycle -> tail to head
 // https://www.codingninjas.com/codestudio/problems/circularly-linked_1070232?source=youtube&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan&leftPanelTab=0
