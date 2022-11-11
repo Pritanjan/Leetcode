@@ -12,12 +12,11 @@
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        ListNode *temp = head;
-        
+    ListNode* deleteDuplicates(ListNode* head) {      
         if(!head)
             return head;
         
+        ListNode *temp = head;
         while(temp && temp->next){
             if(temp->val == temp->next->val)
                 temp->next = temp->next->next;
@@ -27,3 +26,5 @@ public:
         return head;
     }
 };
+
+
