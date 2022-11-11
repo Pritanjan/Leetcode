@@ -1,4 +1,5 @@
-//https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+// https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+// https://www.codingninjas.com/codestudio/problems/unique-sorted-list_2420283?leftPanelTab=2
 
 /**
  * Definition for singly-linked list.
