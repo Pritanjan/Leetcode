@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
+// APPROACH 1
 // STL
 class Solution {
 public:
@@ -9,6 +10,8 @@ public:
     }
 };
 
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -25,6 +28,8 @@ public:
 };
 
 
+// APPROACH 3
+
 class Solution {
 public:
     int removeDuplicates(vector<int>& arr) {
@@ -37,6 +42,26 @@ public:
         }
         arr.erase(arr.end() - count, arr.end());
         return arr.size();
+    }
+};
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& A) {
+        int L = 0;
+        int R = 1;
+        
+        while(R < A.size()){
+            if(A[R] > A[L]){
+                L++;
+                A[L] = A[R];
+            }
+            R++;
+        }
+        return L+1;
     }
 };
 
