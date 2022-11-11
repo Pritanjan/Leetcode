@@ -3,6 +3,10 @@
 
 //https://leetcode.com/problems/linked-list-cycle/discuss/2011503/Microsot
 
+// check cycle -> tail to head
+// https://www.codingninjas.com/codestudio/problems/circularly-linked_1070232?source=youtube&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan&leftPanelTab=0
+
+
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
