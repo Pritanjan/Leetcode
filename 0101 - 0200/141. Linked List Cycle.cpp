@@ -3,10 +3,6 @@
 
 //https://leetcode.com/problems/linked-list-cycle/discuss/2011503/Microsot
 
-// check cycle -> tail to head
-// https://www.codingninjas.com/codestudio/problems/circularly-linked_1070232?source=youtube&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan&leftPanelTab=0
-
-
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -53,3 +49,56 @@ public:
 
 Time Complexity : O(N)
 Space Complexity : O(1)
+
+
+
+// check cycle -> tail to head
+// https://www.codingninjas.com/codestudio/problems/circularly-linked_1070232?source=youtube&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan&leftPanelTab=0
+	
+	
+#include <bits/stdc++.h> 
+/*************************************************
+        Following is the structure of class Node:
+     
+        class Node{
+        public:
+            int data;
+            Node* next;
+            
+            Node(int data){
+                this->data = data;
+                this->next = NULL;
+            }
+            
+        }
+**************************************************/
+
+bool isCircular(Node* head){
+    // empty list
+    if(head == NULL){
+        return true;
+    }
+    if(head -> next == NULL){
+        return false;
+    } 
+    
+    Node* temp = head;
+    Node* temp1 = head;
+    
+    while(temp != NULL && temp1 != NULL and temp1 -> next != NULL) {
+        temp = temp -> next;
+        temp1 = temp1 -> next -> next;
+        
+        if(temp == temp1)
+            break;
+    }   
+    if(temp == temp1 and temp == head)
+        return true;
+    
+    return false;
+}
+
+
+
+// T.C. --> O(N)
+// S.C. --> O(1)
