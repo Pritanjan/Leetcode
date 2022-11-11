@@ -4,6 +4,19 @@
 //https://leetcode.com/problems/linked-list-cycle/discuss/2011503/Microsot
 
 
+
+
+
+// 
+
+
+
+
+
+
+
+
+
 // APPRAOCH 1 HASH MAP
 	
 class Solution {
@@ -176,5 +189,142 @@ bool isCircular(Node* head){
 
 // T.C. --> O(N)
 // S.C. --> O(1)
+
+
+
+
+// FINDING STARTING NODE OF THE LOOP
+
+bool FCDA(ListNode *head) {  
+    // if head is NULL then return false;
+    if(head == NULL || head->next == NULL)
+        return false;	
+	
+	// making two pointers slow and fast and assignning them to head      
+    ListNode* slow  = head;
+    ListNode* fast = head;
+        
+	// till fast and fast -> next not reaches NULL
+	// we will increment fast by 2 step and slow by 1 step
+    while(fast && fast -> next){
+        slow = slow -> next;
+        fast = fast -> next -> next;
+
+	    // At the point if slow and fast are at same address
+	    // this means linked list has a cycle in it.
+        if(slow == fast)
+            return true;
+    }
+	// if traversal reaches to NULL this means no cycle.
+    return false;
+}
+
+
+
+
+bool getStartingNode(TreeNode* head){
+     if(head == NULL)
+         return NULL;
+    
+    TreeNode* meet = FCDA(head);
+    TreeNode* slow = head;
+    
+    while(slow !- meet){
+        slow = slow -> next;
+        meet = meet -> next;
+    }
+    
+    return slow;
+}
+
+
+
+
+
+// REMOVING LOOP FROM THE LL
+
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+
+
+Node* FCDA(Node *head) {  
+    // if head is NULL then return false;
+    if(head == NULL)
+        return NULL;    
+    
+    // making two pointers slow and fast and assignning them to head      
+    Node* slow  = head;
+    Node* fast = head;
+        
+    // till fast and fast -> next not reaches NULL
+    // we will increment fast by 2 step and slow by 1 step
+    while(fast && fast -> next){
+        slow = slow -> next;
+        fast = fast -> next -> next;
+
+        // At the point if slow and fast are at same address
+        // this means linked list has a cycle in it.
+        if(slow == fast)
+            return slow;
+    }
+    // if traversal reaches to NULL this means no cycle.
+    return NULL;
+}
+
+
+
+
+Node* getStartingNode(Node* head) {
+     if(head == NULL)
+         return NULL;
+     
+    Node* meet = FCDA(head);
+    Node* slow = head;
+    
+    if(meet == NULL)
+        return NULL;
+    
+    while(slow != meet){
+        slow = slow -> next;
+        meet = meet -> next;
+    }
+    return slow;
+}
+
+
+Node *removeLoop(Node *head){
+    if(head == NULL)
+        return NULL;
+    
+    Node* startofLoop = getStartingNode(head);
+    if(startofLoop == NULL)
+        return head;
+    Node* temp = startofLoop;
+    
+    while(temp -> next != startofLoop){
+        temp = temp -> next;
+    }
+    
+    temp -> next = NULL;
+    return head;
+}
+
+// T.C. --> O(N)
+// S.C. --> O(1)
+
+
 
 
