@@ -65,20 +65,22 @@ Node* sortList(Node *head) {
 // APPROACH 2
 
 
-// RTE
+
 // Count the number of occurrences, then update the linked list.
 
-void insertAtTail(Node* tail, Node* curr){
+
+
+void insertAtTail(Node* &tail, Node* &curr){
     tail -> next = curr;
     tail = curr;
 }
 
 Node* sortList(Node *head) {
-    Node* zerohead = NULL;
+    Node* zerohead = new Node(-1);
     Node* zerotail = zerohead;
-    Node* onehead = NULL;
+    Node* onehead = new Node(-1);
     Node* onetail = onehead;
-    Node* twohead = NULL;
+    Node* twohead = new Node(-1);
     Node* twotail = twohead;
 
     Node* curr = head;
@@ -100,7 +102,7 @@ Node* sortList(Node *head) {
     
     // 1s is not empty
     if(onehead -> next != NULL)
-        zerotail -> next = onehead;
+        zerotail -> next = onehead -> next;
     else
         // 1s is empty 
         zerotail -> next = twohead -> next;
@@ -115,16 +117,14 @@ Node* sortList(Node *head) {
     delete zerohead;
     delete onehead;
     delete twohead;
+    
+    return head;
 }
+
+
+
 
 // T.C. --> O(n)
 // S.C. --> O(1)
-
-
-
-
-
-
-
 
 
