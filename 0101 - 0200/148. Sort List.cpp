@@ -16,9 +16,57 @@
 
 ********************************/
 
-// Count the number of occurrences, then update the linked list.
+
 // Separate each node and reconnect.
 
+Node* sortList(Node *head) {
+    int zerocnt = 0;
+    int onecnt = 0;
+    int twocnt = 0;
+    
+    Node* temp = head;
+    while(temp != NULL){
+        if(temp -> data == 0)
+            zerocnt++;
+        else if(temp -> data == 1)
+            onecnt++;    
+        else if(temp -> data == 2)
+            twocnt++;
+        
+        temp = temp -> next;
+    }
+    
+    temp = head;
+    while(temp != NULL){
+        if(zerocnt != 0){
+            temp -> data = 0;
+            zerocnt--;
+        }
+        else if(onecnt != 0){
+            temp -> data = 1;
+            onecnt--;
+        }
+        else if(twocnt != 0){
+            temp -> data = 2;
+            twocnt--;
+        }
+        temp = temp -> next;
+    }
+    return head;
+}
+
+
+
+
+// T.C. --> O(n)
+
+
+
+// APPROACH 2
+
+
+// RTE
+// Count the number of occurrences, then update the linked list.
 
 void insertAtTail(Node* tail, Node* curr){
     tail -> next = curr;
@@ -71,6 +119,8 @@ Node* sortList(Node *head) {
 
 // T.C. --> O(n)
 // S.C. --> O(1)
+
+
 
 
 
