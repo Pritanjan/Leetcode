@@ -1,3 +1,95 @@
+// https://leetcode.com/problems/sort-list/
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* findMid(ListNode* head){
+        ListNode* slow = head;
+        ListNode* fast = head -> next;
+        
+        while(fast != NULL and fast -> next != NULL){
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+        return slow;
+    }
+    
+    ListNode* merge(ListNode* L, ListNode* R){
+        if(L == NULL)
+            return R;
+        if(R == NULL)
+            return L; 
+        
+        ListNode* ans = new ListNode(-1);
+        ListNode* temp = ans;
+        
+        while(L != NULL and R != NULL){
+            if(L -> val < R -> val){
+                temp -> next = L;
+                temp = L;
+                L = L -> next;
+            }
+            else{
+                temp -> next = R;
+                temp = R;
+                R = R -> next;
+            }
+        }
+        
+        while(L != NULL){
+            temp -> next = L;
+            temp = L;
+            L = L -> next;    
+        }
+
+        while(R != NULL){
+            temp -> next = R;
+            temp = R;
+            R = R -> next;    
+        }
+        ans = ans -> next;
+        return ans;
+    }
+    
+    ListNode* sortList(ListNode* head) {
+        if(head == NULL or head -> next == NULL)
+            return head;
+        
+        // break LL into 2 halves, after finding mid
+        ListNode* mid = findMid(head);
+        
+        ListNode* L = head;
+        ListNode* R = mid -> next;
+        mid -> next = NULL;
+        
+        // recursive calls to sort both halves
+        L = sortList(L);
+        R = sortList(R);
+        
+        // merge both L and R halves
+        ListNode* ans = merge(L, R);
+            
+        return ans;
+    }
+};
+
+
+// T.C. --> O(N Log N)
+// S.C. --> O(Log N)
+
+
+
+
 // Sort linked list of 0s 1s 2s
 // https://www.codingninjas.com/codestudio/problems/sort-linked-list-of-0s-1s-2s_1071937?leftPanelTab=0
 
@@ -126,5 +218,8 @@ Node* sortList(Node *head) {
 
 // T.C. --> O(n)
 // S.C. --> O(1)
+
+
+
 
 
