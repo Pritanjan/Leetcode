@@ -1,4 +1,6 @@
-//https://leetcode.com/problems/reverse-linked-list/
+// https://leetcode.com/problems/reverse-linked-list/
+
+// https://www.geeksforgeeks.org/reverse-a-linked-list/
 
 /**
  * Definition for singly-linked list.
