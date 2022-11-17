@@ -1,3 +1,5 @@
+// APPROACH 1
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -43,6 +45,164 @@ public:
         return ans -> next;
     }
 };
+
+
+
+
+    
+// APPROACH 2
+class Solution
+{
+    public:
+    //Function to add two numbers represented by linked list.
+    Node* reverse(Node* &head){
+        Node* curr=head;
+        Node* prev=NULL;
+        Node* nex;
+        while(curr){
+            nex=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nex;
+        }
+        return prev;
+    }
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        // code here
+        first=reverse(first);
+        second=reverse(second);
+        int carry=0;
+        int sum=0;
+        Node* temp;
+        Node* res=NULL;
+        Node* curr=NULL;
+        while(first!=NULL or second!=NULL){
+            sum=carry+(first?first->data:0)+(second?second->data:0);
+            carry=(sum>=10)?1:0;
+            sum=sum%10;
+            temp=new Node(sum);
+            if(res==NULL)
+            res=temp;
+            
+            else
+                curr->next=temp;
+                curr=temp;
+            if(first)
+            first=first->next;
+            if(second)
+            second=second->next;
+        }
+        if(carry>0){
+            temp=new Node(carry);
+            curr->next=temp;
+            curr=temp;
+        }
+        res=reverse(res);
+        return res;
+        
+        
+    }
+};
+
+
+
+// APPROACH 3
+
+
+struct Node {
+    int data;
+    struct Node* next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+class Solution
+{
+    public:
+        struct Node* reverse(struct Node* l1){
+
+        struct Node* p = l1, *q = NULL, *r = NULL;
+
+        
+
+        while(p!=NULL){
+
+            r = q;
+
+            q = p;
+
+            p = p->next;
+
+            q->next = r;
+
+        }
+
+        return q;
+
+    }
+
+    struct Node* addTwoLists(struct Node* l11, struct Node* l22)
+
+    {
+
+        // code here
+
+        struct Node*l1 = reverse(l11);
+
+        struct Node*l2 = reverse(l22);
+
+        
+
+        struct Node* l3 = new Node(-1);
+
+        struct Node* curr = l3;
+
+        
+
+        int carry = 0;
+
+        while(l1 || l2 || carry){
+
+            if(l1!=NULL){
+
+                carry += l1->data;
+
+                l1 = l1->next;
+
+            }
+
+            if(l2!=NULL){
+
+                carry += l2->data;
+
+                l2 = l2->next;
+
+            }
+
+            
+
+            curr->next = new Node(carry%10);
+
+            carry /= 10;
+
+            curr = curr->next;
+
+        
+
+        }
+
+        struct Node* l33 = reverse(l3->next);
+
+        return l33;
+
+    }
+};
+
 
 
 
