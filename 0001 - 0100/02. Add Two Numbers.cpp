@@ -47,13 +47,14 @@ public:
 };
 
 
+// Time complexity :  O(max(m,n)). Assume that mm and nn represents the length of L1 and L2 respectively, the algorithm above iterates at most max(m,n) times.
 
+// Space complexity : O(max(m,n)). The length of the new list is at most max(m,n)+1.
 
     
 // APPROACH 2
-class Solution
-{
-    public:
+class Solution {
+public:
     //Function to add two numbers represented by linked list.
     Node* reverse(Node* &head){
         Node* curr=head;
@@ -67,6 +68,7 @@ class Solution
         }
         return prev;
     }
+    
     struct Node* addTwoLists(struct Node* first, struct Node* second)
     {
         // code here
@@ -100,8 +102,6 @@ class Solution
         }
         res=reverse(res);
         return res;
-        
-        
     }
 };
 
@@ -121,85 +121,45 @@ struct Node {
 
 */
 
-class Solution
-{
-    public:
-        struct Node* reverse(struct Node* l1){
-
-        struct Node* p = l1, *q = NULL, *r = NULL;
-
-        
-
+class Solution {
+public:
+    struct Node* reverse(struct Node* l1){
+        struct Node* p = l1, *q = NULL, *r = NULL;    
         while(p!=NULL){
-
             r = q;
-
             q = p;
-
             p = p->next;
-
             q->next = r;
-
         }
-
         return q;
-
     }
 
-    struct Node* addTwoLists(struct Node* l11, struct Node* l22)
-
-    {
-
-        // code here
-
+    struct Node* addTwoLists(struct Node* l11, struct Node* l22) {
         struct Node*l1 = reverse(l11);
-
         struct Node*l2 = reverse(l22);
-
-        
-
         struct Node* l3 = new Node(-1);
-
-        struct Node* curr = l3;
-
-        
-
+        struct Node* curr = l3;       
         int carry = 0;
-
+        
         while(l1 || l2 || carry){
-
             if(l1!=NULL){
-
                 carry += l1->data;
-
                 l1 = l1->next;
-
             }
 
             if(l2!=NULL){
-
                 carry += l2->data;
-
                 l2 = l2->next;
-
             }
 
-            
-
             curr->next = new Node(carry%10);
-
             carry /= 10;
-
-            curr = curr->next;
-
-        
-
+            curr = curr->next;        
         }
-
+        
         struct Node* l33 = reverse(l3->next);
 
         return l33;
-
     }
 };
 
