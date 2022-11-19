@@ -96,7 +96,24 @@ public:
 
 
 
+// TLE 
+// https://www.geeksforgeeks.org/check-if-a-linked-list-is-circular-linked-list/
 
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL) return 1;
+        
+        
+        ListNode* temp = head -> next;
+        
+        while(temp != NULL and temp != head){
+            temp = temp -> next;
+        }
+        
+        return (temp == head);
+    }
+};
 
 
 
@@ -296,5 +313,8 @@ Node *removeLoop(Node *head){
 
 // T.C. --> O(N)
 // S.C. --> O(1)
+
+
+
 
 
