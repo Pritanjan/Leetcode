@@ -1,21 +1,7 @@
-//https://leetcode.com/problems/linked-list-cycle/
-//COMPANY TAG AMAZON LINKEDIN MICROSOFT
+// https://leetcode.com/problems/linked-list-cycle/
+// COMPANY TAG AMAZON LINKEDIN MICROSOFT
 
-//https://leetcode.com/problems/linked-list-cycle/discuss/2011503/Microsot
-
-
-
-
-
-// 
-
-
-
-
-
-
-
-
+// https://leetcode.com/problems/linked-list-cycle/discuss/2011503/Microsot
 
 // APPRAOCH 1 HASH MAP
 	
@@ -107,23 +93,6 @@ public:
         return true;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -327,7 +296,5 @@ Node *removeLoop(Node *head){
 
 // T.C. --> O(N)
 // S.C. --> O(1)
-
-
 
 
