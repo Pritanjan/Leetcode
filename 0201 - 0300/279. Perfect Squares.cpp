@@ -1,3 +1,5 @@
+// https://tenderleo.gitbooks.io/leetcode-solutions-/content/GoogleMedium/279.html
+
 class Solution {
 public:
     int numSquares(int n) {
@@ -11,8 +13,6 @@ public:
         return ans;
     }
 };
-
-
 
 
 
