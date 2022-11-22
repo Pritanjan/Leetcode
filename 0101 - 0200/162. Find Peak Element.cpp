@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/find-peak-element/solution/
+// APPROACH 1
 
 class Solution {
 public:
@@ -24,3 +24,27 @@ public:
 //consumed in log_2(n)steps. Here,n refers to the size of array.
 
 //Space complexity : O(1). Constant extra space is used.
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        for(int i=0; i<nums.size() - 1; i++){
+            if(nums[i] > nums[i+1])
+                return i;
+        }
+        return nums.size() - 1;
+    }
+};
+
+
+
+
+
+
+
+
+
