@@ -2,7 +2,8 @@
 
 // https://www.geeksforgeeks.org/rearrange-a-given-linked-list-in-place/
 
-// APPROACH 1
+// APPROACH 1    using stack
+
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -36,7 +37,40 @@ public:
 
 
 
-// APPROACH 2
+
+// APPROACH 2   Using deque T.C O(N)   S.C O(N)
+ 
+class Solution {
+public:   
+    void reorderList(ListNode* head) {
+        deque<int>q;
+        ListNode*temp = head;
+        
+        while(temp) {
+            q.push_back(temp -> val);
+            temp = temp -> next;
+        }
+        
+        temp = head;
+        int i = 1;
+        while(temp) {
+            if(i % 2 == 0) {
+                temp -> val=q.back();
+                q.pop_back();
+            }
+            else{
+                temp->val = q.front();
+                q.pop_front();
+            }
+            i++;
+            temp = temp->next;
+        }        
+    }
+};
+
+
+
+// APPROACH 3
 
 // 1. Split the list into 2 halves. Next reverse the second half.
 // 2. Now, merge the 2 halves while picking elements alternatively from each half.
@@ -99,12 +133,8 @@ public:
 };
 
 
-
 // T.C. ->  As we are traversing the list roughly 2N times so the time complexity is O(N),
 //          N is length of the string.
 // S.C. ->  As we are not using any extra space so the space complexity is O(1).
-
-
-
 
 
