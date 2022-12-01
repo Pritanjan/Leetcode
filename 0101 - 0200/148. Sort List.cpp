@@ -1,6 +1,3 @@
-// https://leetcode.com/problems/sort-list/
-
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -90,6 +87,7 @@ public:
 
 
 
+
 // Sort linked list of 0s 1s 2s
 // https://www.codingninjas.com/codestudio/problems/sort-linked-list-of-0s-1s-2s_1071937?leftPanelTab=0
 
@@ -107,7 +105,6 @@ public:
     };
 
 ********************************/
-
 
 // Separate each node and reconnect.
 
@@ -147,20 +144,12 @@ Node* sortList(Node *head) {
     return head;
 }
 
-
-
-
 // T.C. --> O(n)
 
 
 
 // APPROACH 2
-
-
-
 // Count the number of occurrences, then update the linked list.
-
-
 
 void insertAtTail(Node* &tail, Node* &curr){
     tail -> next = curr;
@@ -213,12 +202,8 @@ Node* sortList(Node *head) {
     return head;
 }
 
-
-
-
 // T.C. --> O(n)
 // S.C. --> O(1)
-
 
 
 
