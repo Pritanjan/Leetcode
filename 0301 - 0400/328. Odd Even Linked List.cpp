@@ -17,17 +17,24 @@ public:
         ListNode* even = head -> next;
         ListNode* evenhead = head -> next;
         
+        // `even != null` rules out the list of only 1 node
+        // `even.next != null` rules out the list of only 2 nodes
         while(even != NULL and even -> next != NULL){
+            // put odd to the odd list
             odd ->next = odd -> next -> next;
+            // Move the pointer to the next odd
             odd = odd -> next;
         
+            // put even to the even list
             even -> next = even -> next -> next;
+            // Move the pointer to the next even
             even = even -> next;
         }
         odd -> next = evenhead;
         return head;    
     }
 };
+
 
 
 
