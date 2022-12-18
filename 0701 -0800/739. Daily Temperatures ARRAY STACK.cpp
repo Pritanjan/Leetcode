@@ -19,3 +19,22 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        int n = temp.size();
+        vector<int> ans(n);
+        
+        for(int i=n-1; i>=0; --i){
+            int j = i+1;
+            while(j < n && temp[i] >= temp[j] ){
+                ans[j] > 0 ? j = j + ans[j] : j = n;
+            }
+            if(j < n)
+                ans[i] = j - i;
+        }
+        return ans;
+    }
+}; 
