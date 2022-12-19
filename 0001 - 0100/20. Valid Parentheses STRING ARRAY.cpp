@@ -1,6 +1,8 @@
 // https://leetcode.com/problems/valid-parentheses/
 // AMAZON BLOOMBERG FB GOOGLE MICROSOFT LINKDEIN UBER
 
+// if opening bracket, push in stack
+// if closing bracket, stck check & pop
 
 // APPROACH 1
 class Solution {
@@ -104,3 +106,5 @@ public:
         return parenthis.empty() ;
     }
 };
+
+
