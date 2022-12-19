@@ -24,6 +24,8 @@ public:
     }
 };
 
+// T.C. O(N)
+// S.C. O(1)
 
 
 // APPROACH 3
@@ -36,4 +38,43 @@ public:
         // return s;
     }
 };
+
+
+
+
+
+
+
+
+// REVDRSE A WORD 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    string s = "poi";
+    stack<char> st;
+
+    for(int i=0; i<s.size(); i++){
+        st.push(s[i]);
+    }
+
+    string res = "";
+
+    while(!st.empty()){
+        res.push_back(st.top());
+
+        st.pop();
+    }
+
+    cout << res;
+}
+
+// T.C. O(N)
+// S.C. O(N)  -> due to stack 
+
+
+
+
 
