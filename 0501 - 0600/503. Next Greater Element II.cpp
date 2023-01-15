@@ -18,3 +18,33 @@ public:
 };
 
 
+
+// https://practice.geeksforgeeks.org/problems/214734e358208c1c6811d9b237b518f6b3c3c094/1
+// IF THE aRRaY IS NOT CIRCULaR
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& arr){
+        int n = arr.size();
+        stack<int> st;
+        st.push(-1);
+        vector<int> ans(n);
+    
+        for(int i=n-1; i>=0; i--){
+            while(st.top() != -1 and st.top() <= arr[i]){
+                st.pop();
+            }
+            ans[i] = st.top();
+            st.push(arr[i]);
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+
+
