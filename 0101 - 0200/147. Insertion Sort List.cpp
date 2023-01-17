@@ -8,6 +8,11 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+
+
+// APPROACH 1 INSERTION SORT 
+
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
@@ -45,6 +50,36 @@ public:
 // regardless of the input.
 // Note, we did not create new nodes to hold the values of input list, but simply reorder the 
 // existing nodes.
+
+
+
+// APPROACH 2 RECURSIVE 
+
+
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(head == NULL || head -> next == NULL) {
+            return head;
+        }
+        head -> next = insertionSortList(head -> next);
+        
+        return insert(head);
+    }
+
+    ListNode* insert(ListNode *head){
+        if(head -> next == NULL || head -> next -> val > head -> val) {
+            return head;
+        }
+        ListNode* temp = head -> next;
+        head -> next = temp -> next;
+        temp -> next = insert(head);
+        return temp;
+
+    }
+};
+
+
 
 
 
