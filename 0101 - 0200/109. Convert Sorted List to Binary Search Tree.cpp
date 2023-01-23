@@ -48,3 +48,33 @@ public:
 
 // Traverse the list to get the middle element and make that the root. left side of the list 
 // forms left sub-tree and right side of the middle element forms the right sub-tree.
+
+
+
+
+// The first step is to check if the head of the linked list is NULL, in which case the function 
+// returns NULL, as there is no tree to be created.
+
+// Then, it uses the slow and fast pointers method to find the middle of the linked list,
+// similar to the previous explanation. The prev variable keeps track of the node before
+// the slow pointer, which will be used later to break the linked list into two parts.
+
+// Once the middle of the linked list is found, a new TreeNode is created with the value 
+// of the middle node. The middle node is the root of the BST.
+
+// Then, the linked list is broken into two parts, the left part and the right part.
+// The left part is the nodes before the middle node, and the right part is the nodes after
+// the middle node.
+
+// The left part of the linked list is recursively passed as the left child of the root node
+// and the right part of the linked list is recursively passed as the right child of the root node.
+
+// Finally, the root node is returned as the result of the function.
+
+// This code uses the property of a BST that left child node is always smaller than the right
+// child node and recursively constructs left and right sub-tree until the last node.
+
+
+
+
+
