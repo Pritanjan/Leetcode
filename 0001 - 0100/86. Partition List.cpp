@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/partition-list/solutions/212538/partition-list/
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -42,8 +44,6 @@ public:
 // Space Complexity: O(1), we have not utilized any extra space, the point to note is that
 // we are reforming the original list, by moving the original nodes, we have not used any
 // extra space as such.
-
-
 
 
 
