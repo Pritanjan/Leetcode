@@ -5,6 +5,7 @@
 // if closing bracket, stck check & pop
 
 // APPROACH 1
+
 class Solution {
 public:
     bool isValid(string s) {
@@ -30,7 +31,8 @@ public:
 };
 
 
-// APPROACH 2
+// APPROACH 
+
 class Solution {
 public:
     bool isValid(string s) {
@@ -58,7 +60,8 @@ public:
 };
 
 
-// APPROACH 3
+// APPROACH 2
+
 class Solution {
 public:
     bool isValid(string s) {        
@@ -71,33 +74,21 @@ public:
                 case '{': 
                 case '[': 
                 parenthis.push(c); 
-                
                 break;
                 
                 case ')':
-                    if (parenthis.empty() || parenthis.top()!='(') 
-                        return false;
-                    else                  
-                        parenthis.pop(); 
-                    
+                    if (parenthis.empty() || parenthis.top()!='(')  return false;
+                    else parenthis.pop(); 
                     break;
                 
                  case '}':
-                
-                    if (parenthis.empty() || parenthis.top()!='{') 
-                        return false; 
-                    else
-                        parenthis.pop(); 
-                    
+                    if (parenthis.empty() || parenthis.top()!='{')  return false; 
+                    else parenthis.pop(); 
                     break;
 
                 case ']':
-                
-                    if (parenthis.empty() ||parenthis.top()!='[') 
-                        return false;
-                    else
-                        parenthis.pop(); 
-                
+                    if (parenthis.empty() ||parenthis.top()!='[')  return false;
+                    else parenthis.pop(); 
                     break;
                 
                 default: ; 
@@ -106,5 +97,4 @@ public:
         return parenthis.empty() ;
     }
 };
-
 
