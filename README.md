@@ -34,6 +34,9 @@ My C++ Codes
   1752 | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/"> Check if Array Is Sorted and Rotated  | <a href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/discuss/2506388/c%2B%2B-7ms-Solution-with-explanation"> LC </a>
   1958 | <a href="https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/"> Find the Kth Largest Integer in the Array | <a href= "https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/discuss/2523326/C%2B%2B-solution-or-Using-Sorting-("> LC </a>
   2220 | <a href="https://leetcode.com/problems/minimum-bit-flips-to-convert-number/"> Minimum Bit Flips to Convert Number | <a href="https://leetcode.com/problems/minimum-bit-flips-to-convert-number/discuss/2598539/C%2B%2B-2-Solution-oror-STL-oror-Bitwise-XOR-with-explanation"> LC <a href="https://www.codingninjas.com/codestudio/problems/number-of-flips_3125902?leftPanelTab=0" > CN(similar problem on CN)
+  2490 | <a href="https://leetcode.com/problems/circular-sentence/"> Circular Sentence | <a href="https://leetcode.com/problems/circular-sentence/discuss/2875223/JAVA"> LC
+  2491 | <a href="https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/"> Divide Players Into Teams of Equal Skill | <a href="https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/discuss/2875276/C%2B%2B-solution-oror-with-easy-explanation">  LC
+  
   
    
  

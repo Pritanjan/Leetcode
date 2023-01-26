@@ -58,16 +58,6 @@ public:
 
 // APP 3
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -88,3 +78,39 @@ public:
         return temp;
     }
 };
+
+
+// APP 4 same as APP 3
+// Find the length of the LL then travesrse for n/2
+
+class Solution {
+public:
+    int getLength(ListNode* head){
+        int len = 0;
+        while(head != NULL){
+            len++;
+            head = head -> next;
+        }
+        return len;
+    }
+    
+    ListNode* middleNode(ListNode* head) {
+        int n = getLength(head);
+        
+        ListNode* temp = head;
+        int cnt = 0;
+        
+        while(cnt < n/2){
+            temp = temp -> next;
+            cnt++;
+        }
+        return temp;
+    }
+};
+
+// getLength T.C. -- > O(N)
+// while execute for n/2 --> O(N/2)
+// T.C. --> O(N)
+
+
+
