@@ -22,3 +22,29 @@ public:
     }
 };
 
+
+
+
+
+
+
+class Solution {
+public:
+    vector<int> preorder(Node* root) {
+        vector<int> res;
+        if(!root) return res;
+        stack<Node*> stk;
+        stk.push(root);
+        while (!stk.empty()) {
+            auto node = stk.top();
+            stk.pop();
+            res.push_back(node->val);
+           for (auto it = node->children.rbegin(); it != node->children.rend(); it++) {
+                 stk.push(*it);
+           }
+        }
+    return res;
+   }
+};
+
+
