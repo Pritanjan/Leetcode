@@ -26,8 +26,6 @@ public:
 
 
 
-
-
 class Solution {
 public:
     string gcdOfStrings(string str1, string str2) {
@@ -35,6 +33,18 @@ public:
         return str1.substr(0, __gcd(str1.length(), str2.length()));
     }
 };
+
+// This implementation uses a loop to find the greatest common divisor (GCD) of two strings. 
+// The function takes two strings str1 and str2 as input, and returns the largest string x 
+// that divides both str1 and str2.
+
+// The __gcd function is used to find the greatest common divisor of the lengths of str1 and str2. 
+// If the concatenation of str1 and str2 is not equal to the concatenation of str2 and str1, 
+// it means that str1 and str2 do not have a common divisor, and the function returns an empty string.
+
+// Otherwise, the function returns the substring of str1 that starts at the beginning and has
+// length equal to the greatest common divisor of the lengths of str1 and str2. This substring 
+// is guaranteed to be the largest string that divides both str1 and str2.
 
 
 
