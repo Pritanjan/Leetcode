@@ -23,3 +23,28 @@ public:
 
 //Time Complexity : O(N), where N is the total number of characters in words.
 //Space Complexity : O(1), we only need constant amount of space to store the mapping of letters to index which does not depend on the size of input. Hence we get constant space complexity.
+
+
+
+
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+        
+        int mapping[26];
+        for(int i=0; i<26; i++){
+            mapping[order[i] - 'a'] = i; 
+        }
+        
+        for(string &s : words){
+            for(char &c : s)
+                c = mapping[c - 'a'];
+        }
+        return is_sorted(words.begin(),words.end());
+    }
+};
+
+
+
+
+
