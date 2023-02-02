@@ -31,4 +31,5 @@ public:
 // students cannot be satisfied.
 
 
-
+// Time O(n)
+// Space O(2)
