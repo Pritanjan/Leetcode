@@ -106,15 +106,20 @@ public:
             j += d;
         }
 
-        // rows would look like below in the first example
-        // ['PAHN', 'APLSIIG', 'YIR']
-        // we use join to build the final answer
-        string res = "";
-        for(int i=0; i<numRows; i++){
-            res += rows[i];
-        }
+        // // rows would look like below in the first example
+        // // ['PAHN', 'APLSIIG', 'YIR']
+        // // we use join to build the final answer
+        // string res = "";
+        // for(int i=0; i<numRows; i++){
+        //     res += rows[i];
+        // }
 
-        return res;
+        // return res;
+
+        return accumulate(rows.begin(), rows.end(), string{});
     }
 };
+
+
+
 
