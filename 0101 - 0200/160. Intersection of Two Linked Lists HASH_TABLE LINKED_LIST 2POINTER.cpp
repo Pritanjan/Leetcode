@@ -53,3 +53,28 @@ public:
 
 
 
+
+
+
+
+
+// https://practice.geeksforgeeks.org/problems/eae1fbd0ac8f213a833d231e26ba4d829e79dd9c/1
+
+class Solution
+{
+public:
+    int intersectPoint(Node* head1, Node* head2){
+        Node *p = head1, *q = head2;
+        while(p != q) {
+            p = p->next == NULL ? head2 : p->next,
+            q = q->next == NULL ? head1 : q->next;
+        }
+        return p->data;
+    }
+};
+
+// Retunr common element
+
+
+
+
