@@ -1,5 +1,34 @@
 // https://leetcode.com/problems/fruit-into-baskets/solutions/2960000/fruit-into-baskets/
 
+SEE IT FOR DETAIL SOLUTION 
+
+
+// Focus on the mathematical part of the problem, 
+// This question equals: 
+// Given an array of integers, find the longest subarray that contains at most 2 unique integers.
+// (We will call such subarray a valid subarray for convenience)
+
+
+// APPROACH 1 :- BRUTE FORCE
+
+// Most straight forward method, brute force! That is, to check every subarray and
+// find out the longest valid one.
+
+// Steps are :
+// 1. Iterate over all subarrays.
+// 2. For each subarray, we count the types of fruits it contains. 
+//    If the subarray has no more than 2 types of fruits, meaning it is valid, 
+//    we take its length to update the maximum length.
+
+
+
+
+
+
+
+
+// APPROACH 3 :- Sliding Window
+
 class Solution {
 public:
     int totalFruit(vector<int>& f) {
@@ -43,6 +72,7 @@ public:
     return ans;
   }
 };
+
 
 
 
