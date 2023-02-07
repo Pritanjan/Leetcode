@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/fruit-into-baskets/solutions/2960000/fruit-into-baskets/
+
 class Solution {
 public:
     int totalFruit(vector<int>& f) {
@@ -41,8 +43,6 @@ public:
     return ans;
   }
 };
-
-
 
 
 
