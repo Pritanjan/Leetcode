@@ -1,5 +1,5 @@
-// APPROACH 1 (USING STACK)
-
+// \\ APPROACH 1 (USING STACK)
+      
 // 1. If the current asteroid is positive, it is pushed onto the stack.
 
 // 2. If the current asteroid is negative, the stack is checked for any positive
@@ -25,38 +25,50 @@
 
 class Solution {
 public:
-    vector<int> asteroidCollision(vector<int> &asteroids) {
-        int n = asteroids.size();
-        vector<int> v;
-        stack<int> st;
-        
-        for(int i=0; i<n; i++){
-            if(asteroids[i] > 0)  
-                st.push(asteroids[i]);
+    vector<int> asteroidCollision(vector<int>& a) {
+        stack <int> s;
+        int n = a.size();
+        for(int i = 0;i<n;i++){
+            if(s.empty())
+            {
+                s.push(a[i]);
+            }
             else{
-                while(!st.empty() && (-1 * asteroids[i]) > st.top())
-                    st.pop();
-                if(!st.empty() && (-1 * asteroids[i]) == st.top()) 
-                    st.pop();
-                else if(st.empty())
-                    v.push_back(asteroids[i]);
-            } 
+                while( !s.empty() and s.top()>0 and a[i]<0){
+                    if(abs(s.top())<abs(a[i])){
+                        s.pop();
+                    }
+                    else {
+                        break;
+                    }
+
+                 
+                }
+                if(!s.empty() and s.top() >0 and a[i]<0){
+                    if(abs(s.top())==abs(a[i])){
+                        s.pop();
+                        continue;
+                    }
+                    else {
+                        continue;
+                    }
+                }
+                else{
+                    s.push(a[i]);
+                }                
+            }
+
         }
-        
-        vector<int> p;
-        while(!st.empty()){
-            p.push_back(st.top());
-            st.pop();
+        vector<int> ans;
+        while(!s.empty()){
+            ans.push_back(s.top());
+            s.pop();
         }
-        
-        reverse(p.begin(), p.end());
-        v.insert(v.end(), p.begin(), p.end());
-        
-        return v;
+        reverse(ans.begin() ,ans.end());
+        return ans;
+       
     }
 };
-
-
 
 // Time complexity : O(n) where n is the number of elements in the asteroids vector.
 // Because each asteroid is processed once and at most once push and pop operation is done
@@ -65,6 +77,4 @@ public:
 // Space complexity : O(n)
 // as the maximum number of elements in the stack is equal to the number of elements in the 
 // asteroids vector.
-
-
 
