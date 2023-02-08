@@ -79,6 +79,22 @@ public:
 // In other cases, Lboth Rwill collide. Find the starting point and end point of the collision, 
 // and count the number of collisions.
 
+
+
+// 1. Initialize variables:
+//    collisions: a counter for the number of collisions. Initially set to 0.
+//    left: an index for the first character in the string that is not 'L'.
+//    right: an index for the last character in the string that is not 'R'.
+
+// 2. Find the first and last characters that are not 'L' or 'R':
+//    While left is less than the length of directions and the character at left is 'L', increment left by 1.
+//    While right is greater than or equal to 0 and the character at right is 'R', decrement right by 1.
+
+// 3. Loop through the characters in the directions string from left to right (inclusive):
+//    If the current character is not 'S', increment collisions by 1.
+
+// 4. Return the total number of collisions stored in collisions.
+
 class Solution {
 public:
     int countCollisions(std::string directions) {
@@ -103,8 +119,12 @@ public:
 };
 
 
+// The time complexity of this solution is O(n), n is the length of the input string directions. 
+// This is because the code performs two linear scans of the string 
+// to find the first and last characters that are not 'L' or 'R', 
+// and then another linear scan of the string from left to right (inclusive) to count 
+// the number of collisions.
 
-
-
-
+// The space complexity of this solution is O(1),
+// as it only uses a constant amount of memory to store the variables collisions, left, and right.
 
