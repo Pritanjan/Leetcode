@@ -78,3 +78,63 @@ public:
 // as the maximum number of elements in the stack is equal to the number of elements in the 
 // asteroids vector.
 
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& A) {
+        vector<int> ans;
+        for(int i : A) {
+            while(!ans.empty() and ans.back() > 0 and ans.back() < -i){
+                ans.pop_back();
+            }
+            if(ans.empty() or ans.back() < 0 or i > 0){
+                ans.push_back(i);
+            }
+            else if(i < 0 and ans.back() == -i){
+                ans.pop_back();
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> st;
+
+        for(auto it: asteroids){
+            if(it>=0) st.push(it);
+            else{
+                while(st.size() && st.top()<abs(it) && st.top()>=0){
+                    st.pop();
+                }
+
+                if(st.size()==0){
+                    st.push(it);
+                }
+                else{
+                    if(st.top()==abs(it)){
+                        st.pop();
+                    }
+                    else if(st.top()<0){
+                        st.push(it);
+                    }
+                }
+            }
+        }
+
+        vector<int> ans;
+        while(st.size()){
+            ans.emplace_back(st.top());
+            st.pop();
+        }
+
+        reverse(ans.begin(),ans.end());
+
+        return ans;
+    }
+};
+
