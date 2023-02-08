@@ -9,8 +9,6 @@
 // so the number of multiple consecutive Rvehicles is counted by count, and the count is recounted 
 // when a collision occurs.
 
-
-
 class Solution {
 public:
     int countCollisions(string directions) {
@@ -49,3 +47,64 @@ public:
         return collisions;
     }
 };
+
+
+
+// 1 Initialize variables:
+//    collisions: a counter for the number of collisions. Initially set to 0.
+//    left: a variable to store the previous character. Initially set to '\0' (null character).
+//    count: a counter for the number of consecutive 'R' characters. Initially set to 0.
+
+// 2. Loop through each character in the input string directions:
+//    If left is equal to the null character, set left to the current character ch.
+//    If ch is 'R', increment count by 1.
+//    If ch is 'L':
+//       If left is 'R', increment collisions by the value of count plus 1, set left to 'S', and reset count to 0.
+//       If left is 'S', increment collisions by 1 and set left to 'S'.
+//    If ch is 'S':
+//       If left is 'R', increment collisions by the value of count and reset count to 0.
+//       Set left to 'S'.
+
+// 3. Return the total number of collisions stored in collisions.
+
+
+
+
+
+
+
+// APPROACH 2
+
+// only the leftmost continuum Land the rightmost continuum Rwill not collide. 
+// In other cases, Lboth Rwill collide. Find the starting point and end point of the collision, 
+// and count the number of collisions.
+
+class Solution {
+public:
+    int countCollisions(std::string directions) {
+        int collisions = 0;
+        int left = 0;
+        int right = directions.length() - 1;
+        while (left < directions.length() && directions[left] == 'L') {
+            left += 1;
+        }
+        while (right >= 0 && directions[right] == 'R') {
+            right -= 1;
+        }
+
+        for (int i = left; i <= right; i++) {
+            if (directions[i] != 'S') {
+                collisions += 1;
+            }
+        }
+
+        return collisions;
+    }
+};
+
+
+
+
+
+
+
