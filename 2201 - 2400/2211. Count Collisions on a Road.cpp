@@ -133,3 +133,68 @@ public:
 // The space complexity of this solution is O(1),
 // as it only uses a constant amount of memory to store the variables collisions, left, and right.
 
+
+
+
+
+
+// APPROACH 3 
+
+// 1. While the stack is not empty, the code checks if the current character and the top character in the
+//    stack can cause a collision.
+
+// 2. If a collision is possible, the code updates the count of collisions and pops the top character
+//    from the stack.
+
+// 3. If no collision is possible, the code breaks from the loop.
+
+// 4. Finally, the code pushes the current character onto the stack.
+
+// 5. After the code has processed all characters in the string, the count of collisions is returned as the 
+//    result.
+
+
+
+class Solution {
+public:
+    int countCollisions(string directions) {
+        stack<int> stk;
+        int cnt = 0;
+
+        for(auto ch : directions){            
+            while(!stk.empty()){
+                if(ch == 'L' && stk.top() == 'R'){
+                    ch = 'S';
+                    cnt += 2;
+                    stk.pop();
+                }
+                else if(ch == 'S' && stk.top() == 'R'){
+                    cnt += 1;
+                    stk.pop();
+                    ch = 'S';
+                }
+                else if(ch == 'L' && stk.top() == 'S'){
+                    cnt++;
+                    stk.pop();
+                    ch = 'S';
+                }
+                else break;
+            }
+            stk.push(ch);
+        }
+        return cnt;
+    }
+};
+
+
+
+// The time complexity of this solution is O(n), where n is the length of the input string directions.
+// This is because the code performs a linear scan of the string and for each character, performs a
+// constant amount of work to update the stack and the count of collisions.
+
+// The space complexity of this solution is O(n), as it uses a stack to store characters from
+// the input string directions. 
+// The worst-case scenario is that all characters are 'R' or 'L', in which case the stack will 
+// contain n elements.
+
+
