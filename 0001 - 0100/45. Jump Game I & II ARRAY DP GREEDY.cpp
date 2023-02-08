@@ -3,12 +3,17 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
+        // The starting range of the first jump is [0, 0]
         int mx = 0;
         int jump = 0;
         int currentMax = 0;
         int n = nums.size();
         for(int i=0; i<n-1; i++){
+            // Update the farthest reachable index of this jump.
             mx = max(mx, nums[i]+i);
+            
+            // If we finish the starting range of this jump,
+            // Move on to the starting range of the next jump.
             if(i == currentMax){
                 jump++;
                 currentMax = mx;
@@ -78,11 +83,6 @@ public:
         return 0;
     }
 };
-
-
-
-
-
 
 
 
