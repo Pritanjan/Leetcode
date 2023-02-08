@@ -1,6 +1,3 @@
-// https://leetcode.com/problems/jump-game/
-// https://leetcode.com/problems/jump-game-ii/
-
 // APPROACH 1
 
 class Solution {
