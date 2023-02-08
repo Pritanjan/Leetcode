@@ -20,6 +20,15 @@ public:
     }
 };
 
+// Time complexity : O(n)
+// We iterate over nums and stop at the second last element. In each step of the iteration,
+// we make some calculations that take constant time. 
+
+// Space complexity: O(1)
+// In the iteration, we only need to update three variables, curEnd, curFar and answer, they only
+// take constant space
+
+
 
 // APPROACH 2
 
@@ -69,6 +78,13 @@ public:
         return 0;
     }
 };
+
+
+
+
+
+
+
 
 
 
