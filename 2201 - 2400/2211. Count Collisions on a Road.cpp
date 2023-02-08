@@ -1,5 +1,15 @@
-// R L R S L L
-// 0 1 2 3 4 5
+// APPROACH 1
+
+// Traverse from left to right, 
+// Record the status and number of vehicles that may collide on the left side of the vehicle, 
+// when a collision occurs, accumulate the number of collisions, and update the status of the
+// left vehicle.
+// Only when the state of the vehicle on the Rleft, 
+// it is possible for multiple consecutive Rvehicles to collide with the current vehicle, 
+// so the number of multiple consecutive Rvehicles is counted by count, and the count is recounted 
+// when a collision occurs.
+
+
 
 class Solution {
 public:
