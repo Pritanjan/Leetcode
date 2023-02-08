@@ -9,6 +9,26 @@
 // so the number of multiple consecutive Rvehicles is counted by count, and the count is recounted 
 // when a collision occurs.
 
+
+
+// 1 Initialize variables:
+//    collisions: a counter for the number of collisions. Initially set to 0.
+//    left: a variable to store the previous character. Initially set to '\0' (null character).
+//    count: a counter for the number of consecutive 'R' characters. Initially set to 0.
+
+// 2. Loop through each character in the input string directions:
+//    If left is equal to the null character, set left to the current character ch.
+//    If ch is 'R', increment count by 1.
+//    If ch is 'L':
+//       If left is 'R', increment collisions by the value of count plus 1, set left to 'S', and reset count to 0.
+//       If left is 'S', increment collisions by 1 and set left to 'S'.
+//    If ch is 'S':
+//       If left is 'R', increment collisions by the value of count and reset count to 0.
+//       Set left to 'S'.
+
+// 3. Return the total number of collisions stored in collisions.
+
+
 class Solution {
 public:
     int countCollisions(string directions) {
@@ -49,27 +69,12 @@ public:
 };
 
 
+// The time complexity of this solution is O(n), where n is the length of the input string.
+// This is because the code performs a linear scan of the string and updates the variables
+// left, count, and collisions for each character in the string.
 
-// 1 Initialize variables:
-//    collisions: a counter for the number of collisions. Initially set to 0.
-//    left: a variable to store the previous character. Initially set to '\0' (null character).
-//    count: a counter for the number of consecutive 'R' characters. Initially set to 0.
-
-// 2. Loop through each character in the input string directions:
-//    If left is equal to the null character, set left to the current character ch.
-//    If ch is 'R', increment count by 1.
-//    If ch is 'L':
-//       If left is 'R', increment collisions by the value of count plus 1, set left to 'S', and reset count to 0.
-//       If left is 'S', increment collisions by 1 and set left to 'S'.
-//    If ch is 'S':
-//       If left is 'R', increment collisions by the value of count and reset count to 0.
-//       Set left to 'S'.
-
-// 3. Return the total number of collisions stored in collisions.
-
-
-
-
+// The space complexity of this solution is O(1), 
+// as it only uses a constant amount of memory to store the variables left, count, and collisions.
 
 
 
