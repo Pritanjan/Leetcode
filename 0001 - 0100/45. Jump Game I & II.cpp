@@ -8,6 +8,7 @@ public:
         int jump = 0;
         int currentMax = 0;
         int n = nums.size();
+        
         for(int i=0; i<n-1; i++){
             // Update the farthest reachable index of this jump.
             mx = max(mx, nums[i]+i);
@@ -83,7 +84,6 @@ public:
         return 0;
     }
 };
-
 
 
 
