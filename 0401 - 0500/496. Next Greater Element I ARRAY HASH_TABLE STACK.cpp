@@ -1,4 +1,9 @@
 //https://leetcode.com/problems/next-greater-element-i/
+// https://github.com/Pritanjan/time-pass/blob/main/Stack/7%20Next%20Smaller%20Element.cpp
+
+// NEXT SMALL ELEMENT
+
+// https://github.com/Pritanjan/time-pass/blob/main/Stack/7%20Next%20Smaller%20Element.cpp
 
 class Solution {
 public:
