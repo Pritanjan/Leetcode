@@ -1,3 +1,6 @@
+// https://github.com/Pritanjan/time-pass/blob/main/Stack/7%20Next%20Smaller%20Element.cpp
+// https://github.com/Pritanjan/Leetcode/blob/main/0401%20-%200500/496.%20Next%20Greater%20Element%20I%20ARRAY%20HASH_TABLE%20STACK.cpp
+
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& A) {
@@ -40,9 +43,6 @@ public:
         return ans;
     }
 };
-
-
-
 
 
 
