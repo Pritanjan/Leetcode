@@ -53,3 +53,38 @@ int minSwaps(string s) {
 
 
 
+class Solution {
+public:
+    int minSwaps(string s) {
+        int cnt = 0;
+        for(auto& c : s) {
+            if(c == '[') cnt++;
+            else {
+                if(cnt > 0) cnt--;
+            }
+        }
+        return (cnt+1)/2;
+    }
+};
+
+
+
+
+
+
+
+class Solution {
+public:
+    int minSwaps(string s) {
+        stack<char> st;
+        
+        for(char &ch : s) {
+            if(ch == '[')        st.push(ch);
+            else if(!st.empty()) st.pop();
+        }       
+        return (st.size()+1)/2;
+    }
+};
+
+
+
