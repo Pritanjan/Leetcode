@@ -1,3 +1,5 @@
+// APPROACH 1 USING STACK & VECTOR BOTH
+
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
@@ -28,6 +30,64 @@ public:
 };
 
 
+
+
+
+// APPROACH 2 ONLY USING STACK
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+         stack<int>st; // helper stack for finding matching parentheses
+        
+        for(int i=0;i<s.length();++i){
+            if(s[i]=='('){ // for open parentheses push into stack
+                st.push(i);
+            }
+            else if(s[i]==')'){ // for closing parentheses
+                // if no matching previous open parentheses found, we need to remove the index of that open parentheses from "s" so for now we are marking it with special character '#'
+                if(st.empty()){ 
+                    s[i]='#';
+                }
+                else{
+                    // if matching open parentheses found remove that from the stack
+                    st.pop();
+                }
+            }
+        }
+
+        // if stack is not empty, that means it contains open parentheses indexes which don't have any matching closing parentheses
+        while(!st.empty()){
+            s[st.top()]='#';
+            st.pop();
+        }
+        
+        // LINE 66-68 & 70-76 & 78-83 ARE SAME
+        // s.erase(remove(s.begin(),s.end(),'*'),s.end());
+        // return s;
+
+        // LINE 66-68 & 70-76 & 78-83 ARE SAME 
+        string ans="";
+        for(int i=0;i<s.length();++i){
+            if(s[i]!='#'){ // append not marked character to the end of "ans"
+                ans.push_back(s[i]);
+            }
+        }
+        
+        // LINE 66-68 & 70-76 & 78-83 ARE SAME
+        // string ans="";
+        // for(auto i:s){
+        //     if(i!='@')
+        //     ans.push_back(i);
+        // }
+
+        return ans;
+    }
+};
+
+
+
+
 // This code implements a solution to remove the minimum number of parentheses from a 
 // string so that the resulting string is valid.
 
@@ -55,9 +115,6 @@ public:
 
 // 7. The final result string res is returned.
 
-
-
-
 // Time complexity  : O(n), where n is the length of the input string s. 
 // Because it performs two linear scans through the input string, each taking O(n) time.
 
@@ -66,6 +123,76 @@ public:
 // a boolean array to store information about which characters should be removed.
 // The maximum size of the stack is equal to the number of opening parentheses, and
 // the size of the boolean array is equal to the length of the input string.
+
+
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        stack<pair<char, int>> st;
+        for(int i = 0; i < s.size(); ++i) {
+            if(s[i] == '(') st.push({s[i], i});
+            else if(s[i] == ')') {
+                if(!st.empty() && st.top().first == '(') st.pop();
+                else st.push({s[i], i});
+                
+            }         
+        }
+
+        while (!st.empty()) {    
+            s.erase(s.begin() + st.top().second);
+            st.pop();
+        }
+
+        return s;
+    }
+};
+
+
+// time complexity : O(n), where n is the length of the input string. 
+// Because we are iterating through the entire string once, and the stack operations
+// (push, pop, and empty) all take constant time.
+
+// space complexity :  O(m), where m is the number of invalid parentheses in the input string. 
+// This is because we are using a stack to store the indices of invalid parentheses, 
+// and the maximum number of indices that can be stored in the stack is m.
+
+
+
+
+
+
+
+
+// APPROACH 3 SAME AS ABOVE ONLY DIFF ON IS STACK
+    
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        stack<int> st;
+        for(int i=0;i<s.size();i++){
+            if(s[i] == '(') st.push(i);
+            else if(s[i] == ')'){
+                if(st.empty()){
+                    s.erase(s.begin() + i);
+                    i--;
+                }
+                else st.pop(); 
+            }
+        }
+        
+        while(!st.empty()){
+            s.erase(s.begin()+st.top());
+            st.pop();
+        }
+
+        return s;
+    }
+};
 
 
 
