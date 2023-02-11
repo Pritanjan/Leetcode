@@ -150,7 +150,91 @@ public:
 
 
 
+// APPROACH 1
+
+// Time Complexity: O(N)
+// Auxiliary Space: O(N)
+
+// Largest Rectangular Area in a Histogram by finding the next and the previous smaller element:
+
+// Find the previous and the next smaller element for every element of the histogram,
+// as this would help to calculate the length of the subarray in which this current
+// element is the minimum element. So we can create a rectangle of size 
+// (current element * length of the subarray) using this element. Take the maximum of
+// all such rectangles.
+
+// Follow the given steps to solve the problem:
+
+// 1. First, we will take two arrays left_smaller[] and right_smaller[] and initialize 
+//    them with -1 and n respectively
+
+// 2. For every element, we will store the index of the previous smaller and next smaller 
+//    element in left_smaller[] and right_smaller[] arrays respectively
+
+// 3. Now for every element, we will calculate the area by taking this ith element as the 
+//    smallest in the range left_smaller[i] and right_smaller[i] and multiplying it with 
+//    the difference of left_smaller[i] and right_smaller[i]
+
+// 4. We can find the maximum of all the areas calculated in step 3 to get the desired 
+//    maximum area
 
 
-
-
+int getMaxArea(int arr[], int n)
+{
+    // Your code here
+    // we create an empty stack here.
+    stack<int> s;
+    // we push -1 to the stack because for some elements
+    // there will be no previous smaller element in the
+    // array and we can store -1 as the index for previous
+    // smaller.
+    s.push(-1);
+    int area = arr[0];
+    int i = 0;
+    // We declare left_smaller and right_smaller array of
+    // size n and initialize them with -1 and n as their
+    // default value. left_smaller[i] will store the index
+    // of previous smaller element for ith element of the
+    // array. right_smaller[i] will store the index of next
+    // smaller element for ith element of the array.
+    vector<int> left_smaller(n, -1), right_smaller(n, n);
+    while (i < n) {
+        while (!s.empty() && s.top() != -1
+               && arr[s.top()] > arr[i]) {
+            // if the current element is smaller than
+            // element with index stored on the top of stack
+            // then, we pop the top element and store the
+            // current element index as the right_smaller
+            // for the popped element.
+            right_smaller[s.top()] = i;
+            s.pop();
+        }
+        if (i > 0 && arr[i] == arr[i - 1]) {
+            // we use this condition to avoid the
+            // unnecessary loop to find the left_smaller.
+            // since the previous element is same as current
+            // element, the left_smaller will always be the
+            // same for both.
+            left_smaller[i] = left_smaller[i - 1];
+        }
+        else {
+            // Element with the index stored on the top of
+            // the stack is always smaller than the current
+            // element. Therefore the left_smaller[i] will
+            // always be s.top().
+            left_smaller[i] = s.top();
+        }
+        s.push(i);
+        i++;
+    }
+    for (int j = 0; j < n; j++) {
+        // here we find area with every element as the
+        // smallest element in their range and compare it
+        // with the previous area.
+        // in this way we get our max Area form this.
+        area = max(area, arr[j]
+                             * (right_smaller[j]
+                                - left_smaller[j] - 1));
+    }
+    return area;
+}
