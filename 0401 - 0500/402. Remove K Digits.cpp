@@ -39,10 +39,10 @@ public:
     }
 };
 
+
+
 // T.C. ->  O(N)
 // S.C. -> O(N)
-
-
 
 
 
@@ -78,3 +78,43 @@ public:
 
 // Space complexity: O(n), where n is the length of the input string "num".
 // The space used by the output string "ans" is at most equal to the length of the input string.
+
+
+
+
+
+//  APPROACH 3
+
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        if(num.size() == k) return "0";
+        
+        for(int i=0; i<num.size() - 1 && k > 0; i++){
+            if(num[i] > num[i+1] && k > 0){ 
+                k--;
+                num.erase(i, 1);
+                i--;
+                if(i >= 0) i--;
+            }
+        }
+        while(k-- > 0 && num.size() > 0) num.erase(num.size() - 1, 1);
+
+        while(num.size() > 0 && num[0] == '0') num.erase(0, 1);
+        if(num.size() == 0) return "0";
+        return num;
+    }
+};
+
+
+// Time complexity of the given function is O(nk), where n is the length of the input string "num".
+// The while loop for removing digits at the end takes O(k) time and the for loop takes O(nk) 
+// time in the worst case.
+
+// Space complexity of the function is O(n), which is the space required to store the input 
+// string "num" and the modified string during the execution of the function.
+
+
+
+
+
