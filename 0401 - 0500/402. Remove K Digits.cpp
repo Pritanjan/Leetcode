@@ -73,4 +73,8 @@ public:
 
 
 
+// Time complexity: O(n), where n is the length of the input string "num". 
+// The algorithm iterates through the input string once.
 
+// Space complexity: O(n), where n is the length of the input string "num".
+// The space used by the output string "ans" is at most equal to the length of the input string.
