@@ -27,6 +27,19 @@ public:
     }
 };
 
+// 2. The addBinary function first initializes three variables: i and j to the lengths 
+//    of a and b minus 1, respectively, and carry to 0. It then initializes an empty 
+//    string res to store the result.
+
+// 2. The function then enters a loop that iterates until both i and j are less than 0 and 
+//    carry is 0. In each iteration, it computes the sum of the current digits from a, b, 
+//    and carry. If there is a digit at the corresponding index in a or b, it adds that digit
+//    to the sum; otherwise, it adds 0.
+
+// 3. The function then appends the least significant digit of the sum to res, and updates the 
+//    value of carry to be the most significant digit of the sum. It then decrements both i and j.
+
+// 4. Finally, the function returns the string res, which contains the sum of a and b in binary form.
 
 // OR 
 
