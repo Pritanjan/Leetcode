@@ -54,3 +54,32 @@ public:
 // This is because in each iteration of the loop, we divide K by 10 and the number of iterations 
 // is proportional to the number of digits in K
 
+
+
+
+
+// APPROACH 1 SAME
+
+class Solution {
+public:
+    vector<int> addToArrayForm(vector<int>& nums, int k) {
+        vector<int> result;
+        int n = nums.size();
+        int carry = k;
+        
+        for (int i = n - 1; i >= 0 || carry > 0; i--) {
+            if (i >= 0) {
+                carry += nums[i];
+            }
+            result.push_back(carry % 10);
+            carry /= 10;
+        }
+
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
+
+
+
+
