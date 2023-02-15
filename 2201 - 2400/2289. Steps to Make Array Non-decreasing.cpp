@@ -28,3 +28,7 @@ public:
 };
 
 
+// Time Complexity: O(n). n = nums. length.
+// Space: o(n).
+
+
