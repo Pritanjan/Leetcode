@@ -81,3 +81,36 @@ We can optimize the space used in method 2 by storing the previous two numbers o
 T.C. -> O(n)
 S.C. -> O(1)
 
+
+
+			
+
+			
+
+			
+// https://practice.geeksforgeeks.org/problems/202d95ecdeec659401edc63dd952b1d37b989ab8/1		
+			
+// next number is the sum of the K preceding numbers
+			
+class Solution {
+  public:
+    long long solve(int N, int K, vector<long long> GeekNum) {
+        long long sum=0;
+        for(int i=0;i<K;i++){
+            sum+=GeekNum[i];
+        }
+        
+        GeekNum.push_back(sum);
+        int j=0;
+        
+        for(int i=K+1;i<N;i++){
+            GeekNum.push_back(2*GeekNum[i-1]-GeekNum[j++]);
+        }
+        return GeekNum[N-1];
+    }
+};
+
+
+			
+			
+			
