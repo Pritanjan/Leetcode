@@ -38,12 +38,40 @@ public:
 // the algorithm can be O(log n).
 
 
+// APPROACH 2
+
+class Solution {
+public: 
+    void f(TreeNode* root,int &count){
+        if (root==NULL) return;
+        count++;
+        f(root->left,count);
+        f(root->right,count);
+    }
+    int countNodes(TreeNode* root) {
+        int count=0;
+        f(root,count);
+        return count;
+    }
+}
 
 
 
+// APPROACH 3
+class Solution {
+public:
+    int ans = 0;
+    int countNodes(TreeNode* root) {
+        if(!root) return ans;
+        ans++;
+        countNodes(root->left);
+        countNodes(root->right);
+        return ans;
+    }
+};
 
 
-// APPROACH 2 Heuristic
+// APPROACH 3 Heuristic
 
 class Solution {
 public:
@@ -184,5 +212,79 @@ public:
 // However, it may be useful in cases where recursion is not allowed or is not desirable
 
 
+
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& in) {
+        if(root == NULL) return;
+
+        inorder(root->left, in);
+        in.push_back(root->val);
+        inorder(root->right, in);
+    }
+
+    int countNodes(TreeNode* root) {
+        vector<int> in;
+        inorder(root, in);
+        return in.size();
+    }
+};
+
+
+
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        int count = 0;
+        if(!root){return count;}
+        queue<TreeNode *> q;
+        q.push(root);
+        while(!q.empty()){
+            TreeNode *temp = q.front();
+            q.pop();
+            count++;
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+        return count;
+    }
+};
+
+
+
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        int count = 0;
+        queue<TreeNode*>q;
+        q.push(root);
+        if(root == NULL)    return 0;
+        while(q.empty()==false) {
+            int size = q.size();
+            for(int i=0;i<size;i++)
+            {
+                auto curr = q.front();
+                q.pop();
+                
+                count++;
+                
+                if(curr->left != NULL)
+                {
+                    q.push(curr->left);
+                }
+                if(curr->right != NULL)
+                {
+                    q.push(curr->right);
+                }
+            }
+        }
+        return count;
+    }
+};
 
 
