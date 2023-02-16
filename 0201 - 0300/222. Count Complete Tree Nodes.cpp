@@ -72,7 +72,7 @@ public:
         
         // SAME AS LINE 69 - 71
 //         if (left_height == right_height) {
-//             return (2 << left_height) - 1;
+//             return (1 << left_height) - 1;
 //         }
 
         return countNodes(root->left) + countNodes(root->right) + 1;
