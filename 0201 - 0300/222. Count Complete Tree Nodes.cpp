@@ -93,3 +93,58 @@ public:
 // If the binary tree is not a perfect binary tree, this solution may still work, 
 // but it will not be as efficient.
 
+
+
+
+
+
+// APPROACH 3 using a stack-based iterative 
+
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if (root == NULL) return 0;
+        
+        stack<TreeNode*> stk;
+        stk.push(root);
+        int count = 0;
+        while(!stk.empty()) {
+            TreeNode* node = stk.top();
+            stk.pop();
+            count++;
+            if(node->left != NULL) {
+                stk.push(node->left);
+            }
+            if(node->right != NULL) {
+                stk.push(node->right);
+            }
+        }
+        return count;
+    }
+};
+
+
+
+// This solution uses a stack to keep track of the nodes in the binary tree.
+// We start by pushing the root node onto the stack, 
+// and then we enter a loop that pops nodes from the stack, increments the count, 
+// and pushes any non-null children onto the stack. 
+// When the stack is empty, we have visited all nodes in the tree, and we return the count.
+
+
+// Time complexity --> O(n), where n is the number of nodes in the binary tree, 
+// because we visit each node once. 
+
+
+// Space complexity --> O(h), where h is the height of the binary tree, 
+// because the stack may contain up to h nodes at a time in the worst case
+// (for a skewed binary tree). 
+
+
+// Note this solution is not as space-efficient as the previous solutions that use recursion,
+// because it uses an explicit stack. 
+// However, it may be useful in cases where recursion is not allowed or is not desirable
+
+
+
+
