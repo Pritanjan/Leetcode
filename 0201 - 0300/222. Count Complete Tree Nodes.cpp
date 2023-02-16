@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 Naive
 
 /**
  * Definition for a binary tree node.
@@ -43,7 +43,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 Heuristic
 
 class Solution {
 public:
