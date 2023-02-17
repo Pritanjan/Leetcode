@@ -44,3 +44,57 @@ public:
 // Finally, the function returns the resulting string with duplicate characters removed.
 
     
+
+
+
+
+// APPROACH 2
+
+// Here we are using two integer arrays to keep track of the count and 
+// maximum index of each character in the input string, and
+// a nested loop to find the lexicographically smallest character at each iteration.
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        vector<int> count(26, 0), maxs(26, -1);
+        string result = "";
+
+        for(int i = 0; i < s.size(); i++) {
+            count[s[i] - 'a']++;
+            maxs[s[i] - 'a'] = i;
+        }
+        
+        int start = 0;
+        while(start < s.size()) {
+            int min = 26;
+            int idx = -1;
+            for(int i = start; i < s.size(); i++) {
+                if(count[s[i] - 'a'] == 0) continue;
+
+                if(s[i] - 'a' < min) {
+                    min = s[i] - 'a';
+                    idx = i;
+                }
+                if (count[s[i] - 'a'] == 1 || maxs[s[i] - 'a'] <= i) {
+                    break;
+                }
+            }
+            if (idx == -1) {
+                break;
+            }
+            for (int i = start; i < idx; i++) {
+                count[s[i] - 'a'] = max(0, count[s[i] - 'a'] - 1);
+            }
+            count[min] = 0;
+            result += (char)(min + 'a');
+            start = idx + 1;
+        }
+        return result;
+    }
+}; 
+
+
+// T.C. --> O(N)
+// S.C. --> O(1)
+
