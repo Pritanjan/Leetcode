@@ -68,3 +68,63 @@ public:
 
 
 
+class Solution {
+  public:
+    int res = INT_MAX, pre = -1;
+    int minDiffInBST(TreeNode* root) {
+        if (root->left != NULL) minDiffInBST(root->left);
+        if (pre >= 0) res = min(res, root->val - pre);
+        pre = root->val;
+        if (root->right != NULL) minDiffInBST(root->right);
+        return res;
+    }
+};
+
+
+class Solution {
+public:
+    void help(TreeNode* root,vector<int>&v){
+        if(root==NULL)
+        return ;
+        int x=root->val;
+   
+        help(root->left,v);
+        v.push_back(root->val);
+        help(root->right,v);
+    }
+    int minDiffInBST(TreeNode* root) {
+        vector<int>v;
+        help(root,v);
+        sort(v.begin(),v.end());
+        int ans=INT_MAX;
+        for(int i=0;i<v.size()-1;i++){
+            ans=min(ans,v[i+1]-v[i]);
+        }
+
+        return ans;
+
+    }
+};
+
+
+class Solution {
+public:
+    void inorder(TreeNode* root,vector<int> &arr){
+        if(root){
+            inorder(root->left,arr);
+            arr.push_back(root->val);
+            inorder(root->right,arr);
+        }
+    }
+    int minDiffInBST(TreeNode* root) {
+        vector<int> arr;
+        inorder(root,arr);
+        int n=arr.size(),ans=INT_MAX;
+        for(int i=1;i<n;i++)
+            ans=min(ans,arr[i]-arr[i-1]);
+        return ans;
+        
+    }
+};
+
+
