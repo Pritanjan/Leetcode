@@ -93,8 +93,58 @@ public:
 
 
 
+// The given code uses a stack to keep track of the scores of each frame, 
+// where a frame is a pair of opening and closing parentheses.
+// Initially, a 0 is pushed onto the stack to represent the score of the outermost frame.
+
+// Then, for each character in the given string, the following steps are taken:
+
+// -> If the character is an opening parenthesis, a new frame with a score of 0 is pushed 
+//    onto the stack.
+
+// -> If the character is a closing parenthesis, the score of the current frame is calculated 
+//    by retrieving the top two scores from the stack and using them to compute 
+//    the score of the current frame according to the rules of the problem. 
+//    The score of the current frame is then pushed onto the stack, 
+//    representing the score of the enclosed sub-string.
+
+// Finally, the score of the entire parentheses string is returned by retrieving the 
+// top score from the stack.
+
+// In summary, the code uses a stack to keep track of the scores of each frame 
+// within the parentheses string, and computes the final score by 
+// summing the scores of all the frames.
+
+// T.C. --> O(N)
+// S.C. --> O(N)
 
 
 
 
 
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    int scoreOfParentheses(string S) {
+        int ans = 0, bal = 0;
+        for(int i = 0; i < S.size(); ++i) {
+            if(S.at(i) == '(') {
+                bal++;
+            }else{
+                bal--;
+                if(S.at(i-1) == '(')
+                    ans += 1 << bal;
+            }
+        }
+
+        return ans;
+    }
+};
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
