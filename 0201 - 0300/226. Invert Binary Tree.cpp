@@ -1,4 +1,29 @@
-// APPROACH 1
+// APPROACH 1 RECUSIVE DFS
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL)
+            return NULL;
+        
+        TreeNode* tempRight = root->right;
+            
+        root->right = invertTree(root->left) ;
+        root->left  = invertTree(tempRight);
+        
+        return root;
+    }
+};
+
+
+
+
+
+
+
+
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -43,23 +68,33 @@ public:
 
 
 
-// APPROACH 2 RECUSIVE DFS
 
+
+
+
+
+// APPROACH 3 -- USING STACK
+ 
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL)
-            return NULL;
-        
-        TreeNode* tempRight = root->right;
-            
-        root->right = invertTree(root->left) ;
-        root->left  = invertTree(tempRight);
-        
+        if (!root) {
+            return nullptr;
+        }
+        stack<TreeNode*> s;
+        s.push(root);
+        while (!s.empty()) {
+            TreeNode* node = s.top();
+            s.pop();
+            if (node->left) {
+                s.push(node->left);
+            }
+            if (node->right) {
+                s.push(node->right);
+            }
+            swap(node->left, node->right);
+        }
         return root;
     }
 };
-
-
- 
 
