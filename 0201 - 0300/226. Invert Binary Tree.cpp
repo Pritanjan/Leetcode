@@ -66,14 +66,31 @@ public:
 
 
 
+// Time complexity --> O(n), where n is the number of nodes in the tree.
+// Because each node in the tree is visited exactly once, and the swapping operation takes constant time.
 
 
-
-
+// SPACE COMPLEXITY SAME AS APPROACH 3
 
 
 
 // APPROACH 3 -- USING STACK
+
+// 1. Create an empty stack.
+// 2. Push the root node onto the stack.
+// 3. While the stack is not empty:
+//      a. Pop the top node from the stack.
+//      b. Swap its left and right child nodes (if they exist).
+//      c. Push the left child node (if it exists) onto the stack.
+//      d. Push the right child node (if it exists) onto the stack.
+// 4. Return the root node of the inverted tree.
+
+// This algorithm uses an iterative approach, using a stack to keep track of the nodes in the tree.
+// It starts by pushing the root node onto the stack, and
+// then repeatedly pops the top node from the stack and swaps its left and right child nodes (if they exist). 
+// It then pushes the left and right child nodes (if they exist) onto the stack, 
+// so that their children will be swapped in the next iteration. 
+// The process continues until all nodes in the tree have been processed, at which point the inverted tree is returned.
  
 class Solution {
 public:
@@ -97,4 +114,22 @@ public:
         return root;
     }
 };
+
+
+// Time complexity -->  O(n), where n is the number of nodes in the tree. 
+// This is because each node in the tree is visited exactly once, and the swapping operation takes constant time.
+
+// Space complexity --> O(d), where d is the maximum depth of the tree. 
+// Because the algorithm uses a stack to store the nodes in the tree, and at any given time, 
+// the stack contains at most one node for each level of the tree.
+
+// In the worst case, the space complexity is O(n). 
+//  Because the tree is completely unbalanced and has a depth of n.
+ 
+// In the average case, the space complexity is much lower, and is typically proportional to the
+// log of the number of nodes in the tree.
+
+// Note that the implementation uses a stack data structure, which is part of the C++ standard library. 
+// The space complexity of the stack / queue data structure is proportional to the number of elements it contains,
+// which in this case is O(d) as described above.
 
