@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/invert-binary-tree/
+// APPROACH 1
 
 class Solution {
 public:
@@ -37,3 +37,29 @@ public:
 //good way to go due to performance overhead and risk 
 //to run it against huge tree. With standard queue 
 //solution looks simple robust and runs faster.
+
+
+
+
+
+
+// APPROACH 2 RECUSIVE DFS
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL)
+            return NULL;
+        
+        TreeNode* tempRight = root->right;
+            
+        root->right = invertTree(root->left) ;
+        root->left  = invertTree(tempRight);
+        
+        return root;
+    }
+};
+
+
+ 
+
