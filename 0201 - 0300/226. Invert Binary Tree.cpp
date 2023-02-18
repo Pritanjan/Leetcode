@@ -133,3 +133,28 @@ public:
 // The space complexity of the stack / queue data structure is proportional to the number of elements it contains,
 // which in this case is O(d) as described above.
 
+
+
+
+
+
+class Solution {
+public:
+
+    void invert(TreeNode* root) {
+        if(root == nullptr) 
+            return;
+        
+        swap(root->left, root->right);
+        invert(root->left);
+        invert(root->right);
+    }
+
+    TreeNode* invertTree(TreeNode* root) {
+        invert(root);
+        return root;
+    }
+};
+
+
+
