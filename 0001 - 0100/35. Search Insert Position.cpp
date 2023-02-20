@@ -23,11 +23,9 @@ public:
 // https://leetcode.com/problems/search-insert-position/discuss/1596479/C%2B%2B-or-3-Solutions-or-Well-explained-with-example-and-concise-solution
 
 
-// 2
-//
-//class Solution {
-//public:
-//    int searchInsert(vector<int>& nums, int target) {
-//        return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-//    }
-//};
+class Solution {
+public:
+    int searchInsert(vector<int>& A, int target) {
+        return lower_bound(A.begin(), A.end(), target) - A.begin();
+    }
+};
