@@ -1,6 +1,8 @@
 // https://www.geeksforgeeks.org/minimize-deviation-of-an-array-by-given-operations/
 
+
 // APPROACH 1
+
 
 // The function first creates an empty set s to store the numbers.
 // It then iterates through the input vector A, and for each number in A,
@@ -22,6 +24,7 @@
 
 // Finally, the function returns the value of diff.
 
+
 // This implementation is similar in approach to the previous implementation using a priority queue, 
 // but it uses a set instead. The advantage of using a set is that it automatically
 // keeps the elements in sorted order,
@@ -31,6 +34,8 @@
 // O(1) time to insert a new element in a priority queue.
 // Therefore, the time complexity of this implementation is O(n log n) in the worst case.
 // Auxiliary Space : O(N) 
+
+
 
 
 class Solution {
@@ -57,4 +62,39 @@ public:
         return diff;
     }
 };
+
+
+
+
+
+
+// APPROACH 2
+
+
+class Solution {
+public:
+    int minimumDeviation(vector<int>& nums) {
+        priority_queue<int> pq;
+        int min_val = INT_MAX;
+        
+        for(int n : nums) {
+            if(n % 2 == 1) n *= 2;
+            min_val = min(min_val, n);
+            pq.push(n);
+        }
+
+        int ans = INT_MAX;
+        while (true) {
+            int curr = pq.top();
+            pq.pop();
+            ans = min(ans, curr - min_val);
+            if (curr % 2 == 1) break;
+            min_val = min(min_val, curr / 2);
+            pq.push(curr / 2);
+        }
+        return ans;
+    }
+};
+
+
 
