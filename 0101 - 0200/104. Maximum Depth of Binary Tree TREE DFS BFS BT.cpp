@@ -82,6 +82,12 @@ public:
     }
 };
 
+
+
+
+
+
+
 // APPROACH Same as 3rd 
 class Solution {
 public:
@@ -97,4 +103,38 @@ public:
 
 
 
+
+
+
+
+
+class Solution {
+public:
+    int maxii = 1;
+    int ans = 1;
+
+    int solve(TreeNode* root){
+        if(root == NULL) return 0;
+        if(root->left){
+            ans+=1 ;
+            solve(root->left);
+            maxii = max(ans, maxii);
+            ans -= 1;
+        }
+        if(root->right){
+            ans+=1;
+            solve(root->right);
+            maxii = max(ans, maxii);
+            ans -= 1;
+        }
+        return 1;
+
+    }
+
+    int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0;
+        solve(root);
+        return maxii;
+    }
+};
 
