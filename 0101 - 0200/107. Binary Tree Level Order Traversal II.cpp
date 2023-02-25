@@ -18,6 +18,7 @@
 //  ]
 
 
+// APPROACH 1 
 
 class Solution {
 public:
@@ -54,6 +55,35 @@ public:
 
 // Time: O(n)
 // Space: O(n)
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    void levelOrderBottomHelper(TreeNode* root, int level, vector<vector<int>>& result) {
+        if(root == nullptr) return;
+    
+        if(result.size() < level + 1) {
+            result.insert(result.begin(), vector<int>());
+        }
+
+        result[result.size() - level - 1].push_back(root->val);
+
+        levelOrderBottomHelper(root->left, level + 1, result);
+        levelOrderBottomHelper(root->right, level + 1, result);
+    }
+
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>> result;
+        levelOrderBottomHelper(root, 0, result);
+     
+        return result;
+    }
+};
+
+
 
 
 
