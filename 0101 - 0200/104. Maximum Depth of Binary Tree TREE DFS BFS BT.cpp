@@ -1,4 +1,7 @@
+// https://practice.geeksforgeeks.org/problems/height-of-binary-tree/1
+
 // COMPANY TAG FB BLOOMBERG LINKEDIN
+
 
 // APPROACH 1 RECURSION
 
@@ -21,9 +24,6 @@ public:
          return Mdepth;
     }
 };
-
-
-
 
 
 
@@ -61,6 +61,7 @@ public:
 
 
 // APPROACH 3 DFS
+
 class Solution {
 public:
     int depth(TreeNode* node){
@@ -86,9 +87,9 @@ public:
 
 
 
-
-
 // APPROACH Same as 3rd 
+
+
 class Solution {
 public:
    int maxDepth(TreeNode* root) {
@@ -97,11 +98,6 @@ public:
        return 1 + max(maxDepth(root->left), maxDepth(root->right));
    }
 };
-
-
-
-
-
 
 
 
