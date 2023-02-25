@@ -1,6 +1,7 @@
-//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-
 //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/2346634/C%2B%2B-2-Solution-with-Explanation
+
+// approach 1
+
 
 class Solution {
 public:
@@ -14,6 +15,20 @@ public:
         return ans;
     }
 };
+
+
+// The approach is to iterate through the prices and keep track of the minimum price
+// seen so far and the maximum profit seen so far.
+// We update the minimum price if we see a lower price, and
+// update the maximum profit if we see a higher price that yields a larger profit
+// than the current maximum profit. 
+// Finally, we return the maximum profit.
+
+// T.C. --> O(n), where n is the size of the input array.
+
+
+
+// approach 2
 
 
 class Solution {
