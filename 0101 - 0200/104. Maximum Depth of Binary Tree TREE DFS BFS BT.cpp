@@ -29,6 +29,9 @@ public:
 
 
 // APPROACH 2 BFS
+// It uses the concept of Level Order Traversal but we wont be adding null in the Queue.
+// We will simply increase the counter when the level will increase and then remove all the nodes
+// from the queue of the current Level.
 
 class Solution {
 public:
