@@ -1,5 +1,5 @@
-//https://leetcode.com/problems/binary-tree-inorder-traversal/s
-//microsoft fb
+// APPROACH 1
+// microsoft fb
 
 class Solution {
 public:
@@ -19,7 +19,32 @@ public:
 };
 
 //Time complexity: O(n)
-//The time complexity is O(n) because the recursive function is T(n)=2·T(n/2)+1.
+//The time complexity is O(n) because the recursive function is T(n)=2Â·T(n/2)+1.
 
 //Space complexity: O(n)
 //The worst case space required is O(n), and in the average case it's O(logn) where n is number of nodes.
+
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        stack<TreeNode*> stack;
+        while(root || !stack.empty()) {
+            while(root) {
+                stack.push(root);
+                root = root->left;
+            }
+            root=stack.top(), stack.pop();
+            ans.push_back(root->val);
+            root=root->right;
+        }
+        return ans;
+    }
+};
+
