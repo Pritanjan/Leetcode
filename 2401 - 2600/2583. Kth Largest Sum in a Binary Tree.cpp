@@ -9,6 +9,9 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// ITERTIVE SOLUTION
+
 class Solution {
 public:
     long long kthLargestLevelSum(TreeNode* root, int k) {
@@ -49,3 +52,39 @@ public:
         return pq.top();
     }
 };
+
+
+
+
+
+
+// RECURSIVE SOLUTION
+
+class Solution {
+public:
+    void traverse(TreeNode* root, int level, unordered_map<long long, long long>& levelSums) {
+        if(!root) return;
+    
+        levelSums[level] += root->val;
+        traverse(root->left, level + 1, levelSums);
+        traverse(root->right, level + 1, levelSums);
+    }
+
+    long long kthLargestLevelSum(TreeNode* root, int k) {
+        unordered_map<long long, long long> levelSums;    
+        traverse(root, 0, levelSums);
+        
+        vector<long long> sums;
+        for(auto& i : levelSums) sums.push_back(i.second);
+        
+        sort(sums.rbegin(), sums.rend());
+        if (sums.size() < k) 
+            return -1;
+        
+        return sums[k - 1];
+    }
+};
+
+
+
+
