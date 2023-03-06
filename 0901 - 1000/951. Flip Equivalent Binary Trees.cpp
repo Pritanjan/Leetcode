@@ -1,3 +1,6 @@
+// https://practice.geeksforgeeks.org/problems/check-if-tree-is-isomorphic/1
+
+
 // APPROACH 1
 
 // First, it checks if root1 and root2 are equal using a pointer comparison, and if so, returns true,
@@ -48,53 +51,10 @@ public:
 
 
 
+
+
 // APPROACH 2
 
-class Solution {
-public:
-    bool flipEquiv(TreeNode* root1, TreeNode* root2) {
-        if (root1 == NULL && root2 == NULL) {
-            return true;
-        }
-        if (root1 == NULL || root2 == NULL || root1->val != root2->val) {
-            return false;
-        }
-        queue<TreeNode*> q1, q2;
-        q1.push(root1);
-        q2.push(root2);
-        while (!q1.empty() && !q2.empty()) {
-            TreeNode* node1 = q1.front();
-            q1.pop();
-            TreeNode* node2 = q2.front();
-            q2.pop();
-            if (node1->left != NULL && node2->left != NULL && node1->left->val == node2->left->val) {
-                q1.push(node1->left);
-                q2.push(node2->left);
-            } else if (node1->left != NULL && node2->right != NULL && node1->left->val == node2->right->val) {
-                q1.push(node1->left);
-                q2.push(node2->right);
-            } else if ((node1->left == NULL && node2->left != NULL) || (node1->left != NULL && node2->left == NULL)) {
-                return false;
-            }
-            if (node1->right != NULL && node2->right != NULL && node1->right->val == node2->right->val) {
-                q1.push(node1->right);
-                q2.push(node2->right);
-            } else if (node1->right != NULL && node2->left != NULL && node1->right->val == node2->left->val) {
-                q1.push(node1->right);
-                q2.push(node2->left);
-            } else if ((node1->right == NULL && node2->right != NULL) || (node1->right != NULL && node2->right == NULL)) {
-                return false;
-            }
-        }
-        return q1.empty() && q2.empty();
-    }
-};
 
-
-// Time complexity --> O(n), where n is the total number of nodes in both trees.
-
-// This is because the function traverses both trees recursively and visits each node once. 
-// The time complexity of each recursive call is O(1), and the number of recursive calls is
-// proportional to the number of nodes in both trees. 
 
 
