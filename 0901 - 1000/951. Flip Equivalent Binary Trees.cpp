@@ -1,18 +1,5 @@
 // APPROACH 1
 
-class Solution {
-public:
-    bool flipEquiv(TreeNode* root1, TreeNode* root2) {
-        if(root1 == root2) return true;
-
-        if(root1 == NULL or root2 == NULL or root1 -> val != root2 -> val) return 0;
-
-        return flipEquiv(root1 -> left, root2 -> left) && flipEquiv(root1 -> right, root2 -> right) or flipEquiv(root1 -> left, root2 -> right) && flipEquiv(root1 -> right, root2 -> left);
-    }
-};
-
-
-
 // First, it checks if root1 and root2 are equal using a pointer comparison, and if so, returns true,
 // since any node is flip equivalent to itself.
 
@@ -35,6 +22,29 @@ public:
 // the trees are flip equivalent. Otherwise, it returns false.
 
 
+
+class Solution {
+public:
+    bool flipEquiv(TreeNode* root1, TreeNode* root2) {
+        if(root1 == root2) return true;
+
+        if(root1 == NULL or root2 == NULL or root1 -> val != root2 -> val) return 0;
+
+        return flipEquiv(root1 -> left, root2 -> left) && flipEquiv(root1 -> right, root2 -> right) or flipEquiv(root1 -> left, root2 -> right) && flipEquiv(root1 -> right, root2 -> left);
+    }
+};
+
+
+// Time complexity --> O(n), where n is the total number of nodes in both trees.
+// This is because the function recursively visits every node in both trees once, 
+// comparing their values and their left and right subtrees.
+
+// The worst-case scenario is when the two trees are completely different,
+// so the function has to visit all nodes in both trees.
+// In this case, the time complexity is proportional to the number of nodes in both trees, i.e., O(n).
+
+// Overall, the time complexity of this function is linear with respect to the size of the input, 
+// which is a good performance for this problem.
 
 
 
@@ -79,3 +89,12 @@ public:
         return q1.empty() && q2.empty();
     }
 };
+
+
+// Time complexity --> O(n), where n is the total number of nodes in both trees.
+
+// This is because the function traverses both trees recursively and visits each node once. 
+// The time complexity of each recursive call is O(1), and the number of recursive calls is
+// proportional to the number of nodes in both trees. 
+
+
