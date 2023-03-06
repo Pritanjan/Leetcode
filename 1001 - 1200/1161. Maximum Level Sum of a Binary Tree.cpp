@@ -58,3 +58,43 @@ class Solution{
 
 
 
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void dfs(TreeNode* node, int level, vector<int>& level_sum) {
+        if (node == NULL) return;
+        if (level > level_sum.size()) level_sum.push_back(node->val);
+        else level_sum[level - 1] += node->val;
+        dfs(node->left, level + 1, level_sum);
+        dfs(node->right, level + 1, level_sum);
+    }
+
+    int maxLevelSum(TreeNode* root) {
+        vector<int> level_sum;
+        dfs(root, 1, level_sum);
+        int max_sum = level_sum[0];
+        int max_level = 1;
+        for(int i = 1; i < level_sum.size(); i++) {
+            if(level_sum[i] > max_sum) {
+                max_sum = level_sum[i];
+                max_level = i + 1;
+            }
+        }
+        return max_level;
+    }
+};
+
+
+
