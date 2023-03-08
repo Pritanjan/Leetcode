@@ -1,5 +1,7 @@
 // Right View of Binary Tree
 
+// APPROACH 2 DFS 
+
 class Solution {
 public:
     void RT(TreeNode* root, int level, int& mxLevel, vector<int>& res){
@@ -22,6 +24,41 @@ public:
     }
 };
 
+
+// T.C. O(N)
+// S.C. O(h)
+
+
+// APPROACH 2 BFS 
+
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        if(root == NULL) return {};
+
+        vector<int> res;
+        queue<TreeNode*> que;
+        que.push(root);
+
+        while(!que.empty()){
+            int n = que.size();
+
+            while(n--){
+                TreeNode* temp = que.front();
+                que.pop();
+
+                if(n == 0) res.push_back(temp -> val);
+                if(temp -> left != NULL) que.push(temp -> left);
+                if(temp -> right != NULL) que.push(temp -> right);
+            }
+        }
+        return res;
+    }
+};
+
+
+// T.C. O(N)
+// S.C. O(N)
 
 // Left View of Binary Tree
 // https://www.geeksforgeeks.org/print-left-view-binary-tree/
