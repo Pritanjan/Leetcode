@@ -18,6 +18,30 @@ public:
     }
 };
 
+
+
+
+
+
+// APPROACH 1 RECURSION
+
+class Solution {
+public:
+    vector<int> res;
+    vector<int> postorderTraversal(TreeNode* root) {
+        if(root == NULL) return res;
+        postorderTraversal(root -> left);
+        postorderTraversal(root -> right);
+        res.push_back(root -> val);
+            
+        return res;
+    }
+};
+
+
+
+
+
 // APPROACH 2 USING 2 STACK
 
 class Solution {
@@ -48,24 +72,13 @@ public:
     }
 };
 
-
 // Time complexity: O(n) where n is no of nodes in a binary tree
 // Auxiliary space: O(n) because using stack stk1 and stk2
 
 
-class Solution {
-public:
-    vector<int> res;
-    vector<int> postorderTraversal(TreeNode* root) {
-        if(root == NULL) return res;
-        postorderTraversal(root -> left);
-        postorderTraversal(root -> right);
-        res.push_back(root -> val);
-            
-        return res;
-    }
-};
 
+
+// APPROACH USING 1 STACK
 
 class Solution {
 public:
@@ -93,6 +106,9 @@ public:
 };
 
 
+
+
+// APPROACH USING 1 STACK
 
 class Solution {
 public:
@@ -126,6 +142,9 @@ public:
         return ans;
     }
 };
+
+
+
 
 
 
