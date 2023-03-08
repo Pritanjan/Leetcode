@@ -48,3 +48,27 @@ public:
 // T.C. --> O(N)
 // S.C. --> O(N)
 
+
+
+// APPROACH 2 USING 1 STACK (Iterative Solution)   
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        if(root == NULL) return {};
+
+        vector<int> v;
+        stack <TreeNode*> stk;
+        stk.push(root);
+
+        while(!stk.empty()){
+            TreeNode* curr = stk.top();
+            stk.pop();
+
+            v.push_back(curr->val);
+            if (curr->right) stk.push(curr->right);
+            if (curr->left) stk.push(curr->left);
+        }
+        return v;
+    }
+};
