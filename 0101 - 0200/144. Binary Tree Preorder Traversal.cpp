@@ -1,10 +1,9 @@
-// APPROACH 1 STACK Recursive solution 
+// APPROACH 1 Recursive solution 
 
 class Solution {
 public:
     void preorder(TreeNode* root, vector<int>& nodes){
-        if(!root)
-            return ;
+        if(!root) return ;
         nodes.push_back(root->val);
         preorder(root->left, nodes);
         preorder(root->right, nodes);
@@ -19,6 +18,26 @@ public:
 
 // T.C. --> O(N)
 // S.C. --> O(N)
+
+
+
+
+// APPROACH 1 Recursive solution 
+
+class Solution {
+public:
+    vector<int> ans;
+    vector<int> preorderTraversal(TreeNode* root) {
+        if(root==NULL) return ans;
+        
+        ans.push_back(root->val);
+        preorderTraversal(root->left);
+        preorderTraversal(root->right);
+        return ans;
+    }
+};
+
+
 
 
 
@@ -47,6 +66,7 @@ public:
 
 // T.C. --> O(N)
 // S.C. --> O(N)
+
 
 
 
