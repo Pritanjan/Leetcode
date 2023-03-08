@@ -48,3 +48,84 @@ public:
     }
 };
 
+
+// Time complexity: O(n) where n is no of nodes in a binary tree
+// Auxiliary space: O(n) because using stack stk1 and stk2
+
+
+class Solution {
+public:
+    vector<int> res;
+    vector<int> postorderTraversal(TreeNode* root) {
+        if(root == NULL) return res;
+        postorderTraversal(root -> left);
+        postorderTraversal(root -> right);
+        res.push_back(root -> val);
+            
+        return res;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        if(root==NULL) return {};
+
+        stack<TreeNode*>st;     
+        st.push(root);
+        
+        vector<int>ans;
+
+        while(!st.empty()){
+            TreeNode* node=st.top();
+            st.pop();
+
+            ans.push_back(node->val);
+            
+            if(node->left!=NULL) st.push(node->left);
+            if(node->right!=NULL) st.push(node->right);
+        }
+
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        if(root==NULL) return {};
+
+        stack<TreeNode*>st;     
+        st.push(root);
+        
+        vector<int>ans;
+
+        while(!st.empty()){
+            auto t = st.top();
+            if(t->left == nullptr && t->right == nullptr){
+                ans.push_back(t->val);
+                st.pop();
+            }
+            
+            if(t->right != nullptr){
+                st.push(t->right);
+                t->right = nullptr;
+            }
+
+            if(t->left != nullptr){
+                st.push(t->left);
+                t->left = nullptr;
+            }
+        }
+
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+
+
