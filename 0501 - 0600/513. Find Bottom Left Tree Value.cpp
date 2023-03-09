@@ -1,3 +1,5 @@
+// APPROACH 1
+
 // The idea behind the solution is to perform a level-order traversal of the tree using a queue.
 // We start by pushing the root node onto the queue, and then process each level one by one.
 // For each level, we iterate over all the nodes in that level, and 
@@ -31,5 +33,28 @@ public:
 
 
 
+
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        queue<TreeNode*> que{{root}};
+        TreeNode* leftmost = root;
+
+        while(!que.empty()){
+            leftmost = que.front();
+            que.pop();
+
+            if(leftmost -> right) que.push(leftmost -> right);
+            if(leftmost -> left) que.push(leftmost -> left);    
+        }
+        return leftmost -> val;
+    }
+};
 
 
