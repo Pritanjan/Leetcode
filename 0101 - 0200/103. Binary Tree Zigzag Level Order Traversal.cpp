@@ -68,3 +68,28 @@ public:
 
 
 
+class Solution {
+public:
+    vector<vector<int>> ret;
+    void DFS(TreeNode* root, int depth) {
+        if(root == nullptr) return;
+
+        if(depth >= ret.size()) ret.push_back(vector<int>());
+        
+        // add this value to the list
+        if(depth % 2 == 0) ret[depth].push_back(root -> val);
+        else ret[depth].insert(ret[depth].begin(), root -> val);
+        
+        depth++;
+
+        DFS(root -> left, depth);
+        DFS(root -> right, depth);
+    }
+
+    // Clown ass order traversal
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        DFS(root, 0);
+        return ret;
+    }
+};
+
