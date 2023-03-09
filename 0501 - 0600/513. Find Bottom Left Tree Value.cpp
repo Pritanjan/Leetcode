@@ -68,3 +68,33 @@ public:
 // T.C. --> O(N)
 // S.C. --> O(W)
 
+
+
+
+
+
+// APPROACH 2 DFS
+
+class Solution {
+public:
+    int maxl = -1, ans ; 
+    int findBottomLeftValue(TreeNode* root) {
+        solve(root, 0);
+        return ans;
+    }
+
+    void solve(TreeNode* root, int level) {
+        if(!root) return;  // base case
+        
+        // recursive case
+        if(level > maxl){
+            maxl = level ; 
+            ans = root -> val; 
+        }
+        
+        solve(root -> left,level + 1); 
+        solve(root -> right, level + 1); 
+    }
+};
+
+
