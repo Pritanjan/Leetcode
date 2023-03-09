@@ -32,13 +32,20 @@ public:
 };
 
 
+// T.C. --> O(N), 
+// The algorithm visits every node once, so the time complexity is O(N), 
+// where N is the number of nodes in the tree.
+
+// S.C. --> O(W)
+// At any point in time, the queue stores at most two levels of the tree, 
+// so the space complexity is O(w), where w is the maximum width of the tree.
+// In the worst case, the width of the tree could be n, so the space complexity is also O(n).
 
 
 
 
 
-
-// APPROACH 2
+// APPROACH 2 BFS
 
 class Solution {
 public:
@@ -57,4 +64,7 @@ public:
     }
 };
 
+
+// T.C. --> O(N)
+// S.C. --> O(W)
 
