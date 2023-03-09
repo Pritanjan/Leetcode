@@ -33,20 +33,15 @@ public:
 class Solution {
 public:
     int height(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
+        if (!root) return 0;
+        
         int LH = height(root->left);
-        if (LH == -1) {
-            return -1;
-        }
+        if (LH == -1) return -1;
+
         int RH = height(root->right);
-        if (RH == -1) {
-            return -1;
-        }
-        if (abs(LH - RH) > 1) {
-            return -1;
-        }
+        if (RH == -1) return -1; 
+        
+        if (abs(LH - RH) > 1) return -1;
         return max(LH, RH) + 1;
     }
     
@@ -54,6 +49,7 @@ public:
         return height(root) != -1;
     }
 };
+
 
 
 // T.C. --> O(N)
