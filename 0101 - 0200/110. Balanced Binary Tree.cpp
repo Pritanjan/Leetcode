@@ -30,4 +30,47 @@ public:
 
 
 
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if (!root) {
+            return 0;
+        }
+        int LH = height(root->left);
+        if (LH == -1) {
+            return -1;
+        }
+        int RH = height(root->right);
+        if (RH == -1) {
+            return -1;
+        }
+        if (abs(LH - RH) > 1) {
+            return -1;
+        }
+        return max(LH, RH) + 1;
+    }
+    
+    bool isBalanced(TreeNode* root) {
+        return height(root) != -1;
+    }
+};
+
+
+// T.C. --> O(N)
+// The height function is called once for each node in the tree, so the time complexity
+// of the height function is O(n), where n is the number of nodes in the tree. 
+// The isBalanced function calls the height function once.
+
+// S.C.
+// On the basis of height function
+// O(log N) [best  case] (when the tree is balanced)
+// O(N)     [Wrost Case] (when the tree is completely unbalanced).
+// O(log N) [avg   case]
+
+// On the basis of isBalanced function 
+// O(1).
+
+// S.C. -->  O(log N)
+
+
 
