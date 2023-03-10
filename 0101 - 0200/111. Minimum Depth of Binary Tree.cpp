@@ -1,3 +1,5 @@
+// Approach 1: Top-down DFS
+
 class Solution {
 public:
     int minDepth(TreeNode* root) {
@@ -16,3 +18,6 @@ public:
 // If the root node has only one child, we recurse on that child and add 1 to the result. 
 // If the root node has two children, we take the minimum of the depths of the left and right
 // subtrees and add 1 to the result. Finally, we create a new tree and test the code on it.
+
+// T.C. --> O(N)
+// S.C. --> O(h)
