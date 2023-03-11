@@ -1,28 +1,9 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         if(head == NULL) return NULL;
+        
+        // find the middle node of the list
         ListNode* prev = NULL;
         ListNode* fast = head;
         ListNode* slow = head;
@@ -32,8 +13,11 @@ public:
             prev = slow;
             slow = slow -> next;
         }
-
+ 
+        // create a new node for the middle value
         TreeNode* root = new TreeNode(slow -> val);
+        
+        // recursively build the left and right subtrees
         if(prev != NULL) prev -> next = NULL;
         else head = NULL;
 
@@ -74,6 +58,57 @@ public:
 // This code uses the property of a BST that left child node is always smaller than the right
 // child node and recursively constructs left and right sub-tree until the last node.
 
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+        if(head == nullptr) return nullptr;
+        
+        // count the number of nodes in the list
+        int cnt = 0;
+        ListNode* cur = head;
+        while(cur != nullptr) {
+            cnt++;
+            cur = cur -> next;
+        }
+        
+        // create an array to store the sorted values
+        vector<int> values(cnt);
+        cur = head;
+        for(int i=0; i<cnt; i++){
+            values[i] = cur -> val;
+            cur = cur -> next;
+        }
+        
+        // recursively build the tree
+        return buildTree(values, 0, cnt - 1);
+    }
+    
+    TreeNode* buildTree(vector<int>& values, int L, int R) {
+        if(L > R) return nullptr;
+
+        // find the middle index
+        int mid = (L + R) / 2;
+        
+        // create a new node with the middle value
+        TreeNode* root = new TreeNode(values[mid]);
+        
+        // recursively build the left and right subtrees
+        root -> left =  buildTree(values, L, mid - 1);
+        root -> right = buildTree(values, mid + 1, R);
+        
+        return root;
+    }
+};
 
 
 
