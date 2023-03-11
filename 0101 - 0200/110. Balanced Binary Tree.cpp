@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     int height(TreeNode* root) {
@@ -28,7 +30,7 @@ public:
     }
 };
 
-
+// T.C. O(N^2)
 
 class Solution {
 public:
