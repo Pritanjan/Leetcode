@@ -1,5 +1,4 @@
-// Approach 1: Brute Force
-// Intuition & Algorithm
+// APPROACH 1 : Brute Force
 
 // Traverse all the linked lists and collect the values of the nodes into an array.
 // Sort and iterate over this array to get the proper value of nodes.
@@ -46,5 +45,36 @@ public:
 
 
 
+// APPROACH 2
 
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<pair<int, ListNode*>>> pq;
+        for(auto list : lists) {
+            if (list) pq.push({list->val, list});
+        }
+
+        ListNode* head = new ListNode();
+        ListNode* curr = head;
+
+        while(!pq.empty()) {
+            auto node = pq.top().second;
+            pq.pop();
+            curr -> next = node;
+            curr = curr -> next;
+            if(node -> next) pq.push({node->next->val, node->next});
+        }
+
+        return head->next;
+    }
+};
+
+
+// The idea is to use a min heap to keep track of the smallest element among the k linked lists.
+// We initially push the first element of each list into the heap. 
+// Then, we repeatedly pop the smallest element from the heap and append it to the output linked list. 
+// If the popped element has a next element, we push it into the heap.
+// We continue this process until the heap is empty, which means all elements have been
+// merged into the output linked list.
 
