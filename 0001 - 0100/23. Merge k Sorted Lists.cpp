@@ -78,3 +78,53 @@ public:
 // We continue this process until the heap is empty, which means all elements have been
 // merged into the output linked list.
 
+
+
+
+
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int amt = lists.size();
+        int interval = 1;
+
+        while(interval < amt) {
+            for(int i= 0; i<amt- interval; i+=interval * 2) {
+                lists[i] = merge2Lists(lists[i], lists[i + interval]);
+            }
+            interval *= 2;
+        }
+        return amt > 0 ? lists[0] : nullptr;
+    }
+
+    ListNode* merge2Lists(ListNode* l1, ListNode* l2) {
+        ListNode* head = new ListNode(0);
+        ListNode* point = head;
+        while (l1 && l2) {
+            if (l1->val <= l2->val) {
+                point->next = l1;
+                l1 = l1->next;
+            }
+            else {
+                point->next = l2;
+                l2 = l1;
+                l1 = point->next->next;
+            }
+            point = point->next;
+        }
+
+        if (!l1) {
+            point->next = l2;
+        }
+        else {
+            point->next = l1;
+        }
+
+        return head->next;
+    }
+};
+
+
+
+
