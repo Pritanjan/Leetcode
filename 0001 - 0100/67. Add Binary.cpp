@@ -5,29 +5,21 @@
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int i = a.size() - 1;
-        int j = b.size() - 1;
-        int c = 0;
-        string s;
-        
-        while(i >= 0 or j >= 0 or c == 1){
-            if(i >= 0){
-                c += a[i] - '0';
-                i--;
-            }
-            if(j >= 0){
-                c += b[j] - '0';
-                j--;
-            }
-            s += (c%2 + '0');
-            c /=  2;
+        int m = a.size(), n = b.size();
+        int carry = 0, i = m - 1, j = n - 1;
+        string result = "";
+        while(i >= 0 || j >= 0 || carry) {
+            int sum = carry;
+            if(i >= 0) sum += a[i--] - '0';
+            if(j >= 0) sum += b[j--] - '0';
+            result = char(sum % 2 + '0') + result;
+            carry = sum / 2;
         }
-        reverse(s.begin(), s.end());
-        return s;
+        return result;
     }
 };
 
-// 2. The addBinary function first initializes three variables: i and j to the lengths 
+// 1. The addBinary function first initializes three variables: i and j to the lengths 
 //    of a and b minus 1, respectively, and carry to 0. It then initializes an empty 
 //    string res to store the result.
 
@@ -144,17 +136,25 @@ public:
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int m = a.size(), n = b.size();
-        int carry = 0, i = m - 1, j = n - 1;
-        string result = "";
-        while(i >= 0 || j >= 0 || carry) {
-            int sum = carry;
-            if(i >= 0) sum += a[i--] - '0';
-            if(j >= 0) sum += b[j--] - '0';
-            result = char(sum % 2 + '0') + result;
-            carry = sum / 2;
+        string ans;
+        reverse(a.begin(), a.end());
+        reverse(b.begin(), b.end());
+
+        int n = max(a.size(), b.size()), carry = 0;
+        for (size_t i = 0; i < n; ++i) {
+            carry += i < a.size() ? (a.at(i) == '1') : 0;
+            carry += i < b.size() ? (b.at(i) == '1') : 0;
+            ans.push_back((carry % 2) ? '1' : '0');
+            carry /= 2;
         }
-        return result;
+
+        if (carry) {
+            ans.push_back('1');
+        }
+        reverse(ans.begin(), ans.end());
+
+        return ans;
     }
 };
+
 
