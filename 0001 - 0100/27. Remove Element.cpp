@@ -52,8 +52,10 @@ class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
         int l = 0;
+        
+        // traverse the array
         for(int i=0; i<nums.size(); i++){
-            if(nums[i] != val){
+            if(nums[i] != val){ //Array element nums[i] is different from val
                 nums[l] = nums[i];
                 l++;
             }
