@@ -73,3 +73,48 @@ public:
 
 
 
+
+
+
+
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        vector<int> tmp;
+        int length = digits.size();
+        
+        if(length == 1){
+            if(digits[0]==0) {
+                tmp.push_back(1);
+                return tmp;
+            }
+        }
+
+        int flag = 1;
+        int temp = length - 1;
+        
+        while(flag && (temp>=0)) {
+            if(digits[temp]!=9) {
+                flag = 0;
+                digits[temp]+=1;
+                return digits;
+            }
+
+            digits[temp] = 0;
+            temp = temp-1;
+        }
+
+        if(flag==1) {
+            tmp.push_back(1);
+            for(int i = 0;i<length;i++) {
+                tmp.push_back(digits[i]);
+            }
+        }
+        return tmp;
+    }
+};
+
+
+
+
