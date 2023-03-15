@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/sum-of-all-odd-length-subarrays/solutions/2090810/c-solution/
+
 // APPROACH 1
 
 class Solution {
