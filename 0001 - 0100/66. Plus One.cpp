@@ -1,7 +1,5 @@
 // https://www.codingninjas.com/codestudio/problem-of-the-day/easy
 
-//https://leetcode.com/problems/plus-one/
-
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
@@ -45,5 +43,33 @@ public:
         return digits;
     }
 };
+
+
+
+
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        int carry = 1; // initialize carry to 1
+        
+        // Traverse the digits from right to left
+        for (int i = n - 1; i >= 0; i--) {
+            int sum = digits[i] + carry; // add the carry to the current digit
+            digits[i] = sum % 10; // set the current digit to the remainder
+            carry = sum / 10; // update the carry
+        }
+        
+        // If there is still a carry left, insert a new digit 1 at the beginning of the vector
+        if (carry > 0) {
+            digits.insert(digits.begin(), 1);
+        }
+        
+        return digits;
+    }
+};
+
+
 
 
