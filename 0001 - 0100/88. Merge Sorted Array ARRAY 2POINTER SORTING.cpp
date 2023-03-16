@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {       
@@ -13,6 +15,10 @@ public:
 };
 
 
+
+
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -42,6 +48,13 @@ public:
 };
 
 
+
+
+
+
+
+// APPROACH 3
+
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
@@ -64,6 +77,11 @@ public:
 };
 
 
+
+
+
+
+// APPROACH 4
 
 class Solution {
 public:
@@ -89,35 +107,4 @@ public:
     }
 };
 
-
-
-class Solution {
-public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        // nums1.merge(nums2)
-        //     return nums;
-        
-//         vector<int> :: iterator it;
-        
-//         vector<int> nums(m+n);
-//         it = set_union(nums1.begin(), nums1.end(), nums2.end(),nums2.end(),nums.begin());
-//         sort
-//         for(int st = nums.begin(); st!=it; ++st)
-//             return st;
-        
-        int j=0;
-        for(int i=m;i<nums1.size();i++){
-            if(j<n){
-                nums1[i]=nums2[j] ;
-            }
-            j++;
-        }
-        sort(nums1.begin(),nums1.end());
-        
-        
-        
-    }
-//     return -1;
-    
-};
 
