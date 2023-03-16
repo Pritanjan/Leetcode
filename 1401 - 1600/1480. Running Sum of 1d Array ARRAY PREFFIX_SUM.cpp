@@ -1,8 +1,7 @@
-//https://leetcode.com/problems/running-sum-of-1d-array/
-
 //https://leetcode.com/problems/running-sum-of-1d-array/discuss/2326406/C%2B%2B-oror-3-Solution
 
 // APPROACH 1
+
 class Solution {
 public:
     vector<int> runningSum(vector<int>& nums) {
@@ -17,7 +16,12 @@ public:
 //T.C. --> O(n)
 //S.C. --> O(1)
 
+
+
+
+
 // APPROACH 2
+
 class Solution {
 public:
     vector<int> runningSum(vector<int>& nums) {
@@ -34,3 +38,23 @@ public:
 //T.C. --> O(n)
 //S.C. --> O(1)
 
+
+
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        int n = nums.size();
+        int sum = 0;
+        
+        for(int i=0; i<n; i++){
+            sum += nums[i];
+            nums[i] = sum;
+        }
+        return nums;
+    }
+};
