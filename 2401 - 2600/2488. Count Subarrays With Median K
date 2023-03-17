@@ -1,0 +1,70 @@
+class Solution {
+public:
+    long long solve(int n, vector<int> A, int m) {
+        int mp[2*n+1];
+        memset(mp, 0, sizeof(mp));
+        long long cur = n, tot = 0, ans = 0;
+        mp[(int)cur]++;
+        
+        for(int i=0; i<n; i++) {
+            int x = -1;
+            
+            if(A[i] >= m) x = 1;
+            if(x == -1) tot -= mp[(int)(cur+x)];
+            else tot += mp[(int)cur];
+            
+            cur += x;
+            ans += tot;
+            mp[(int)cur]++;
+        }
+        return ans;
+    }
+    
+    long long countSubarray(int N, vector<int> A, int M) { 
+        return solve(N, A, M) - solve(N, A, M+1);
+    }
+};
+
+
+
+
+
+
+class Solution {
+public:
+    inline int sign(int num) {
+        if (num == 0) {
+            return 0;
+        }
+        return num > 0 ? 1 : -1;
+    }
+
+    int countSubarrays(vector<int>& nums, int k) {
+        int n = nums.size();
+        int kIndex = -1;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == k) {
+                kIndex = i;
+                break;
+            }
+        }
+        int ans = 0;
+        unordered_map<int, int> counts;
+        counts[0] = 1;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += sign(nums[i] - k);
+            if (i < kIndex) {
+                counts[sum]++;
+            } else {
+                int prev0 = counts[sum];
+                int prev1 = counts[sum - 1];
+                ans += prev0 + prev1;
+            }
+        }
+        return ans;
+    }
+};
+
+
+
