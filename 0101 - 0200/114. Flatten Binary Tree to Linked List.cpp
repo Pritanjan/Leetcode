@@ -1,6 +1,20 @@
 // MORRIS TRAVERSAL
+// Here, We  the tree without using stack and recursion
+
+// In this traversal, we first create links to Inorder successor and
+// print the data using these links, and finally revert the changes to restore original tree. 
+
+// ALGORITHM 
+// check copy pg 28
+
+
+// MORRIS TRAVERSAL CODE
 // https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
 
+
+
+
+// https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
 class Solution{
 public:
     void flatten(TreeNode *root) {
@@ -27,6 +41,7 @@ public:
         }
     }
 };
+
 
 
 
