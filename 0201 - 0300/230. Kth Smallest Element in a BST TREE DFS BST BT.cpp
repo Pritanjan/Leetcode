@@ -36,6 +36,37 @@ public:
 
 
 
+// OR
+
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        int i = 0;
+        int res = f(root, i, k);
+        return res;
+    }
+        
+        
+    int f(TreeNode *root, int &i, int k){
+        // base case
+        if(root == NULL) return -1;
+
+        // L
+        int L = f(root -> left, i, k);
+        if(L != -1) return L;
+
+        // N
+        i++;
+        if(i == k) return root -> val;
+
+        // R 
+        return f(root -> right, i, k);
+
+    }
+};
+
+
 
 
 // APPROACH 2
