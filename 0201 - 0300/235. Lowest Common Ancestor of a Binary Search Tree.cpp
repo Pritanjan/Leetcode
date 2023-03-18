@@ -1,3 +1,5 @@
+// https://www.codingninjas.com/codestudio/problems/lca-in-a-bst_981280?leftPanelTab=0
+
 // COMPANY FB MICROSFT AMAZON LINKDEIN
 
 // ITERATIVELY
@@ -21,8 +23,6 @@ public:
         return temp;
     }
 };
-
-
 
 
 
