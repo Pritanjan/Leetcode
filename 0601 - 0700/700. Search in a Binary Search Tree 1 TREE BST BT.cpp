@@ -42,13 +42,22 @@ public:
     }
 };
 
+// T.C.  --> O(N)
+// S.C.  --> O(H)
 
 
 
 
 
 
+
+
+
+// https://www.codingninjas.com/codestudio/problems/search-in-bst_1402878?leftPanelTab=1
 // HERE WE R CHECKING WHTHER THE GIVEN VAL IS PRESENT IN THE TREE OR NOT
+
+
+// APPROACH 1
 
 bool searchInBST(BinaryTreeNode<int> *root, int val) {
        if(root == NULL)
@@ -61,5 +70,21 @@ bool searchInBST(BinaryTreeNode<int> *root, int val) {
             return searchInBST(root->left, val );
 }
 
+
+
+
+// APPROACH 2
+
+bool searchInBST(BinaryTreeNode<int> *root, int val) {
+    BinaryTreeNode<int> *temp = root;
+
+    while(temp != NULL){
+        if(temp -> data == val) return true;
+        if(temp -> data >  val) temp = temp -> left;
+        else temp = temp -> right;
+
+    }
+    return false;
+}
 
 
