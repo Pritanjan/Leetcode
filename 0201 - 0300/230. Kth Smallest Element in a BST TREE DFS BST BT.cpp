@@ -40,12 +40,21 @@ public:
 
 // APPROACH 2
 
-int kthSmallest(TreeNode* root, int& k) {
-   if (root) {
-       int x = kthSmallest(root->left, k);
-       return !k ? x : !--k ? root->val : kthSmallest(root->right, k);
-   }
-}
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int& k) {
+        if (root) {
+            int x = kthSmallest(root->left, k);
+            return !k ? x : !--k ? root->val : kthSmallest(root->right, k);
+        }
+        return -1;
+    }
+};
+
+
+
+
+
 
 
 
