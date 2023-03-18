@@ -1,17 +1,7 @@
-//https://leetcode.com/problems/validate-binary-search-tree/
 //fb MICROSOFT AMAZON BLOOMBERG
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// APPROACH 1
+
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
@@ -27,6 +17,44 @@ public:
             return helper(root->left,min,root->val) &&  helper(root->right,root->val,max);
     }
 };
+
+
+
+
+
+
+// APPROACH 2 
+// INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT 
+// IF SORTED --> BST 
+// ELSE --> NOT BST
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& res){
+        if(!root) return ;
+        
+        if(root -> left) inorder(root -> left, res);
+        res.push_back(root -> val);
+        if(root -> right) inorder(root -> right, res);
+    }
+
+    bool isValidBST(TreeNode* root) {
+        vector<int> res;
+        inorder(root, res);
+
+        for(int i=1; i<res.size(); i++) {
+            if(res[i-1] >= res[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+
+
+
+
 
 
 
