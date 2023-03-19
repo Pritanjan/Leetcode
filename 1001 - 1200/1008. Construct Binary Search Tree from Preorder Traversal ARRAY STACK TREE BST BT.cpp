@@ -1,14 +1,7 @@
-//https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
+// Give the function ma the maximum number it will handle.
+// The left recursion will take the elements smaller than node->val
+// The right recursion will take the remaining elements smaller than bound
 
-//Give the function ma the maximum number it will handle.
-//The left recursion will take the elements smaller than node->val
-//The right recursion will take the remaining elements smaller than bound
-//
-//Complexity :-
-//bstFromPreorder is called exactly N times.
-//It's same as a preorder traversal.
-//Time O(N)
-//Space O(H)
 
 class Solution {
 public:
@@ -23,3 +16,15 @@ public:
         return root;
     }
 };
+
+
+
+// Complexity :-
+// bstFromPreorder is called exactly N times.
+// It's same as a preorder traversal.
+// Time O(N)
+// Space O(H)
+
+
+
+
