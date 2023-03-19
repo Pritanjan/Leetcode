@@ -48,3 +48,53 @@ public:
 
 
 
+
+
+
+
+
+
+
+
+
+
+// https://www.codingninjas.com/codestudio/problems/flatten-bst-to-a-sorted-list_1169459?leftPanelTab=0
+
+
+#include <bits/stdc++.h> 
+void inorder(TreeNode<int>* root, vector<int>& A){
+    if(root == NULL) return ;
+    
+    inorder(root -> left, A);
+    A.push_back(root -> data);
+    inorder(root -> right, A);
+}
+
+TreeNode<int>* flatten(TreeNode<int>* root) {
+    vector<int> v;
+    inorder(root, v);
+    int n = v.size();
+
+    TreeNode<int>* newroot = new TreeNode<int>(v[0]);
+
+    TreeNode<int>* curr = newroot;
+
+    // 2nd step
+    for(int i=1; i<n; i++){
+
+        TreeNode<int>* temp = new TreeNode<int> (v[i]);
+
+        curr -> left = NULL;
+        curr -> right = temp;
+        curr = temp;
+    }
+
+    // 3rd step
+    curr -> left = NULL;
+    curr -> right = NULL;
+
+    return newroot;
+}
+
+
+
