@@ -1,34 +1,17 @@
-[653. Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+// Company Tag Amazon
 
-[My Github Repoistory](https://github.com/Pritanjan/Leetcode)
+// APPROACH 1 Using Inorder and Two Pointers
 
-**Company Tag Amazon**
+// The main idea is to use a sorted array to save the values of the nodes in the BST .`
+// We can use any tree traversal like inOrder, preorder, or postorder  to put the element 
+// in the array in ascending order . `
+// 1. We will use two pointers to point at start and end of the array.
+// 2. Traverse while L < R .
+// 3. if ` A[L] + A[R] == K ` return True .
+// 4. if ` A[L] + A[R] > K `  do R-- (i.e. Remove the element from the right side) .
+// 5. if ` A[L] + A[R] < K `  do L++ (i.e. Remove the element from the left side).
+// 6. If the required pair is not found the return false.	
 
-<br>
-
-##### APPROACH 1 Using Inorder and Two Pointers
-
-**Explanation : -**
-
-`The main idea is to use a sorted array to save the values of the nodes in the BST .`
-
-`We can use any tree traversal like inOrder, preorder, or postorder  to put the element in the array in ascending order . `
-
-1. We will use two pointers to point at start and end of the array.
-
-2. Traverse while L < R .
-
-3. if ` A[L] + A[R] == K ` return True .
-
-4. if ` A[L] + A[R] > K `  do R-- (i.e. Remove the element from the right side) .
-
-5. if ` A[L] + A[R] < K `  do L++ (i.e. Remove the element from the left side).
-
-6. If the required pair is not found the return false.
-
-**Code**
-	
-```
 
 class Solution {
 private:
@@ -61,32 +44,24 @@ public:
     }
 };
 
-```
-
-<br>
-
-##### COMPLEXITY ANALYSIS : -
-* **Time Complexity : -**  ` O(N) `
-* **Space Complexity : -**  ` O(N) `
-
-<br><hr><br>
-	
-
-##### APPROACH 2 Using HashSet
-`This method also works for those who are not BSTs. `
-
-**Explanation : -**
-
-1. We will traverse the tree by any way, and record the node value in a Set.
-
-2. The idea is to use a unordered_set to save the values of the nodes in the BST. 
-
-3. Each time when we insert the value of a new node into the unordered_set, we check if the unordered_set  contains k - node val.
+// Time Complexity : -**  ` O(N) `
+// Space Complexity : -**  ` O(N) `
 
 
-**Code**
 
-```
+
+// APPROACH 2 Using HashSet
+// This method also works for those who are not BSTs.
+
+// Explanation : 
+
+// 1. We will traverse the tree by any way, and record the node value in a Set.
+// 2. The idea is to use a unordered_set to save the values of the nodes in the BST. 
+// 3. Each time when we insert the value of a new node into the unordered_set, we check 
+// if the unordered_set  contains k - node val.
+
+
+
 class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
@@ -104,15 +79,10 @@ public:
     }
 };
 
-```
+// Time Complexity : -**  ` O(N) `
+// Space Complexity : -**  ` O(N) `
 
-<br>
 
-##### COMPLEXITY ANALYSIS : -
-* **Time Complexity : -**  ` O(N) `
-* **Space Complexity : -**  ` O(N) `
-
-<hr><br>
 
 
 3. 
@@ -122,3 +92,10 @@ public:
 //Time Complexity: O(nh), Space Complexity: O(h).
 //h is the height of the tree, which is log n at best case, 
 //and n at worst case.
+
+	
+	
+	
+	
+	
+	
