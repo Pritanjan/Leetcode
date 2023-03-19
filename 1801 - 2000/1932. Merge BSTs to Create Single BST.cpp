@@ -125,3 +125,27 @@ TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2){
 
 
 
+
+
+
+// APPROACH 2
+
+// STEP : 1
+// FLATTEN BST TO LL
+
+// STEP : 2
+// MERGE 2 SORTED LL 
+
+// STPE : 3
+// CONVERT SORTED LL -> BST
+
+
+// T.C. --> O(M+N)
+// S.C. --> O(M+N)
+
+
+
+
+
+
+
