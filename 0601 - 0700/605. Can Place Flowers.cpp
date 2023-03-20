@@ -50,3 +50,41 @@ public:
 // } else {
 //     emptyLeftPlot = false;
 // }
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int num = 0;
+        int size = flowerbed.size();
+        int lh = -1;
+        for(int i = 0; i < size; ++i){
+            if(flowerbed[i] == 1){
+                if(lh == -1){
+                    num += i/2;
+                }
+                else{
+                    num += (i - lh - 2)/2;
+                }
+                lh = i;
+            }
+        }
+        if(lh == -1)
+            num += (size + 1) / 2;
+        else
+            num += (size - lh - 1) / 2;
+        return num >= n;
+    }
+};
+
+
+
+
+
+
