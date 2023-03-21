@@ -1,7 +1,5 @@
-// https://leetcode.com/problems/kth-largest-element-in-an-array/
-// https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60309/C%2B%2B-STL-partition-and-heapsort
+// APPROACH 1 max-heap priority queue
 
-1st max-heap priority queue
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -13,10 +11,25 @@ public:
     }
 };
 
-// We may also use a heap to solve this problem. We can maintain the largest k elements in a heap with the smallest among them at the top. Or we can add all the elements to a heap, with the largest at the top, and then pop the heap for k - 1 times, then the one on the top is our target. The first one is min-heap and the second one is max-heap. In STL, both priority_queue and multiset can be used as a min/max-heap.
 
 
-2nd MIN-heap priortiy queue
+
+
+// We may also use a heap to solve this problem. We can maintain the largest k elements in a
+// heap with the smallest among them at the top. Or we can add all the elements to a heap, 
+// with the largest at the top, and then pop the heap for k - 1 times, then the one on the 
+// top is our target. The first one is min-heap and the second one is max-heap.
+// In STL, both priority_queue and multiset can be used as a min/max-heap.
+
+
+
+
+
+
+
+
+// APPROACH 2 MIN-heap priortiy queue
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -31,17 +44,28 @@ public:
 };
 
 
-3rd
+
+
+
+
+// APPROACH 3
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-		nth_element(nums.begin(), nums.begin() + k - 1, nums.end(), greater<int>());
+	nth_element(nums.begin(), nums.begin() + k - 1, nums.end(), greater<int>());
         return nums[k-1];
     }
 };
 
 
-4th
+
+
+
+
+
+// APPROACH 4
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {    
@@ -50,6 +74,42 @@ public:
    
     }
 };
+
+
+
+
+
+
+
+
+
+// APPROACH 5
+
+class Solution {
+public:
+    int quick_sort(vector<int>& nums, int l, int r, int k) {
+        if(l == r) return nums[l];
+        int i = l - 1, j = r + 1, x = nums[ (i + j) >> 1];
+        while(i < j){
+            do i++; while(nums[i] > x);
+            do j--; while(nums[j] < x);
+            if(i < j) swap(nums[i],nums[j]);
+        }
+        int ll = j - l + 1;
+        if(ll >= k) return quick_sort(nums,l,j,k);
+        return quick_sort(nums,j + 1, r, k - ll);
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        ios::sync_with_stdio(false);
+        cin.tie(0);
+        return quick_sort(nums,0,nums.size() - 1,k);
+    }
+};
+
+
+
+
+
 
 
 
