@@ -48,3 +48,23 @@ public:
 };
 
 
+
+
+
+class Solution {
+public:
+    long long zeroFilledSubarray(vector<int>& nums) {
+        long long int cnt = 0;
+        int start = 0;
+        int end;
+        int n = nums.size();
+        for(end = 0; end < n; end++) {
+            if(nums[end] == 0) cnt += (end - start + 1);
+            else start = end + 1;
+        }
+        return cnt;
+    }
+};
+
+
+
