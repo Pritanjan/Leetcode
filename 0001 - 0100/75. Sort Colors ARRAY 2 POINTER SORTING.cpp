@@ -133,3 +133,38 @@ public:
 
 
 
+
+
+
+
+
+// APPROACH 5
+
+class Solution {
+public:
+    void sortColors(std::vector<int>& nums) {
+        int n = nums.size();
+
+        int lt = -1;
+        int gt = n;
+        int i = 0;
+
+        while (i < gt) {
+            if (nums[i] == 0) {
+                lt++;
+                std::swap(nums[lt], nums[i]);
+                i++;
+            }
+            else if (nums[i] == 2) {
+                gt--;
+                std::swap(nums[gt], nums[i]);
+            }
+            else {
+                i++;
+            }
+        }
+    }
+};
+
+
+
