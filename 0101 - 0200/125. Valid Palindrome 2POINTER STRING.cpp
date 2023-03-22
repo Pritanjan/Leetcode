@@ -93,11 +93,6 @@ public:
 
 
 
-
-
-
-
-
 // APPROACH 3
 
 class Solution {
@@ -115,6 +110,51 @@ public:
         return a == v;
     }
 };
+
+
+
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string s1="";
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='a'&&s[i]<='z'){
+                s1+=s[i];
+            }
+            else if(s[i]>='A'&&s[i]<='Z')
+            {
+                s1+=s[i]+32;
+            }
+            else if(s[i]>='0'&&s[i]<='9'){
+                s1+=s[i];
+            }
+        }
+        
+        int j=s1.size()-1;
+        bool f=true;
+        for(int i=0;i<s1.size();i++){
+            if(i>j) {
+                break;
+            }
+            if(s1[i]!=s1[j]){
+                f=false;
+                break;}
+                j--;
+            
+        }
+        return f;
+    }
+};
+
+
+
 
 
 
