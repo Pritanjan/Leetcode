@@ -55,6 +55,66 @@ public:
 
 
 
+// APPROACH 3
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        for(int i=0;i<numbers.size();i++){
+            int l=i+1;
+            int h=numbers.size()-1;
+            while(h>=l){
+                int mid=l+(h-l)/2;
+                if(numbers[mid]+numbers[i]==target){
+                    return {i+1,mid+1};
+                }
+                else if(numbers[mid]+numbers[i]>target){
+                    h=mid-1;
+                }
+                else{
+                    l=mid+1;
+                }
+            }
+        }
+        return {-1,-1};
+    }
+};
+
+
+// OR 
+
+class Solution {
+public:
+    int bs(vector<int> &v, int ind, int target){
+        int L = ind;
+        int R = v.size() - 1;
+        int ans = 0;
+        while(L <= R) {
+            int mid = L + (R - L)/2;
+            if(v[mid]==target) {
+                ans = mid;
+                break;
+            }
+            else if(v[mid] >= target) R = mid - 1;
+            else L = mid + 1;
+        }
+
+        return ans;
+    }
+
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int n = numbers.size();
+        vector<int> v;
+        for(int i=0; i<n; i++) {
+            int ans = bs(numbers, i+1, target-numbers[i]);
+            if(ans) {
+                v.push_back(i+1);
+                v.push_back(ans+1);
+            }
+        }
+        return v;
+    }
+};
 
 
 
