@@ -18,6 +18,36 @@ public:
 
 
 
+// WRONG
+
+// class Solution {
+// public:
+//     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//         nums1.insert(nums1.end(), nums2.begin(), nums2.end());
+//         vector<int> nums(m+n);
+//         vector<int>::iterator it = set_union(nums1.begin(), nums1.begin() + m, nums2.begin(), nums2.begin() + n, nums.begin());
+//         sort(nums.begin(), it);
+//         nums1 = nums;
+//     }
+// };
+
+
+
+// SAME AS APPROACH 1
+// class Solution {
+// public:
+//     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//         for(int i=0; i<n; i++){
+//             nums1[m+i]=nums2[i];
+//         }
+//         sort(nums1.begin(), nums1.end());
+//     }
+// };
+
+
+
+
+
 // APPROACH 2
 
 class Solution {
@@ -81,6 +111,8 @@ public:
 
 
 
+
+
 // APPROACH 4
 
 class Solution {
@@ -106,5 +138,13 @@ public:
         }
     }
 };
+
+
+
+
+
+
+
+
 
 
