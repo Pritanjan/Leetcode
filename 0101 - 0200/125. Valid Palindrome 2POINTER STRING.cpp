@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/valid-palindrome/
+// APPROACH 1
 
 class Solution {
 public:    
@@ -27,6 +27,13 @@ public:
 };
 
 
+
+
+
+
+
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -91,6 +98,23 @@ public:
 
 
 
+// APPROACH 3
+
+class Solution {
+public:
+    bool isPalindrome(std::string s) {
+        vector<char> a;
+        for(char c : s) {
+            if (isalpha(c) || isdigit(c)) {
+                a.push_back(tolower(c));
+            }
+        }
+
+        vector<char> v = a;
+        reverse(v.begin(), v.end());
+        return a == v;
+    }
+};
 
 
 
