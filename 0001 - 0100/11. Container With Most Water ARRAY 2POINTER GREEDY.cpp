@@ -1,4 +1,3 @@
-// https://leetcode.com/problems/container-with-most-water/
 // https://leetcode.com/problems/container-with-most-water/discuss/2594527/C%2B%2B-oror-2-Solution-oror-2-Pointer-with-explanation
 
 // https://medium.com/enjoy-algorithm/container-with-most-water-bdbd1a29481c
@@ -23,11 +22,15 @@ public:
     }
 };
 
-##### COMPLEXITY ANALYSIS : -
-* **Time Complexity : -**  `O(N^2)` where ‘N’ is the number of elements in the given array/list.
-Since we are pivoting each element once and for each element we are traversing the given array/list till the end. So there will be a total of ‘N’ elements to pivot and then to traverse the given array/list will take O(N) time. Thus, the overall time complexity will be O(N^2).
-* **Space Complexity :-** ` O(1)`
-Since we are not using any extra space and thus the space complexity will be O(1).
+// ##### COMPLEXITY ANALYSIS : -
+// * **Time Complexity : -**  `O(N^2)` where ‘N’ is the number of elements in the given array/list.
+// Since we are pivoting each element once and for each element we are traversing the given array/list till the end. So there will be a total of ‘N’ elements to pivot and then to traverse the given array/list will take O(N) time. Thus, the overall time complexity will be O(N^2).
+// * **Space Complexity :-** ` O(1)`
+// Since we are not using any extra space and thus the space complexity will be O(1).
+
+
+
+
 
 
 // APPROACH 2 - 2 Pointer
@@ -67,6 +70,34 @@ public:
 // Space Complexity :-** ` O(1)`   We are using constant space.
 
 
+
+// OR
+
+
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n = height.size(), i = 0, j = n - 1;
+        int maxarea = (j - i) * min(height[i], height[j]);
+        
+        while (i < j) {
+            if (height[i] < height[j]) {
+                i++;
+            } else {
+                j--;
+            }
+            maxarea = max(maxarea, (j - i) * min(height[i], height[j]));
+        }
+        
+        return maxarea;
+    }
+};
+
+
+
+
+
 // APPROACH 2 ???
 class Solution {
 public:
@@ -89,6 +120,8 @@ public:
         return sum;
     }
 };
+
+
 
 
 
