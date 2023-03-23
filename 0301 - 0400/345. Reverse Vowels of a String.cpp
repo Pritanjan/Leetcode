@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/reverse-vowels-of-a-string/
+// APPROACH 1
 
 class Solution {
 public:
@@ -29,6 +29,12 @@ public:
 };
 
 
+
+
+
+
+// APPROACH 2
+
 class Solution {
 public:
     string reverseVowels(string s) {
@@ -53,6 +59,11 @@ public:
 };
 
 
+
+
+
+
+// APPROACH 3
 
 class Solution {
 public:
@@ -80,11 +91,50 @@ public:
     }
 };
 
-Time complexity: O(N)
-Space complexity: O(N)
+// Time complexity: O(N)
+// Space complexity: O(N)
 
 
 
+
+
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        vector<char> ss(s.begin(), s.end());
+        vector<char> aeiou = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        int n = s.size(), i = 0, j = n - 1;
+
+        while (i < j) {
+            if (find(aeiou.begin(), aeiou.end(), ss[i]) == aeiou.end()) {
+                i++;
+                continue;
+            }
+            if (find(aeiou.begin(), aeiou.end(), ss[j]) == aeiou.end()) {
+                j--;
+                continue;
+            }
+            if (i < j) {
+                swap(ss[i], ss[j]);
+            }
+            i++;
+            j--;
+        }
+        
+        string d = "";
+        for (auto c : ss) {
+            d += c;
+        }
+        return d;
+    }
+};
 
 
 
