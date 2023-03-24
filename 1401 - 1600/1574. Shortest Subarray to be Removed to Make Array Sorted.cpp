@@ -1,5 +1,6 @@
 // APPROACH 1
 
+
 class Solution {
 public:
     int findLengthOfShortestSubarray(vector<int>& arr) {
@@ -34,11 +35,41 @@ public:
 
 
 
+// We first find the longest non-decreasing prefix of the array and 
+// the longest non-increasing suffix of the array. 
+// If the array is already non-decreasing, we return 0.
+
+// If we remove either the prefix or suffix, the remaining array is non-decreasing. 
+// We calculate the length of the subarray to remove as the minimum of the length
+// of the prefix and suffix.
+
+// We then consider removing a subarray in the middle of the array.
+// We start with the first element of the prefix and the last element
+// of the suffix and move towards the middle. 
+// If the elements are non-decreasing, we move the left pointer one step to the right
+// and update the length of the subarray to remove. 
+// Otherwise, we move the right pointer one step to the right.
+// We continue until the left and right pointers meet.
+
+// Finally, we return the length of the shortest subarray to remove.
+
+
+// Time Complexity: O(N). N is the length of an array.
+// The solution involves scanning the input array at most three times. 
+
+// Space Complexity: O(1).
+// The solution uses a constant amount of extra space for variables. 
+   
+
+
+
+
 
 
 
 
 // APPROACH 2
+
 
 static const auto io_sync_off = []() {
     std::ios::sync_with_stdio(false);
@@ -83,6 +114,30 @@ private:
     }
 };
 
+
+
+// This approach starts by finding the longest non-decreasing prefix and longest
+// non-increasing suffix of the given array. If the array is already non-decreasing 
+// or non-increasing, then the answer is 0.
+
+// Next, we iterate through the elements of the prefix (i.e., from index 0 to i) and 
+// try to find the position of the smallest element in the suffix that is greater than or
+// equal to the current prefix element.
+// We use the binary search algorithm to find this position in logarithmic time complexity.
+
+// For each prefix element, we calculate the length of the subarray to be removed 
+// if we remove it, such that the remaining elements are non-decreasing. 
+// We take the minimum of all such subarray lengths as our answer.
+
+// The time complexity of the algorithm is O(nlogn) due to the binary search operation
+// Space complexity is O(1) as we are using a constant amount of extra space for variables.
+
+
+// Here, the low_bound function is a custom implementation of the binary search algorithm
+// to find the first occurrence of the target element in a sorted array. 
+// It returns the index of the first element that is greater than or equal to the target element.
+// If the target element is not present in the array, it returns the index where the
+// target element should be inserted to maintain the sorted order of the array.
 
 
 
