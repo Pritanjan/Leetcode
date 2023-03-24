@@ -1,6 +1,5 @@
 // APPROACH 1
 
-
 // We are given a linked list 4 -> 5 -> 10-> 13 and we need node 5 to be removed from LL,
 // also the order should be maintained.
 
@@ -28,23 +27,24 @@ public:
 
 
 
+
 // APPROACH 2
 
 class Solution {
 public:
     void deleteNode(ListNode* node) {
         // If node is the last node or node is NULL
-        if (!node || !node->next) {
-            return;
-        }
+        if (!node || !node->next) return;
+        
         // Copy the value of the next node into the current node
         node->val = node->next->val;
+        
         // Delete the next node
         ListNode* temp = node->next;
         node->next = temp->next;
         delete temp;
     }
-
 };
+
 
 
