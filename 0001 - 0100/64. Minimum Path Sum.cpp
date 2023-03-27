@@ -1,6 +1,5 @@
 // APPROACH 1
 
-
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
@@ -23,8 +22,8 @@ public:
 
 
 
-// APPROACH 2
 
+// APPROACH 2
 
 class Solution {
 public:
@@ -50,6 +49,147 @@ public:
         return dp[row - 1][col - 1];
     }
 };
+
+
+
+
+
+
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    int help(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dp) {
+        if(i == 0 && j == 0) return grid[i][j];   // return grid[0][0];
+        if(i < 0  || j < 0)  return INT_MAX; 
+        if(dp[i][j] != -1) return dp[i][j];   
+        
+        long long up   = (long long)grid[i][j] + (long long) help(i-1, j, grid, dp);
+        long long left = (long long)grid[i][j] + (long long) help(i, j-1, grid, dp);
+        return dp[i][j] = min(up, left);
+
+        // above 3 line is same as this 
+        // return dp[i][j] = grid[i][j] + min(help(i-1, j, grid, dp), help(i, j-1, grid, dp));
+        
+    }
+
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>> dp(m, vector<int> (n,-1));
+        return help(m-1,n-1,grid,dp);
+    }
+};
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        int dp[m][n];
+       
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(i == 0 && j == 0)  dp[i][j]=grid[i][j];
+                else { 
+                    int up = grid[i][j];
+                    if (i > 0) up += dp[i-1][j];
+                    else up += 1e9;
+
+                    int left = grid[i][j];
+                    if(j > 0)  left += dp[i][j-1];
+                    else  left += 1e9;
+
+                    dp[i][j] = min(up, left);
+                }
+            }
+        }
+        return dp[m-1][n-1] ;
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 6
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        // vector<vector<int>> dp(m,vector<int>(n,-1));
+        // return help(m-1,n-1,grid,dp);
+
+        int dp[m][n];
+        // dp[0][0]=grid[0][0];
+        
+        vector<int> prev(n,0);
+        for(int i=0; i<m; i++) {
+            vector<int> curr(n,0);
+            for(int j=0; j<n; j++) {
+                if(i == 0 && j == 0)  curr[0] = grid[i][j];
+                else {
+                    int up = grid[i][j];
+                    if(i > 0) up += prev[j];
+                    else up += 1e9;
+                    int left = grid[i][j];
+
+                    if(j > 0) left += curr[j-1]; 
+                    else left += 1e9;
+
+                    curr[j] = min(left, up);
+                }
+            }
+            prev=curr;
+        }
+        return prev[n-1];
+    }
+};
+
+
+
+
+
+// APPROACH 7
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        // to store min num
+        vector<vector<int>> res(grid.size(), vector<int>(grid[0].size(), 0));  
+
+        for(int i=0; i<grid.size(); ++i) {
+            for (int j=0; j<grid[0].size(); ++j) {
+                int case1 = 1e9;
+                int case2 = 1e9;
+
+                min_suresm[i][j] = grid[i][j];
+                
+                if (i == 0 && j == 0) continue;
+                if (i > 0) case1 = res[i - 1][j];
+                if (j > 0) case2 = res[i][j - 1];
+                
+                res[i][j] += min(case1, case2);
+            }
+        }
+        return res.back().back();
+    }
+};
+
+
 
 
 
