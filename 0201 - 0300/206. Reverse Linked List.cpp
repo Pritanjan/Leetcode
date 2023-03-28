@@ -1,4 +1,4 @@
-// APPROACH 1 
+// APPROACH 1 [ USING 2 POINTER ]
  
 class Solution {
 public:
@@ -33,6 +33,38 @@ public:
 
 
 
+
+
+
+// APPROACH 2 [ USING 3 POINTER ]
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == NULL || head -> next == NULL) return head;
+        ListNode *p1, *p2, *p3;
+        p1 = head; 
+        p2 = head ->next;
+        p3 = p2 ->  next;
+        p1 -> next = NULL;
+     
+        if(p3 == NULL) {
+            p2 -> next = p1;
+            head = p2;
+        }
+        else {
+           while(p3 != NULL) {
+               p2 -> next = p1;
+               p1 = p2;
+               p2 = p3;
+               p3 = p3 -> next;
+           }
+           p2 -> next = p1;
+           head = p2;
+        }
+        return head;
+    }
+};
 
 
 
