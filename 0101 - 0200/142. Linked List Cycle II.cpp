@@ -1,5 +1,6 @@
 // APPROACH 1
 
+
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
@@ -17,24 +18,43 @@ public:
 
 
 
-
-// APPROACH 2
+// OR 
 
 class Solution {
 public:
-    ListNode* detectCycle(ListNode* head) {
-        set<ListNode*>s;
-        ListNode* itr = head;
-        s.insert(itr);
-        while(itr != NULL){
-            if(s.find(itr -> next) == s.end()) s.insert(itr -> next);
-            else return itr -> next;
-            
-            itr = itr -> next;
+    ListNode *detectCycle(ListNode *head) {
+        if (!head) return nullptr;
+        
+        unordered_map<ListNode*, ListNode*> visited;
+        while(head) {
+            if(visited.count(head)) return visited[head];
+            visited[head] = head;
+            head = head->next;
         }
-        return NULL;
+        return nullptr;
     }
 };
+
+
+
+
+// APPROACH 2
+
+ListNode* detectCycle(ListNode* head) {
+    if (!head || !head->next) return NULL;
+    
+    unordered_set<ListNode*> ust;
+    while(head) {
+        if (ust.find(head) != ust.end()) {
+            return head;
+        } else {
+            s.insert(head);
+            head = head->next;
+        }
+    }
+    return NULL;
+}
+
 
 
 
@@ -67,6 +87,8 @@ public:
         return NULL;
     }
 };
+
+
 
 
 
