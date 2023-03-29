@@ -155,3 +155,46 @@ public:
 // S.C. O(N)
 
 
+
+
+
+// APPROACH 5 [ Using stack ] FIFO
+//  because stacks uses FIFO The implementation principle is to put the linked list nodes
+// into the stack one by one, and then out of the stack one by one after all the stacks, 
+// and when they come out of the stack, they are stringing the nodes of the stack into a 
+// new linked list. 
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        stack<ListNode*> s;
+        while(head != NULL){
+            s.push(head);
+            head = head->next;
+        }
+
+        if(s.empty()) return NULL;
+        
+        ListNode* node = s.top();
+        s.pop();
+        ListNode* dummy = node;
+        while(!s.empty()){
+            ListNode* temp = s.top();
+            s.pop();
+            node->next = temp;
+            node = node->next;
+        }
+        node->next = NULL;
+        return dummy;
+    }
+
+};
+
+
+
+
+
+
+
+
