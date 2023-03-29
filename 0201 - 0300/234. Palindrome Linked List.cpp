@@ -1,24 +1,11 @@
-// https://practice.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-
 // APPROACH 1
+
 
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         vector<int> v;
-        if(head == NULL or head->next == NULL)
-            return true;
+        if(head == NULL or head->next == NULL) return true;
         else{
             ListNode *temp = head;
             while(temp -> next != NULL){
@@ -37,46 +24,46 @@ public:
     }
 };
 
+
 // T.C. --> O(N) As we iterate over whole LL
 // S.C. --> O(N) As we create an array of size N
 
 
+
+
+
 // APPROACH 2
 
-#include<bits/stdc++.h>
-class Solution{
-  private:
+class Solution {
+private:
     bool checkPali(vector<int> &v) {
         int n = v.size();
         int L = 0;
         int R = n-1;
         
         while(L <= R){
-            if(v[L] != v[R])
-                return 0;
-            
+            if(v[L] != v[R]) return 0;
             L++;
             R--;
         }
         return L;
     }
-  public:
-    //Function to check whether the list is palindrome.
-    bool isPalindrome(Node *head)
-    {
+    
+public:
+    bool isPalindrome(ListNode* head) {
         vector<int> v;
-        Node* temp = head;
+        ListNode* temp = head;
         while(temp != NULL){
-            v.push_back(temp -> data);
+            v.push_back(temp -> val);
             temp = temp -> next;
         }
         return checkPali(v);
-    }
+    }  
 };
 
 
-// APPROACH 3
-// FIND MID AND COMPARE BOTH PART OF LL
+
+// APPROACH 3 [ FIND MID AND COMPARE BOTH PART OF LL ]
 
 class Solution {
 public:
@@ -133,6 +120,11 @@ public:
     }
 };
 
+
 // t.c. O(N)
 // s.c. O(1)
+
+
+
+
 
