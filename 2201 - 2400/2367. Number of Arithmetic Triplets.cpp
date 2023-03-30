@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ BRUTE FORCE ]
 
 class Solution {
 public:
@@ -21,9 +21,7 @@ public:
 
 
 
-
-
-// APPROACH 2
+// APPROACH 2 [ USING MAP ]
 
 class Solution {
 public:
@@ -47,4 +45,26 @@ public:
 
 
 
+
+
+
+// APPROACH 1 [ USING HASH SET ]
+
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        int n = nums.size();
+        int cnt = 0;
+        unordered_set<int> hash;
+        
+        for(int i=0;i<n;i++) hash.insert(nums[i]);
+        
+        for(int i=0; i<n; i++) {
+            int a = nums[i] - diff, b = nums[i] + diff;
+            if(hash.count(a) &&hash.count(b)) 
+                cnt++;
+        }
+        return cnt;
+    }
+};
 
