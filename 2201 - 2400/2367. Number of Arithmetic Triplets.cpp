@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     int arithmeticTriplets(vector<int>& nums, int diff) {
@@ -14,6 +16,34 @@ public:
         return cnt;
     }
 };
+
+
+
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        int n = nums.size();
+        unordered_map<int, int> count;
+        int res = 0;
+        
+        for(int x : nums) count[x] += 1;
+        
+        for(int j=1; j<n-1; j++) {
+            int a = nums[j] - diff, b = nums[j] + diff;
+            if (count.count(a) && count.count(b)) {
+                res += count[a] * count[b];
+            }
+        }
+        return res;
+    }
+};
+
 
 
 
