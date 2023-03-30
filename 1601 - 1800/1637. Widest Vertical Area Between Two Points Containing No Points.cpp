@@ -123,8 +123,28 @@ public:
 };
 
 
+// OR
+
+class Solution {
+public:
+    bool sortByFirstElement(const vector<int>& a, const vector<int>& b) {
+        return a[0] < b[0];
+    }
+
+    int maxWidthOfVerticalArea(vector<vector<int>>& points) {
+        sort(points.begin(), points.end(), sortByFirstElement);
+        int max_width = 0;
+        for (int i = 0; i < points.size() - 1; ++i) {
+            max_width = max(max_width, points[i+1][0] - points[i][0]);
+        }
+        return max_width;
+    }
+};
+
 // T.C. --> O(N log N) 
 // S.C. --> O(N)
+
+
 
 
 
