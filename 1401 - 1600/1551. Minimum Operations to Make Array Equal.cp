@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     int minOperations(int n) {
@@ -42,4 +44,17 @@ public:
 // 7 --> 12    7 + 5
 
 
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    int minOperations(int N) {
+        int mid=N/2;
+        return N%2==0?(long)mid*(long)mid:(long)mid*(long)(mid+1);
+    }
+};
 
