@@ -2,36 +2,35 @@
 
 class Solution {
 public:
-    Node* flatten(Node* head) {
-        if (head == nullptr) {
-            return nullptr;
+    void dfs(Node* temp, vector<Node*>& node) {
+        if (temp != nullptr) {
+            node.push_back(temp);
+            dfs(temp -> child, node);
+            dfs(temp -> next,  node);
         }
+    }
+    
+    Node* flatten(Node* head) {
+        if (head == nullptr) return nullptr;
+        
         Node* temp = head;
-        vector<Node*> nodeList;
-        dfsSearch(temp, nodeList);
-        if (nodeList.size() > 0) {
-            for (Node* node : nodeList) {
-                node->prev = temp;
-                node->next = nullptr;
-                node->child = nullptr;
-                temp->next = node;
+        vector<Node*> node;
+        dfs(temp, node);
+        
+        if(node.size() > 0) {
+            for(Node* node : node) {
+                node -> prev  = temp;
+                node -> next  = nullptr;
+                node -> child = nullptr;
+                temp -> next  = node;
                 temp = node;
             }
         }
-        head->prev = nullptr;
-        head->child = nullptr;
+        head -> prev  = nullptr;
+        head -> child = nullptr;
         return head;
     }
-    
-    void dfsSearch(Node* temp, vector<Node*>& nodeList) {
-        if (temp != nullptr) {
-            nodeList.push_back(temp);
-            dfsSearch(temp->child, nodeList);
-            dfsSearch(temp->next, nodeList);
-        }
-    }
 };
-
 
 
 
@@ -168,3 +167,36 @@ public:
     }
 };
 
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+
+    Node* flatten(Node* head) {
+        Node* tmp = head;
+        stack<Node*> st;
+
+        while (tmp){
+            if (tmp->child){
+                if (tmp->next)
+                    st.push(tmp->next);
+                tmp->next = tmp->child;
+                tmp->child->prev = tmp;
+                tmp->child = NULL;
+            }
+            if (!tmp->next and !st.empty()) {
+                tmp->next = st.top();
+                st.top()->prev = tmp;
+                st.pop();
+            }
+            tmp = tmp->next;
+        }
+        return head;
+    }
+};
+
+
+// APPROACH 5
