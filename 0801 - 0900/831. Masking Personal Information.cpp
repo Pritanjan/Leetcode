@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     string maskPII(string s) {
@@ -34,6 +36,9 @@ public:
 
 
 
+
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -75,6 +80,41 @@ int main() {
 
 
 
+// APPROACH 3 [ Simulation ]
+
+// We judge first s Whether it's an email address or a phone number. Obviously, if s in characters 
+// ‘@’, then it is a mail, otherwise it is a phone number.
+
+// If s is mail, we will s target ‘@’ The first and last characters are retained in the previous 
+// part, with the middle used “*****"  instead, and converts the entire string to lowercase.
+
+// If s is the phone number, we only keep it s all numbers. Use first will last 10 The bit local no
+// becomes  “***-***-XXXX" form, and then check s Whether there are additional international no.
+// If so, add the international number before ‘+’ and add to the very front of the local no.
+
+// (i)    If there is 10 bits, prefixed with a bit-empty string.
+// (ii)   If there is 11 digits, prefixed with prefixes “+*-"
+// (iii)  If there is 12 digits, without prefix “+**-"
+// (iv)   If there is 13 digits, without prefix “+**"
 
 
+class Solution {
+public:
+    vector<string> country = {"", "+*-", "+**-", "+***-"};
+
+    string maskPII(string s) {
+        string res;
+        int at = s.find("@");
+        if (at != string::npos) {
+            transform(s.begin(), s.end(), s.begin(), ::tolower);
+            return s.substr(0, 1) + "*****" + s.substr(at - 1);
+        }
+        s = regex_replace(s, regex("[^0-9]"), "");
+        return country[s.size() - 10] + "***-***-" + s.substr(s.size() - 4);
+    }
+};
+
+
+// T.C. -->  O(n),  n is the length of the string.
+// S.C. -->  O(n),  n is the length of the string.
 
