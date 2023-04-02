@@ -78,3 +78,33 @@ public:
     }
 };
 
+
+
+
+
+
+
+// APPROACH 5
+
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int size = nums.size();
+        if(size == 1) {
+            if(target <= nums[0]) return 0;
+            else return 1;
+        }
+
+        if(target < nums[0]) return 0;
+        if(target > nums[size-1]) return size;
+        
+        for(int i=0; i<size; ++i){
+            if(nums[i] == target) return i;
+            else if (nums[i] != target && nums[i+1] > target) return i+1;
+        }
+        return -1;
+    }
+};
+
+
+
