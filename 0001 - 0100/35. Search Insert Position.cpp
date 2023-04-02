@@ -58,3 +58,23 @@ public:
 };
 
 
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    int f(vector<int>& nums, int& target, int l, int r){
+        if(l >= r) return nums[l] >= target ? l : l + 1;
+        int mid = l + ((r - l) >> 1);
+        return nums[mid] == target ? mid : nums[mid] > target ? f(nums,target,l,mid-1) : f(nums,target,mid+1,r);
+    }
+    
+    int searchInsert(vector<int>& nums, int target) {
+        return f(nums,target,0,(int)nums.size()-1);
+    }
+};
+
