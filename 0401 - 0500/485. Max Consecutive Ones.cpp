@@ -65,15 +65,20 @@ public:
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
-        int ans = 0;
-        for(int i=0; i<1024; ++i){
-            if(__builtin_popcount(i) == 3 && (i & (i >> 1)) == 0) ++ans;
-            
+        int res = 0;
+        int l = 0, r = 0;
+        while (r < nums.size()) {
+            if (nums[r] == 1) {
+                r++;
+                res = max(r - l, res);
+            } else {
+                r++;
+                l = r;
+            }
         }
-        return ans;
+        return res;
     }
 };
-
 
 
 
