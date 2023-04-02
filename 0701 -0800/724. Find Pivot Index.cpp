@@ -1,3 +1,8 @@
+// https://leetcode.com/problems/find-pivot-index/solutions/2425048/c-2-solution-with-explanation/
+
+
+// APPROACH 1
+
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
@@ -5,37 +10,29 @@ public:
         
         int ans = 0;
         for(int i=0; i<nums.size(); i++){
-            if(ans == sum - ans - nums[i] )
-                return i;
+            if(ans == sum - ans - nums[i] ) return i;
             
             ans += nums[i];
         }
-        return -1;
-        
+        return -1;        
     }
 };
  
 
-//T.C. O(n)
 
 
-//https://leetcode.com/problems/find-pivot-index/discuss/2425048/c-2-solution-with-explanation
 
-
+// APPROACH 2
 
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-        int ans = 0;
-        
-        for(auto i : nums){
-            ans += i;
-        }
-        
         int sum = 0;
-        for(int i=0; i<nums.size(); sum +=nums[i++] ){
-            if(sum * 2 == ans - nums[i] )
-                return i;
+        for(auto i : nums) sum += i;
+        
+        int ans = 0;
+        for(int i=0; i<nums.size(); ans +=nums[i++] ){
+            if(ans * 2 == sum - nums[i] ) return i;
         }
         return -1;
         
@@ -43,17 +40,16 @@ public:
 };
 
 
+
+
+
+// APPROACH 3
+
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
         int ans = 0;
-        // for(int i=0; i<nums.size(); i++){
-            // ans += nums[i];
-        // }
-        
-        for(auto i : nums){
-            ans += i;
-        }
+        for(int i=0; i<nums.size(); i++) ans += nums[i];
         
         int sum = 0;
         for(int i=0; i<nums.size(); i++){
@@ -66,6 +62,12 @@ public:
     }
 };
 
+
+
+
+
+
+// APPROACH 4
 
 class Solution {
 public:
@@ -82,3 +84,37 @@ public:
         return -1;
     }
 };
+
+
+
+
+
+// APPROACH 5
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int sum = 0;
+        int left = 0;
+        int fact = 1;
+        
+        for(int i=0; i<nums.size(); i++){
+            sum += nums[i];
+        }
+
+        for(int j=0; j<nums.size(); j++){
+            if((left*2 + nums[j]) == sum){
+                fact = 0;
+                return j;
+            }
+
+            left += nums[j];
+        }
+
+        if(fact == 1) return -1;
+        return 0;
+    }
+};
+
+
+
