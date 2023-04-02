@@ -1,6 +1,5 @@
 // APPROACH 1
 
-
 class Solution {
 public:
     vector<int> prevPermOpt1(vector<int>& arr) {
@@ -22,7 +21,6 @@ public:
         return arr;
     }
 };
-
 
 
 
@@ -75,6 +73,58 @@ public:
 
 
 
+// APPROACH 3
+
+// The algorithm is:
+
+// 1. Starting from the second last element of the array, find the rightmost element 4
+//    that is smaller than its next element. Let's call this element arr[i].
+// 2. Find the rightmost element to the right of arr[i] that is strictly smaller than arr[i].
+//    Let's call this element arr[j].
+// 3. Swap arr[i] and arr[j].
+// 4. Reverse the subarray to the right of i.
+
+
+
+class Solution {
+public:
+    vector<int> prevPermOpt1(vector<int>& arr) {
+        int n = arr.size();
+        for(int i=n-2; i>=0; i--) {   // Step 1
+            if(arr[i] > arr[i+1]) {   // Step 1 cont.
+                int j = n - 1;
+                while(arr[j] >= arr[i] || arr[j] == arr[j - 1])  j--;  // Step 2
+                swap(arr[i], arr[j]);    // Step 3
+                break;
+            }
+        }
+        return arr;
+    }
+};
+
+
+// T.C. --> O(N)
+// S.C. --> O(1)
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    vector<int> prevPermOpt1(vector<int>& arr) {
+        int n = arr.size();
+        for(int i = n-1; i ; --i){
+            if(arr[i-1] > arr[i]){
+                swap(arr[i-1], *lower_bound(arr.begin()+i, arr.end(),
+                                *prev(lower_bound(arr.begin()+i, arr.end(), arr[i-1]))));
+                return arr;
+            }
+        }
+        return arr;
+    }
+};
 
 
 
