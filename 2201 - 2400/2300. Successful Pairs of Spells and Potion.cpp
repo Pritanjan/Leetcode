@@ -51,25 +51,6 @@ public:
 
 // OR
 
-class Solution {
-public:
-    vector<int> successfulPairs(vector<int> &spells, vector<int> &potions, long long success) {
-        int n = spells.size();
-        int m = potions.size();
-        
-        sort(potions.begin(), potions.end());
-        vector<int> res(n, 0);
-        int j = m - 1;
-        for(int i=0; i<n; i++) {
-            while(j >= 0 && (long long)spells[i] * (long long)potions[j] < success) {
-                j--;
-            }
-            res[i] = j + 1;
-        }
-        return res;
-    }
-};
-
 
 
 
