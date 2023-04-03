@@ -28,7 +28,7 @@ public:
 	
 
 
-// APPROACH 2
+// OR
 
 class Solution {
 public:
