@@ -1,3 +1,5 @@
+// APPROACH 1
+
 class Solution {
 public:
     vector<vector<int>> findMatrix(vector<int>& nums) {
@@ -18,3 +20,38 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        // mp[i] means the number i is left now
+        unordered_map<int, int> mp;
+        for(int x : nums) mp[x]++;
+
+        vector<vector<int>> ans;
+        while(!mp.empty()) {
+            vector<int> V;
+            // Enumerate the remaining numbers
+            for(auto it = mp.begin(); it != mp.end(); ) {
+                // add it->first to the answer
+                it->second -= 1;
+                V.push_back(it->first);
+                // it->first is exhausted, remove from mp
+                if(it->second == 0) it = mp.erase(it);
+                else it++;
+            }
+            ans.push_back(V);
+        }
+        return ans;
+    }
+};
+
