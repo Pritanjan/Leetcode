@@ -1,5 +1,6 @@
 // APPROACH 1
 
+
 class Solution {
 public:
     int commonFactors(int a, int b) {
@@ -12,7 +13,6 @@ public:
     }
 };
 
-
 // T.C. --> O(min(a, b)), since we loop through all possible factors from 1 to the minimum of a and b.
 // S.C. --> O(1), since we are only using a constant amount of extra space to
 // store the count of common factors.
@@ -23,6 +23,7 @@ public:
 
 
 // APPROACH 2
+
 
 class Solution {
 public:
@@ -68,7 +69,6 @@ public:
 // and the total time complexity would be O(sqrt(a) + sqrt(b) + sqrt(a)*log(sqrt(a))) =
 // O(sqrt(a)*log(sqrt(a))).
 
-
 // S.C. --> O(sqrt(a)), since we are using a map to store the factors of a. 
 // In the worst case, the map could contain all the factors of a, which is O(sqrt(a)).
 
@@ -77,4 +77,24 @@ public:
 
 
 
+
+// APPROACH 3
+
+
+class Solution {
+public:
+    int commonFactors(int a, int b) {
+        int c = gcd(a, b), ans = 0;
+        for(int i=1; i*i<=c; ++i) {
+            if(c % i == 0) {
+                ++ans;
+                if (i * i != c) ++ans;
+            }
+        }
+        return ans;
+    }
+};
+
+// T.C. --> O(SQRT(N))  
+// S.C. --> O(1)
 
