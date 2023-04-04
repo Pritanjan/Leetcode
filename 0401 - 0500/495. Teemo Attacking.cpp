@@ -1,5 +1,6 @@
 // APPROACH 1
 
+
 class Solution {
 public:
     int findPoisonedDuration(std::vector<int>& timeSeries, int duration) {
@@ -15,9 +16,5 @@ public:
 };
 
 
-
-
-
-
-// APPROACH 2
-
+// T.C. -- > O(N)
+// S.C. -- > O(1)
