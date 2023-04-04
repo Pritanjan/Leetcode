@@ -23,6 +23,29 @@ public:
 
 
 
+// OR
+
+
+const int N=205;
+int cnt[N];
+
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        int n=nums.size();
+        for (int i=0; i<n; i++) cnt[nums[i]]++;
+        vector<vector<int>> ans; 
+        while (true) {
+            bool ok=true;
+            vector<int> res;
+            for (int i=1; i<=n; i++) if (cnt[i]) res.push_back(i),cnt[i]--;
+            if (res.empty()) break;
+            ans.push_back(res);
+        }
+        return ans;
+    }
+};
+
 
 
 
