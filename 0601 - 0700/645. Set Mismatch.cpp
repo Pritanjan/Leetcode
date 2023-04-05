@@ -1,4 +1,76 @@
-// APPROACH 1
+// SEE EDITORIL
+
+// APPROACH 1 [ BRUTE FORCE - TLE ]
+
+// The most naive solution is to consider each number from 1 to N, and
+// traverse over the whole nums array to check if the current number occurs twice in nums
+// or doesn't occur at all. We need to set the duplicate number, dup and the missing number, 
+// missing, appropriately in such cases respectively.
+
+
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        vector<int> res(2);
+        int n = nums.size();
+        for(int i=1; i<=n; i++) {
+            int count = 0;
+            for(int j=0; j<n; j++) {
+                if(nums[j] == i) 
+                    count++;
+            }
+            
+            if(count == 2) res[0] = i;
+            else if(count == 0) res[1] = i;
+        }
+        return res;
+    }
+};
+
+
+// T.C. --> O(N^2) 
+// S.C. --> O(1) 
+
+
+
+
+
+// APPROACH 2 [ BETTER BRUTE FORCE ]
+
+// In the previous code, I continued the search process, even after finding the duplicate and
+// the missing number. Since, only one no is repeated missing. 
+// Thus, It can be optimize by stopping the search process as soon as we find these two numbers.
+
+
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        vector<int> res(2);
+        int n = nums.size();
+        for(int i=1; i<=n; i++) {
+            int count = 0;
+            for(int j=0; j<n; j++) {
+                if(nums[j] == i) 
+                    count++;
+            }
+
+            if(count == 2) res[0] = i;
+            else if(count == 0) res[1] = i;
+
+            if(res[0] > 0 && res[1] > 0) break;
+        }
+        return res;
+    }
+};
+
+
+// T.C. --> O(N^2) 
+// S.C. --> O(1) 
+
+
+
+
+// APPROACH 3
 
 class Solution {
 public:
