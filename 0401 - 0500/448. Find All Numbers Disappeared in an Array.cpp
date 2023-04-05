@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solutions/1929126/o-n-time-complexity-cpp-solution-find-all-numbers-disappeared-in-an-array/
+
 // APPROACH 1 [ TLE ]
 
 
@@ -25,7 +27,6 @@ public:
 // Therefore, the space complexity is O(n).
     
     
-
 
 
 // APPROACH 2    
