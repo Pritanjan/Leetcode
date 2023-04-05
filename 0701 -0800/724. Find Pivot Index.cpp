@@ -118,3 +118,33 @@ public:
 
 
 
+
+
+
+// APPROACH 6
+
+// We can maintain sum of left subarray and sum of right subarray, 
+// all while excluding the current element.
+// If the sum is equal then we return the index of the current iteration, 
+// if no index satisfies the condition then return -1.
+  
+class Solution {
+public:
+    int findMiddleIndex(std::vector<int>& nums) {
+        int lsum = 0, rsum = 0;
+        for (int num : nums) {
+            rsum += num;
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            rsum -= nums[i];
+            if (lsum == rsum) {
+                return i;
+            }
+            lsum += nums[i];
+        }
+
+        return -1;
+    }
+};
+
