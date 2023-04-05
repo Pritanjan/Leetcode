@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/find-pivot-index/solutions/2425048/c-2-solution-with-explanation/
-
+// Equal Left and Right Subarray Sum
 
 // APPROACH 1
 
