@@ -50,6 +50,42 @@ public:
     }
 };
 
+
+// OR
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+
+        // Mark negative numbers and numbers greater than n
+        for (int i=0; i<n; i++) {
+            if (nums[i] <= 0 || nums[i] > n) {
+                nums[i] = n+1;
+            }
+        }
+
+        // Mark present numbers by making the corresponding element negative
+        for (int i=0; i<n; i++) {
+            int num = abs(nums[i]);
+            if (num <= n) {
+                nums[num-1] = -abs(nums[num-1]);
+            }
+        }
+
+        // Find the smallest missing positive number
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                return i+1;
+            }
+        }
+
+        return n+1;
+    }
+};
+
+
+
 // Time Complexity : - O(N) .
 
 
