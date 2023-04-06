@@ -45,23 +45,28 @@ public:
 
 // APPROACH 3
 
-class Solution {
+class Solution{
 public:
-    int pivotIndex(vector<int>& nums) {
-        int ans = 0;
-        for(int i=0; i<nums.size(); i++) ans += nums[i];
-        
-        int sum = 0;
-        for(int i=0; i<nums.size(); i++){
-            sum += nums[i] ;
-            if(sum * 2 == ans + nums[i] )
-                return i;
+    int equalSum(vector<int>& A, int N) {
+        int i = 0, sum = 0, sum1 = 0;
+        if(N == 1)
+            return 1;
+
+        while(i < N) {
+            sum += A[i];
+            i++;
         }
+
+        for(i = N-1; i > 0; i--) {
+            sum -= A[i];
+            sum1 += A[i];
+            if(sum == (sum1 - A[i]))
+                return i+1;
+        }
+
         return -1;
-        
     }
 };
-
 
 
 
@@ -147,4 +152,59 @@ public:
         return -1;
     }
 };
+
+
+
+
+
+
+class Solution {
+public:
+    int equalSum(int N, vector<int> &A) {
+        int i = 0, sum = 0, sum1 = 0;
+        if(N == 1)
+            return 1;
+
+        while(i < N) {
+            sum += A[i];
+            i++;
+        }
+
+        for(i = N-1; i > 0; i--) {
+            sum -= A[i];
+            sum1 += A[i];
+            if(sum == (sum1 - A[i]))
+                return i+1;
+        }
+
+        return -1;
+    }
+};
+
+
+
+
+
+
+class Solution {
+public:
+    int equalSum(int N, vector<int> &A) {
+        if(N == 1)
+         return N;
+        int left = A[0],right = A[N-1];
+        int i=1,j=N-2;
+        while(i<=j)
+        {
+            if(left == right and i == j)
+              return i+1;
+            else if(left<right)
+             left += A[i++];
+            else 
+             right += A[j--];
+        }
+        return -1;
+    }
+};
+
+
 
