@@ -52,3 +52,39 @@ public:
 
 
 
+
+// APPROACH 2
+
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if(s.size() < 2) return s;
+        int maxlen = 0;
+        int start = 0;
+
+        for(int i = 0; i < s.size();){
+            int left = i, right = i;
+            while((right < s.size() -1) && (s[right] == s[right + 1])){
+                right++;
+            }
+            i = right + 1;
+            while((left > 0 && right < s.size() -1) && (s[left- 1] == s[right+ 1])){
+                left--;
+                right++;
+            }
+            if(maxlen < (right - left + 1)){
+                maxlen = right - left + 1;
+                start = left;
+            }
+        }
+
+        return s.substr(start, maxlen);
+    }
+};
+
+
+
+
+
+
