@@ -1,4 +1,4 @@
-
+// APPROACH 1
 
 class Solution {
 public:
@@ -6,21 +6,17 @@ public:
         sort(stones.begin(), stones.end());
         
         int n = stones.size();
-        // 最大值
+        // maximum value
         int maxd = max(stones[n - 1] - stones[1], stones[n-2] - stones[0]) - n + 2;
         int mind = 10001;
         
-        // 最小值
+        // minimum value
         int j = 0;
         for (int i = 0; i < n; i++) {
-            while (j + 1 < n && stones[j + 1] - stones[i] < n) {
-                j++;
-            }
+            while (j + 1 < n && stones[j + 1] - stones[i] < n) j++;
             
             int cost = n - (j - i + 1);
-            if (j - i + 1 == n - 1 && stones[j] - stones[i] + 1 == n - 1) {
-                cost = 2;
-            }
+            if (j - i + 1 == n - 1 && stones[j] - stones[i] + 1 == n - 1) cost = 2;
             
             mind = min(mind, cost);
         }
@@ -30,7 +26,7 @@ public:
 };
 
 
-
+// APPROACH 2
 
 
 class Solution {
