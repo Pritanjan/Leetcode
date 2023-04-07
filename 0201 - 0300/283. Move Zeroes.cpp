@@ -1,11 +1,11 @@
-//https://leetcode.com/problems/move-zeroes/
+// APPROACH 1
 
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         int count = 0;
         
-		// Count zero 
+	// Count zero 
         for(int i=0; i<nums.size(); i++){
             count += (nums[i] == 0);
         }
@@ -22,11 +22,10 @@ public:
             ans.push_back(0);
         }
         
-		// combine the result        
+	// combine the result        
         for(int i=0; i<nums.size(); i++){
             nums[i] = ans[i];
         }
-        
     }
 };
 
@@ -34,11 +33,17 @@ public:
 // Since we are creating the "ans" array to store results
 
 // Time Complexity: O(n).
-// However, the total number of operations are sub-optimal. We can achieve the same result in less number of operations.
+// However, the total number of operations are sub-optimal. We can achieve the same result 
+// in less number of operations.
 
-// If asked in an interview, the above solution would be a good start. You can explain the interviewer(not code) the above and build your base for the next Optimal Solution.
+// If asked in an interview, the above solution would be a good start. we can explain the
+// interviewer(not code) the above and build your base for the next Optimal Solution.
 
 
+
+
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -55,6 +60,11 @@ public:
 
 
 
+
+
+
+// APPROACH 3
+
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
@@ -70,6 +80,11 @@ public:
     }
 };
 
-//Space Complexity : O(1)O(1). Only constant space is used.
+// Space Complexity : O(1). Only constant space is used.
 
-//Time Complexity: O(n)O(n). However, the total number of operations are still sub-optimal. The total operations (array writes) that code does is nn (Total number of elements).
+// Time Complexity: O(n). However, the total number of operations are still sub-optimal.
+// The total operations (array writes) that code does is nn (Total number of elements).
+
+
+
+
