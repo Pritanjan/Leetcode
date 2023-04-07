@@ -1,3 +1,6 @@
+// APPROACH 1
+
+
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
@@ -28,4 +31,35 @@ public:
 // ans[1] = ans[1] + 1 = 1 + 1 = 2
     
 
+
+// T.C. --> O(N ^ 2)
+// S.C. --> O(N)
+
+
     
+
+// APPROACH 2
+
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> row(rowIndex + 1, 1);
+        for (int i = 1; i <= rowIndex / 2; i++) {
+            row[i] = row[rowIndex - i] = (long)row[i - 1] * (rowIndex - i + 1) / i;
+        }
+        return row;
+    }
+};
+
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+
+
+
+
+
+
