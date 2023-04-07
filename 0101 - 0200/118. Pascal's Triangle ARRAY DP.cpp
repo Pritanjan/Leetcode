@@ -1,7 +1,7 @@
-//just do it in a straightforward, each time generate a new line, first push all 1
-// vector into res and then update the elements from 1 to i-1.
+// APPROACH 1
 
-// Amazon Google
+// just do it in a straightforward, each time generate a new line, first push all 1
+// vector into res and then update the elements from 1 to i-1.
 
 class Solution {
 public:
@@ -16,3 +16,30 @@ public:
         return ans;
     }
 };
+
+
+
+// OR
+
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> triangle(numRows);
+        
+        for(int i=0; i<numRows; i++) {
+            triangle[i].resize(i+1);
+            triangle[i][0] = 1;
+            triangle[i][i] = 1;
+            
+            for(int j=1; j<i; j++) {
+                triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j];
+            }
+        }
+        
+        return triangle;
+    }
+};
+
+
