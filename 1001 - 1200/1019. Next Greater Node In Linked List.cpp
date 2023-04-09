@@ -103,3 +103,33 @@ public:
 
 
 
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        vector<int> res;
+        // in each pair, first is the value, second is the index
+        stack<pair<int, int>> S;
+        // index of the current node
+        int idx = 0;
+        for (ListNode *cur = head; cur != nullptr; cur = cur->next) {
+            // for the current node, there is no node that is larger than it
+            res.emplace_back(0);
+            // pop out all the node that is smaller than current value
+            for (; !S.empty() && S.top().first < cur->val; S.pop()) {
+                // update the result
+                res[S.top().second] = cur->val;
+            }
+            // push the current node into the stack
+            S.push(make_pair(cur->val, idx));
+            // move to next node
+            ++idx;
+        }
+        return res;
+    }
+};
+
+
