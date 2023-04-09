@@ -63,3 +63,43 @@ public:
 
 
 
+
+// APPROACH 2
+
+class Solution {
+	int len = 0;
+	// reverse linked list
+	ListNode* reverseList(ListNode* head) {
+		ListNode* prev = nullptr;
+		ListNode* curr = head;
+		while (curr) {
+			ListNode* next = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = next;
+			len++;
+		}
+		return prev;
+	}
+public:
+	vector<int> nextLargerNodes(ListNode* head) {
+		if (!head) return {};
+		if (!head->next) return{ 0 };
+		ListNode* p = reverseList(head);
+		vector<int> ans(len);
+		stack<int> s;
+		while (p != nullptr)
+		{
+			while (!s.empty() && s.top() <= p->val)
+				s.pop();
+			ans[--len] = s.empty() ? 0 : s.top();
+			s.push(p->val);
+			p = p->next;
+		}
+		return ans;
+	}
+};
+
+
+
+
