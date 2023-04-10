@@ -41,7 +41,7 @@ public:
         
         while(ss >> word) {
             reverse(word.begin(), word.end());   //reversing and adding
-            ans+=word+' ';
+            ans += word + ' ';
         }
         ans.pop_back();    //for the last extra space
         return ans;
@@ -73,7 +73,12 @@ public:
 
 
 
-// APPROACH 5
+// APPROACH 4
+
+// It uses 2 pointers a and i to iterate through each word in the string.
+// Whenever a space character is encountered, the characters in the current 
+// word are reversed using the reverse function from the algorithm library. 
+// Finally, the order of the last word is reversed after the loop end
 
 class Solution {
 public:
@@ -81,6 +86,7 @@ public:
         int a = 0;
         for(int i=0; i<=s.length(); ++i){
             if(s[i] == ' '){
+                // reverse(s.begin() + a, s.begin() + i);
                 reverse(&s[a], &s[i]);
                 a = i + 1;
             }
@@ -127,6 +133,23 @@ public:
 
 
 
+// APPROACH 5
 
 
+class Solution {
+public:
+    string reverseWords(string s) {
+        string result;
+        int lastSpace = -1;
+        for(int i = 0; i < s.length(); i++) {           // i --> strIndex
+            if((i == s.length() - 1) || s[i] == ' ') {
+                int revEnd = (i == s.length() - 1) ? i : i - 1;
+                for (; revEnd > lastSpace; revEnd--) result += s[revEnd];
+                if (i != s.length() - 1) result += ' ';
+                lastSpace = i;
+            }
+        }
+        return result;
+    }
+};
 
