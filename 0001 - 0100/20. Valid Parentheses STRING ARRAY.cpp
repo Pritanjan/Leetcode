@@ -1,10 +1,7 @@
-// https://leetcode.com/problems/valid-parentheses/
-// AMAZON BLOOMBERG FB GOOGLE MICROSOFT LINKDEIN UBER
+// APPROACH 1
 
 // if opening bracket, push in stack
 // if closing bracket, stck check & pop
-
-// APPROACH 1
 
 class Solution {
 public:
@@ -29,6 +26,10 @@ public:
         return st.empty();
     }
 };
+
+
+
+
 
 
 // APPROACH 
@@ -58,6 +59,11 @@ public:
         return true;
     }
 };
+
+
+
+
+
 
 
 // APPROACH 2
@@ -97,4 +103,33 @@ public:
         return parenthis.empty() ;
     }
 };
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    bool isValid(string s) {
+        unordered_map<char, char> ump =  { 
+                                            {')', '('},
+                                            {']', '['},
+                                            {'}', '{'}   
+                                        };
+
+        stack<char> charStack;
+        for(char &ch : s) {
+            if(ump.count(ch)) {
+                if(charStack.empty() or ump[ch] != charStack.top()) return false;
+                charStack.pop();
+            }
+            else charStack.push(ch);
+        }
+        return charStack.empty();
+    }
+};
+
+
 
