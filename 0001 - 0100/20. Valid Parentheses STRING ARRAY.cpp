@@ -32,7 +32,7 @@ public:
 
 
 
-// APPROACH 
+// APPROACH 2
 
 class Solution {
 public:
@@ -62,11 +62,39 @@ public:
 
 
 
+// OR 
+
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> v;
+        v.reserve(s.length());
+        for(char c : s) {
+            switch (c) {
+                case '[':
+                    v.push_back(']');
+                    break;
+                case '(':
+                    v.push_back(')');
+                    break;
+                case '{':
+                    v.push_back('}');
+                    break;
+                default:
+                    if (v.empty() || v.back() != c) {
+                        return false;
+                    }
+                    v.pop_back();
+                    break;
+            }
+        }
+        return v.empty();
+    }
+};
 
 
 
-
-// APPROACH 2
+// OR
 
 class Solution {
 public:
@@ -130,6 +158,33 @@ public:
         return charStack.empty();
     }
 };
+
+
+
+
+// APPROACH 5
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        unordered_map<char, char> ump =  { 
+                                            {')', '('},
+                                            {']', '['},
+                                            {'}', '{'}   
+                                        };
+        stack<char> charStack;
+        for(char &ch : s) {
+            if(ump.count(ch)) {
+                if(charStack.empty() or ump[ch] != charStack.top()) return false;
+                charStack.pop();
+            }
+            else charStack.push(ch);
+        }
+        return charStack.empty();
+    }
+};
+
 
 
 
