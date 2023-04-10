@@ -133,3 +133,48 @@ public:
 };
 
 
+
+
+
+
+
+// APPROACH 4
+
+// 1. Traverse through the linked list head, and use an array values to store the values of nodes.
+
+// 2. Initialize an array answer with the same size as values and an empty stack stack to store the 
+//    previous indexes.
+
+// 3. Iterate over values, before we push each index i to stack :-
+//    (i)  If the value represented by the top element of stack (let's call it values[smaller]) is 
+//         smaller than values[i], it means that values[i] is values[smaller]'s larger value. 
+//         So we pop smaller from the stack, update answer[smaller] = values[i] and repeat this step.
+//    (ii) Otherwise, it means there is no value smaller than values[i], we add values[i] to stack and 
+//         repeat step 3.
+
+
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        vector<int> values;
+        while (head != nullptr) {
+            values.push_back(head->val);
+            head = head->next;
+        }
+        
+        int n = int(values.size());
+        stack<int> iStack;
+        vector<int> answer(n);
+        
+        for (int i = 0; i < n; ++i) {
+            while (!iStack.empty() && values[iStack.top()] < values[i]) {
+                int smaller = iStack.top();
+                iStack.pop();
+                answer[smaller] = values[i];
+            }
+            iStack.push(i);
+        }
+        
+        return answer;
+    }
+};
