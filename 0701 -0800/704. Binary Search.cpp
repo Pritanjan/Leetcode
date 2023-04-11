@@ -4,8 +4,7 @@ class Solution {
 public:
     int search(vector<int>& nums, int target) {
         for(int i=0; i<nums.size(); i++){
-            if(nums[i] == target)
-                return i;
+            if(nums[i] == target) return i;
         }
         return -1;
     }
@@ -19,36 +18,37 @@ public:
 
 
 // APPROACH 2 [ ITERATIVE ]
+// JAVA
 
 class Solution {
     public int search(int[] nums, int target) {
         int left  = 0;
-		int right = nums.length - 1;
-		int answer = -1;
-     
-	    // run a loop while left is lesser then right
-		while(left <= right){
-		
-			// create another pointer mid, it will be used as middle pointer.
-			int mid = (left + right)/2;   //  left +  (right - left)/2
-			
-			// Check if the element of middle index is our target or not.
-			if(nums[mid] == target){
-				answer = mid;    // if found, put it into answer
-				right = mid - 1;
-			}
-			
-			// if the mid element is greater than target, it means the array in the right is of no use.
-			else if(nums[mid] > target)
-				right = mid - 1;
-				
-			// if the mid element is lesser than target, it means the array in the left is of no use.
-			else
-				left = mid + 1;
-        
-			mid  =  (left + right)/2;
+	int right = nums.length - 1;
+	int answer = -1;
+
+        // run a loop while left is lesser then right
+	while(left <= right){
+
+		// create another pointer mid, it will be used as middle pointer.
+		int mid = (left + right)/2;   //  left +  (right - left)/2
+
+		// Check if the element of middle index is our target or not.
+		if(nums[mid] == target){
+			answer = mid;    // if found, put it into answer
+			right = mid - 1;
 		}
-		// printing answer
+
+		// if the mid element is greater than target, it means the array in the right is of no use.
+		else if(nums[mid] > target)
+			right = mid - 1;
+
+		// if the mid element is lesser than target, it means the array in the left is of no use.
+		else
+			left = mid + 1;
+
+		mid  =  (left + right)/2;
+	}
+	// printing answer
         return answer;
     }
 }
@@ -71,7 +71,6 @@ public:
         int L = 0;
         int R = n - 1;
         
-        
         while(L < R){
             int mid = (L + R) /2;
             if(nums[mid] == tgt) return mid;
@@ -81,7 +80,6 @@ public:
         return -1;
     }
 };
-
 
 
 
