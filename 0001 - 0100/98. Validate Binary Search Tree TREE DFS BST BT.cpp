@@ -1,5 +1,3 @@
-//fb MICROSOFT AMAZON BLOOMBERG
-
 // APPROACH 1
 
 class Solution {
@@ -9,12 +7,9 @@ public:
     }
     
     bool helper(TreeNode* root, long min = LONG_MIN, long max = LONG_MAX){ 
-        if(root == NULL)
-            return true;
-        if((root->val >= max) || (root->val <= min))
-            return false;
-        else
-            return helper(root->left,min,root->val) &&  helper(root->right,root->val,max);
+        if(root == NULL) return true;
+        if( (root->val >= max) || (root->val <= min) ) return false;
+        else return helper(root->left,min,root->val) &&  helper(root->right,root->val,max);
     }
 };
 
@@ -22,11 +17,11 @@ public:
 
 
 
+// APPROACH 2 [ INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT ]
 
-// APPROACH 2 
-// INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT 
 // IF SORTED --> BST 
 // ELSE --> NOT BST
+
 
 class Solution {
 public:
@@ -53,6 +48,35 @@ public:
 
 
 
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if(!root) return true;
+
+        stack<TreeNode*> stk;
+        long prevVal = LONG_MIN;
+
+        while(!stk.empty() || root) {
+            while(root) {
+                stk.push(root);
+                root = root -> left;
+            }
+            root = stk.top();
+            stk.pop();
+
+            if(root -> val <= prevVal) return false;
+            
+            prevVal = root -> val;
+            root = root -> right;
+        }
+        return true;
+    }
+};
 
 
 
