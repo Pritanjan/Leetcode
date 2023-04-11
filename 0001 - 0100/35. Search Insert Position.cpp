@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ BINARY SEARCH ]
 
 class Solution {
 public:
@@ -24,6 +24,9 @@ public:
 // The target position must be low, not the high.
 
 
+
+
+// T.C. -->  O(log N)
 
 
 
