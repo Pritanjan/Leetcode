@@ -103,3 +103,38 @@ public:
 
 
 
+
+// APPROACH 4
+
+class BSTIterator {
+    deque<TreeNode*> d;
+public:
+    BSTIterator(TreeNode* root) {
+        dfsLeft(root);
+    }
+
+    int next() {
+        TreeNode* root = d.back();
+        int ans = root->val;
+        d.pop_back();
+        root = root->right;
+        dfsLeft(root);
+        return ans;
+    }
+
+    bool hasNext() {
+        return !d.empty();
+    }
+
+    void dfsLeft(TreeNode* root) {
+        while (root != nullptr) {
+            d.push_back(root);
+            root = root->left;
+        }
+    }
+};
+
+
+
+
+
