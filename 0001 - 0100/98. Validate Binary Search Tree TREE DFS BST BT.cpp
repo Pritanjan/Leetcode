@@ -89,14 +89,22 @@ public:
     bool isValidBST(TreeNode* root) {
         if(!root) return true;
 
+        // 1. Declare a stack for in-order traversal tree nodes
         stack<TreeNode*> stk;
+        
+        // 2. Temporarily store the value of the currently traversed node
         long prevVal = LONG_MIN;
 
+        // 3. Inorder traversal logic
         while(!stk.empty() || root) {
+            // Traverse the left subtree into the stack
             while(root) {
                 stk.push(root);
                 root = root -> left;
             }
+            
+            // Obtaining the top node of the stack is actually traversing to 
+            // the node in the lower left corner of the binary search tree
             root = stk.top();
             stk.pop();
 
@@ -108,6 +116,8 @@ public:
         return true;
     }
 };
+
+
 
 
 
