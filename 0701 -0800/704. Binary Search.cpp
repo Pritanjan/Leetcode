@@ -1,6 +1,3 @@
-//https://leetcode.com/problems/binary-search/discuss/2042857/c-3-solution-recursive-iterative
-
-
 // APPROACH 1
 
 class Solution {
@@ -14,43 +11,57 @@ public:
     }
 };
 
+
 // Time Complexity : - O(N)
+
+
 
 
 
 // APPROACH 2 [ ITERATIVE ]
 
 class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        // return binary_search(nums.begin(), nums.end(),target);
+    public int search(int[] nums, int target) {
         int left  = 0;
-        int right = nums.size() - 1;
-        mid;
-        int answer = -1;
-         
-        while(left <= right){
-            int mid = (left + right)/2;   //  left +  (right - left)/2
-            
-            if(nums[mid] == target){
-                answer = mid;
-                right = mid - 1;
-            }
-            else if(nums[mid] > target)
-                right = mid - 1;
-            else
-                left = mid + 1;
-            
-            mid  =  (left + right)/2;
-        }
+		int right = nums.length - 1;
+		int answer = -1;
+     
+	    // run a loop while left is lesser then right
+		while(left <= right){
+		
+			// create another pointer mid, it will be used as middle pointer.
+			int mid = (left + right)/2;   //  left +  (right - left)/2
+			
+			// Check if the element of middle index is our target or not.
+			if(nums[mid] == target){
+				answer = mid;    // if found, put it into answer
+				right = mid - 1;
+			}
+			
+			// if the mid element is greater than target, it means the array in the right is of no use.
+			else if(nums[mid] > target)
+				right = mid - 1;
+				
+			// if the mid element is lesser than target, it means the array in the left is of no use.
+			else
+				left = mid + 1;
+        
+			mid  =  (left + right)/2;
+		}
+		// printing answer
         return answer;
     }
-};
+}
+
 
 // Time Complexity : - O(log N)
 // Space Complexity :- O(1)
 
+
+
 // OR
+
+
 
 
 class Solution {
@@ -70,6 +81,8 @@ public:
         return -1;
     }
 };
+
+
 
 
 
@@ -101,6 +114,8 @@ public:
         
     }
 };
+
+
 
 
 // Time Complexity : - O(log N)
@@ -139,6 +154,10 @@ public:
 
 
 
+
+
+
+
 // APPROACH 5 [ STL ]
 class Solution {
 public:
@@ -166,5 +185,6 @@ public:
 // Time Complexity : - O(log N)
 // because both binary_search and lower_bound use binary search algorithms internally
 // to locate the target value or its insertion position.
+
 
 
