@@ -68,3 +68,38 @@ public:
 
 
 
+
+
+// APPROACH 3
+
+
+class BSTIterator {
+public:
+    queue<TreeNode*> nodes;
+
+    void mid(TreeNode* root){
+        if(root == NULL)return;
+
+        mid(root->left);
+        nodes.push(root);
+        mid(root->right);
+    }
+
+    BSTIterator(TreeNode* root) {
+        mid(root);
+    }
+    
+    int next() {
+        int ans = nodes.front()->val;
+        nodes.pop();
+        return ans;
+    }
+    
+    bool hasNext() {
+        return !nodes.empty();
+    }
+};
+
+
+
+
