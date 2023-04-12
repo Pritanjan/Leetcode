@@ -1,5 +1,6 @@
 // https://www.geeksforgeeks.org/simplify-directory-path-unix-like/
 
+// APPROACH 1 [gfg] 
 class Solution {
 public:
     string simplifyPath(string path) {
@@ -36,5 +37,94 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// APPROACH 2
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        vector<string> dirs;
+        stringstream ss(path);
+        string dir;
+
+        while (getline(ss, dir, '/')) {
+            if (dir.empty() || dir == ".")
+                continue;
+            if (dir == "..") {
+                if (!dirs.empty())
+                    dirs.pop_back();
+            } else {
+                dirs.push_back(dir);
+            }
+        }
+
+        stack<string> st;
+        for (const string& d : dirs) {
+            st.push(d);
+        }
+
+        string simplified_path;
+        while (!st.empty()) {
+            simplified_path += "/" + st.top();
+            st.pop();
+        }
+
+        return simplified_path.empty() ? "/" : simplified_path;
+    }
+};
+
+
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        vector<string> dirs;
+        string dir;
+
+        for (char c : path) {
+            if (c == '/') {
+                if (!dir.empty()) {
+                    dirs.push_back(dir);
+                    dir.clear();
+                }
+            } else {
+                dir.push_back(c);
+            }
+        }
+
+        if (!dir.empty()) {
+            dirs.push_back(dir);
+        }
+
+        stack<string> st;
+        for (const string& d : dirs) {
+            if (d == "..") {
+                if (!st.empty()) {
+                    st.pop();
+                }
+            } else if (d != "." && !d.empty()) {
+                st.push(d);
+            }
+        }
+
+        string simplified_path;
+        while (!st.empty()) {
+            simplified_path = "/" + st.top() + simplified_path;
+            st.pop();
+        }
+
+        return simplified_path.empty() ? "/" : simplified_path;
+    }
+};
+
 
 
