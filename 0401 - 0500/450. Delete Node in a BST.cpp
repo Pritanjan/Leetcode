@@ -170,10 +170,52 @@ public:
 // Here, each node in the tree has a pointer to its parent. This allows for more efficient
 // deletion by avoiding the need to traverse the tree again to find the parent node.
 
+// we manually find the parent node of the current node when we need to delete a node that has 2 children.
 
 
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(!root) return nullptr;
+        
+        TreeNode* curr = root;
+        TreeNode* parent = nullptr;
+        
+        while(curr && curr->val != key) {
+            parent = curr;
+            if(key < curr->val) curr = curr->left;
+            else curr = curr->right;
+        }
+        
+        if(!curr) return root;
 
-
+        if(curr->left && curr->right) {
+            TreeNode* successor = curr->right;
+            while (successor->left) successor = successor->left;
+            curr->val = successor->val;
+            curr = successor;
+            // Since we don't have a parent pointer, we need to find the parent node manually.
+            parent = root;
+            while(parent && parent->left != curr && parent->right != curr) {
+                if(curr->val < parent->val) parent = parent->left;
+                else parent = parent->right;
+            }
+        }
+        
+        TreeNode* child;
+        if(curr->left) child = curr->left;
+        else child = curr->right;
+        
+        
+        if(!parent) root = child;
+        else if (parent->left == curr) parent->left = child;
+        else parent->right = child;
+        
+        delete curr;
+        
+        return root;
+    }
+};
 
 
 // T.C. -->  O(h) [ worst case]
@@ -182,7 +224,7 @@ public:
     
     
 
-    
+
 
 
 // APPROACH 4 [ Morris Traversal ]
