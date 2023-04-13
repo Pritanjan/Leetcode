@@ -43,7 +43,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 [ 2 pointer ]
 
 class Solution {
 public:
@@ -85,6 +85,46 @@ public:
 // Time Complexity: O(n). However, the total number of operations are still sub-optimal.
 // The total operations (array writes) that code does is nn (Total number of elements).
 
+
+
+
+
+
+
+// APPROACH 4
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int zeroCount = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 0) {
+                zeroCount++;
+            } else if (zeroCount > 0) {
+                nums[i - zeroCount] = nums[i];
+                nums[i] = 0;
+            }
+        }
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 5 [ USING STL ]
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int zeroesCount = count(nums.begin(), nums.end(), 0);
+        nums.erase(remove(nums.begin(), nums.end(), 0), nums.end());
+        nums.insert(nums.end(), zeroesCount, 0);
+    }
+};
 
 
 
