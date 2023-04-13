@@ -1,5 +1,5 @@
-// https://leetcode.com/problems/insert-into-a-binary-search-tree/
-// Iterative Approach
+// APPROACH 1 [ Iterative Approach ]
+
 
 class Solution {
 public:
@@ -29,3 +29,32 @@ public:
         return head;
     }
 };
+
+
+
+
+
+
+
+
+
+// APPROACH 2 [ recursive ]
+
+
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(root == NULL) return new TreeNode (val);
+        if(root->val > val) root -> left = insertIntoBST(root->left, val);
+        else root-> right = insertIntoBST(root->right, val);
+        return root;
+    }
+};
+
+
+
+
+
+
+
+
