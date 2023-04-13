@@ -118,29 +118,28 @@ public:
 
 
 
+
+
+
+// APPROACH 4
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         int n=numbers.size();
-        vector<int>r;
-        for(int i=1;i<n;i++){
-            for(int j=i-1;j>=0;j--){
-                if(numbers[i]+numbers[j]<target){
-                    break;
-                }
-                else if(numbers[i]+numbers[j]==target){
+        vector<int> r;
+        for(int i=1; i<n; i++){
+            for(int j=i-1; j>=0; j--){
+                if(numbers[i] + numbers[j] < target) break;
+                else if(numbers[i] + numbers[j] == target) {
                     r.push_back(j+1);
                     r.push_back(i+1);
                     return r;
-                    cout<<r[0]<<r[1];
-                }
-                else{
-                    continue;
+                    // cout << r[0] << r[1];
                 }
             }
         }
         return r;
-
     }
 };
 
