@@ -68,3 +68,63 @@ public:
 
 
 
+// APPROACH 3 [ RECURSION ]
+
+
+// It uses helper function f to recursively simulate the push and pop operations on the stack.
+// The function takes two indices i and j as input, which represent the current positions 
+// in the pushed and popped vectors, respectively.
+// The function checks if the top element of the stack matches the next element to be popped,
+// and if so, it pops the element from the stack and increments j. 
+// If the top element of the stack does not match the next element to be popped,
+// the function checks if there are any more elements to be pushed onto the stack, 
+// and if so, it pushes the next element onto the stack and increments i. 
+// If there are no more elements to be pushed and the top element of the stack does not match 
+// the next element to be popped, the function returns false. 
+// If the end of the popped vector is reached, the function returns true.
+
+
+
+class Solution {
+public:
+    stack<int> stk;
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        return f(pushed, popped, 0, 0);
+    }
+
+    bool f(vector<int>& pushed, vector<int>& popped, int i, int j) {
+        
+        if(j == popped.size()) return true;
+
+        if(i < pushed.size() && pushed[i] == popped[j]) {
+            return f(pushed, popped, i + 1, j + 1);
+        }
+
+        if(!stk.empty() && stk.top() == popped[j]) {
+            stk.pop();
+            return f(pushed, popped, i, j + 1);
+        }
+
+        if(i < pushed.size()) {
+            stk.push(pushed[i]);
+            return f(pushed, popped, i + 1, j);
+        }
+        return false;
+    }
+};
+
+
+// Time complexity --> O(N), where N is the total no of elements in vectors pushed and popped. 
+// Because each element is pushed onto or popped from the stack exactly once.
+
+// Space complexity --> O(N), where N is the total no of elements in the input vectors pushed & popped.
+// Because the recursive calls consume space on the call stack, and the stack data structure 
+// itself can also hold up to N elements in the worst case.
+    
+
+
+
+
+    
+
+
