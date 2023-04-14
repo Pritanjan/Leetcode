@@ -72,3 +72,52 @@ public:
 
 
 
+
+
+
+
+
+
+// APPROACH 3
+
+
+class Solution {
+public:
+    static bool isBalanced(TreeNode* root) {
+        if (root == NULL) return true;
+        
+        dfs(root);
+        queue<TreeNode*> que;
+        que.push(root);
+
+        while (!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+
+            int leftHeight = (node->left == NULL) ? 0 : node->left->val;
+            int rightHeight = (node->right == NULL) ? 0 : node->right->val;
+            
+            if(abs(leftHeight - rightHeight) > 1) return false;
+            if(node->left != NULL) que.push(node->left);
+            if(node->right != NULL) que.push(node->right);
+        }
+        return true;
+    }
+
+private:
+    static void dfs(TreeNode* root) {
+        if(root == NULL) return ;
+    
+        dfs(root->left);
+        dfs(root->right);
+
+        if(root != NULL && root->left == NULL && root->right == NULL) root->val = 1;
+        else {
+            int leftHeight = (root->left == NULL) ? 0 : root->left->val;
+            int rightHeight = (root->right == NULL) ? 0 : root->right->val;
+            root->val = max(leftHeight, rightHeight) + 1;
+        }
+    }
+};
+
+
