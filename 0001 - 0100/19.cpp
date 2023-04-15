@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ fast & slow pointer ]
 
 
 class Solution {
@@ -17,7 +17,7 @@ public:
         if(!fast) return head -> next;
         
         // Now, iterate till fast reaches the last node of list
-		// while maintaining the gap of n b/w fast and slow.
+	// while maintaining the gap of n b/w fast and slow.
         while(fast -> next){
             fast = fast -> next;
             slow = slow -> next;
@@ -29,6 +29,11 @@ public:
         return head;
     }
 };
+
+
+
+
+
 
 
 
@@ -62,4 +67,33 @@ public:
 
 
 
+
+
+
+
+
+
+// APPROACH 3 [ RECURSION ]
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int count = 0;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            curr = curr->next;
+            count++;
+        }
+
+        if (count == n) {
+            ListNode* to_remove = head;
+            head = head->next;
+            delete to_remove;
+            return head;
+        }
+
+        head->next = removeNthFromEnd(head->next, n);
+        return head;
+    }
+};
 
