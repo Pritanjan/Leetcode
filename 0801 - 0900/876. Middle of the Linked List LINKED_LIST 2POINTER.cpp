@@ -28,7 +28,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 [ Using slow and fast pointers ]
 
 // When traversing the list with a pointer first,
 // make another pointer second that traverses twice as second. 
@@ -62,7 +62,7 @@ public:
 
 
 
-// APPROACH 3
+// APPROACH 3 [ Using two pointers and a counter ]
 
 
 class Solution {
@@ -89,10 +89,10 @@ public:
 
 
 
-// OR
 
 
-// Find the length of the LL then travesrse for n/2
+
+// APPROACH 3 [ Finding the length of the LL then travesrse for n/2 ]
 
 class Solution {
 public:
@@ -125,6 +125,76 @@ public:
 // getLength T.C. -- > O(N)
 // while execute for n/2 --> O(N/2)
 // T.C. --> O(N)
+
+
+
+
+
+
+
+// APPROACH 4 [ Using recursion ]
+
+
+class Solution {
+public:
+    ListNode* recursion(ListNode* slow, ListNode* fast) {
+        if(fast == nullptr || fast->next == nullptr) 
+            return slow;
+
+        return recursion(slow->next, fast->next->next);
+    }
+
+    ListNode* middleNode(ListNode* head) {        
+        return recursion(head, head);
+    }
+};
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+
+
+
+
+
+
+
+// APPROACH 5 [ STACK ]
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        stack<ListNode*> stack;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            stack.push(curr);
+            curr = curr->next;
+        }
+        
+        int n = stack.size();
+        if(n % 2 == 0) n = n / 2;
+        else n = (n / 2) + 1;
+        
+        int cnt = 0;
+        ListNode* temp = nullptr;
+        while(!stack.empty()) {
+            cnt++;
+            ListNode* node = stack.top();
+            stack.pop();
+            if(cnt == n) temp= node;
+        }
+        return temp;
+    }
+};
+
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+
 
 
 
