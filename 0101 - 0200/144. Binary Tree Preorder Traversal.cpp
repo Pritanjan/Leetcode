@@ -1,4 +1,5 @@
-// APPROACH 1 Recursive solution 
+// APPROACH 1 [ Recursive solution ]
+
 
 class Solution {
 public:
@@ -16,13 +17,16 @@ public:
     }
 };
 
+
 // T.C. --> O(N)
 // S.C. --> O(N)
 
 
 
 
-// APPROACH 1 Recursive solution 
+// OR
+
+
 
 class Solution {
 public:
@@ -36,6 +40,10 @@ public:
         return ans;
     }
 };
+
+
+
+
 
 
 
@@ -70,7 +78,10 @@ public:
 
 
 
-// APPROACH 2 USING 1 STACK (Iterative Solution)   
+
+// OR
+
+
 
 class Solution {
 public:
@@ -92,3 +103,27 @@ public:
         return v;
     }
 };
+
+
+
+
+
+
+// Post order traversal
+// For post order traversal, it will be easier to use the stack to handle the expression. 
+// Each time an operator is encountered, the two elements at the top of the stack can be ejected from the stack, computed, and returned to the stack.
+// Postorder is widely used in mathematical expression. 
+// It is easier to write programs to parse suffix notation
+
+
+// inorder traversal 
+// It is used to find the original expression
+
+
+
+// Deletion
+
+// The deletion process happens in the post order.
+// That is, when you delete a node, you will first delete its left node and its right node, and then delete the node itself.
+
+
