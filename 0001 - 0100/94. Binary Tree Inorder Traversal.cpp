@@ -1,5 +1,5 @@
-// APPROACH 1
-// microsoft fb
+// APPROACH 1 [ RECURSIVE ]
+
 
 class Solution {
 public:
@@ -28,7 +28,14 @@ public:
 
 
 
-// APPROACH 2
+
+
+
+
+
+
+// APPROACH 2 [ Iterative method using Stack ]
+
 
 class Solution {
 public:
@@ -48,3 +55,24 @@ public:
     }
 };
 
+
+
+// Time complexity: O(n)
+// Space complexity: O(n)
+
+
+
+
+
+
+
+
+
+// APPROACH 3 [ Morris Traversal ]
+
+
+
+
+
+// Time complexity: O(n)
+// Space complexity: O(1)
