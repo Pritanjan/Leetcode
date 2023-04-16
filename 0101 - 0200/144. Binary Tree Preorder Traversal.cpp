@@ -13,7 +13,7 @@ public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> nodes;
         preorder(root, nodes);
-            return nodes;
+        return nodes;
     }
 };
 
@@ -49,7 +49,8 @@ public:
 
 
 
-// APPROACH 2 USING 1 STACK (Iterative Solution)   
+// APPROACH 2 USING 1 STACK (Iterative Solution)  
+
 
 class Solution {
 public:
@@ -57,13 +58,12 @@ public:
         vector<int> v;
         stack <TreeNode*> st;
         while (root || !st.empty()){
-            if(root){
+            if(root) {
                 v.push_back(root->val);
-                if(root->right)
-                    st.push(root->right);
+                if(root->right) st.push(root->right);
                 root = root->left;
             }
-            else{
+            else {
                 root = st.top();
                 st.pop();
             }
@@ -71,6 +71,7 @@ public:
         return v;
     }
 };
+
 
 // T.C. --> O(N)
 // S.C. --> O(N)
@@ -103,6 +104,46 @@ public:
         return v;
     }
 };
+
+
+
+
+
+
+
+// APPROACH 3 [  Morris Traversal Approach ]
+
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        TreeNode* curr = root;
+        while(curr != NULL) {
+            if(curr->left == NULL) {
+                res.push_back(curr -> val);
+                curr = curr -> right;
+            } 
+            else {
+                TreeNode* pred = curr -> left;
+                while(pred -> right != NULL && pred -> right != curr) pred = pred -> right;
+                
+                if (pred -> right == NULL) {
+                    res.push_back(curr -> val);
+                    pred -> right = curr;
+                    curr = curr -> left;
+                } 
+                else {
+                    pred -> right = NULL;
+                    curr = curr -> right;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
 
 
 
