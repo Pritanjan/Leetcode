@@ -76,11 +76,57 @@ public:
 
 
 
+// T.C. --> O(N)
+// S.C. --> O(H), it has a recursive call stack depth of h
+
+
+
 
 
 
 
 // APPROACH 2 [ Iterative solution using queue ]
+
+
+class Solution {
+public:        
+    bool hasPathSum(TreeNode* root, int targetSum) {    
+        if(!root) return false;        // base case: empty tree
+        queue<TreeNode*> que;
+        
+        queue<int> sums;
+        que.push(root);
+
+        sums.push(targetSum - root->val);
+        while (!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+
+            int sum = sums.front();
+            sums.pop();
+
+            if(!node -> left && !node -> right && sum == 0) return true; // found a path
+            if(node -> left) {
+                que.push(node -> left);
+                sums.push(sum - node -> left -> val);
+            }
+            if(node -> right) {
+                que.push(node -> right);
+                sums.push(sum - node -> right -> val);
+            }
+        }
+        return false; // no path found
+    }
+};
+
+
+
+
+
+// T.C. --> O(N)
+// S.C. --> O(H), it uses stack or a queue to traverse the tree in a depth-first or breadth-first manner.
+
+
 
 
 
