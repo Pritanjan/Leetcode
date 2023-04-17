@@ -113,6 +113,47 @@ public:
 // APPROACH 3  [ DFS ]
 
 
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root) return 0;
+        
+        int maxDepth = 0;
+        stack<TreeNode*> nodeStack;        
+        nodeStack.push(root);
+
+        stack<int> depthStack;
+        depthStack.push(1);
+        
+        while(!nodeStack.empty()) {
+            TreeNode* node = nodeStack.top();
+            nodeStack.pop();
+
+            int depth = depthStack.top();
+            depthStack.pop();
+            
+            maxDepth = max(maxDepth, depth);
+            
+            if(node -> right) {
+                nodeStack.push(node -> right);
+                depthStack.push(depth + 1);
+            }
+             
+            if(node -> left) {
+                nodeStack.push(node->left);
+                depthStack.push(depth + 1);
+            }
+        }
+        return maxDepth;
+    }
+};
+
+
+
+
+
+
+
 
 // APPROACH 4
 
