@@ -1,52 +1,36 @@
-//https://leetcode.com/problems/symmetric-tree/
-//COMPANY TAG AMAZON UBER
-
 // APPROACH 1
 
+
 class Solution {
-public:
-    
+public:    
     bool isSymmetric(TreeNode* root) {
         return root == NULL || check(root->left, root->right);
     }
     
     bool check(TreeNode* L, TreeNode* R){
-        if(L == NULL || R == NULL)
-            return L == R;
-        if(L->val != R->val)
-            return false;
-        else
-            return {check(L->left, R->right) && check(L->right, R->left)};
+        if(L == NULL || R == NULL) return L == R;
+        if(L->val != R->val) return false;
+        else return {check(L->left, R->right) && check(L->right, R->left)};
     }
-    
 };
 
 
 
+// OR
 
 
-
-
-
-// APPROACH 2
 
 class Solution {
-public:
-    
+public:    
     bool isSymmetric(TreeNode* root) {
-        if(!root)
-            return true;
+        if(!root) return true;
         return check(root->left, root->right);
     }
     
     bool check(TreeNode* L, TreeNode* R){
-        if(!L && !R)
-            return true;
-        if(!L || !R)
-            return false;
-        if(L->val != R->val)
-            return false;
-        
+        if(!L && !R) return true;
+        if(!L || !R) return false;
+        if(L->val != R->val) return false;
         return check(L->left, R->right) && check(L->right, R->left);
     }
     
@@ -56,6 +40,11 @@ public:
 
 
 
+
+
+
+
+// APPROACH 2
 
 
 // We start by checking if the root node is NULL. If it is, we return true. 
@@ -70,6 +59,8 @@ public:
 // the right child node of the left node, and the left child node of the right node
 // to the queue (in that order). We continue this process until the queue is empty. 
 // If we have not returned false at any point, we return tr
+
+
 
 class Solution {
 public:
@@ -88,9 +79,7 @@ public:
             q.pop();
 
             if(L == NULL && R == NULL) continue;
-
             if(L == NULL || R == NULL) return false;
-            
             if(L -> val != R -> val) return false;
 
             q.push(L -> left);
@@ -98,7 +87,6 @@ public:
             q.push(L -> right);
             q.push(R -> left);
         }
-
         return true;
     }
 };
@@ -110,6 +98,8 @@ public:
 // S.C. --> O(n), where n is the number of nodes in the tree. 
 // This is because in the worst case, the queue can contain all the nodes in the tree, which is n. 
 // Additionally, we are not using recursion, so we do not need to worry about the call stack space.
+
+
 
 
 
