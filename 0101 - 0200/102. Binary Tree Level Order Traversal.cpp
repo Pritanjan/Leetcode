@@ -1,16 +1,14 @@
-// https://practice.geeksforgeeks.org/problems/level-order-traversal/1
+// APPROACH 1 [ RECURSIVE ]
 
-// APPROACH 1
 
 class Solution {
 public:
     vector<vector<int>> ans;
+    
     void LO(TreeNode* root, int depth){
-        if(root == NULL)
-            return ;
-        if(ans.size() == depth)
-            ans.push_back(vector<int>());
-        
+        if(root == NULL) return ;
+        if(ans.size() == depth) ans.push_back(vector<int>());
+	    
         ans[depth].push_back(root->val);
         LO(root->left,  depth+1);
         LO(root->right, depth+1);
@@ -23,8 +21,26 @@ public:
 };
 
 
+// Time Complexity: O(N), where N is the number of nodes in the binary tree. 
+// We visit each node exactly once.
 
-// APPROACH 2
+// Space Complexity: O(H), where H is the height of the binary tree.
+// The maximum number of function calls on the stack at any given time is equal 
+// to the height of the tree.
+
+
+
+
+
+
+
+
+
+
+
+// APPROACH 2 [ Iterative with Queue ]
+
+
 
 class Solution {
 public:
@@ -55,6 +71,29 @@ public:
         return ans;
     }
 };	
+
+
+
+
+// Time Complexity: O(N), where N is the number of nodes in the binary tree.
+// We visit each node exactly once.
+
+// Space Complexity: O(N), where N is the number of nodes in the binary tree. 
+// In the worst case, the queue will hold all nodes in the last level of the binary tree.
+
+
+
+
+
+// APPROACH 3
+
+
+
+
+
+
+
+
 
 
 
