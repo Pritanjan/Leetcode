@@ -88,3 +88,23 @@ public:
 
 
 
+
+// APPROACH 3 [ RECURSION ]
+
+
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        if(word1.length() == 0) return word2;
+        if(word2.length() == 0) return word1;
+        
+        string res = "";
+        res += word1[0];
+        res += mergeAlternately(word2, word1.substr(1));
+        return res;
+    }
+};
+
+
+
+
