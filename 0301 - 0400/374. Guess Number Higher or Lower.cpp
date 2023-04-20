@@ -108,3 +108,33 @@ public:
 
 
 
+
+
+
+
+// APPROACH 4 [ STL ]
+
+class Solution {
+public:
+    int guessNumber(int n) {
+        return (size_t)partition_point((bool*)1, (bool*)n, [] (const bool& i) {
+            return guess(size_t(&i)) == 1;
+        });
+    }
+};
+
+
+// time complexity --> O(log n), where n is the input number. 
+// Because the partition_point algorithm uses a binary search approach to find the first element
+// in the range that satisfies the given predicate, which in this case is the guess function. 
+// The range being searched is from 1 to n, so the number of iterations required to find the correct
+// number is log n.
+
+
+
+
+
+
+
+
+
