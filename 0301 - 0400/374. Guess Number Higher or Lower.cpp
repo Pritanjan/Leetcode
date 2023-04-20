@@ -1,5 +1,3 @@
-// https://leetcode.com/problems/guess-number-higher-or-lower/
-
 /** 
  * Forward declaration of guess API.
  * @param  num   your guess
@@ -9,9 +7,11 @@
  * int guess(int num);
  */
 
-// APPROACH 1
-// BRUTE FORCE
-// TLE
+
+
+
+// APPROACH 1 [ BRUTE FORCE -  TLE ]
+
 
 class Solution {
 public:
@@ -24,13 +24,21 @@ public:
     }
 };
 
-// Complexity Analysis
 
-// Time complexity : O(n)O(n). We scan all the numbers from 1 to n.
-// Space complexity : O(1)O(1). No extra space is used.
 
-// APPROACH 2 
-// BINARY SEARCH
+// Time complexity  : O(n). We scan all the numbers from 1 to n.
+// Space complexity : O(1). No extra space is used.
+
+
+
+
+
+
+
+
+
+// APPROACH 2 [ BINARY SEARCH - using only 1 mid] 
+
 
 class Solution {
 public:
@@ -38,29 +46,31 @@ public:
         int L = 1;
         int R = n;
         
-        while(1){
+        while(1) {
             // int mid = (L+R)/2;
             int mid = L + (R-L)/2;
             int ans = guess(mid);
             
-            if(ans == 0)
-                return mid;
-            else if(ans == 1)
-                L = mid + 1;
-            else
-                R = mid - 1;
+            if(ans == 0) return mid;
+            else if(ans == 1) L = mid + 1;
+            else R = mid - 1;
         }
         return -1;
     }
 };
 
 
-// Complexity Analysis
-// Time complexity : O(log N) base 2  Binary Search is used.
+// Time complexity  : O(log N) base 2  Binary Search is used.
 // Space complexity : O(1). No extra space is used.
 
 
 
+
+
+
+
+
+// APPROACH 3 [ BINARY SEARCH - using 2 mid ]
 
 
 class Solution {
@@ -76,15 +86,11 @@ public:
             int ans1 = guess(mid1);
             int ans2 = guess(mid2);
             
-            if(ans1 == 0)
-                return mid1;
-            else if(ans2 == 0)
-                return mid2;
-            else if(ans1 < 0)
-                R = mid1 - 1;
-            else if(ans2 > 0)
-                L = mid2 + 1;
-            else{
+            if(ans1 == 0) return mid1;
+            else if(ans2 == 0) return mid2;
+            else if(ans1 < 0)  R = mid1 - 1;
+            else if(ans2 > 0)  L = mid2 + 1;
+            else { 
                 L = mid1 + 1;
                 R = mid2 - 1;
             }
@@ -93,8 +99,12 @@ public:
     }
 };
 
-
-
-// Complexity Analysis
 // Time complexity : O(log N) base 3  Binary Search is used.
 // Space complexity : O(1). No extra space is used.
+
+
+
+
+
+
+
