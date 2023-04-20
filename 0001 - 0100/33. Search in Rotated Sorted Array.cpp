@@ -93,3 +93,43 @@ public:
      
      
 
+
+
+// OR
+
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int L = 0, R = nums.size() - 1, pivot = 0;
+        
+        // find the index of the smallest element in nums
+        while (L < R) {
+            int mid = L + (R - L) / 2;
+            if(nums[mid] > nums[R]) L = mid + 1;
+            else R = mid;
+        }
+
+        pivot = L;
+        L = 0;
+        R = nums.size() - 1;
+        
+        // determine which subarray target belongs to
+        if(target >= nums[pivot] && target <= nums[R]) L = pivot;
+        else R = pivot - 1;
+        
+        // perform binary search on the selected subarray
+        return binarySearch(nums, target, L, R);
+    }
+    
+    int binarySearch(vector<int>& nums, int target, int L, int R) {
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            if(nums[mid] == target) return mid;
+            if(nums[mid] < target) L = mid + 1;
+            else R = mid - 1;
+        }
+        return -1;
+    }
+};
+
