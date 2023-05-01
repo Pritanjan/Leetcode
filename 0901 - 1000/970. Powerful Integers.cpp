@@ -1,3 +1,8 @@
+// 2
+1
+10
+// wrong output
+
 class Solution {
 public:
     vector<int> powerfulIntegers(int x, int y, int bound) {
