@@ -149,7 +149,7 @@ public:
     vector<vector<int>> palindromePairs(vector<string>& words) {
         root = new Node();
         int n = words.size();
-        // 字典树的插入，注意维护每个节点上的两个列表
+        // The insertion of the dictionary tree, pay attention to maintaining two lists on each node
         for (int i = 0; i < n; i++) {
             string rev = words[i];
             reverse(rev.begin(), rev.end());
@@ -163,7 +163,7 @@ public:
             }
             cur->words.push_back(i);
         }
-        // 用以存放答案的列表
+        
         vector<vector<int>> ans;
         
         for (int i = 0; i < n; i++) {
@@ -171,8 +171,8 @@ public:
             Node* cur = root;
             int j = 0;
             for (; j < word.length(); j++) {
-                // 到j位置，后续字符串若是回文对，则在该节点位置上所有单词都可以与words[i]构成回文对
-                // 因为我们插入的时候是用每个单词的逆序插入的:)
+                 // Go to position j, if the subsequent string is a palindrome pair, all words at this node position can form a palindrome pair with words[i]
+                // Because when we insert, we insert each word in reverse order :)
                 if (isPalindrome(word.substr(j))) {
                     for (int k : cur->words) {
                         if (k != i) ans.push_back({i,k});
@@ -183,7 +183,8 @@ public:
                 if (!cur->children[ch-'a']) break;
                 cur = cur->children[ch-'a'];
             }
-            // words[i]遍历完了，现在找所有大于words[i]长度且符合要求的单词，suffixs列表就派上用场了:)
+            
+            // Words[i] has been traversed, now find all words that are longer than words[i] and meet the requirements, the suffixs list will come in handy :)
             if (j == word.length()) {
                 for (int k : cur->suffixs) {
                     if (k != i) ans.push_back({i,k});
@@ -192,7 +193,8 @@ public:
         }
         return ans;
     }
-    //  判断一个字符串是否是回文字符串
+    
+    // Check if a string is a palindrome
     bool isPalindrome(string w) {
         int i = 0, j = w.length()-1;
         while (i < j) {
