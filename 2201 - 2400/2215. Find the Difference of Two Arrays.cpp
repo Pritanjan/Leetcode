@@ -6,12 +6,10 @@ public:
     vector<vector<int>> findDifference(vector<int>& A, vector<int>& B) {
         unordered_set<int> sa(begin(A), end(A)), sb(begin(B), end(B));
         vector<vector<int>> ans(2);
-        for (int n : sa) {
-            if (sb.count(n) == 0) ans[0].push_back(n);
-        }
-        for (int n : sb) {
-            if (sa.count(n) == 0) ans[1].push_back(n);
-        }
+	    
+        for(int i : sa) if(sb.count(i) == 0) ans[0].push_back(i);
+        for(int i : sb) if(sa.count(i == 0) ans[1].push_back(i);
+        
         return ans;
     }
 };
