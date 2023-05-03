@@ -117,8 +117,16 @@ public:
 
 
 // APPROACH 4
-			   
+		
+// To do this, we first create two unordered sets set1 and set2 containing the integers in 
+// nums1 and nums2, respectively
+// We then loop through the elements in nums1 and check if they are not in set2. If so, 
+// we add them to answer[0]. Similarly, we loop through the elements in nums2 and
+// check if they are not in set1. If so, we add them to answer[1].
 
+// sort function is used to sort nums1 and nums2, and then unique is used to remove the duplicates. 
+
+			   
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
