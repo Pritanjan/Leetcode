@@ -2,7 +2,7 @@
 
 
 class Solution {
-public:
+public: 
     vector<vector<int>> findDifference(vector<int>& A, vector<int>& B) {
         unordered_set<int> sa(begin(A), end(A)), sb(begin(B), end(B));
         vector<vector<int>> ans(2);
