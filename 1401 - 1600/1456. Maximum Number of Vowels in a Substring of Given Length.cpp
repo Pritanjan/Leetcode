@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ Sliding Window ]
 
 // i use a sliding window approach to keep track of the number of vowels in a substring of length k
 // while moving the window from left to right.
@@ -51,7 +51,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 [ Sliding Window usisng set ]
 
 
 class Solution {
@@ -77,4 +77,35 @@ public:
     }
 };
 
+
+
+
+
+
+// APPROACH 2 [ Prefix Sum ] 
+
+
+
+class Solution {
+public:        
+    int maxVowels(string s, int k) {
+        int n = s.size();
+        vector<int> prefixSum(n + 1, 0);
+        
+        for(int i=1; i<=n; i++) {
+            prefixSum[i] = prefixSum[i - 1] + isVowel(s[i - 1]);
+        }
+
+        int maxCount = 0;
+        for(int i=k; i<=n; i++) {
+            maxCount = max(maxCount, prefixSum[i] - prefixSum[i - k]);
+        }
+
+        return maxCount;
+    }
+
+    bool isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+};
 
