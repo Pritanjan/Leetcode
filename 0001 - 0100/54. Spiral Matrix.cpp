@@ -1,8 +1,5 @@
-// https://leetcode.com/problems/spiral-matrix/
-// https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix/0
-
-
 // APPROACH 1 Using 1 extra variable x
+
 
 class Solution {
 public:
@@ -50,6 +47,9 @@ public:
 
 
 
+
+
+
 // APPROACH 2 Without Using  extra variable x
 
 class Solution {
@@ -92,3 +92,54 @@ public:
         return ans;
     }
 };
+
+
+
+
+
+
+
+// APPROACH 3 RECURSION
+
+
+class Solution {
+public:
+    void spiralOrder(vector<vector<int>>& matrix, vector<int>& res, int top, int bottom, int left, int right) {
+        if(top > bottom || left > right) {
+            return;
+        }
+        
+        for(int j=left; j<=right; ++j) {
+            res.push_back(matrix[top][j]);
+        }
+
+        for(int i=top+1; i<=bottom; ++i) {
+            res.push_back(matrix[i][right]);
+        }
+
+        if(top < bottom && left < right) {
+            for(int j=right-1; j>left; --j) {
+                res.push_back(matrix[bottom][j]);
+            }
+
+            for(int i=bottom; i>top; --i) {
+                res.push_back(matrix[i][left]);
+            }
+        }
+        spiralOrder(matrix, res, top + 1, bottom - 1, left + 1, right - 1);
+    }
+
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        if(matrix.empty()) return vector<int>();
+        
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        vector<int> res;
+        spiralOrder(matrix, res, 0, m - 1, 0, n - 1);
+        return res;
+    }
+};
+
+
+
