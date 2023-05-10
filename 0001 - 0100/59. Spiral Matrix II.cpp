@@ -43,7 +43,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 editoril
 
 
 class Solution {
@@ -89,25 +89,27 @@ public:
     vector<vector<int>> generateMatrix(int n) {
         vector<vector<int>> result (n, vector<int>(n));
         int cnt = 1;
-        for (int i = 0; i < (n + 1) / 2; i++) {
+        for(int i=0; i<(n+1)/2; i++) {
             // direction 1 - traverse from left to right
-            for (int j = i; j < n - i; j++) {
+            for(int j=i; j<n-i; j++) {
                 result[i][j] = cnt++;
             }
+            
             // direction 2 - traverse from top to bottom
-            for (int j = i + 1; j < n - i; j++) {
-                result[j][n - i - 1] = cnt++;
+            for(int j=i+1; j<n-i; j++) {
+                result[j][n-i-1] = cnt++;
             }
+            
             // direction 3 - traverse from right to left
-            for (int j = n - i - 2; j >= i; j--) {
-                result[n - i - 1][j] = cnt++;
+            for(int j=n-i-2; j>=i; j--) {
+                result[n-i-1][j] = cnt++;
             }
+            
             // direction 4 - traverse from bottom to top
-            for (int j = n - i - 2; j > i; j--) {
+            for(int j=n-i-2; j>i; j--) {
                 result[j][i] = cnt++;
             }
         }
-
         return result;
     }
 };
