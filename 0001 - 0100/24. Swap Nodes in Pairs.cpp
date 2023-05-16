@@ -1,5 +1,38 @@
-// APPROACH 1
+// Iterative Approach
 
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* prev = dummy;
+
+        while (head && head->next) {
+            ListNode* first = head;
+            ListNode* second = head->next;
+
+            // Swapping
+            prev->next = second;
+            first->next = second->next;
+            second->next = first;
+
+            // Update pointers
+            prev = first;
+            head = first->next;
+        }
+
+        head = dummy->next;
+        delete dummy;
+        return head;
+    }
+};
+
+
+
+
+
+// APPROACH 1 
+// [ Recursive Approach Using 3 Pointer ]
 
 class Solution {
 public:
@@ -18,6 +51,27 @@ public:
 
 
 
+// OR  
+// [ Recursive Approach Using 2 Pointer ]
+
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(!head || !head->next) return head;
+
+        ListNode* first = head;
+        ListNode* second = head->next;
+
+        // Swapping
+        first->next = swapPairs(second->next);
+        second->next = first;
+
+        return second;
+    }
+};
+
+
 
 
 
@@ -32,6 +86,32 @@ public:
             swap(ptr -> val , ptr->next->val);
                 ptr = ptr->next->next;
         }
+        return head;
+    }
+};
+
+
+
+// OR
+
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode** pp = &head;
+
+        while (*pp && (*pp)->next) {
+            ListNode* first = *pp;
+            ListNode* second = first->next;
+
+            // Swapping
+            first->next = second->next;
+            second->next = first;
+            *pp = second;
+
+            pp = &(first->next);
+        }
+
         return head;
     }
 };
