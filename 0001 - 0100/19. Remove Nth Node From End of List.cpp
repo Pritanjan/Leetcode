@@ -225,3 +225,27 @@ public:
 
 
 
+
+
+// Nth node from end of linked list
+
+#include<bits/stdc++.h>
+//Function to find the data of nth node from the end of a linked list.
+int getNthFromLast(Node *head, int n)
+{
+    stack<Node*> st;
+    while(head){
+        st.push(head);
+        head = head -> next;
+    }
+    
+    n--;
+    while(n--){
+        st.pop();
+        if(st.empty())
+            return -1;
+    }
+        
+    return st.top()->data;
+}
+
