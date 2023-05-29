@@ -118,20 +118,15 @@ public:
         int j;
         int t;
         for(i = 0 ; i < len -1;i++)
-            for(j = 0;j< len -1;j++)
-            {
-                if(nums[j]>nums[j+1])
-                {
+            for(j = 0;j< len -1;j++) {
+                if(nums[j]>nums[j+1]) {
                     t = nums[j];
                     nums[j] = nums[j+1];
                     nums[j+1] = t;
                 }
             }
-        
     }
 };
-
-
 
 
 
@@ -144,20 +139,18 @@ class Solution {
 public:
     void sortColors(std::vector<int>& nums) {
         int n = nums.size();
-
-        int lt = -1;
-        int gt = n;
+        int L = -1;
+        int R = n;
         int i = 0;
-
-        while (i < gt) {
-            if (nums[i] == 0) {
-                lt++;
-                std::swap(nums[lt], nums[i]);
+        while (i < R) {
+            if(nums[i] == 0) {
+                L++;
+                swap(nums[L], nums[i]);
                 i++;
             }
-            else if (nums[i] == 2) {
-                gt--;
-                std::swap(nums[gt], nums[i]);
+            else if(nums[i] == 2) {
+                R--;
+                swap(nums[R], nums[i]);
             }
             else {
                 i++;
