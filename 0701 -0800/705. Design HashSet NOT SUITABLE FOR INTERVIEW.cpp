@@ -40,6 +40,27 @@ public:
 
 
 
+OR
+
+
+class MyHashSet {
+public:
+    vector<bool> design;
+    
+    MyHashSet() : design(1e6 + 1, false) {}
+    
+    void add(int key) {
+        design[key] = true;
+    }
+    
+    void remove(int key) {
+        design[key] = false;
+    }
+    
+    bool contains(int key) {
+        return design[key];
+    }
+};
 
 
 
