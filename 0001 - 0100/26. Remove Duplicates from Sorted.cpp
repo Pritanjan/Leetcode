@@ -53,6 +53,8 @@ public:
 };
 
 
+// Time complexity: O(n)
+// Space Complexity: O(1)
 
 
 
@@ -76,7 +78,34 @@ public:
 
 
 
+// APPROACH 5
 
+class Solution {
+public:
+    int removeDuplicates(vector<int>& arr) {
+        int n = arr.size();
+        set<int> st;
+        for(int i=0; i<n; i++) {
+            st.insert(arr[i]);
+        }
+
+        int k = st.size();
+        int j = 0;
+        for(int x : st) {
+            arr[j++] = x;
+        }
+        return k;
+    }
+};
+
+
+// Time complexity: O(n*log(n))+O(n)
+// Space Complexity: O(n)
+
+
+    
+    
+    
 
 // https://practice.geeksforgeeks.org/problems/6e63df6d2ebdf6408a9b364128bb1123b5b13450/1
 // Make array elements unique
