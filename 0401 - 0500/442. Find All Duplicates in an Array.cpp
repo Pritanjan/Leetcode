@@ -1,3 +1,5 @@
+// SAME AS LC 287 - 287. Find the Duplicate Number
+
 // APPROACH 1
 
 class Solution {
