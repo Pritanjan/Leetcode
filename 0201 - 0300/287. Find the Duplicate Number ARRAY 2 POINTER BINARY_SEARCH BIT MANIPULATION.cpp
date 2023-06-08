@@ -1,13 +1,15 @@
-// https://leetcode.com/problems/find-the-duplicate-number/
+// SAME AS LC 442 -  442. Find All Duplicates in an Array.cpp
 
-// APPROACH 1 BRUTE FORCE
+
+// APPROACH 1 [ BRUTE FORCE ]
+
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         
         for(int i=0; i<nums.size(); i++){
-            if(nums[i]==nums[i+1])
+            if(nums[i] == nums[i+1])
                 return nums[i];
         }
         return -1;
@@ -15,7 +17,13 @@ public:
 };
 
 
-// APPROACH 2 HASH MAP
+
+
+
+
+
+// APPROACH 2 [ HASH MAP ]
+
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -23,7 +31,6 @@ public:
         for(auto &i : nums ){
             if(ust.count(i))
                 return i;
-            
             ust.insert(i);
         }
         return -1;
@@ -31,7 +38,13 @@ public:
 };
 
 
-// APPROACH 3 BINARY_SEARCH 
+
+
+
+
+
+// APPROACH 3 [ BINARY_SEARCH  ]
+
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -57,3 +70,5 @@ public:
         return left;
     }
 };
+
+
