@@ -78,3 +78,28 @@ public:
 
 
 
+
+
+
+// APPROACH 3
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        unordered_set<int> seen;
+        vector<int> dup;
+        for(auto i : nums) {
+            if(seen.count(i)) dup.push_back(i);
+            else seen.insert(i);
+        }        
+        return dup;
+    }
+};
+
+
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+
+
