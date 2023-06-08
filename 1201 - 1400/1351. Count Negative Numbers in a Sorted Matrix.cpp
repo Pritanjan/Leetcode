@@ -1,9 +1,8 @@
-// https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+// APPROACH 1
 
 class Solution {
 public:
-    int countNegatives(vector<vector<int>>& matrix) {
-        
+    int countNegatives(vector<vector<int>>& matrix) {        
         int row = matrix.size();
         int col = matrix[0].size();
         
@@ -13,12 +12,19 @@ public:
         
         while(L < row   && R >=0 ){
             if(matrix[L][R] < 0 ){
-                count += row - L;
+                count += row - L;   // All remaining elements in the current column are negative
                 R--;
             }
-            else
-                L++;
+            else  L++;
         }
         return count;
     }
 };
+
+
+
+
+// T.C. --> O(m+n)
+
+
+
