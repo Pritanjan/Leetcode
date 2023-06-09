@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ BINARY SEARCH ]
 
 class Solution {
 public:
@@ -23,7 +23,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 [ LINEAR SEARCH ]
 
 
 class Solution {
@@ -44,4 +44,32 @@ public:
 
 
 
+
+
+
+
+// APPROACH 3 [ COUNTING SORT]
+
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        vector<int> cnt(26);
+        for(char c : letters) {
+            cnt[c - 'a']++;
+        }
+
+        for(char c = (char)(target+1); c<='z'; c++) {
+            if(cnt[c - 'a'] > 0) {
+                return c;
+            }
+        }
+
+        for(char c='a'; c<=target; c++) {
+            if(cnt[c - 'a'] > 0) {
+                return c;
+            }
+        }
+        return letters[0];
+    }
+};
 
