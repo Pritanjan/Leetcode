@@ -19,10 +19,44 @@ public:
 };
 
 
-
 // T.C. --> O(N^2)
 // S.C. --> O(N)
 
 
 
+
+
+
+
+// APPROACH 2 [  Sorting and Mappin ]
+
+class Solution {
+public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+        vector<int> Sarr = arr;           // Sarr --> sorted array
+        sort(Sarr.begin(), Sarr.end());
+
+        unordered_map<int, int> ump;
+        int rank = 1;
+        for(int i=0; i<Sarr.size(); i++) {
+            if(ump.find(Sarr[i]) == ump.end()) {
+                ump[Sarr[i]] = rank;
+                rank++;
+            }
+        }
+
+        for(int i=0; i<arr.size(); i++) {
+            arr[i] = ump[arr[i]];
+        }
+        return arr;
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 3
 
