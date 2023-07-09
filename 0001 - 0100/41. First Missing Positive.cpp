@@ -81,6 +81,49 @@ public:
 
 
 
+// OR
+
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+
+        // Step 1: Remove negative numbers and zeros
+        for(int i=0; i<n; ) {
+            if(nums[i] <= 0 || nums[i] > n) {
+                // Ignore non-positive numbers and numbers greater than n
+                swap(nums[i], nums[n - 1]);
+                n--; // Reduce the size of the array
+            } 
+            else {
+                i++;
+            }
+        }
+
+        // Step 2: Rearrange positive numbers
+        for(int i=0; i<n; i++) {
+            while(nums[i] != i + 1 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+                // Place nums[i] at its correct index if possible
+                swap(nums[i], nums[nums[i] - 1]);
+            }
+        }
+
+        // Step 3: Find the first missing positive integer
+        for(int i=0; i<n; i++) {
+            if(nums[i] != i + 1) {
+                return i+1; // First missing positive integer found
+            }
+        }
+
+        // Step 4: No missing positive integer found
+        return n+1;
+    }
+};
+
+
+
+
 
 
 // APPROACH 3 [ SORTING ]
