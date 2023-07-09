@@ -198,3 +198,78 @@ public:
 
 
 
+
+
+
+
+
+gfg
+
+
+Intuition:
+The idea is to use array elements as an index. To mark the presence of an element x,
+change the value at the index x to negative. But this approach doesn’t work if
+there are non-positive (-ve and 0) numbers. So segregate positive from negative numbers as
+the first step and then apply the approach.
+
+
+
+Implementation:
+Segregate positive numbers from others i.e., move all non-positive numbers to the left side
+Now ignore non-positive elements and consider only the part of the array which contains all positive elements.
+Traverse the array containing all positive numbers and to mark the presence of an element x, change the sign of value at index x to negative.
+Traverse the array again and print the first index which has a positive value. 
+
+
+class Solution {
+public:
+    // Function that puts all non-positive (0 and negative) numbers on left 
+    // side of arr[] and return count of such numbers.
+    int segregateArr(vector<int>& arr, int n) {
+        int j = 0;
+        for(int i=0; i<n; i++) {
+            if(arr[i] <= 0) { 
+    	        //changing the position of negative numbers and 0.
+    	        swap(arr[i], arr[j]); 
+    	        //incrementing count of non-positive integers.
+    	        j++; 
+    		}
+            // if(arr[i] <= 0) swap(arr[i], arr[j++]);
+        }
+        return j;
+    }
+
+    // Finding the smallest positive missing number in an array 
+    // that contains only positive integers.
+    int findMissingPositive(const vector<int>& arr, int n) {
+        vector<int> v(arr); // Create a copy of the vector
+        
+        // marking arr[i] as visited by making arr[arr[i]-1] negative. 
+        // note that 1 is subtracted because indexing starts from 0 and 
+        // positive numbers start from 1.
+        for(int i=0; i<n; i++) {
+            if(abs(v[i])-1 < n && v[abs(v[i])-1] > 0)
+                v[abs(v[i]) - 1] = -v[abs(v[i]) - 1];
+        }
+
+        for(int i=0; i<n; i++) {
+            // returning the first index where value is positive. 
+            // 1 is added because indexing starts from 0. 
+            if(v[i] > 0) return i+1;
+        }
+        return n+1;
+    }
+
+    // Function to find the smallest positive number missing from the array.
+    int firstMissingPositive(vector<int>& arr) {
+        int n = arr.size();
+        // first separating positive and negative numbers. 
+        int shift = segregateArr(arr, n);
+        // shifting the array to access only positive part calling function
+        // to find result and returning it
+        return findMissingPositive(vector<int>(arr.begin()+shift, arr.end()), n-shift);
+    }
+};
+
+
+
