@@ -1,9 +1,3 @@
-// https://leetcode.com/problems/first-missing-positive/discuss/1928890/c-solution-first-missing-positive
-
-// CN Solution 
-// https://www.codingninjas.com/codestudio/problems/first-missing-positive_699946?leftPanelTab=2
-
-
 // APPROACH 1 [ Searching (TLE) ]
 
 class Solution {
@@ -24,8 +18,11 @@ public:
 };
 
 
-// Time Complexity : - O(N ^ 2) .
-// Space Complexity : - O(1) .
+// Time Complexity : - O(N ^ 2) 
+// Space Complexity : - O(1) 
+
+
+
 
 
 
@@ -36,54 +33,46 @@ class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
         int n = nums.size();
-        
-        for(int i=0; i<n;i++){
+        for(int i=0; i<n; i++){
             while(nums[i] > 0 && nums[i] <=n && nums[nums[i] - 1] != nums[i])
                 swap(nums[i] , nums[nums[i]-1]);
         }    
 	    
-        for(int i=0; i<n;i++){
-            if(nums[i] != i+1)
-                return i+1;
+        for(int i=0; i<n; i++){
+            if(nums[i] != i+1) return i+1;
         }
         return n+1;
     }
 };
 
 
+
 // OR
+
+
 
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
         int n = nums.size();
-
         // Mark negative numbers and numbers greater than n
-        for (int i=0; i<n; i++) {
-            if (nums[i] <= 0 || nums[i] > n) {
-                nums[i] = n+1;
-            }
+        for(int i=0; i<n; i++) {
+            if(nums[i] <= 0 || nums[i] > n) nums[i] = n+1;
         }
 
         // Mark present numbers by making the corresponding element negative
-        for (int i=0; i<n; i++) {
+        for(int i=0; i<n; i++) {
             int num = abs(nums[i]);
-            if (num <= n) {
-                nums[num-1] = -abs(nums[num-1]);
-            }
+            if(num <= n) nums[num-1] = -abs(nums[num-1]);
         }
 
         // Find the smallest missing positive number
-        for (int i = 0; i < n; i++) {
-            if (nums[i] > 0) {
-                return i+1;
-            }
+        for(int i=0; i<n; i++) {
+            if(nums[i] > 0) return i+1;
         }
-
         return n+1;
     }
 };
-
 
 
 // Time Complexity : - O(N) .
@@ -92,16 +81,15 @@ public:
 
 
 
-// APPROACH 3 [ SORTING ]
 
+
+// APPROACH 3 [ SORTING ]
 
 class Solution {
 public:
     int firstMissingPositive(vector<int>& A) {
         sort(A.begin(), A.end());
-        
-        if(A.size() == 0) return 1;
-        
+        if(A.size() == 0) return 1;        
 	int counter = 1;
         for(int i=0; i<A.size(); i++){
             // Skip the negative number.
@@ -117,5 +105,6 @@ public:
 
 // Time Complexity : - O(N log(N)), as we are sorting & iterating the whole array.
 // Space Complexity : - O(1) .
+
 
 
