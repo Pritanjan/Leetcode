@@ -178,3 +178,23 @@ public:
 
 
 
+
+
+
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        // Insert all elements in a set
+        set<int> s(nums.begin(), nums.end());
+        for(int i=1; i<=n+1; i++){
+          	// If an integer is not present in set the return it.
+            if(!s.count(i)) return i;
+        }
+        return n+2;
+    }
+};
+
+
+
