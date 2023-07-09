@@ -108,3 +108,30 @@ public:
 
 
 
+
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        int* val = new int[n](); // Allocate memory for n elements and initialize with 0
+        
+        for(int i=0; i<n; i++) {
+            if(nums[i] < 1 || nums[i] > n) continue;
+            else val[nums[i] - 1]++;
+        }
+        
+        for(int i=0; i<n; i++) {
+            if(val[i] == 0) {
+                // delete[] val; // Deallocate the dynamically allocated memory
+                return i + 1;
+            }
+        }
+        
+        // delete[] val; // Deallocate the dynamically allocated memory
+        return n + 1;
+    }
+};
+
+
+
