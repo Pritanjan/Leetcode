@@ -10,7 +10,6 @@ public:
     }
 };
 
-
 // Time Complexity : - O(N)
 
 
@@ -18,7 +17,6 @@ public:
 
 
 // APPROACH 2 [ ITERATIVE ]
-// JAVA
 
 class Solution {
     public int search(int[] nums, int target) {
@@ -28,8 +26,7 @@ class Solution {
 
         // run a loop while left is lesser then right
 	while(left <= right){
-
-		// create another pointer mid, it will be used as middle pointer.
+	        // create another pointer mid, it will be used as middle pointer.
 		int mid = (left + right)/2;   //  left +  (right - left)/2
 
 		// Check if the element of middle index is our target or not.
@@ -37,14 +34,12 @@ class Solution {
 			answer = mid;    // if found, put it into answer
 			right = mid - 1;
 		}
-
+			
 		// if the mid element is greater than target, it means the array in the right is of no use.
-		else if(nums[mid] > target)
-			right = mid - 1;
+		else if(nums[mid] > target) right = mid - 1;
 
 		// if the mid element is lesser than target, it means the array in the left is of no use.
-		else
-			left = mid + 1;
+		else left = mid + 1;
 
 		mid  =  (left + right)/2;
 	}
@@ -62,15 +57,12 @@ class Solution {
 // OR
 
 
-
-
 class Solution {
 public:
     int search(vector<int>& nums, int tgt) {
         int n = nums.size();
         int L = 0;
         int R = n - 1;
-        
         while(L < R){
             int mid = (L + R) /2;
             if(nums[mid] == tgt) return mid;
@@ -95,26 +87,14 @@ public:
     }
     
     int binarySearch(vector<int>& nums, int target, int L, int R){
-        if(L > R)
-            return -1;
-        
+        if(L > R) return -1;
         int mid = L + (R - L)/2;
-        
-        if(nums[mid] == target)
-            return mid;
-        
-        else if(nums[mid] > target)
-            return binarySearch(nums, target, L, mid-1);
-        
+        if(nums[mid] == target) return mid;
+        else if(nums[mid] > target) return binarySearch(nums, target, L, mid-1);
         // if(nums[mid] < target)
-        else
-            return binarySearch(nums, target, mid+1, R);     
-        
+        else return binarySearch(nums, target, mid+1, R);     
     }
 };
-
-
-
 
 // Time Complexity : - O(log N)
 // Space Complexity :- O(log N)
@@ -122,13 +102,14 @@ public:
 
 
 
+
 // APPROACH 4 [ STL ]
+
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
         auto it = lower_bound(nums.begin(), nums.end(), target);
         if(it != nums.end() && *it == target) return it - nums.begin();
-
         return -1;
     }
 };
@@ -154,9 +135,8 @@ public:
 
 
 
-
-
 // APPROACH 5 [ STL ]
+
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
@@ -165,7 +145,6 @@ public:
         else return -1;
     }
 };
-
 
 // Here, binary_search STL is used. This function returns a boolean value indicating whether 
 // or not the target was found in the sorted array.
@@ -179,10 +158,8 @@ public:
 
 
 
-
 // Time Complexity : - O(log N)
 // because both binary_search and lower_bound use binary search algorithms internally
 // to locate the target value or its insertion position.
-
 
 
