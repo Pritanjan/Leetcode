@@ -38,3 +38,33 @@ public:
 
 
 
+
+
+
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> res;
+        int n = nums.size();
+
+        unordered_set<int> sumSet; // Hash set to store the sums of pairs
+
+        // Iterate through all pairs of numbers
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int pairSum = nums[i] + nums[j];
+                int complement = target - pairSum;
+
+                // Check if the complement exists in the hash set
+                if (sumSet.count(complement)) {
+                    res.push_back({nums[i], nums[j], complement, target - complement});
+                }
+
+                // Add the pair sum to the hash set
+                sumSet.insert(pairSum);
+            }
+        }
+
+        return res;
+    }
+};
