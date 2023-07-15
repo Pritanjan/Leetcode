@@ -94,6 +94,8 @@ public:
 };
 
 
+// T.C.  --> O(N) We need at most one traversal of the entire binary tree
+// S.C.  --> O(N) we use the DFS method to traverse, and  stack space that needs to be used is O (n)
 
 
 
