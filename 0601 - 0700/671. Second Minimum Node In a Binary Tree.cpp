@@ -41,9 +41,7 @@ public:
 
 
 
-
-
-// APPROACH 2 DFS
+// APPROACH 2 DFS USING SET
 
 class Solution {
 public:
@@ -66,7 +64,6 @@ public:
         return *it;
     }
 };
-
 
 
 
@@ -99,6 +96,44 @@ public:
 
 
 
+
+
+// DFS USING VECTOR
+
+// Traverse the tree and store all the values in an array.
+// Sort the array.
+// Iterate over the array and find the first array element which is not equal to the minimum element of the array (i.e. the one present at index 0). If no such element is present then return -1.
+
+class Solution {
+public:
+    void pre(vector<int> &v, TreeNode* root){
+        if(root == NULL) return ;
+        v.push_back(root -> val);
+        pre(v, root -> left);
+        pre(v, root -> right);
+     }
+    
+    int findSecondMinimumValue(TreeNode* root) {
+        vector<int> v;
+        pre(v, root);
+
+        sort(v.begin(), v.end());
+        for(int i=0; i<v.size()-1; i++){
+            if(v[i] != v[i+1]) return v[i+1];
+        }
+        return -1;
+    }
+};
+
+// T.C. -->  O(N * logN)
+// S.C. -->  O(N)
+
+
+
+
+
+
+
 // LEETCODE EDITORIAL 2    
 
 class Solution {
@@ -125,3 +160,31 @@ public:
         return ans < LLONG_MAX ? static_cast<int>(ans) : -1;
     }
 };
+
+
+
+
+
+
+
+// APPRAOCH 3  RECURSION
+
+class Solution {
+public:
+    int findSecondMinimumValue(TreeNode* root) {
+        if((!root) or (!root -> left and !root -> right)) return -1;
+        int L = root -> left -> val;
+        int R = root -> right -> val;       
+
+        if(root -> val == root -> left -> val)  L = findSecondMinimumValue(root -> left);
+        if(root -> val == root -> right -> val) R = findSecondMinimumValue(root -> right);
+
+        if(L != -1 and R != -1) return min(L, R);
+        else if(L != -1) return L;
+        else return R;
+    }
+};
+
+
+// T.C. --> O(H)
+// S.C. --> O(1)
