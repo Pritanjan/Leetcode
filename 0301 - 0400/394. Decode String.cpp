@@ -1,3 +1,5 @@
+// APPROACH1 USING 2 STACK
+
 class Solution {
 public:
     string decodeString(string s) {
@@ -46,5 +48,44 @@ public:
 
 
 
+// APPROACH 2 RECURSION
 
 
+class Solution {
+public:
+    string decodeString(string s) {
+        int i = 0;
+        return decodeHelper(s, i);
+    }
+
+private:
+    string decodeHelper(const string& s, int& i) {
+        string res = "";
+
+        while(i < s.length() && s[i] != ']') {
+            if(isdigit(s[i])) {
+                int cnt = 0;
+                while(i < s.length() && isdigit(s[i])) {
+                    cnt = cnt * 10 + (s[i] - '0');
+                    i++;
+                }
+
+                i++;  // Skip the '[' character
+                string decoded = decodeHelper(s, i);
+                i++;  // Skip the ']' character
+
+                while(cnt--) res += decoded;
+                
+            } 
+            else {
+                res += s[i];
+                i++;
+            }
+        }
+
+        return res;
+    }
+};
+
+
+// T.C. --> O(N^2)
