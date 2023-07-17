@@ -142,7 +142,7 @@ public:
         int n = num1.size();
         int m = num2.size();
 
-        return addStringsRecursive(num1, num2, n - 1, m - 1, 0);
+        return recursion(num1, num2, n - 1, m - 1, 0);
     }
 };
 
