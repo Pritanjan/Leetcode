@@ -6,22 +6,17 @@ public:
         int count = 0;
         
 	// Count zero 
-        for(int i=0; i<nums.size(); i++){
-            count += (nums[i] == 0);
-        }
-        
+        for(int i=0; i<nums.size(); i++) count += (nums[i] == 0);
+                
         // Make all the non-zero elements their orignal order.
         vector<int> ans;
         for(int i=0; i<nums.size(); i++){
-            if(nums[i] != 0)
-                ans.push_back(nums[i]);
+            if(nums[i] != 0) ans.push_back(nums[i]);
         }
         
         // Move all zeros to the end
-        while(count--){
-            ans.push_back(0);
-        }
-        
+        while(count--) ans.push_back(0);
+                
 	// combine the result        
         for(int i=0; i<nums.size(); i++){
             nums[i] = ans[i];
@@ -39,6 +34,26 @@ public:
 // If asked in an interview, the above solution would be a good start. we can explain the
 // interviewer(not code) the above and build your base for the next Optimal Solution.
 
+
+
+
+// OR
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int zeroesCount = 0;
+        vector<int> res(nums.size(), 0);
+        
+        for(auto i : nums) {
+            if(i != 0) {
+                res[zeroesCount] = i;
+                zeroesCount++;
+            }
+        }        
+        nums = res;
+    }
+};
 
 
 
@@ -62,7 +77,6 @@ public:
 
 
 
-
 // APPROACH 3
 
 class Solution {
@@ -74,7 +88,6 @@ public:
                 nums[notzero++] = nums[i];
             }
         }
-        
         for(int i=notzero; i<nums.size(); i++)
             nums[i] = 0;
     }
@@ -90,7 +103,6 @@ public:
 
 
 
-
 // APPROACH 4
 
 class Solution {
@@ -98,18 +110,15 @@ public:
     void moveZeroes(vector<int>& nums) {
         int n = nums.size();
         int zeroCount = 0;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                zeroCount++;
-            } else if (zeroCount > 0) {
+        for(int i=0; i<n; i++) {
+            if(nums[i] == 0) zeroCount++;
+	    else if(zeroCount > 0) {
                 nums[i - zeroCount] = nums[i];
                 nums[i] = 0;
             }
         }
     }
 };
-
-
 
 
 
@@ -125,6 +134,7 @@ public:
         nums.insert(nums.end(), zeroesCount, 0);
     }
 };
+
 
 
 
