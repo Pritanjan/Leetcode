@@ -1,3 +1,114 @@
+// \\ APPROPACH 1 [ 2 POINTER INTERATIVE ]
+
+// Use 2 Pointers prev and curr, to traverse the LL while maintaining the distinction b/w
+// duplicate and distinct elements.
+
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head || !head->next) return head;
+        
+        ListNode* dummy = new ListNode(-1);
+        dummy -> next = head;
+        
+        ListNode* prev = dummy;
+        ListNode* curr = head;
+
+        while(curr) {
+            bool isDuplicate = false;
+
+            while(curr -> next && curr -> val == curr -> next -> val) {
+                curr = curr -> next;
+                isDuplicate = true;
+            }
+
+            if(isDuplicate) prev -> next = curr -> next;
+            else prev = curr;
+            
+            curr = curr -> next;
+        }
+        return dummy -> next;
+    }
+};
+
+
+
+
+// \\ APPROACH 2 [ RECURSION ]
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head || !head -> next) return head;
+        
+        if(head -> val == head -> next -> val) {
+            while(head -> next && head -> val == head -> next -> val) head = head -> next;
+            return deleteDuplicates(head->next);
+        } 
+        else {
+            head -> next = deleteDuplicates(head -> next);
+            return head;
+        }
+    }
+};
+
+
+
+
+
+// \\ APPROACH 3 [ HASH MAP ]
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head || !head->next) return head;
+
+        unordered_map<int, int> cntMap;
+        ListNode* curr = head;
+
+        while(curr) {
+            cntMap[curr -> val]++;
+            curr = curr -> next;
+        }
+
+        ListNode* dummy = new ListNode(-1);
+        ListNode* tail = dummy;
+
+        curr = head;
+        while(curr) {
+            if(cntMap[curr -> val] == 1) {
+                tail -> next = curr;
+                tail = tail -> next;
+            }
+            curr = curr -> next;
+        }
+
+        tail -> next = nullptr;
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+// \\ APPROACH 4 [ usingt merge sort ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Solution {
 public:
