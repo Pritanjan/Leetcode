@@ -1,13 +1,5 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+// \\ APPROACH 1 [ FIND MID & THEN PERFORM MERGE SORT ]
+
 class Solution {
 public:
     ListNode* findMid(ListNode* head){
@@ -22,10 +14,8 @@ public:
     }
     
     ListNode* merge(ListNode* L, ListNode* R){
-        if(L == NULL)
-            return R;
-        if(R == NULL)
-            return L; 
+        if(L == NULL) return R;
+        if(R == NULL) return L; 
         
         ListNode* ans = new ListNode(-1);
         ListNode* temp = ans;
@@ -59,8 +49,7 @@ public:
     }
     
     ListNode* sortList(ListNode* head) {
-        if(head == NULL or head -> next == NULL)
-            return head;
+        if(head == NULL or head -> next == NULL) return head;
         
         // break LL into 2 halves, after finding mid
         ListNode* mid = findMid(head);
@@ -88,25 +77,16 @@ public:
 
 
 
+
+
+
+
+
+
+
+
 // Sort linked list of 0s 1s 2s
-// https://www.codingninjas.com/codestudio/problems/sort-linked-list-of-0s-1s-2s_1071937?leftPanelTab=0
-
-/********************************
-    class Node
-    {
-    public:
-        int data;
-        Node *next;
-        Node(int data)
-        {
-            this->data = data;
-            this->next = NULL;
-        }
-    };
-
-********************************/
-
-// Separate each node and reconnect.
+// https://practice.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1
 
 Node* sortList(Node *head) {
     int zerocnt = 0;
