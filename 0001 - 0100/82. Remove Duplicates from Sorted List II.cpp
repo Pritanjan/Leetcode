@@ -95,6 +95,107 @@ public:
 
 // \\ APPROACH 4 [ usingt merge sort ]
 
+class Solution {
+public:
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        if(!l1) return l2;
+        if(!l2) return l1;
+
+        if(l1 -> val < l2 -> val) {
+            l1 -> next = merge(l1 -> next, l2);
+            return l1;
+        } 
+        else {
+            l2 -> next = merge(l1, l2 -> next);
+            return l2;
+        }
+    }
+
+    ListNode* mergeSort(ListNode* head) {
+        if(!head || !head -> next) return head;
+
+        ListNode* slow = head;
+        ListNode* fast = head -> next;
+
+        while(fast && fast -> next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+
+        ListNode* secondHalf = slow -> next;
+        slow -> next = nullptr;
+
+        ListNode* L = mergeSort(head);
+        ListNode* R = mergeSort(secondHalf);
+
+        return merge(L, R);
+    }
+
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head) return nullptr;
+
+        // Sort the linked list
+        head = mergeSort(head);
+
+        ListNode* dummy = new ListNode(-1);
+        dummy -> next = head;
+
+        ListNode* curr = head;
+        ListNode* prev = dummy;
+
+        while(curr && curr -> next) {
+            if(curr -> val == curr -> next -> val) {
+                int duplicateVal = curr -> val;
+                while(curr && curr -> val == duplicateVal) {
+                    ListNode* temp = curr;
+                    curr = curr -> next;
+                    delete temp;
+                }
+                prev -> next = curr;
+            } 
+            else {
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+        return dummy->next;
+    }
+};
+
+
+
+
+
+
+// \\ APPROACH 5   [ In place ]
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head || !head->next)  return head;
+        
+        ListNode* dummy = new ListNode(-1);
+        dummy -> next = head;
+        ListNode* curr = dummy;
+
+        while(curr -> next && curr -> next -> next) {
+            if(curr -> next -> val == curr -> next -> next -> val) {
+                int duplicateVal = curr -> next ->val;
+                while(curr -> next && curr -> next -> val == duplicateVal) {
+                    ListNode* temp = curr -> next;
+                    curr -> next = curr -> next -> next;
+                    delete temp;
+                }
+            } 
+            else {
+                curr = curr -> next;
+            }
+        }
+        return dummy->next;
+    }
+};
+
+
 
 
 
