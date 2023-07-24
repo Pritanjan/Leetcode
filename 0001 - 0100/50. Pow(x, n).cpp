@@ -7,12 +7,7 @@ public:
     }
 };
 
-
-
-
 // OR
-
-
 
 class Solution {
 public:
@@ -36,8 +31,6 @@ public:
         return res;
     }
 };
-
-
 
 // OR
 
@@ -72,15 +65,17 @@ public:
 
 
 
+
+
 class Solution {
 public:
     double myPow(double x, int n) {
         if(n==0) return 1.0;
-        int sign = (n>0)?1:-1;
-        long long exp =( long long)n * sign;//avoid of overflow for n=INT_MIN change sign 
+        int sign = (n>0) ? 1 : -1;
+        long long exp = (long long)n * sign; //avoid of overflow for n=INT_MIN change sign 
         bitset<32> bexp(exp);
         double a = 1;
-        x = (sgn == 1) ? x : 1.0 / x;
+        x = (sign == 1) ? x : 1.0 / x;
         for(int b=31; b>=0; b--){
             a = a*a;
             if(bexp[b]) a *= x;
@@ -88,6 +83,7 @@ public:
         return a;
     }
 };
+
 
 
 
