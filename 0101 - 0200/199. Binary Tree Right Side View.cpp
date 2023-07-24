@@ -25,6 +25,28 @@ public:
 };
 
 
+// OR
+
+
+class Solution{
+public:    
+    void helper(TreeNode* node, vector<int>& ans, int n) {
+        if(node == NULL) return;
+        if(n == ans.size()) ans.push_back(node -> val);
+        
+        helper(node -> right, ans, n+1);
+        helper(node -> left,  ans, n+1);
+    }
+    
+    vector<int> rightSideView(TreeNode* node) {
+        vector<int> ans;
+        helper(node, ans, 0);
+        return ans;
+    }
+};
+
+
+
 // T.C. O(N)
 // S.C. O(h)
 
