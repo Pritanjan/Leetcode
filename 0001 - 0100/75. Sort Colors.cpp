@@ -52,23 +52,7 @@ public:
 
 
 
-
-// APPROACH 2 STL
-
-class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-    }
-};
-
-
-
-
-
-
-
-// APPROACH 3
+// APPROACH 2
 
 class Solution {
 public:
@@ -85,12 +69,10 @@ public:
                 mid++;
                 // break;
             }
-            
             else if(a[mid] == 1){
                 mid++;
                 // break;
             }
-            
             else{
                 swap(a[mid], a[R]);
                 R--;
@@ -99,16 +81,13 @@ public:
         }
         // return 0;
     }
-};
-
-
-
-    
+}; 
 
 
 
 
-// APPROACH 4
+
+// APPROACH 3
 
 class Solution {
 public:
@@ -134,30 +113,6 @@ public:
 
 
 // APPROACH 5
-
-class Solution {
-public:
-    void sortColors(std::vector<int>& nums) {
-        int n = nums.size();
-        int L = -1;
-        int R = n;
-        int i = 0;
-        while (i < R) {
-            if(nums[i] == 0) {
-                L++;
-                swap(nums[L], nums[i]);
-                i++;
-            }
-            else if(nums[i] == 2) {
-                R--;
-                swap(nums[R], nums[i]);
-            }
-            else {
-                i++;
-            }
-        }
-    }
-};
 
 
 
