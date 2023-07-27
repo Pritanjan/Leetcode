@@ -12,19 +12,11 @@ public:
 };
 
 
-
-
-
 // We may also use a heap to solve this problem. We can maintain the largest k elements in a
 // heap with the smallest among them at the top. Or we can add all the elements to a heap, 
 // with the largest at the top, and then pop the heap for k - 1 times, then the one on the 
 // top is our target. The first one is min-heap and the second one is max-heap.
 // In STL, both priority_queue and multiset can be used as a min/max-heap.
-
-
-
-
-
 
 
 
@@ -46,8 +38,6 @@ public:
 
 
 
-
-
 // APPROACH 3
 
 class Solution {
@@ -57,9 +47,6 @@ public:
         return nums[k-1];
     }
 };
-
-
-
 
 
 
@@ -78,12 +65,21 @@ public:
 
 
 
+// APPROACH 5 
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& arr, int k) {
+        int n = arr.size();
+        sort(arr.begin(), arr.end());
+        return arr[n-k];
+    }
+};
 
 
 
 
-
-// APPROACH 5
+// APPROACH 6
 
 class Solution {
 public:
