@@ -68,3 +68,69 @@ public:
 
 
 
+// MERGE SORT
+
+
+class Solution {
+    // Function to merge two sub-arrays in sorted order.
+    void merge(vector<int> &arr, int L, int mid, int R, vector<int> &tempArr) {
+        // Calculate the start and sizes of two halves.
+        int strt1 = L;
+        int strt2 = mid + 1;
+        int n1 = mid - L + 1;
+        int n2 = R - mid;
+        
+        // Copy elements of both halves into a temporary array.
+        for(int i=0; i<n1; i++) tempArr[strt1 + i] = arr[strt1 + i];
+        for(int i=0; i<n2; i++) tempArr[strt2 + i] = arr[strt2 + i];
+
+        // Merge the sub-arrays 'in tempArray' back into the original array 'arr' in sorted order.
+        int i = 0;
+        int j = 0;
+        int k = L;
+        
+        while(i < n1 && j < n2) {
+            if(tempArr[strt1 + i] <= tempArr[strt2 + j]) {
+                arr[k] = tempArr[strt1 + i];
+                i++;
+            } 
+            else {
+                arr[k] = tempArr[strt2 + j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements
+        while(i < n1) {
+            arr[k] = tempArr[strt1 + i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = tempArr[strt2 + j];
+            j++;
+            k++;
+        }
+    }
+
+    // Recursive function to sort an array using merge sort
+    void mergeSort(vector<int>& arr, int L, int R, vector<int>& tempArr) {
+        if(L >= R) return ;
+        int mid = L + (R - L) / 2;
+        
+        // Sort first and second halves recursively.
+        mergeSort(arr, L, mid, tempArr);
+        mergeSort(arr, mid + 1, R, tempArr);
+        
+        // Merge the sorted halves.
+        merge(arr, L, mid, R, tempArr);
+    }
+
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        vector<int> tempArr(nums.size());
+        mergeSort(nums, 0, nums.size() - 1, tempArr);
+        return nums;
+    }
+}; 
