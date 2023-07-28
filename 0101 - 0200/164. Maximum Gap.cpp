@@ -1,3 +1,5 @@
+// APPROACH 1 LINEAR SEARCH
+
 class Solution {
 public:
     int maximumGap(vector<int>& nums) {
@@ -11,6 +13,14 @@ public:
     }
 };
 
+
+// APPROACH 2 STL
+
+
+
+
+
+// APPROACH 3
 
 class Solution {
 public:
