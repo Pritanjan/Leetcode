@@ -118,3 +118,43 @@ public:
 // S.C. --> O(H)
 // since we need to store the paths in separate vectors.
 
+
+
+// OR
+
+
+class Solution {
+public:    
+    vector<TreeNode*> getPath(TreeNode* root, int target){
+        vector<TreeNode*> path;
+        while(root != NULL) { 
+            path.push_back(root);
+            if(root -> val == target) break;
+            if(target > root -> val) root = root -> right;
+            else root = root -> left;
+        }
+        return path;
+    }
+
+    // Function to find the lowest common ancestor in a BST. 
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        // path for node p
+        vector<TreeNode*> pathA = getPath(root, p->val);
+        // path for node q
+        vector<TreeNode*> pathB = getPath(root, q->val);
+        // making a hash set for one of the paths
+        unordered_set<TreeNode*> s(pathA.begin(), pathA.end());
+        // reversing the root to node path
+        reverse(pathB.begin(), pathB.end());
+        // check which node is common in both paths and comes first
+        for (auto node : pathB)
+            if (s.count(node) == 1) return node;
+
+        // If the loop ends without finding a common ancestor
+        // return nullptr or any other appropriate default value
+        return nullptr;
+    }
+};
+
+
+
