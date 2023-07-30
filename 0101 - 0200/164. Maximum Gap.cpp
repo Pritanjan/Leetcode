@@ -14,7 +14,44 @@ public:
 };
 
 
-// APPROACH 2 STL
+// APPROACH 2 BUCKET SORT
+
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        int n = nums.size();
+        if(n < 2) return 0;
+
+        int mi = *min_element(nums.begin(), nums.end());
+        int mx = *max_element(nums.begin(), nums.end());
+
+        // Calculate the size of each bucket and the number of buckets
+        int bucketSize = max(1, (mx - mi) / (n - 1));
+        int numBuckets = (mx - mi) / bucketSize + 1;
+
+        // Initialize buckets with min and max values
+        vector<int> bucketMin(numBuckets, INT_MAX);
+        vector<int> bucketMax(numBuckets, INT_MIN);
+
+        // Distribute elements into buckets
+        for(int i : nums) {
+            int bucketIdx = (i - mi) / bucketSize;
+            bucketMin[bucketIdx] = min(bucketMin[bucketIdx], i);
+            bucketMax[bucketIdx] = max(bucketMax[bucketIdx], i);
+        }
+
+        // Find the maximum difference by comparing neighboring non-empty buckets
+        int maxDiff = 0;
+        int prevMax = mi;
+        for(int i=0; i<numBuckets; i++) {
+            if(bucketMin[i] != INT_MAX) {
+                maxDiff = max(maxDiff, bucketMin[i] - prevMax);
+                prevMax = bucketMax[i];
+            }
+        }
+        return maxDiff;
+    }
+};
 
 
 
@@ -94,3 +131,6 @@ public:
 };
 
 
+
+
+// APPROACH 4 
