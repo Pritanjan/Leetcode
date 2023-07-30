@@ -75,3 +75,36 @@ public:
 
 
 
+// OR
+
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        // store element occurrences in in-order traversa
+        unordered_map<int, int> occurrences;
+        int maxCount = 0;
+
+        // Perform the in-order traversal and update occurrences
+        inOrderTraversal(root, occurrences, maxCount);
+
+        // Collect all elements with the maximum occurrence count
+        vector<int> modes;
+        for(auto& entry : occurrences) {
+            if(entry.second == maxCount) {
+                modes.push_back(entry.first);
+            }
+        }
+        return modes;
+    }
+
+private:
+    void inOrderTraversal(TreeNode* node, unordered_map<int, int>& occurrences, int& maxCount) {
+        if(node == nullptr) return ;
+
+        inOrderTraversal(node -> left, occurrences, maxCount);
+        occurrences[node -> val]++; // Update occurrences
+        maxCount = max(maxCount, occurrences[node -> val]); // Update maxCount
+        inOrderTraversal(node -> right, occurrences, maxCount);
+    }
+};
+
