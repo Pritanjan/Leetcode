@@ -33,7 +33,7 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> freqMap;
-        for(auto num : nums) freqMap[num]++;
+        for(auto i : nums) freqMap[i]++;
 
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // minHeap
         for(auto& entry : freqMap) {
@@ -64,7 +64,7 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> freqMap;
-        for(auto num : nums) freqMap[num]++;
+        for(auto i : nums) freqMap[i]++;
 
         vector<pair<int, int>> v(freqMap.begin(), freqMap.end());
         sort(v.begin(), v.end(), [](pair<int, int>& a, pair<int, int>& b) {
@@ -81,5 +81,37 @@ public:
 
 
 
+
+
+
+// APPROACH 4 Using Hash Map & Buckt Sort
+
+// First, use a hash map to count the frequency of each element in the array.
+// Then, create a vector of buckets where each bucket holds elements with the same frequency.
+// Finally, extract the top K elements from the buckets.
+    
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        int n = nums.size();
+
+        unordered_map<int, int> freqMap;
+        for(auto i : nums) freqMap[i]++;
+
+        vector<vector<int>> v(n+1);
+        for(auto& i : freqMap) {
+            v[i.second].push_back(i.first);
+        }
+
+        vector<int> res;
+        for(int i=n; i>=0 && res.size()<k; --i) {
+            for(int j : v[i]) {
+                res.push_back(j);
+                if(res.size() == k) break;
+            }
+        }
+        return res;
+    }
+};
 
 
