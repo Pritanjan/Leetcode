@@ -23,5 +23,63 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2  Using Hash Map & Min-Heap Priority Queue
+
+// S1 - Use a hash map to count the frequency of each element in the array.
+// S2 - Use a priority queue (min-heap) to keep the top K frequent elements based on their frequencies.
+// S3 - Finally, extract the top K elements from the priority queue.
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> freqMap;
+        for(auto num : nums) freqMap[num]++;
+
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // minHeap
+        for(auto& entry : freqMap) {
+            pq.push({entry.second, entry.first});
+            if(pq.size() > k) pq.pop();
+        }
+
+        vector<int> res;
+        while(!pq.empty()) {
+            res.push_back(pq.top().second);
+            pq.pop();
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// APPROACH 3 Using Hash Map & Sorting
+
+// First, use a hash map to count the frequency of each element in the array.
+// Then, sort the elements based on their frequencies in descending order.
+// Finally, extract the top K elements from the sorted list.
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> freqMap;
+        for(auto num : nums) freqMap[num]++;
+
+        vector<pair<int, int>> v(freqMap.begin(), freqMap.end());
+        sort(v.begin(), v.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.second > b.second;
+        });
+
+        vector<int> res;
+        for(int i=0; i<k; ++i) {
+            res.push_back(v[i].first);
+        }
+        return res;
+    }
+};
+
+
+
+
 
