@@ -1,6 +1,3 @@
-// GFG
-// https://www.geeksforgeeks.org/reverse-words-in-a-given-string/
-
 // APPROACH 1
 
 class Solution {
@@ -44,8 +41,11 @@ public:
 };
 
 
-// APPROACH 2 
 
+
+
+
+// APPROACH 2 
 // THIS CODE DOESENT REMOVE SPACES IN B/W THEM 
 
 class Solution {
@@ -74,6 +74,9 @@ public:
 
 
 
+
+
+// APPROACH 3
 // CORRECT CODE 
 // Reverse words in a given string using the swap operation: FROM GFG
 
@@ -130,6 +133,11 @@ public:
 // S.C. --> O(N)
 
 
+
+
+
+
+// APPROACH 4
 // LAST FROM GFG
 class Solution {
 public:
@@ -159,11 +167,7 @@ public:
 
 
 
-
-
-
-
-
+// APPROACH 5
 
 class Solution {
 public:
