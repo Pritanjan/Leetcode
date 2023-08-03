@@ -104,7 +104,7 @@ public:
 
 
 
-// APPROACH 4 DFS
+// APPROACH 4 Iterative Approach
 
 class Solution {
 public:
