@@ -1,4 +1,21 @@
-// APPROACH 1
+// APPROACH 6 Brute Force
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        for(char c : t) {
+            size_t pos = t.find(c);
+            string temp = t.substr(0, pos) + t.substr(pos+1);
+            if(temp == s) return c;
+        }
+        return '\0'
+    }
+};
+
+
+
+
+// APPROACH 1  Using Sorting and Comparing
 
 class Solution {
 public:
@@ -10,6 +27,7 @@ public:
             if(s[i] != t[i]) return t[i];
         }
         return t[s.size()];
+        // return t.back();
     }    
 };
 
@@ -40,13 +58,15 @@ public:
 // OR
 
 
+// Mathematical Sum
 class Solution {
 public:
     char findTheDifference(string s, string t) {      
-        int S = 0;
-        for(char &ch : t) S += ch;
-        for(char &ch : s) S -= ch;
-        return (char)S;
+        int Sum = 0;
+        for(char &ch : t) Sum += ch;
+        for(char &ch : s) Sum -= ch;
+        return (char)Sum;
+        // return static_cast<char>(sum);
     }
 };
 
@@ -54,8 +74,7 @@ public:
 
 
 
-
-// APPROACH 3 [ Using Character Counts ]
+// APPROACH 3 [ Using Character Counts ]  Hashing
 
 // Count the frequency of characters in both strings.
 // Compare the character counts to find the added letter.
@@ -74,10 +93,28 @@ public:
 
 
 
+// Using Counting Arrays 
+
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        vector<int> v(26, 0);  // char cnt
+        for(char c : s) v[c - 'a']++;
+        for(char c : t) {
+            if(--v[c - 'a'] < 0) {
+                return c;
+            }
+        }
+        return '\0';
+    }
+};
 
 
 
-// APPROACH 4 [ Using Xor]
+
+
+// APPROACH 4 [ Using Xor ] Bit Manipulation:
 
 // XOR all the characters in both strings.
 // The result will be the ASCII value of the added letter.
@@ -92,4 +129,32 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// APPROACH 5 [ Using Set ]
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        unordered_set<char> charSet(s.begin(), s.end());
+        for(char c : t) {
+            if(charSet.find(c) == charSet.end()) return c;
+        }
+        return '\0';        
+    }
+};
+
+
+
+
+
+
+
+
+
+
 
