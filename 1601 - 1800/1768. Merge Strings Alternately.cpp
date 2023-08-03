@@ -1,6 +1,5 @@
 // APPROACH 1 [ Two Pointers ]
 
-
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
@@ -16,18 +15,11 @@ public:
     }
 };
 
-
-
 // T.C. --> O(s1.size() + s2.size() )
 // S.C. --> O(1)
 
 
-
-
-
 // OR
-
-
 
 class Solution {
 public:
@@ -46,14 +38,7 @@ public:
 
 
 
-
-
-
-
-
 // APPROACH 2 [ One Pointers ]
-
-
 
 class Solution {
 public:
@@ -71,10 +56,6 @@ public:
     }
 };
 
-
-
-
-
 //T.C. --> O(s1.size() + s2.size() )
 //S.C. --> O(1)
 
@@ -82,11 +63,7 @@ public:
 
 
 
-
-
-
 // APPROACH 3 [ RECURSION ]
-
 
 class Solution {
 public:
