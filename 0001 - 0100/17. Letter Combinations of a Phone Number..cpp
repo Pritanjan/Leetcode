@@ -133,3 +133,39 @@ public:
 };
 
 
+
+
+
+// APPROACH 5 BIT MANIPULATION
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.empty()) return res;
+
+        unordered_map<char, string> digitToLetters = {
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        int totalCombinations = 1;
+        for(char digit : digits) {
+            totalCombinations *= digitToLetters[digit].size();
+        }
+
+        for(int i=0; i<totalCombinations; ++i) {
+            string combination;
+            int temp = i;
+            for(char digit : digits) {
+                const string& letters = digitToLetters[digit];
+                combination += letters[temp % letters.size()];
+                temp /= letters.size();
+            }
+            res.push_back(combination);
+        }
+        return res;
+    }
+};
+
+
