@@ -106,4 +106,30 @@ public:
 
 // APPROACH 4 DFS
 
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.empty()) return res;
+
+        unordered_map<char, string> digitToLetters = {
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        res.push_back("");
+        for(char digit : digits) {
+            string& letters = digitToLetters.at(digit);
+            vector<string> temp;
+            for(char letter : letters) {
+                for(string& str : res) {
+                    temp.push_back(str + letter);
+                }
+            }
+            res = temp;
+        }
+        return res;
+    }
+};
+
 
