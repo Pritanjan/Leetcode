@@ -169,3 +169,82 @@ public:
 };
 
 
+
+
+
+
+// APPROACH 6 DP/ MEMORIZATION
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.empty()) return res;
+
+        unordered_map<char, string> digitToLetters = {
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        vector<vector<string>> memo(digits.size() + 1);
+        memo[digits.size()] = {""};
+
+        for(int i=digits.size()-1; i>=0; --i) {
+            char digit = digits[i];
+            string& letters = digitToLetters[digit];
+            for(string& prefix : memo[i + 1]) {
+                for(char letter : letters) {
+                    memo[i].push_back(letter + prefix);
+                }
+            }
+        }
+        return memo[0];
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 7 Generating All Possible Combinations
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.empty()) return res;
+
+        unordered_map<char, string> digitToLetters = {
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        vector<int> indices(digits.size(), 0);
+
+        while(true) {
+            string combination;
+            for(int i=0; i<digits.size(); ++i) {
+                combination += digitToLetters[digits[i]][indices[i]];
+            }
+
+            res.push_back(combination);
+
+            int k = digits.size() - 1;
+            while(k >= 0 && indices[k] == digitToLetters[digits[k]].size() - 1) {
+                indices[k] = 0;
+                --k;
+            }
+
+            if(k < 0) break;
+
+            ++indices[k];
+        }
+        return res;
+    }
+};
+
+
+
+
