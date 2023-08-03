@@ -37,6 +37,19 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {      
+        int S = 0;
+        for(char &ch : t) S += ch;
+        for(char &ch : s) S -= ch;
+        return (char)S;
+    }
+};
+
 
 
 
