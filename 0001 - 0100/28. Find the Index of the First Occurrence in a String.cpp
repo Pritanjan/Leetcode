@@ -1,4 +1,7 @@
-// APPROACH 1
+// APPROACH 1 [ Brute Force] 
+
+// Here, we  iterate through each position in the haystack and check if the needle is present
+// starting from that position.
 
 class Solution {
 public:
@@ -109,7 +112,18 @@ public:
 // of the input strings.
 
 
+// OR
 
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        auto it = search(haystack.begin(), haystack.end(), needle.begin(), needle.end());
+        if(it != haystack.end()) {
+            return distance(haystack.begin(), it);
+        }
+        return -1;
+    }
+};
 
 
 
