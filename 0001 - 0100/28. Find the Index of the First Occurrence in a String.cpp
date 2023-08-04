@@ -172,3 +172,87 @@ public:
 
 
 
+
+
+
+// APPROACH 5  [ Rabin-Karp Algorithm ]
+
+class Solution {
+public:
+    const int prime = 101;
+    int strStr(string haystack, string needle) {
+        int m = haystack.length();
+        int n = needle.length();
+        int needleHash = 0, haystackHash = 0;
+        int primePower = 1;
+
+        // Calculate hash of needle and first substring of haystack
+        for(int i=0; i<=m-n; ++i) {
+            if(i == 0) {
+                for(int j=0; j<n; ++j) {
+                    needleHash = (needleHash + needle[n-j-1] * primePower) % prime;
+                    haystackHash = (haystackHash + haystack[n-j-1] * primePower) % prime;
+                    if(j < n-1) primePower = (primePower * prime) % prime;
+                }
+            } 
+            else haystackHash = (prime * (haystackHash - haystack[i-1] * primePower) + haystack[i + n-1]) % prime;
+
+            if(haystackHash == needleHash) {
+                int j;
+                for(j=0; j<n; ++j) {
+                    if(haystack[i + j] != needle[j]) break;
+                }
+                
+                // Found the needle in the haystack
+                if(j == n) return i;  
+            }
+        }
+        return -1;  // Needle not found in haystack        
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 6 [ Boyer-Moore Algorithm ]
+
+class Solution {
+public:
+    int ALPHABET_SIZE = 256;
+    int strStr(string haystack, string needle) {
+        int m = haystack.length();
+        int n = needle.length();
+
+        // Empty needle is always found
+        if(n == 0) return 0; 
+
+        vector<int> v(ALPHABET_SIZE, -1);
+
+        for(int i=0; i<n; ++i) v[needle[i]] = i;
+
+        // Starting index for matching
+        int s = 0;
+        while(s <= m-n) {
+            int j = n-1;
+
+            while(j >= 0 && needle[j] == haystack[s + j]) --j;
+
+            // Found the needle in the haystack
+            if(j < 0) return s;
+
+            // Shift based on bad character rule
+            s += max(1, j - v[haystack[s+j]]);
+        }
+        return -1; // Needle not found in haystack
+    }
+};
+
+
+
+
+
+
+
