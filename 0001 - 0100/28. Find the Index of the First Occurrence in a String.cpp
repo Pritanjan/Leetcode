@@ -1,6 +1,5 @@
 // APPROACH 1
 
-
 class Solution {
 public:
     int strStr(string haystack, string needle) {
@@ -17,25 +16,22 @@ public:
             //  initializing a variable j to 0, which will be used to iterate through the characters
             // of the needle string
             int j = 0;
-                // Now, iterates through each character of the needle string.
-                for(; j<n; j++){
-                    // It checks whether the current character in the haystack string matches the current 
-                    // character in the needle string. If they do not match, the loop is exited using 
-                    // the break statement.
-                    if(haystack[i+j] != needle[j]) break;
-                }
-            
+            // Now, iterates through each character of the needle string.
+            for(; j<n; j++){
+                // It checks whether the current character in the haystack string matches the current 
+                // character in the needle string. If they do not match, the loop is exited using 
+                // the break statement.
+                if(haystack[i+j] != needle[j]) break;
+            }
             // checks whether all characters in the needle string have been matched. 
             // If they have, the function returns the current index i.
-            if(j == n)
-                return i;
+            if(j == n) return i;
         }
         // if the needle string is not found in the haystack string. The function 
         // returns -1 to indicate that the substring was not found.
         return -1;
     }
 };
-
 
 
 // T.C. --> O(m*n), where m & n is the length of the haystack string and needle string.
@@ -49,17 +45,11 @@ public:
 
 
 
-
-
-
-
 // APPROACH 2
-
 
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        
         int m = haystack.size();
         int n = needle.size();
         // initializing an variable i to 0. This variable will be used to iterate through
@@ -75,8 +65,7 @@ public:
             if(haystack[i] == needle[0]){
                 // Now, checks if the substring of haystack starting from the current index i 
                 // and of length n is equal to needle.
-                if(haystack.substr(i,n) == needle)  
-                    return i;
+                if(haystack.substr(i,n) == needle) return i;
                 // returns the index i if the needle string is found in the haystack string.
            }
            // increments the index i to check the next character in the haystack string
@@ -86,8 +75,6 @@ public:
         return -1;
     }
 };
-
-
 
 // T.C. --> O(m*n)
 // The outer while loop will run m - n + 1 tim
@@ -105,10 +92,7 @@ public:
 
 
 
-
-
-
-// APPROACH 3 [ c++ STL ]
+// APPROACH 3 [ C++ STL ]
 
 class Solution {
 public:
@@ -117,16 +101,12 @@ public:
     }
 };
 
-
-
 // T.C. --> O(m*n), where m &n is the length of the haystack string & needle string. 
 // It is the worst-case scenario where every character in the haystack string needs to be
 // compared to the first character of the needle string.
 
 // S.C. --> O(1), It only uses a constant amount of additional memory regardless of the size 
 // of the input strings.
-
-
 
 
 
@@ -144,7 +124,6 @@ public:
 // It then iterates through the haystack string and updates the value of j based on the "next" array.
 // If j equals the length of the needle string, it means a match has been found and the function 
 // returns the starting index of the match
-
 
 class Solution {
 public:
@@ -173,12 +152,8 @@ public:
     }
 };
 
-
-
 // T.C. --> O(m+n)
 // S.C. --> O(n), 
-
-
 
 
 
