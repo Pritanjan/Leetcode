@@ -20,13 +20,13 @@ public:
 
 
 // APPROACH 2
+// Sort the characters of both strings and compare the sorted strings
 
 class Solution {
 public:
     bool isAnagram(string s, string t) {
         sort(s.begin(), s.end());
         sort(t.begin(), t.end());
-        
         return s == t;
     }
 };
@@ -97,7 +97,11 @@ public:
 
 
 
-// APPROACH 4
+
+
+// APPROACH 4 [ Character Counting using Arrays ]
+// Count the frequency of characters in both strings using arrays.
+// Compare the character counts.
 
 class Solution {
 public:
@@ -118,3 +122,21 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) return false;
+
+        int arr[26] = {0};
+
+        for(char c : s) arr[c - 'a']++;
+        for(char c : t) {
+            arr[c - 'a']--;
+            if(arr[c - 'a'] < 0) return false;
+        }
+        return true;
+    }
+};
