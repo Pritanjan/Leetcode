@@ -140,3 +140,66 @@ public:
         return true;
     }
 };
+
+
+
+
+
+
+//  Prime Number Multiplication: WRONG
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()) return false;
+
+        int primes[26] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
+        unsigned long long sPdt = 1, tPdt = 1;
+
+        for(char c : s) sPdt *= primes[c - 'a'];
+        for(char c : t) tPdt *= primes[c - 'a'];
+
+        return sPdt == tPdt;
+    }
+};
+
+
+
+
+// APPROACH 5 Using Multiset
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) return false;
+
+        unordered_multiset<char> ust;
+        for(char c : s) ust.insert(c);
+        for(char c : t) {
+            auto it = ust.find(c);
+            if(it == ust.end()) return false;
+            ust.erase(it);
+        }
+        return ust.empty();
+    }
+};
+
+
+
+
+
+// APPROACH 6 [ Anagram Signature ] WRONG
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int sSum = 0, tSum = 0;
+
+        for(char c : s) sSum += c;
+        for(char c : t) tSum += c;
+        
+        return sSum == tSum;
+    }
+};
+
+
