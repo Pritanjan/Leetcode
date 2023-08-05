@@ -66,6 +66,34 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()) return false;
+
+        unordered_map<char, int> ump; // charracter count
+
+        // Count the frequency of characters in string s
+        for(char c : s) ump[c]++;
+        
+        // Decrement the frequency of characters in string t
+        for(char c : t) {
+            if(ump.find(c) == ump.end() || ump[c] <= 0) return false;
+            ump[c]--;
+        }
+
+        // Check if all character counts are zero
+        for(auto& i : ump) {
+            if(i.second != 0) return false;
+        }
+        return true;
+    }
+};
+
+
 
 
 
