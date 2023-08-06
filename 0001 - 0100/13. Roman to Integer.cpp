@@ -1,9 +1,9 @@
-// https://leetcode.com/problems/roman-to-integer/
+// APPROACH 1 
 
 class Solution {
 public:
     int romanToInt(string s) {
-        int answer{};
+        int ans{};
         // map<char, int> map;
         // map.insert({'I', 1});
         // map.insert({'v', 5});
@@ -23,16 +23,19 @@ public:
             {'M', 1000}
         };
         
-        for(int i=0;i<s.size();i++){
-            if(map[s[i]] < map[s[i+1]])
-                answer -= map[s[i]];
-            else
-                answer += map[s[i]];
+        for(int i=0;i<s.size();i++) {
+            if(map[s[i]] < map[s[i+1]]) ans -= map[s[i]];
+            else ans += map[s[i]];
         }
-        return answer;
+        return ans;
     }
 };
 
+
+
+
+
+// APPROACH 2 
 
 class Solution {
 public:
@@ -72,18 +75,17 @@ public:
         }
         return ans;
     }
+
     int romanToInt(string s) {
         int n = s.size();
         int ans = 0;
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n; i++) {
             char ch = s.at(i);
             int c = findVal(ch);
-            
-            if(i < n-1 and c < findVal(s.at(i+1))) 
-                ans -= c;
-            else
-                ans += c;
+            if(i < n-1 and c < findVal(s.at(i+1))) ans -= c;
+            else ans += c;
         }
         return ans;
     }
 };
+
