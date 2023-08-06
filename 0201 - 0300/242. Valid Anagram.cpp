@@ -129,9 +129,7 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         if (s.length() != t.length()) return false;
-
         int arr[26] = {0};
-
         for(char c : s) arr[c - 'a']++;
         for(char c : t) {
             arr[c - 'a']--;
@@ -142,6 +140,23 @@ public:
 };
 
 
+
+// OR
+
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()) return false;
+        vector<int> freq(256, 0);
+        for(char c : s) freq[c]++;
+        for(char c : t) freq[c]--;
+        for(int f : freq) {
+            if(f != 0) return false;
+        }
+        return true;
+    }
+};
 
 
 
@@ -194,12 +209,15 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         int sSum = 0, tSum = 0;
-
         for(char c : s) sSum += c;
         for(char c : t) tSum += c;
-        
         return sSum == tSum;
     }
 };
 
+
+
+
+
+// APPROACH 7 
 
