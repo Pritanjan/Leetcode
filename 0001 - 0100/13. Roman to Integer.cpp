@@ -1,3 +1,32 @@
+// APPROACH 2 [ Map and Linear Scanning ]
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> ump = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
+        int res = ump[s[0]];
+        for(int i=1; i<s.length(); ++i) {
+            if(ump[s[i]] > ump[s[i-1]]) res += ump[s[i]] - 2 * ump[s[i-1]];
+            else res += ump[s[i]];
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
 // APPROACH 1 [ Map and Reverse Scanning ]
 
 class Solution {
@@ -32,32 +61,6 @@ public:
 };
 
 
-
-
-
-// APPROACH 2 [ Map and Linear Scanning ]
-
-class Solution {
-public:
-    int romanToInt(string s) {
-        unordered_map<char, int> ump = {
-            {'I', 1},
-            {'V', 5},
-            {'X', 10},
-            {'L', 50},
-            {'C', 100},
-            {'D', 500},
-            {'M', 1000}
-        };
-
-        int res = ump[s[0]];
-        for(int i=1; i<s.length(); ++i) {
-            if(ump[s[i]] > ump[s[i-1]]) res += ump[s[i]] - 2 * ump[s[i-1]];
-            else res += ump[s[i]];
-        }
-        return res;
-    }
-};
 
 
 
