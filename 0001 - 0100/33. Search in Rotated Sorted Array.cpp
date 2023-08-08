@@ -112,3 +112,48 @@ public:
     }
 };
 
+
+
+
+// APPROACH 3 [ Binary Search with Rotation Point Identification ]
+
+// Identify the rotation point (pivot index) using a binary search.
+// Split the array into two sorted subarrays.
+// Choose the correct subarray to perform a binary search for the target 
+
+
+class Solution {
+public:        
+    int findRotationPoint(vector<int>& nums) {
+        int L = 0;
+        int R = nums.size() - 1;
+
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            if(nums[mid] > nums[R]) L = mid + 1;
+            else R = mid;
+        }
+        return L;
+    }
+
+    int search(vector<int>& nums, int target) {
+        int rp = findRotationPoint(nums);   // rotationPoint
+        int L = 0;
+        int R = nums.size() - 1;
+
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            int rm = (mid + rp) % nums.size();  // rotatedMid 
+
+            if(nums[rm] == target) return rm;
+            if(nums[rm] < target) L = mid + 1;
+            else R = mid - 1;
+        }
+        return -1;
+    }
+};
+
+
+
+
+// 
