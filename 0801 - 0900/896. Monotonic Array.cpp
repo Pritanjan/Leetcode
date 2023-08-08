@@ -10,7 +10,7 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 [ Comparing with Previous Element]
 
 class Solution {
 public:
@@ -20,9 +20,9 @@ public:
         for(int i=0; i<nums.size()-1; i++){
             if(nums[i] > nums[i+1]) increase = false;
             if(nums[i] < nums[i+1]) decrease = false;
-            if(increase == false && decrease == false) return false;
+            // if(increase == false && decrease == false) return false;
         }
-        return true;
+        return increase or decrease;
     }
 };
 
@@ -30,8 +30,22 @@ public:
 
 
 
-// APPROACH 3
 
+// APPROACH 3 Use Set
+// use a set to track the signs of differences between consecutive elements. 
+// If the size of the set is less than or equal to 2, then the array is monotonic.
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        set<int> st;
+        for(int i=1; i<nums.size(); ++i) {
+            int diff = nums[i] - nums[i - 1];
+            if(diff != 0) st.insert(diff > 0 ? 1 : -1);
+        }
+        return st.size() <= 1;
+    }
+};
 
 
 
