@@ -34,27 +34,6 @@ public:
 // OR
 
 
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        int L = 0, R = nums.size() - 1;
-        
-        while(L <= R) {
-            int mid = L + (R - L) / 2;
-            if(nums[mid] == target) return mid;
-            if(nums[mid] >= nums[L]) {
-                if(target >= nums[L] && target < nums[mid]) R = mid - 1;
-                else L = mid + 1;
-            } 
-            else {
-                if(target > nums[mid] && target <= nums[R]) L = mid + 1;
-                else R = mid - 1;
-            }
-        }        
-        return -1;
-    }
-};
-
 // We need to modify the condition to decide whether to go left or right based on whether the mid 
 // element is greater or less than the first element of the array.
 
@@ -156,4 +135,27 @@ public:
 
 
 
-// 
+// APPROACH 4 [ Modified Binary Search with Direct Comparison ]
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int L = 0, R = nums.size() - 1;
+        
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            if(nums[mid] == target) return mid;
+            if(nums[mid] >= nums[L]) {
+                if(target >= nums[L] && target < nums[mid]) R = mid - 1;
+                else L = mid + 1;
+            } 
+            else {
+                if(target > nums[mid] && target <= nums[R]) L = mid + 1;
+                else R = mid - 1;
+            }
+        }        
+        return -1;
+    }
+};
+
+
