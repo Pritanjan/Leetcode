@@ -151,4 +151,70 @@ public:
 
 
 
-// APPROACH 4 
+// APPROACH 4 [ Recursive]
+
+class Solution {
+public:
+    int recursive(string s, unordered_map<char, int>& roman) {
+        if(s.empty()) return 0;
+
+        int val = roman[s.front()];
+        if(s.length() > 1 && roman[s[1]] >  val) return recursive(s.substr(1), roman) - val;
+        else return val + recursive(s.substr(1), roman);
+    }
+
+    int romanToInt(string s) {
+        unordered_map<char, int> ump = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+        return recursive(s, ump);
+    }
+};
+
+
+
+
+
+
+// APPROACH 5 [ Precompute All Possible Values ]
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> v = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
+        int res = 0;
+        int prevVal = 0;
+
+        for(int i=s.length()-1; i>=0; --i) {
+            int currVal = v[s[i]];
+
+            if(currVal >= prevVal) res += currVal;
+            else res -= currVal;
+
+            prevVal = currVal;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+
