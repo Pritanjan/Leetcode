@@ -23,8 +23,7 @@ public:
         int r = nums.size() - 1;
         while(l < r){
             int mid = l + (r-l) / 2;
-            // if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])) l = mid + 1;
-            if(nums[mid] > nums[r]) l = mid + 1;
+            if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])) l = mid + 1;
             else r = mid;
         }
         return l==r &&  nums[l] == target ? l : -1;
