@@ -1,4 +1,7 @@
-// APPROACH 1
+// APPROACH 1 [ Splitting the String ]
+
+// Split the input string into words using space as a delimiter.
+// Find the last non-empty word after splitting and return its length.
 
 class Solution {
 public:
@@ -30,5 +33,22 @@ public:
         return size;
     }
 };
+
+
+
+
+// A3 [ 2 POINTER ]
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int R = s.length() - 1;
+        while(R >= 0 && s[R] == ' ') R--;
+        int L = R;
+        while(L >= 0 && s[L] != ' ') L--;
+        return R - L;
+    }
+};
+
 
 
