@@ -60,3 +60,26 @@ public:
 
 
 // APPROACH 4
+
+class Solution {
+public:
+    bool canMakeArithmeticProgression(vector<int>& arr) {
+        int n = arr.size();
+        unordered_set<int> ust(arr.begin(), arr.end());
+
+        int mi = *min_element(arr.begin(), arr.end());
+        int mx = *max_element(arr.begin(), arr.end());
+        // int diff = (mx - mi) / (n-1);        
+        int diff = round(static_cast<double>(mx - mi) / (n - 1));
+        
+        for(int i=0; i<n; ++i) {
+            if(ust.find(mi + i * diff) == ust.end()) {
+                return false;
+            }
+        }        
+        return true;
+    }
+};
+
+
+
