@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ SORT & FLAG ]
 
 class Solution {
 public:
@@ -16,6 +16,9 @@ public:
         else return false;
     }
 };
+
+
+
 
 
 // APPROACH 2 [ Sorting and Checking Differences ]
@@ -42,7 +45,9 @@ public:
 
 
 
-// APPROACH 3 Usig Set
+
+
+// APPROACH 3 [ Usig Set ]
 
 class Solution {
 public:
@@ -59,7 +64,9 @@ public:
 
 
 
-// APPROACH 4
+
+
+// APPROACH 4 [ WITHOUT USING SORTING ]
 
 class Solution {
 public:
@@ -80,6 +87,9 @@ public:
         return true;
     }
 };
+
+
+
 
 
 
