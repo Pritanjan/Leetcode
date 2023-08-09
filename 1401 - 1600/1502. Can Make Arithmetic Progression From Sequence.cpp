@@ -18,8 +18,12 @@ public:
 };
 
 
-// APPROACH 2
+// APPROACH 2 [ Sorting and Checking Differences ]
 
+// Sort the array in ascending order. 
+// Calculate the common difference between the first two elements. 
+// Iterate through the sorted array and check if the differences between consecutive elements are equal
+// to the calculated common difference.
 
 class Solution {
 public:
