@@ -42,5 +42,21 @@ public:
 
 
 
-// APPROACH 3
+// APPROACH 3 Usig Set
 
+class Solution {
+public:
+    bool canMakeArithmeticProgression(vector<int>& arr) {
+        sort(arr.begin(), arr.end());  // Sort the array
+        unordered_set<int> ust;
+        for(int i=1; i<arr.size(); ++i) {
+            ust.insert(arr[i] - arr[i - 1]);
+        }
+        return ust.size() == 1;
+    }
+};
+
+
+
+
+// APPROACH 4
