@@ -36,6 +36,37 @@ public:
 };
 
 
+// Same as above
+
+
+class Solution {
+public:
+    bool pairs(vector<int>& nums, int p, int maxDiff) {
+        int cnt = 0;
+        int n = nums.size();
+        for(int i=1; i<n; i++) {
+            if(nums[i] - nums[i-1] <= maxDiff) {
+                cnt++;
+                i++;
+            }
+        }
+        return cnt >= p;
+    }
+    
+    int minimizeMax(vector<int>& nums, int p) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int L = 0;
+        int R = nums.back() - nums.front();
+        
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            if(pairs(nums, p, mid)) R = mid;
+            else L = mid + 1;
+        }
+        return L;
+    }
+};
 
 
 
