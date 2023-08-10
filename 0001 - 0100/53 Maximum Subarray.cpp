@@ -5,7 +5,6 @@ public:
     int maxSubArray(vector<int>& nums) {
         int n = nums.size();
         int mx = INT_MIN;
-        
         for(int i=0; i<n; ++i) {
             for(int j=i; j<n; ++j) {
                 int sum = 0;
@@ -23,7 +22,29 @@ public:
 
 
 
-// APPROACH 1 [ Kadane's Algorithm ]
+
+
+// APPROACH 2 [ OPTIMISING APPROACH 1 ]
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        int mx = INT_MIN;
+        for(int i=0; i<n; ++i) {
+            int sum = 0;
+            for(int j=i; j<n; ++j) {
+                sum += nums[j];
+                mx = max(mx, sum);
+            }
+        }        
+        return mx;
+    }
+};
+
+ 
+
+// APPROACH 3 [ Kadane's Algorithm ]
 
 // Iterate through the array, keeping track of the current sum (Sum).
 // Update the maximum sum (maxSum) if currentSum is greater.
@@ -33,7 +54,7 @@ public:
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-       int sum=0, ma = nums[0] ;
+       int sum = 0, ma = nums[0] ;
 	    
        for(int i=0; i<nums.size(); i++){
             // step 1 add new elements
@@ -55,7 +76,8 @@ public:
 
 
 
-// APPROACH 2 [ DP ]
+
+// APPROACH 4 [ DP ]
 
 // Create an array dp of the same size as the input array.
 // dp[i] shows maximum sum of a subarray ending at index i.
@@ -78,4 +100,48 @@ public:
         return mx;
     }
 };
+
+
+
+
+
+
+// APPROACH 5 [ Divide and Conquer ]
+
+class Solution {
+public:
+    int f(vector<int>& nums, int L, int R) {
+        if(L == R) return nums[L];
+                
+        int mid = L + (R-L) / 2;
+        int Lmx = f(nums, L, mid);
+        int Rmx = f(nums, mid+1, R);
+        
+        int leftBorderMax = INT_MIN;
+        int sum = 0;
+        for(int i=mid; i>=L; --i) {
+            sum += nums[i];
+            leftBorderMax = max(leftBorderMax, sum);
+        }
+        
+        int rightBorderMax = INT_MIN;
+        sum = 0;
+        for(int i=mid+1; i<=R; ++i) {
+            sum += nums[i];
+            rightBorderMax = max(rightBorderMax, sum);
+        }        
+        return max(max(Lmx, Rmx), leftBorderMax + rightBorderMax);
+    }     
+    
+    int maxSubArray(vector<int>& nums) {
+        return f(nums, 0, nums.size() - 1);    
+    }
+};
+
+
+
+
+
+// APPROACH 6
+
 
