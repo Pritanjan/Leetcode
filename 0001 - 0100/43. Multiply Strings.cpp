@@ -1,4 +1,4 @@
-// APPROACH 1 
+// APPROACH 1 [ Multiplication ]
 
 class Solution {
 public:
@@ -34,6 +34,42 @@ public:
 
 
 
+// OR
+
+
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        int m = num1.size();
+        int n = num2.size();
+        vector<int> res(m+n, 0);
+
+        for(int i=m-1; i>=0; i--) {
+            for(int j=n-1; j>=0; j--) {
+                int pdt = (num1[i] - '0') * (num2[j] - '0');
+                int sum = pdt + res[i + j + 1];
+                res[i + j + 1] = sum % 10;
+                res[i + j] += sum / 10;
+            }
+        }
+
+        string s;
+        for(int i : res) {
+            if(!(s.empty() && i == 0)) {
+                s.push_back(i + '0');
+            }
+        }
+        return s.empty() ? "0" : s;
+    }
+};
+
+
+
+
+
 
 // APPROACH 2
+
+
+
 
