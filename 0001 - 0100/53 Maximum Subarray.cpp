@@ -1,3 +1,28 @@
+// APPROACH 1 [ BRUTE FORCE ]
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        int mx = INT_MIN;
+        
+        for(int i=0; i<n; ++i) {
+            for(int j=i; j<n; ++j) {
+                int sum = 0;
+                for(int k=i; k<=j; ++k) {
+                    sum += nums[k];
+                }
+                mx = max(mx, sum);
+            }
+        }        
+        return mx;
+    }
+};
+
+// T.C. - O(N^3)
+
+
+
 // APPROACH 1 [ Kadane's Algorithm ]
 
 // Iterate through the array, keeping track of the current sum (Sum).
