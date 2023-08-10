@@ -142,6 +142,24 @@ public:
 
 
 
-// APPROACH 6
+// APPROACH 6 [ DP with Prefix Sum ]
 
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) { 
+        int n = nums.size();        
+        if(n == 0) return 0;
+                
+        int mx = nums[0];
+        int minPrefixSum = 0; // Initialize with 0 as the minimum prefix sum
+        int currentPrefixSum = 0;
+        
+        for(int i=0; i<n; ++i) {
+            currentPrefixSum += nums[i];
+            mx = max(mx, currentPrefixSum - minPrefixSum);
+            minPrefixSum = min(minPrefixSum, currentPrefixSum);
+        }        
+        return mx;
+    }
+};
 
