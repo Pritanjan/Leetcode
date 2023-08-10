@@ -50,7 +50,7 @@ public:
 
 
 
-// APPROACH 3
+// APPROACH 3  Simple Addition
 
 class Solution {
 public:
