@@ -117,4 +117,27 @@ public:
 
 
 
+// APPROACH 5 RECURSON
+
+class Solution {
+public:
+    void recursive(vector<int> &digits, int idx){
+        if(idx < 0) {
+            digits.insert(digits.begin(), 1);
+            return ;
+        }
+        if(digits[idx] == 9) {
+            digits[idx] = 0;
+            recursive(digits, idx-1);
+        }
+        else digits[idx] += 1;
+    }
+
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        recursive(digits, n-1);
+        return digits;
+    }
+};
+
 
