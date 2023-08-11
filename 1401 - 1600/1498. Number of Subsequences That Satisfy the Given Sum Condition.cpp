@@ -1,32 +1,3 @@
-// APPROACH 0 Brute Force with Bitmasking
-
-class Solution {
-public:
-    const int MOD = 1e9 + 7;
-    int numSubseq(vector<int>& nums, int target) {
-        int n = nums.size();
-        int Cnt = 0;
-        
-        for(int j=0; j<(1 << n); ++j) {
-            int mi = INT_MAX, mx = INT_MIN;
-            for(int i=0; i<n; ++i) {
-                if((j >> i) & 1) {
-                    mi = min(mi, nums[i]);
-                    mx = max(mx, nums[i]);
-                }
-            }
-            if(mi + mx <= target) {
-                cnt = (cnt+1) % MOD;
-            }
-        }        
-        return cnt;
-    }
-};
-
-
-
-
-
 // APPROACH 1 Sorting and Two Pointers
 
 class Solution {
