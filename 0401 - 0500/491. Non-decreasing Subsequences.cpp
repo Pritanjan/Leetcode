@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 backtrack
 
 class Solution {
 public:
@@ -31,6 +31,33 @@ public:
 
 
 class Solution {
+public:
+    void backtrack(vector<int>& nums, int idx, vector<int>& curr, vector<vector<int>>& res) {
+        if(curr.size() >= 2) res.push_back(curr);
+        
+        for(int i=idx; i<nums.size(); ++i) {
+            if(i > idx && nums[i] == nums[i-1]) continue;
+            if(curr.empty() || nums[i] >= curr.back()) {
+                curr.push_back(nums[i]);
+                backtrack(nums, i+1, curr, res);
+                curr.pop_back();
+            }
+        }
+    }
+
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> curr;
+        backtrack(nums, 0, curr, res);
+        return res;
+    }
+};
+
+
+// OR
+
+
+class Solution {
 public:    
     vector<vector<int>> findSubsequences(vector<int>& nums) {
         vector<vector<int>> res;
@@ -52,4 +79,42 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// APPROACH 2 Bitmasking
+
+class VectorCompare {
+public:
+    bool operator()(const vector<int>& a, const vector<int>& b) const {
+        return a.size() < b.size() || (a.size() == b.size() && a < b);
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        vector<vector<int>> res;
+        int n = nums.size();
+
+        set<vector<int>, VectorCompare> uniqueSubsequences;
+
+        for(int mask=0; mask<(1 << n); ++mask) {
+            vector<int> subsequence;
+            for(int i=0; i<n; ++i) {
+                if(mask & (1 << i)) {
+                    if(subsequence.empty() || nums[i] >= subsequence.back()) subsequence.push_back(nums[i]);
+                }
+            }
+            if(subsequence.size() >= 2) uniqueSubsequences.insert(subsequence);
+        }
+
+        for(const auto& i : uniqueSubsequences) res.push_back(i);
+        return res;
+    }
+};
+
 
