@@ -1,7 +1,8 @@
+// APPROACH 1 Sorting and Two Pointers
+
 class Solution {
 public:          
     const int MOD = 1e9 + 7;
-
     int numSubseq(vector<int>& nums, int target) {
         int n = nums.size();
         sort(nums.begin(), nums.end());
@@ -33,4 +34,66 @@ private:
         return result;
     }
 };
+
+
+// OR
+
+
+class Solution {
+public:
+    const int MOD = 1e9 + 7;
+    int numSubseq(vector<int>& nums, int target) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        
+        int L = 0, R = n-1;
+        long long ans = 0;
+        
+        vector<int> powers(n, 1);
+        for(int i=1; i<n; ++i) {
+            powers[i] = (powers[i-1] * 2) % MOD;
+        }
+        
+        while(L <= R) {
+            if(nums[L] + nums[R] <= target) {
+                ans = (ans + powers[R-L]) % MOD;
+                L++;
+            } 
+            else {
+                R--;
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+// APPROACH 2 Binary Search
+
+class Solution {
+public:
+    const int MOD = 1e9 + 7;
+    int numSubseq(vector<int>& nums, int target) {
+        int n = nums.size();
+        int cnt = 0;
+        
+        sort(nums.begin(), nums.end());
+        vector<int> powers(n, 1);
+        for(int i=1; i<n; ++i) {
+            powers[i] = (powers[i-1] * 2) % MOD;
+        }
+        
+        for(int i=0; i<n; ++i) {
+            int mx = target - nums[i];
+            int j = upper_bound(nums.begin(), nums.end(), mx) - nums.begin() - 1;
+            if(j >= i) cnt = (cnt + powers[j-i]) % MOD;
+        }   
+        return cnt;
+    }
+};
+
+
 
