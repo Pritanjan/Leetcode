@@ -54,4 +54,22 @@ public:
 
 // APPROACH 2
 
+class Solution {
+public:
+    int dfs(ListNode* head) {
+        if(head == nullptr) return 0;
+        head -> val = head -> val << 1 |dfs(head -> next);
+        if(head -> val < 10)return 0;
+        else {
+            head -> val -= 10;
+            return 1;
+        }
+    }
+
+    ListNode* doubleIt(ListNode* head) {
+        if(dfs(head)) head =new ListNode(1, head);
+        return head;
+    }
+};
+
 
