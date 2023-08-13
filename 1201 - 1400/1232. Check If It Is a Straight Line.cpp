@@ -1,35 +1,12 @@
 // APPROACH 1
 
-
 class Solution {
 public:
     bool checkStraightLine(vector<vector<int>>& coordinates) {
-        int y = coordinates[1][1] - coordinates[0][1];
-        int x = coordinates[1][0] - coordinates[0][0];
+        int n = coordinates.size();
         
-        for(int i=2; i<coordinates.size(); i++){
-            if(  x * (coordinates[i][1] - coordinates[0][1]) !=  y * (coordinates[i][0] - coordinates[0][0]))
-                return false;
-        }
-        return true;
-    }
-};
-
-
-
-
-
-// APPROACH 1
-
-
-class Solution {
-public:
-    bool checkStraightLine(vector<vector<int>>& coordinates) {
-         int n = coordinates.size();
-    
-        if(n <= 2) {
-            return true; // If there are 0 or 1 points, they always form a straight line
-        }
+        // If there are 0 or 1 points, they always form a straight line
+        if(n <= 2) return true;
         
         // Calculate the slope between the first two points
         int x0 = coordinates[0][0];
