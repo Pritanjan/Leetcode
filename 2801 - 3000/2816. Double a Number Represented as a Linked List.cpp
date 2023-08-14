@@ -49,6 +49,39 @@ public:
 
 
 
+// OR
+
+
+
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        vector<int> v;
+        while (head != nullptr) {
+            v.push_back(head -> val);
+            head = head -> next;
+        }
+        
+        int carry = 0;
+        for(int i=v.size()-1; i>=0; i--) {
+            v[i] = 2 * v[i] + carry;
+            carry = v[i] / 10;
+            v[i] = v[i] % 10;
+        }
+        
+        if (carry) v.insert(v.begin(), carry);
+        ListNode* ans = new ListNode(v[0]);
+        ListNode* curr = ans;
+        for(int i=1; i<v.size(); i++) {
+            curr -> next = new ListNode(v[i]);
+            curr = curr -> next;
+        }
+        return ans;
+    }
+};
+
+
+
 
 
 
