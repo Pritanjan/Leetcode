@@ -38,6 +38,43 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 RECURSIO 
+
+class Solution {
+public:      
+    ListNode* partition(ListNode* head, int x) {
+        if(head == nullptr || head -> next == nullptr) return head;
+        ListNode* smaller = partition(head -> next, x);
+        if(head -> val < x) {
+            head -> next = smaller;
+            return head;
+        }
+        else {
+            ListNode* curr = smaller;
+            ListNode* prev = nullptr;
+            while(curr != nullptr and curr -> val < x){
+                prev = curr;
+                curr = curr -> next;
+            }
+            
+            if(prev != nullptr) {
+                ListNode* temp = prev -> next;
+                prev -> next = head;
+                head -> next = temp;
+            } 
+            else {
+                head -> next = smaller;
+                return head;
+            }          
+            return smaller;
+        }
+    }
+};
+
+
+
+
+
+// APPROACH 3
 
 
