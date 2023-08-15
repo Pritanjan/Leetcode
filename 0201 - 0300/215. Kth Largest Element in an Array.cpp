@@ -18,6 +18,8 @@ public:
 
 
 
+
+
 // APPROACH 2 MIN-heap priortiy queue
 
 class Solution {
@@ -36,6 +38,8 @@ public:
 
 
 
+
+
 // APPROACH 3
 
 class Solution {
@@ -45,6 +49,8 @@ public:
         return nums[k-1];
     }
 };
+
+
 
 
 
@@ -63,6 +69,8 @@ public:
 
 
 
+
+
 // APPROACH 5 
 
 class Solution {
@@ -73,6 +81,8 @@ public:
         return arr[n-k];
     }
 };
+
+
 
 
 
@@ -103,6 +113,41 @@ public:
     }
 };
 
+
+
+
+
+
+// APPROACH 7 QUICKSELECET 
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        return quickSelect(nums, 0, nums.size() - 1, k);
+    }
+
+private:
+    int quickSelect(vector<int>& nums, int L, int R, int k) {
+        int pivotIdx = partition(nums, L, R);
+        if(pivotIdx == k-1) return nums[pivotIdx];
+        else if(pivotIdx < k-1) return quickSelect(nums, pivotIdx+1, R, k);
+        else return quickSelect(nums, L, pivotIdx-1, k);
+    }
+
+    int partition(vector<int>& nums, int L, int R) {
+        int pivot = nums[L];
+        int L1 = L+1;
+        int R1 = R;
+        while (L1 <= R1) {
+            if(nums[L1] < pivot && nums[R1] > pivot) swap(nums[L1++], nums[R1--]);
+            if(nums[L1] >= pivot) L1++;
+            if(nums[R1] <= pivot) R1--;
+        }
+
+        swap(nums[L], nums[R1]);
+        return R1;
+    }
+};
 
 
 
