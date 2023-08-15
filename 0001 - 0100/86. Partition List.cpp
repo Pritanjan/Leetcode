@@ -1,15 +1,5 @@
-// https://leetcode.com/problems/partition-list/solutions/212538/partition-list/
+// APPROACH 1
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
@@ -29,14 +19,12 @@ public:
             }
             head = head -> next;
         }
-
         greater -> next = NULL;
         smaller -> next = high -> next;
 
         return less -> next; 
     }
 };
-
 
 // Time Complexity: O(N), where NNN is the number of nodes in the original linked list and
 // we iterate the original list.
@@ -46,5 +34,10 @@ public:
 // extra space as such.
 
 
+
+
+
+
+// APPROACH 2
 
 
