@@ -58,7 +58,46 @@ public:
 
 
 
-// APPROACH 3
+// APPROACH 3  Using a Circular Buffer
+
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        vector<int> v(operations.size(), 0);
+        int idx = 0;
+        
+        for(string& op : operations) {
+            int n = v.size();
+            if(op == "+") {
+                v[idx] = v[(idx-1 + n) % n] + v[(idx-2 + n) % n];
+                idx = (idx + 1) % n;
+            } 
+            else if(op == "D") {
+                v[idx] = 2 * v[(idx - 1 + n) % n];
+                idx = (idx + 1) % n;
+            }
+            else if(op == "C") {
+                idx = (idx - 1 + n) % n;
+                v[idx] = 0;
+            }
+            else {
+                v[idx] = stoi(op);
+                idx = (idx + 1) % n;
+            }
+        }
+        
+        int res = 0;
+        for(int i : v) {
+            res += i;
+        }        
+        return res;
+    }
+};
 
 
+
+
+
+
+// APPROACH 4
 
