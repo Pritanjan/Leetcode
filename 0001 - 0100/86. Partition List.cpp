@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 Create Two Separate Lists:
 
 class Solution {
 public:
@@ -75,6 +75,36 @@ public:
 
 
 
-// APPROACH 3
+// APPROACH 3  In-Place Rearrangement:
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* insertPos = dummy;
+        ListNode* curr = head;
+        ListNode* prev = dummy;
+
+        while(curr != nullptr) {
+            if(curr -> val < x) {
+                if(insertPos != prev) {
+                    prev -> next = curr -> next;
+                    curr -> next = insertPos -> next;
+                    insertPos -> next = curr;
+                }
+                else prev = curr;
+
+                insertPos = curr;
+                curr = prev->next;
+            } 
+            else {
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+        return dummy -> next;
+    }
+};
 
 
