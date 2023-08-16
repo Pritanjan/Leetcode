@@ -3,8 +3,7 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int count = 0;
-        
+        int count = 0;        
 	// Count zero 
         for(int i=0; i<nums.size(); i++) count += (nums[i] == 0);
                 
@@ -35,16 +34,14 @@ public:
 // interviewer(not code) the above and build your base for the next Optimal Solution.
 
 
-
-
 // OR
+
 
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         int zeroesCount = 0;
         vector<int> res(nums.size(), 0);
-        
         for(auto i : nums) {
             if(i != 0) {
                 res[zeroesCount] = i;
@@ -69,6 +66,26 @@ public:
                 swap(nums[j],nums[i]);
                 j++;
             }
+        }
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int L = 0;
+        int R = 0;
+        while(R < n) {
+            if(nums[R] != 0) {
+                swap(nums[L], nums[R]);
+                L++;
+            }
+            R++;
         }
     }
 };
