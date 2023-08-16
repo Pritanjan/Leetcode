@@ -1,35 +1,35 @@
-// https://leetcode.com/problems/baseball-game/
+// APPROACH 1
 
 class Solution {
 public:
-    int calPoints(vector<string>& ops) {
-        stack<int> st;
-        for(string &s : ops)  {
-            if(s == "+"){
-                int a = st.top();
-                st.pop();
-                int b = st.top();
-                int add = a + b;
-                st.push(a);
-                st.push(add);
+    int calPoints(vector<string>& operations) {
+        stack<int> scores;
+        for(string& op : operations) {
+            if(op == "+") {
+                int top = scores.top();
+                scores.pop();
                 
-            }
-            else if(s == "D"){
-                int a = st.top();
-                st.push(2*a);
-            }
-            else if(s == "C")
-                st.pop();
-            else
-                st.push(stoi(s));
-            
+                int newScore = top + scores.top();
+                scores.push(top);
+                scores.push(newScore);
+            } 
+            else if(op == "D") scores.push(2 * scores.top());
+            else if (op == "C") scores.pop();
+            else scores.push(stoi(op));
         }
-        int ans = 0;
         
-        while(!st.empty()){
-            ans+=st.top();
-            st.pop();
-        }
-        return ans;
+        int res = 0;
+        while(!scores.empty()) {
+            res += scores.top();
+            scores.pop();
+        }        
+        return res;        
     }
 };
+
+
+
+
+
+// APPROACH 2
+
