@@ -44,6 +44,37 @@ public:
 };
 
 
+// T.C.  --  O(n log n) due to the sorting step.
+
+
+
+
+
+
+
+// APPROACH 3  2 POINTER
+
+// Sort the array in ascending order and then use a two-pointer approach to find the largest valid triangle perimeter.
+
+class Solution {
+public:
+    int largestPerimeter(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        for(int i=n-1; i>=2; --i) {
+            int a = nums[i];
+            int b = nums[i-1];
+            int c = nums[i-2];
+            
+            if(a < b + c) return a + b + c;
+        }        
+        return 0;
+    }
+};
+
+// T.C.  --  O(n log n) due to the sorting step.
+
+
 
 
 
