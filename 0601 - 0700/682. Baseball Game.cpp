@@ -55,6 +55,42 @@ public:
 
 
 
+// OR
+
+
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        int sum = 0;
+        vector<int> v;
+        for(size_t i=0; i<ops.size(); ++i) {
+            if(ops[i] == "+") {
+                int val1 = v[v.size() - 1];
+                int val2 = v[v.size() - 2];
+                sum += val1 + val2;
+                v.push_back(val1 + val2);
+            }
+            else if(ops[i] == "C") {
+                sum -= v.back();
+                v.pop_back();
+            }
+            else if(ops[i] == "D") {
+                int tmp = v.back() * 2;
+                sum += tmp;
+                v.push_back(tmp);
+            }
+            else {
+                int num;
+                istringstream(ops[i]) >> num;
+                sum += num;
+                v.push_back(num);
+            }
+        }        
+        return sum;
+    }
+};
+
+
 
 
 
