@@ -23,16 +23,13 @@ class Solution {
 public:
     void sortColors(vector<int>& a) {
         int L = 0;
-        int n = a.size();
-        int R = n-1;
+        int R = a.size() - 1;
         int mid = 0;
         
-        while(mid <= R ){
+        while (mid <= R){
             switch(a[mid]){
-                case 0 : {
-                    swap(a[L], a[mid]);
-                    L++;
-                    mid++;
+                case 0 :{
+                    swap(a[L++], a[mid++]);
                     break;
                 }
                 case 1 : {
@@ -40,14 +37,16 @@ public:
                     break;
                 }
                 case 2 : {
-                    swap(a[mid], a[R]);
-                    R--;
+                    swap(a[mid], a[R--]);
                     break;
-                }   
+                }
             }
         }
     }
 };
+
+// https://leetcode.com/problems/sort-colors/discuss/1981035/c-solution
+
 
 
 
