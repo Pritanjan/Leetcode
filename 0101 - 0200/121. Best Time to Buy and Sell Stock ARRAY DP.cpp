@@ -1,7 +1,4 @@
-//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/2346634/C%2B%2B-2-Solution-with-Explanation
-
-// approach 1
-
+// APPROACH 1
 
 class Solution {
 public:
@@ -16,7 +13,6 @@ public:
     }
 };
 
-
 // The approach is to iterate through the prices and keep track of the minimum price
 // seen so far and the maximum profit seen so far.
 // We update the minimum price if we see a lower price, and
@@ -28,8 +24,9 @@ public:
 
 
 
-// approach 2
 
+
+// APPROACH 2
 
 class Solution {
 public:
@@ -37,14 +34,14 @@ public:
         int maxPr = 0;
         int L = 0;
         int R = 1;
-        while(R < pr.size()){
-            if(pr[L] < pr[R])
-                maxPr = max(maxPr, pr[R] - pr[L]);
-            else
-                L = R;
+        while(R < pr.size()) {
+            if(pr[L] < pr[R]) maxPr = max(maxPr, pr[R] - pr[L]);
+            else L = R;
             
             R++;
         }
         return maxPr;
     }
 };
+
+
