@@ -18,9 +18,7 @@ public:
 };
 
 
-
 // OR
-
 
 
 class Solution {
@@ -43,6 +41,11 @@ public:
 };
 
 
+
+
+
+// APPROACH 2
+
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
@@ -61,3 +64,7 @@ public:
         return ret;
     }
 };
+
+
+
+
