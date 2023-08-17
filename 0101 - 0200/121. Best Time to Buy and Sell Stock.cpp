@@ -1,4 +1,26 @@
-// APPROACH 1
+// APPROACH 0 - BRUTE FORCE TLE
+
+class Solution {
+public:
+    int maxProfit(vector<int>& p) {
+        int mx_pr = 0;
+        for(int i=0; i<p.size(); i++){
+            for(int j=i; j<p.size(); j++){
+                int profit = (p[j] - p[i]);
+                if(profit > mx_pr) 
+                    mx_pr = profit;
+            }
+        }
+        return mx_pr;
+    }
+};
+
+
+
+
+
+
+// APPROACH 1 [ One Pass Approach ]
 
 class Solution {
 public:
@@ -43,5 +65,31 @@ public:
         return maxPr;
     }
 };
+
+
+
+
+
+// APPROACH 3 [ DP ]
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if(prices.empty()) return 0;
+        
+        int n = prices.size();
+        vector<int> dp(n, 0);
+        int minPrice = prices[0];
+        
+        for(int i=1; i<n; ++i) {
+            dp[i] = max(dp[i-1], prices[i] - minPrice);
+            minPrice = min(minPrice, prices[i]);
+        }        
+        return dp[n - 1];
+    }
+};
+
+
+
 
 
