@@ -1,6 +1,5 @@
 // APPROACH 1 Using 1 extra variable x
 
-
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -62,8 +61,7 @@ public:
         int top = 0, bottom = n - 1, left = 0, right = m - 1;
         int cnt = 0;
                 
-        while(cnt < m*n){
-            
+        while(cnt < m*n) {
             for(int i=left; cnt < m*n and i<=right; i++){
                 ans.push_back(matrix[top][i]);
                 cnt++;
@@ -82,7 +80,6 @@ public:
             }
             bottom--;
             
-
             for(int i=bottom; cnt < m*n and i>=top; i--){
                 ans.push_back(matrix[i][left]);
                 cnt++;
@@ -98,48 +95,31 @@ public:
 
 
 
-
 // APPROACH 3 RECURSION
-
 
 class Solution {
 public:
     void spiralOrder(vector<vector<int>>& matrix, vector<int>& res, int top, int bottom, int left, int right) {
-        if(top > bottom || left > right) {
-            return;
-        }
-        
-        for(int j=left; j<=right; ++j) {
-            res.push_back(matrix[top][j]);
-        }
-
-        for(int i=top+1; i<=bottom; ++i) {
-            res.push_back(matrix[i][right]);
-        }
-
+        if(top > bottom || left > right) return ;        
+        for(int j=left; j<=right; ++j) res.push_back(matrix[top][j]);
+        for(int i=top+1; i<=bottom; ++i) res.push_back(matrix[i][right]);
         if(top < bottom && left < right) {
-            for(int j=right-1; j>left; --j) {
-                res.push_back(matrix[bottom][j]);
-            }
-
-            for(int i=bottom; i>top; --i) {
-                res.push_back(matrix[i][left]);
-            }
+            for(int j=right-1; j>left; --j) res.push_back(matrix[bottom][j]);
+            for(int i=bottom; i>top; --i) res.push_back(matrix[i][left]);
         }
         spiralOrder(matrix, res, top + 1, bottom - 1, left + 1, right - 1);
     }
 
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        if(matrix.empty()) return vector<int>();
-        
+        if(matrix.empty()) return vector<int>();        
         int m = matrix.size();
         int n = matrix[0].size();
-
         vector<int> res;
         spiralOrder(matrix, res, 0, m - 1, 0, n - 1);
         return res;
     }
 };
+
 
 
 
