@@ -114,5 +114,32 @@ public:
 
 
 
-// APPROACH 5 
+// APPROACH 5 [ DIVDE 7 CONQUER ]
+
+class Solution {
+public:
+    int Helper(vector<int>& prices, int L, int R) {
+        if (L >= R) return 0;
+
+        int mid = L + (R - L) / 2;
+
+        int LMxProfit = Helper(prices, L, mid);
+        int RMxProfit = Helper(prices, mid + 1, R);
+
+        int miPrice = *min_element(prices.begin() + L, prices.begin() + mid + 1);
+        int mxPrice = *max_element(prices.begin() + mid + 1, prices.begin() + R + 1);
+
+        int crossMaxProfit = max(0, mxPrice - miPrice);
+
+        return max({LMxProfit, RMxProfit, crossMaxProfit});
+    }
+
+    int maxProfit(vector<int>& prices) {
+        return Helper(prices, 0, prices.size() - 1);
+    }
+};
+
+
+
+
 
