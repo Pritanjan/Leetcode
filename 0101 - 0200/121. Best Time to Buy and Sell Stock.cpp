@@ -114,7 +114,7 @@ public:
 
 
 
-// APPROACH 5 [ DIVDE 7 CONQUER ]
+// APPROACH 5 [ DIVDE 7 CONQUER ] RECURSION
 
 class Solution {
 public:
