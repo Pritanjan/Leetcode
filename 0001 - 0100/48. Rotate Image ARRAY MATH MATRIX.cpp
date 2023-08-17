@@ -1,15 +1,11 @@
-// https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/
-
-
 // ROTATING 90 DEGREE CLOCKWISE
-
 // APPROACH 1
+
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
         int R = matrix.size();
-        int C = matrix[0].size();
-        
+        int C = matrix[0].size();        
         for(int i=0; i<R-1; i++){
             for(int j=i+1; j<C; j++){
                 swap(matrix[i][j], matrix[j][i]);
@@ -24,17 +20,9 @@ public:
     }
 };
 
-// 00 01 02 
-// 10 11 12 
-// 20 21 22 
-    
-// 20 10 00
-// 21 11 01
-// 22 12 02
-
-
 
 // OR
+
 
 class Solution {
 public:
@@ -57,13 +45,12 @@ public:
 
 
 // APPROACH 2
+
 class Solution {
 public:
-    void rotate(vector<vector<int>>& matrix) {
-        
+    void rotate(vector<vector<int>>& matrix) { 
         int L = 0;
         int R = matrix.size() - 1;
-        
         while(L < R){
             for(int i=0; i<(R-L); i++){
                 swap(matrix[L][L+i], matrix[L+i][R]);
@@ -113,10 +100,8 @@ public:
 
 
 
-
-
-
 // APPROACH 3
+
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -150,7 +135,8 @@ public:
 
 
 
-// ROTATING 90 DEGREE ANTI-CLOCKWISE\
+// ROTATING 90 DEGREE ANTI-CLOCKWISE
+
 // APPROACH 1
 class Solution {
 public:
@@ -175,6 +161,5 @@ public:
         
     }
 };
-
 
 
