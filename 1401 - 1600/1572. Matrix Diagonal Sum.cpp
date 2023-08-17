@@ -1,16 +1,13 @@
 // APPROACH 1 
 
-
 class Solution {
 public:
     int diagonalSum(vector<vector<int>>& matrix) {
         int n = matrix.size();
-        int sum = 0;
-        
+        int sum = 0;       
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                if(i == j || i+j == n-1 )
-                    sum += matrix[i][j];
+                if(i == j || i+j == n-1 ) sum += matrix[i][j];
             }
         }
         return sum;
@@ -20,19 +17,13 @@ public:
 
 
 
-
-
-
-
 // APPROACH 2
-
 
 class Solution {
 public:
     int diagonalSum(vector<vector<int>>& mat) {
         int n = mat.size();
         int ans = 0;
-
         for(int i=0; i<n; i++) {
             // Add elements from primary diagonal.
             ans += mat[i][i];
@@ -42,7 +33,6 @@ public:
         
         // If n is odd, subtract the middle element as its added twice.
         if(n % 2 != 0) ans -= mat[n / 2][n / 2];
-
         return ans;
     }
 };
@@ -55,10 +45,7 @@ public:
 
 
 
-
-
 // APPROACH 3
-
 
 class Solution {
 public:
@@ -77,4 +64,22 @@ public:
 
 
 
+
+// APPROACH 4
+
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) {
+        int n = mat.size();
+        int sum = 0;
+
+        for(int i=0; i<n*n; ++i) {
+            int row = i / n;
+            int col = i % n;
+            if(row == col || col+row == n-1) sum += mat[row][col];
+        }
+        return sum;
+        
+    }
+};
 
