@@ -1,7 +1,6 @@
-// APPROACH 1
-    
+// APPROACH 1    
 // DUTCH NATIONAL FLAG (DNF)
-// Explanation : -
+
 // This programming problem was proposed by Edsger Dijkstra. The flag of the Netherlands consists 
 // of three colors: white, red, and blue. The task is to randomly arrange balls of red, white, and 
 // blue in such a way that balls of the same color are placed together. For DNF (Dutch National Flag),
@@ -45,13 +44,12 @@ public:
     }
 };
 
-// https://leetcode.com/problems/sort-colors/discuss/1981035/c-solution
-
 
 
 
 
 // APPROACH 2
+
 
 class Solution {
 public:
@@ -59,28 +57,15 @@ public:
         int L = 0;
         int n = a.size();
         int R = n-1;
-        int mid = 0;
-        
+        int mid = 0;        
         while(mid <= R ){
-            if(a[mid] == 0){
-                swap(a[L], a[mid]);
-                L++;
-                mid++;
-                // break;
-            }
-            else if(a[mid] == 1){
-                mid++;
-                // break;
-            }
-            else{
-                swap(a[mid], a[R]);
-                R--;
-                // break;
-            }
+            if(a[mid] == 0) swap(a[L++], a[mid++]);
+            else if(a[mid] == 1)mid++;
+            else swap(a[mid], a[R--]);
         }
-        // return 0;
     }
 }; 
+
 
 
 
@@ -109,7 +94,7 @@ public:
 
 
 
-// APPROACH 5
+// APPROACH 4
 
 class Solution {
 public:
