@@ -149,4 +149,33 @@ public:
 
 
 
-// APPRAOCH 5 
+// APPRAOCH 5 BST(map)
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        map<int, int> bst; // map of interval start and end times
+        
+        for(vector<int>& interval : intervals) {
+            bst[interval[0]] = max(bst[interval[0]], interval[1]);
+        }
+        
+        vector<vector<int>> res;
+        int L = -1, R = -1;
+        
+        for(auto& i : bst) {
+            if(i.first > R) {
+                if(L != -1) res.push_back({L, R});
+                L = i.first;
+            }
+            R = max(R, i.second);
+        }
+
+        if(L != -1) res.push_back({L, R});
+        
+        return res;
+    }
+};
+
+
+
