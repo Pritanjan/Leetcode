@@ -199,7 +199,7 @@ public:
 
 
 
-// APPROACH 6
+// APPROACH 6   Priority Queue (Min Heap)
 
 class Solution {
 public:
