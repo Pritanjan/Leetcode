@@ -29,6 +29,24 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i, j;
+        for(i=0; i<n; i++) {
+            int num = nums2[i];
+            for(j=m+i-1; j>=0 && nums1[j] > num; j--) {
+                nums1[j+1] = nums1[j];
+            }
+            nums1[j + 1] = num;
+        }
+    }
+};
+
+
 
 
 
@@ -67,8 +85,6 @@ public:
 
 // OR
 // In-place with Two Pointers (Forward)
-
-
 
 class Solution {
 public:
