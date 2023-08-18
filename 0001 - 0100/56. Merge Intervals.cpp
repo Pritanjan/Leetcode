@@ -108,3 +108,45 @@ public:
 
 
 
+
+
+// APPROPACH 4 [ SWEEP LINE] CHATGPT
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<pair<int, int>> points; // store endpoints and their type (start or end)
+        
+        for(vector<int>& interval : intervals) {
+            points.emplace_back(interval[0], 1); // start point
+            points.emplace_back(interval[1], -1); // end point
+        }
+        
+        sort(points.begin(), points.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+            if(a.first != b.first) return a.first < b.first;
+            // If start points are equal, prioritize end points first
+            return a.second > b.second;
+        });
+        
+        vector<vector<int>> res;
+        int cnt = 0;
+        int strt = -1;
+        
+        for(auto& point : points) {
+            if(cnt == 0) strt = point.first;
+            cnt += point.second;
+            if(cnt == 0) {
+                res.push_back({strt, point.first});
+                strt = -1; // Reset start to handle intervals sharing endpoints
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// APPRAOCH 5 
