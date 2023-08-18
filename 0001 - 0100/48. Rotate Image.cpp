@@ -100,6 +100,7 @@ public:
 
 
 
+
 // APPROACH 3
 
 class Solution {
@@ -127,8 +128,34 @@ public:
 };
 
 
-// OR
 
+
+
+
+// APPRAOCH 4  Transpose and Reverse Rows
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        // transpose the matrix
+        int n = matrix.size();
+        for(int i=0; i<n; i++) {
+            for(int j=i+1; j<n; j++) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+        // reverse the matrix
+        for(int i=0; i<n; i++)
+            reverse(matrix[i].begin(), matrix[i].end());
+    }
+};
+
+
+
+
+
+
+
+// APPROACH 5  ROTATE IN 4 SDTEPS
 
 class Solution {
 public:
@@ -138,7 +165,6 @@ public:
         for(int i=0; i<n; i++) {
             for(int j=0; j<i; j++) {
                 swap(matrix[i][j], matrix[j][i]);
-                cout<<i<<" "<<j<<endl;
             }
         }
         // reverse the matrix
