@@ -1,5 +1,4 @@
 // APPROACH 0 [ Brute Force Iteration ] = TLE
-
 // This approach involves multiplying x by itself n times
 
 class Solution {
@@ -12,6 +11,27 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if(n == 0) return 1.0;
+        
+        long long absN = abs(static_cast<long long>(n));
+        double res = 1.0;
+        while(absN > 0) {
+            if(absN % 2 == 1) {
+                res *= x;
+            }
+            x *= x;
+            absN /= 2;
+        }        
+        return (n < 0) ? 1.0 / res : res;
+    }
+};
 
 
 
