@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 [ Treat the 2D matrix as a flattened 1D array and perform binary search ]
 
 // 1  So a cell value can be calculated by:
 //    cell value = Total col * row + col.
