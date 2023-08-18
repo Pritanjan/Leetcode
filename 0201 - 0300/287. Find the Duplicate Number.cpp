@@ -59,21 +59,21 @@ public:
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int n = nums.size() - 1;
-        int left  = 1;
-        int right = n;
-        int mid;
+        int L = 1;
+        int R = nums.size() - 1;
         
-        while(left < right){
-            mid = (left + right)/2;
-            int count = 0;
-            for(int num : nums) {
-                if(num <= mid) count++;
+        while(L < R) {
+            int mid = L + (R-L) / 2;
+            int cnt = 0;
+            
+            for(int i : nums) {
+                if(i <= mid) cnt++;
             }
-            if(count > mid) right = mid;
-            else left  = mid + 1;
-        }
-        return left;
+            
+            if(cnt <= mid) L = mid + 1;
+            else R = mid;
+        }        
+        return L;        
     }
 };
 
