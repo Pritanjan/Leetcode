@@ -1,4 +1,4 @@
-// APPROACH 1
+// APPROACH 1 SORTIONG
 
 class Solution {
 public:
@@ -74,6 +74,36 @@ public:
 };
 
 
+
+
+
+
+// APPROACH 3 USE PRIORITY QUEUE
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        auto compare = [](const vector<int>& a, const vector<int>& b) {
+            return a[0] > b[0];
+        };
+        
+        priority_queue<vector<int>, vector<vector<int>>, decltype(compare)> pq(compare);
+        
+        for(vector<int>& interval : intervals) {
+            pq.push(interval);
+        }
+        
+        vector<vector<int>> res;
+        while(!pq.empty()) {
+            vector<int> current = pq.top();
+            pq.pop();
+            
+            if(res.empty() || current[0] > res.back()[1]) res.push_back(current);
+            else res.back()[1] = max(res.back()[1], current[1]);
+        }        
+        return res;
+    }
+};
 
 
 
