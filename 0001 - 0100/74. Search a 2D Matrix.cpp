@@ -133,3 +133,29 @@ public:
 
 
 
+// APPROACH 5 [ Optimal Binary Search on Rows ]
+
+// Here, we perform a binary search on each row of the matrix to find the potential row where
+// the target might exist. 
+// Then, perform another binary search within that row to find the target.
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        for(int i=0; i<m; ++i) {
+            int L = 0;
+            int R = n-1;
+            while(L <= R) {
+                int mid = L + (R - L) / 2;
+                if(matrix[i][mid] == target) return true;
+                else if(matrix[i][mid] < target) L = mid + 1;
+                else R = mid - 1;
+            }
+        }        
+        return false;
+    }
+};
+
