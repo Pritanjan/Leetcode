@@ -68,7 +68,12 @@ public:
 
 
 
-// APPROAH 3 [ without Using Bool ]
+// APPROAH 3 [ Optimal Binary Search on Matrix Diagonals ]  without Using Bool 
+
+// It takes advantage of the fact that the matrix is sorted both row-wise and column-wise.
+// Start at the top-right corner of the matrix and move diagonally while 
+// comparing the current element with the target. 
+// Adjust the row or column accordingly to narrow down the search space.
 
 class Solution {
 public:
