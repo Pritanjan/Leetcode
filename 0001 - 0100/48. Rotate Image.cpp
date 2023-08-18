@@ -179,6 +179,39 @@ public:
 
 
 
+// APPROACH 6 Cycle Replacements
+// Rotate each cycle of elements in the matrix.
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        
+        for(int j=0; j<n / 2; ++j) {
+            int first = j;
+            int last = n - j - 1;
+            for(int i=first; i<last; ++i) {
+                int offset = i - first;
+                
+                int top = matrix[first][i];
+                matrix[first][i] = matrix[last - offset][first];
+                matrix[last - offset][first] = matrix[last][last - offset];
+                matrix[last][last - offset] = matrix[i][last];
+                matrix[i][last] = top;
+            }
+        }
+    }
+};
+
+
+
+
+
+
+
+
+
+
 
 
 
