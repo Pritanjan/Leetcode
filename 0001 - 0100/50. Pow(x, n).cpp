@@ -1,3 +1,21 @@
+// APPROACH 0 [ Brute Force Iteration ] = TLE
+
+// This approach involves multiplying x by itself n times
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        double res = 1.0;
+        long long absN = abs((long long)n); // Convert n to long long to handle INT_MIN
+        for(long long i=0; i<absN; ++i) res *= x;
+        return (n < 0) ? 1.0 / res : res;
+    }
+};
+
+
+
+
+
 // APPROACH 1
 
 class Solution {
