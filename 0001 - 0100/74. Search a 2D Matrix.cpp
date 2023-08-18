@@ -88,3 +88,43 @@ public:
 
 
 
+
+
+
+// APPROACH 4 [ Use binary search twice - first on rows, then on columns ]
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int top = 0, bottom = m - 1;
+        
+        // Binary search to find the potential row
+        while(top <= bottom) {
+            int row_mid = top + (bottom - top) / 2;
+            if(matrix[row_mid][0] <= target && matrix[row_mid][n - 1] >= target) {
+                int L = 0;
+                int R = n - 1;
+                
+                // Binary search within the potential row
+                while(L <= R) {
+                    int col_mid = L + (R - L) / 2;
+                    if(matrix[row_mid][col_mid] == target) return true;
+                    else if(matrix[row_mid][col_mid] < target) L = col_mid + 1;
+                    else R = col_mid - 1;
+                }                
+                return false;
+            }
+            else if(matrix[row_mid][0] > target) bottom = row_mid - 1;
+            else top = row_mid + 1;
+        }        
+        return false;
+    }
+};
+
+
+
+
+
+
