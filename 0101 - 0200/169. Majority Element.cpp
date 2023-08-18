@@ -56,6 +56,8 @@ public:
 
 
 // APPROACH 3 - Moore’s voting algorithm
+// It is an efficient algorithm to finds the majority element in linear time
+// and constant space complexity.
 
 class Solution {
 public:
@@ -63,12 +65,11 @@ public:
 	// Variable to store the majority element in the array, it it is present.
         int maj = 0;
         int count = 0;
-        
+	    
 	// Iterating the array to know if there is a possible majority element present.
         for(int i=0; i<nums.size(); i++){
 	    // If count becomes 0, set current element as a possible candidate for majority element, reset count to 1.
             if(count == 0) maj = nums[i];
-				
 	    // Increment the count if the current element of the array is equal to the current majority element, else decrement it.
             if(maj == nums[i]) count++;
             else count--;
