@@ -27,26 +27,14 @@ public:
 
 class Solution {
 public:
-    int majorityElement(vector<int>& a) {
-        int n = a.size();
-		
-	// Declaring unordered map to store the frequency of elements.
-	unordered_map<int, int> mp;
-        // it can also be used
-	// map<int,int> mp;  
-        
-	// Iterating each element in the array to count frequencies.
-        for(int i=0;i<n;i++)
-	    // Storing frequency of each element.
-            mp[a[i]]++;
-        
-        int ans=-1;
-        for(auto x: mp) {
-	    // If frequency of the element is greater than 'n' / 2, then return the element.
-            if(x.second > (n /2))
-                ans=x.first;
-        }   
-        return ans;
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> countMap;        
+        for(int num : nums) {
+            countMap[num]++;
+            if(countMap[num] > nums.size() / 2) return num;
+        }        
+        // Majority element always exists, so this line won't be reached.
+        return -1;
     }
 };
 
