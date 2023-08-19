@@ -118,4 +118,28 @@ public:
 
 
 
-// APPROACH 6 
+// APPROACH 6  [ Space-Optimized DP ]
+// OPTIMIZATION OF APPROACH 1
+
+// WE can optimize the space complexity of the DP solution by using a single array of size n
+// instead of a 2D matrix.
+
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<int> dp(n, 1);         
+        for(int i=1; i<m; ++i) {
+            for(int j=1; j<n; ++j) {
+                dp[j] += dp[j-1]; 
+            }
+        }        
+        return dp[n - 1]; 
+    }
+};
+
+
+
+
+
+
+// APPROACH 7 
