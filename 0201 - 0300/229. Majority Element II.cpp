@@ -24,6 +24,13 @@ public:
 
 // APPROACH 2 Boyer-Moore Voting Algorithm
 
+ // use the Boyer-Moore Voting Algorithm to identify potential candidates.
+// We maintain two candidates (candidate1 and candidate2) and two counters (count1 and count2) to keep track of their counts.
+// We iterate through the input array. If the current number is one of the candidates, we increase its count; otherwise, if a counter is zero, we update the candidate and reset the count.
+// If neither of the above cases applies, we decrement both counters since we've encountered two distinct numbers that aren't candidates.
+// After finding potential candidates, we iterate through the array again to count their occurrences using count1 and count2.
+// Finally, we check if the counts of the potential candidates are greater than the threshold, and if so, we add them to the result vector.
+
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
@@ -72,6 +79,13 @@ public:
 
 // APPROACH 3  Using Hashing and Sliding Window
 
+Explanation:
+
+// This approach uses a hash map to keep track of the count of each element in the array.
+// As we iterate through the array, we increment the count of each element in the hash map.
+// If the count of an element becomes greater than the threshold, we add that element to the result vector and set its count to a negative value to mark it as processed.
+// This approach has a time complexity of O(n) and a space complexity of O(k), where k is the number of distinct elements in the array.
+    
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
@@ -97,6 +111,12 @@ public:
 
 
 // APPROACH 4  Using Sorting and Linear Scan
+
+// This approach sorts the input array in ascending order.
+// Then, it performs a linear scan through the sorted array and counts consecutive occurrences of each element.
+// When the count exceeds the threshold, the element is added to the result vector.
+// This approach also handles the last element separately outside the loop.
+// This approach has a time complexity of O(n log n) due to the sorting step and a space complexity of O(1).
 
 class Solution {
 public:
