@@ -40,5 +40,41 @@ public:
 
 
 
-// APPROACH 2
+// APPROACH 2 Hash Set
+
+// Create an empty hash set to store the numbers from the array.
+// Insert all the numbers from the array into the hash set.
+// Initialize a variable maxLen to keep track of the maximum consecutive sequence length found.
+// For each number num in the array, check if num - 1 is not in the hash set. If not, this is the starting point of a consecutive sequence.
+// From this starting point, keep incrementing the number and checking if the next number exists in the hash set.
+// Update maxLen with the maximum length found during these increments.
+// Return maxLen.
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> ust(nums.begin(), nums.end());
+        int maxLen = 0;
+
+        for(int num : ust) {
+            if(ust.find(num - 1) == ust.end()) {
+                int currNum = num;
+                int currLen = 1;
+
+                while(ust.find(currNum + 1) != ust.end()) {
+                    currNum++;
+                    currLen++;
+                }
+                maxLen = max(maxLen, currLen);
+            }
+        }
+        return maxLen;        
+    }
+};
+
+
+
+
+
+// APPROACH 3 
 
