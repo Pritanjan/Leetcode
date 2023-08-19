@@ -1,6 +1,5 @@
 // Similar question LC 169
-
-// APPROACH 1
+// APPROACH 1 Brute Force
 
 class Solution {
 public:
@@ -11,13 +10,13 @@ public:
         // map<int, int> um;  //BOTH WORKS
         for(auto i : nums) um[i]++;
         
-        for(auto it : um)
-            if(it.second > n/3) {
-                v.push_back(it.first);
-            }
+        for(auto it : um) {
+            if(it.second > n/3) v.push_back(it.first);
+        }            
         return v;
     }
 };
+
 
 
 
