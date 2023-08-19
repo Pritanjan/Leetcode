@@ -109,3 +109,47 @@ public:
 
 
 
+
+
+// APPROACH 4 Hash Map
+
+// Create an empty hash map to store the endpoints of consecutive sequences.
+// Initialize a variable maxLen to keep track of the maximum consecutive sequence length found.
+// For each number num in the array, check if it's already in the hash map. If it's already present, skip it as it's already part of a sequence.
+// Otherwise, look for the numbers num - 1 and num + 1 in the hash map.
+// - Let left be the length of the sequence ending at num - 1 (if exists), and right be the length of the sequence starting at num + 1 (if exists).
+// - The length of the sequence starting at num would be left + 1 + right.
+// - Update maxLen with the maximum of maxLen and the new sequence length.
+// - Update the endpoints of the sequence in the hash map.
+// Return maxLen.
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        // Map to store endpoints and their corresponding sequence lengths
+        unordered_map<int, int> ump; 
+        int maxLen = 0;
+
+        for(int num : nums) {
+            if(ump.find(num) != ump.end()) continue;
+
+            int LLen = ump.find(num - 1) != ump.end() ? ump[num - 1] : 0;
+            int RLen = ump.find(num + 1) != ump.end() ? ump[num + 1] : 0;
+            int newLen = LLen + 1 + RLen;
+            
+            ump[num] = newLen;
+            maxLen = max(maxLen, newLen);
+
+            // Update the endpoints of the sequence
+            ump[num - LLen] = newLen;
+            ump[num + RLen] = newLen;
+        }
+        return maxLen;
+    }
+};
+
+
+
+
+
