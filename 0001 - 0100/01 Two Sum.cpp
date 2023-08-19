@@ -1,5 +1,8 @@
 // APPROACH 1
 
+// use a nested loop to check all pairs of elements for their sum. 
+// Time complexity of O(n^2).
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -43,6 +46,13 @@ public:
 
 // APPROACH 2
 
+// Use a hash map to store each element's index as we traverse through the array. 
+// For each element, we can check if the difference between the target and the current element exists in
+// the hash map. 
+
+// Time complexity O(n), 
+// It requires additional space for the hash map.
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {        
@@ -55,6 +65,7 @@ public:
         return {};
     }
 };
+
 
 
 
