@@ -65,3 +65,35 @@ public:
     }
 };
 
+
+
+
+
+
+// APPROACH 3  Using Hashing and Sliding Window
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int threshold = n / 3;
+        unordered_map<int, int> cnts;
+        vector<int> res;
+
+        for(int num : nums) {
+            cnts[num]++;
+            if(cnts[num] > threshold) {
+                res.push_back(num);
+                cnts[num] = -threshold - 1; // To avoid adding duplicates
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// APPROACH 4 
