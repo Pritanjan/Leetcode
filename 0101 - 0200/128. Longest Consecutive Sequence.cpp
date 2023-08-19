@@ -76,5 +76,36 @@ public:
 
 
 
-// APPROACH 3 
+// APPROACH 3  : Sorting and Counting
+
+// Sort the given array.
+// Initialize a variable currLen to 1 and a variable maxLen to 1.
+// Iterate through the sorted array from index 1.
+// If the current element is the same as the previous element, continue to the next iteration.
+// If the current element is one more than the previous element, increment currLen.
+// If the current element is not consecutive to the previous element, update maxLen with the maximum of maxLen and currLen, and reset currLen to 1.
+// Return maxLen.
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        sort(nums.begin(), nums.end());
+        int currLen = 1;
+        int maxLen = 1;
+        for(int i=1; i<nums.size(); ++i) {
+            if(nums[i] == nums[i-1]) continue;
+            if(nums[i] == nums[i-1] + 1) currLen++;
+            else {
+                maxLen = max(maxLen, currLen);
+                currLen = 1;
+            }
+        }
+        return max(maxLen, currLen);
+    }
+};
+
+
+
 
