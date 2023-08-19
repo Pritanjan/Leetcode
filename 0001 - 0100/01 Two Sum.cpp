@@ -103,6 +103,38 @@ public:
 
 
 
+// APPROACH 5 . Using a Set:
+// WE can use a set to store the elements you've seen so far while iterating through the array. 
+// Time complexity of O(n) and requires additional space for the set.
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_set<int> st;
+        for(int i=0; i<nums.size(); ++i) {
+            int comp = target - nums[i];
+            if(st.count(comp)) {
+                // We found a pair that adds up to the target
+                // Return the indices of the two numbers
+                int compIdx;
+                for(int j=0; j<i; ++j) {
+                    if(nums[j] == comp) {
+                        compIdx = j;
+                        break;
+                    }
+                }
+                return {compIdx, i};
+            }
+            st.insert(nums[i]);
+        }
+        return {};
+    }
+};
+
+
+
+
+
 
 // If there is more than 1 pair it is used
 
