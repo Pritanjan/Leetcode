@@ -70,6 +70,39 @@ public:
 
 
 
+// APPROACH 3  Sorting 2 Pointer
+
+// It involves sorting the array and then using two pointers to move towards each other
+// while looking for the sum. 
+
+// Time complexity of O(n log n) due to sorting.
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<pair<int, int>> res;
+        for(int i=0; i<nums.size(); ++i) {
+            res.push_back({nums[i], i});
+        }
+        sort(res.begin(), res.end());
+
+        int L = 0;
+        int R = nums.size() - 1;
+        while(L < R) {
+            int sum = res[L].first + res[R].first;
+            if(sum == target) return {res[L].second, res[R].second};
+            else if(sum < target) L++;
+            else R--;
+        }
+        return {};        
+    }
+};
+
+
+
+
+
 
 // If there is more than 1 pair it is used
 
