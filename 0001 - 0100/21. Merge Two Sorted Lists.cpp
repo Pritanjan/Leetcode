@@ -4,23 +4,18 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         // If the list 1 is empty then return list 2
-        if(list1== NULL)
-            return list2;
-        
+        if(list1 == NULL) return list2;
         // If the list 2 is empty then return list 1
-        if(list2== NULL)
-            return list1;
+        if(list2 == NULL) return list1;
         
         // if value pointed by list1 pointer is <= to value pointed by list2 pointer
         if(list1->val <=list2->val){
-            list1->next = mergeTwoLists(list1->next, list2);
-                return list1;
+            list1->next = mergeTwoLists(list1->next, list2); return list1;
         }
         
         // we will call recursive l1 whole list and l2 -> next
-        else{
-            list2->next = mergeTwoLists(list2->next, list1);
-                return list2;
+        else {
+            list2->next = mergeTwoLists(list2->next, list1); return list2;
         }
         return 0;    
     }
@@ -29,8 +24,8 @@ public:
 
 
 
-// APPROACH 2
 
+// APPROACH 2
 
 class Solution {
 public:
@@ -69,21 +64,16 @@ public:
         }
         return first;
     }
-
     
     ListNode* mergeTwoLists(ListNode* first, ListNode* second) {
-        if(first == NULL)
-            return second;
-        if(second == NULL)
-            return first;
-    
-        if(first -> val <= second -> val)
-            return solve(first, second);
-        else
-            return solve(second, first);
-    }
-    
+        if(first == NULL)  return second;
+        if(second == NULL) return first;
+        if(first -> val <= second -> val) return solve(first, second);
+        else return solve(second, first);
+    }    
 };
+
+
 
 
 
@@ -95,26 +85,49 @@ public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         ListNode* dummy = new ListNode(-1), *p = dummy;
         ListNode* p1 = list1, *p2 = list2;
-
         while(p1 != NULL && p2 != NULL) {
             if(p1->val > p2->val) {
                 p->next = p2;
                 p2 = p2->next;
-            }else {
+            }
+            else {
                 p->next = p1;
                 p1 = p1->next;
             }
             p = p->next;
         }        
-
         if (p1 != NULL) p->next = p1;
         if (p2 != NULL) p->next = p2;
-
         return dummy->next;
     }
 };
 
 
 
+
+
+
+// APPROACH 4 IATERATIVE APPROACJHH
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+        while(list1 && list2) {
+            if(list1 -> val < list2 -> val) {
+                curr -> next = list1;
+                list1 = list1 -> next;
+            } 
+            else {
+                curr -> next = list2;
+                list2 = list2 -> next;
+            }
+            curr = curr -> next;
+        }
+        curr -> next = list1 ? list1 : list2;
+        return dummy.next;
+    }
+};
 
 
