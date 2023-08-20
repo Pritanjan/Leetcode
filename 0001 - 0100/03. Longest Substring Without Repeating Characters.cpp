@@ -36,7 +36,7 @@ public:
 
 
 
-// APPROACH 4 [  Sliding window with hash set ]
+// APPROACH 2 [  Sliding window with hash set ]
 
 
 // Using a sliding window approach to solve the problem more efficiently than brute force.
@@ -82,7 +82,7 @@ public:
 
 
 
-// APPROACH 5 [  Sliding window with hash map ]
+// APPROACH 3 [  Sliding window with hash map ]
 
 
 // We can further optimize the sliding window approach by using a hash map to keep track 
@@ -127,8 +127,7 @@ public:
 
 
 
-// APPROACH 6
-
+// APPROACH 4
 
 class Solution {
 public:
@@ -159,7 +158,7 @@ public:
 
 
 
-// APPROACH 3 [ SLIDING WINDOW ]
+// APPROACH 5 [ SLIDING WINDOW ]
 
 
 // Here the L and R pointers define the substring, and a vector called v is used to keep track 
