@@ -32,15 +32,16 @@ public:
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* first  = head;
-        ListNode* second = head;        
-        while(second != NULL && second->next != NULL){
-            first = first->next;
-            second = second->next->next;
-        }
-        return first;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }        
+        return slow;
     }
 };
+
 
 // Time Complexity: O(N), where NN is the number of nodes in the given list.
 // Space Complexity: O(1), the space used by slow and fast.
