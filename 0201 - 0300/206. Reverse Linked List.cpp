@@ -124,11 +124,8 @@ public:
 // S.C. O(N)
 
 
+// OR
 
-
-
-
-// APPROACH 5 [ RECURISON ]
 
 class Solution {
 public:
@@ -154,7 +151,7 @@ public:
 
 
 
-// APPROACH 6 [ Using stack ] FIFO
+// APPROACH 5 [ Using stack ] FIFO
 //  because stacks uses FIFO The implementation principle is to put the linked list nodes
 // into the stack one by one, and then out of the stack one by one after all the stacks, 
 // and when they come out of the stack, they are stringing the nodes of the stack into a 
