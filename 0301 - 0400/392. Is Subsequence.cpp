@@ -42,5 +42,27 @@ public:
 
 
 
-// APPROACH 3 
+// APPROACH 3 GREEDY 
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int i = 0; // Pointer for string s
+        for(char c : t) {
+            if(i < s.length() && s[i] == c) {
+                i++; // Move pointer in s if characters match
+            }
+        }
+        return i == s.length();
+    }
+};
+
+
+
+
+
+
+
+
+// APPROACH 4 DP
 
