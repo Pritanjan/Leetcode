@@ -4,7 +4,6 @@
 // Then the middle node is just v[v.length // 2], 
 // since we can retrieve each node by index.
 
-
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -16,12 +15,8 @@ public:
     }
 };
 
-
-
 // Time Complexity: O(N), where N is the number of nodes in the given list.
 // Space Complexity: O(N), the space used by A.
-
-
 
 
 
@@ -34,13 +29,11 @@ public:
 // make another pointer second that traverses twice as second. 
 // When second reaches the end of the list, first must be in the middle.
 
-
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         ListNode* first  = head;
-        ListNode* second = head;
-        
+        ListNode* second = head;        
         while(second != NULL && second->next != NULL){
             first = first->next;
             second = second->next->next;
@@ -49,8 +42,6 @@ public:
     }
 };
 
-
-
 // Time Complexity: O(N), where NN is the number of nodes in the given list.
 // Space Complexity: O(1), the space used by slow and fast.
 
@@ -58,12 +49,7 @@ public:
 
 
 
-
-
-
-
 // APPROACH 3 [ Using two pointers and a counter ]
-
 
 class Solution {
 public:
@@ -78,15 +64,10 @@ public:
         int middle = len/2;
         temp = head;
         
-        while(middle--){
-            temp = temp -> next;
-        }
-        
+        while(middle--) temp = temp -> next;        
         return temp;
     }
 };
-
-
 
 
 
@@ -107,10 +88,8 @@ public:
     
     ListNode* middleNode(ListNode* head) {
         int n = getLength(head);
-        
         ListNode* temp = head;
-        int cnt = 0;
-        
+        int cnt = 0;        
         while(cnt < n/2){
             temp = temp -> next;
             cnt++;
@@ -118,9 +97,6 @@ public:
         return temp;
     }
 };
-
-
-
 
 // getLength T.C. -- > O(N)
 // while execute for n/2 --> O(N/2)
@@ -131,16 +107,12 @@ public:
 
 
 
-
 // APPROACH 4 [ Using recursion ]
-
 
 class Solution {
 public:
     ListNode* recursion(ListNode* slow, ListNode* fast) {
-        if(fast == nullptr || fast->next == nullptr) 
-            return slow;
-
+        if(fast == nullptr || fast->next == nullptr) return slow;
         return recursion(slow->next, fast->next->next);
     }
 
@@ -149,19 +121,33 @@ public:
     }
 };
 
-
 // T.C. --> O(N)
 // S.C. --> O(N)
 
 
+// OR
 
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* mid = head;
+        int pos = 0;
+        recursion(head, mid, pos);return mid;
+    }
+
+    void recursion(ListNode* curr, ListNode*& mid, int& pos) {
+        if(!curr) return ;        
+        recursion(curr -> next, mid, pos);
+        if(++pos % 2 == 0) mid = mid -> next;
+    }
+};
 
 
 
 
 
 // APPROACH 5 [ STACK ]
-
 
 class Solution {
 public:
@@ -188,8 +174,6 @@ public:
         return temp;
     }
 };
-
-
 
 // T.C. --> O(N)
 // S.C. --> O(N)
