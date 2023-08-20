@@ -167,8 +167,7 @@ public:
             head = head->next;
         }
 
-        if(s.empty()) return NULL;
-        
+        if(s.empty()) return NULL;        
         ListNode* node = s.top();
         s.pop();
         ListNode* dummy = node;
@@ -182,6 +181,44 @@ public:
         return dummy;
     }
 
+};
+
+
+
+
+
+// APPROACH 6 [ . Reversing in Pairs ]
+// Here, we reverse the LL in pairs of nodes. This is useful when we want to reverse the list
+// in a grouped manner.
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        int len = 0;
+        ListNode* temp = head;
+        while(temp) {
+            len++;
+            temp = temp->next;
+        }        
+        return reverseKGroup(head, len);
+    }
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        ListNode* next = nullptr;
+
+        int cnt = 0;
+        while(curr != nullptr && cnt < k) {
+            next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+            cnt++;
+        }
+        if(next != nullptr) head->next = reverseKGroup(next, k); // Recursive call for next group
+        return prev; // New head of the reversed list
+    }
 };
 
 
