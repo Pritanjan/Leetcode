@@ -35,7 +35,6 @@ public:
 
 
 
-
 // APPROACH 2 [ USING 3 POINTER ]
 
 class Solution {
@@ -70,7 +69,7 @@ public:
 
 
 
-// APPROACH 2 [ Iterative solution ] pg 9
+// APPROACH 3 [ Iterative solution ] pg 9
 
 class Solution {
 public:
@@ -91,7 +90,6 @@ public:
     }
 };
 
-
 // T.C. O(N)
 // S.C. O(1)
 
@@ -99,8 +97,7 @@ public:
 
 
 
-
-// APPROACH 3 [ Recursion ]
+// APPROACH 4 [ Recursion ]
 
 class Solution {
 public:
@@ -123,15 +120,15 @@ public:
     }
 };
 
-
 // T.C. O(N)
 // S.C. O(N)
 
 
 
 
-// APPROACH 4 [ RECURISON ]
 
+
+// APPROACH 5 [ RECURISON ]
 
 class Solution {
 public:
@@ -150,7 +147,6 @@ public:
     }   
 };
 
-
 // T.C. O(N)
 // S.C. O(N)
 
@@ -158,7 +154,7 @@ public:
 
 
 
-// APPROACH 5 [ Using stack ] FIFO
+// APPROACH 6 [ Using stack ] FIFO
 //  because stacks uses FIFO The implementation principle is to put the linked list nodes
 // into the stack one by one, and then out of the stack one by one after all the stacks, 
 // and when they come out of the stack, they are stringing the nodes of the stack into a 
@@ -190,7 +186,6 @@ public:
     }
 
 };
-
 
 
 
