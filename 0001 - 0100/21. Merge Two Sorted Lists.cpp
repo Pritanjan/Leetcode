@@ -171,3 +171,65 @@ public:
 };
 
 
+
+
+
+// APPROACH 6 [  Iterative Approach with Optimized Memory ]
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+
+        while(list1 && list2) {
+            ListNode*& next = (list1 -> val < list2 -> val) ? list1 : list2;
+            curr -> next = next;
+            next = next -> next;
+            curr = curr -> next;
+        }
+        curr -> next = list1 ? list1 : list2;
+        return dummy.next;
+    }
+};
+
+
+
+
+
+// APPROACH 7 [ Using Priority Queue (Min Heap) ]
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        struct Compare {
+            bool operator()(const ListNode* a, const ListNode* b) {
+                return a->val > b->val;
+            }
+        };
+
+        priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
+        while(list1) {
+            pq.push(list1);
+            list1 = list1 -> next;
+        }
+
+        while(list2) {
+            pq.push(list2);
+            list2 = list2 -> next;
+        }
+
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+        while(!pq.empty()) {
+            curr -> next = pq.top();
+            pq.pop();
+            curr = curr -> next;
+        }
+        return dummy.next;
+    }
+};
+
+
+
+
