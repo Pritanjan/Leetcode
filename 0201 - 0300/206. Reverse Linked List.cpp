@@ -225,5 +225,46 @@ public:
 
 
 
+// APPROACH 7  [ Reversing by Swapping Values ]
+// Here, we swap values of nodes symmetrically across the middle of the list until we reach middle.
+// This method doesn't involve changing pointers but just swaps the values in the nodes.
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* curr = head;
+        int cnt = 0; // Count the number of nodes
+
+        while(curr) {
+            cnt++;
+            curr = curr -> next;
+        }
+
+        int i = 0;
+        int j = cnt - 1;
+        curr = head;
+        while(i < j) {
+            ListNode* node_i = getNodeAtPosition(head, i);
+            ListNode* node_j = getNodeAtPosition(head, j);
+            swap(node_i -> val, node_j -> val);
+
+            i++;
+            j--;
+        }
+        return head;
+    }
+    
+private:
+    ListNode* getNodeAtPosition(ListNode* head, int pos) {
+        ListNode* curr = head;
+        for(int i=0; i<pos && curr; ++i) {
+            curr = curr -> next;
+        }
+        return curr;
+    }
+};
+
+
+
 
 
