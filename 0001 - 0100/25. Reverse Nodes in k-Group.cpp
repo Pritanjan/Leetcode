@@ -1,5 +1,4 @@
-// https://www.codingninjas.com/codestudio/problems/reverse-list-in-k-groups_983644?leftPanelTab=2
-
+// APPROACH 1 [ Recursive ]
 
 // 1) The first step is to check whether the Head is NULL or Not, if its NULL then
 //    we can directly return NULL,
@@ -11,36 +10,18 @@
 //    Head,
 // 5) We will follow the same steps for the rest of the elements Recursively.
 
-
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-
-
-// Recursive
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         // base case
-        if(head == NULL)
-            return NULL;
+        if(head == NULL) return NULL;
         
         // to stop from reversing in case of some rem element
         //  Eg. --> 1,2,3,4,5 
         ListNode* times = head;
-        for(int i=0; i<k; i++){
-            if(times == NULL)
-                return head;
-            else
-                times = times -> next;
+        for(int i=0; i<k; i++) {
+            if(times == NULL) return head;
+            else times = times -> next;
         }
         
         // S1 -> reverse first k nodes
@@ -55,16 +36,16 @@ public:
             prev = curr;
             curr = next;
             cnt++;
-        }
-        
-        
+        }      
         // S2 -> Recursion call
-        if(head != NULL)
-            head -> next = reverseKGroup(next, k);
-        
-        
+        if(head != NULL) head -> next = reverseKGroup(next, k);        
         return prev;
     }
 };
 
+
+
+
+
+// APPROACH 2 
 
