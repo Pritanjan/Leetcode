@@ -1,4 +1,4 @@
-// APPROACH 1 
+// APPROACH 1 [ BRUTE FORCE ] 
 
 class Solution {
 public:
@@ -17,5 +17,24 @@ public:
         return false;
     }
 };
+
+
+
+
+
+// APPROACH 2 [  String Concatenation ]
+
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        string t = s + s;
+        if(t.substr(1, t.size() - 2).find(s) != -1) return true;
+        return false;
+    }
+};
+
+// Yes, we check if T is a rotated version of S by checking if it is a substring of S + S. 
+// This is because S + S contains all of the rotations of S.
+
 
 
