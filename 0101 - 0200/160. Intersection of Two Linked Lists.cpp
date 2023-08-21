@@ -216,3 +216,55 @@ public:
         return nullptr; // No intersection
     }
 };
+
+
+
+
+
+
+// APPROACH 7 [ Cyclic Approach ]
+
+// Traverse the first linked list and make the last node's next point to the beginning of the second linked list. This forms a cycle.
+// Use Floyd's cycle detection algorithm (tortoise and hare approach) to find the cycle's starting point. This point is the intersection point of the two lists.
+// After finding the intersection point, break the cycle by updating the last node's next to nullptr.
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        // Traverse the first list to make the last node's next point to headB
+        ListNode *currA = headA;
+        while(currA -> next != nullptr) {
+            currA = currA->next;
+        }
+        currA -> next = headB;
+        
+        // Detect the cycle's starting point (intersection point)
+        ListNode *slow = headA;
+        ListNode *fast = headA;
+        while(fast != nullptr && fast->next != nullptr) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+            if(slow == fast) break;
+        }
+        
+        // No intersection if there's no cycle
+        if(fast == nullptr || fast->next == nullptr) {
+            currA -> next = nullptr; // Restore the original structure
+            return nullptr;
+        }
+        
+        // Reset slow to headA and move both slow and fast by one step until they meet again
+        slow = headA;
+        while(slow != fast) {
+            slow = slow -> next;
+            fast = fast -> next;
+        }
+        
+        currA -> next = nullptr; // Restore the original structure
+        return slow; // Intersection point
+    }
+};
+
+
+
+
