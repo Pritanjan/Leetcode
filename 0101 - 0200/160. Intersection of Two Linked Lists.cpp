@@ -172,3 +172,47 @@ private:
 };
 
 
+
+
+
+// APPROACH 6  [  Difference in Lengths ]
+
+// Traverse both linked lists to find their lengths and calculate the difference in lengths.
+// Move the pointer of the longer list forward by the difference in lengths, so both pointers are at the same relative position from the end.
+// Now, traverse both linked lists together until the pointers meet. This will be the intersection point.
+
+class Solution {
+public:
+    int getLength(ListNode *head) {
+        int length = 0;
+        while(head != nullptr) {
+            length++;
+            head = head->next;
+        }
+        return length;
+    }
+
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int lengthA = getLength(headA);
+        int lengthB = getLength(headB);
+        
+        // Move the longer list's pointer forward by the difference in lengths
+        int diff = abs(lengthA - lengthB);
+        ListNode *currA = headA;
+        ListNode *currB = headB;
+        if(lengthA > lengthB) {
+            while(diff-- > 0) currA = currA->next;
+        } 
+        else {
+            while(diff-- > 0) currB = currB->next;
+        }
+        
+        // Traverse both lists until they intersect or reach the end
+        while(currA != nullptr && currB != nullptr) {
+            if(currA == currB) return currA;
+            currA = currA->next;
+            currB = currB->next;
+        }        
+        return nullptr; // No intersection
+    }
+};
