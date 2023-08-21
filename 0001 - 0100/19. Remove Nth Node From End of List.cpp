@@ -135,28 +135,6 @@ public:
 // NO
 
 
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* temp = head;
-        int height = 0;
-        while (temp != nullptr) {
-            height++;
-            temp = temp->next;
-        }
-
-        ListNode* newList = new ListNode();
-        newList->next = head;
-
-        ListNode* cur = newList;
-        for(int i=1; i<height-n+1; i++) {
-            cur = cur->next;
-        }
-        
-        cur->next = cur->next->next;
-        return newList->next;
-    }
-};
 
 
 
