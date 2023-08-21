@@ -1,8 +1,3 @@
-// https://practice.geeksforgeeks.org/problems/intersection-point-in-y-shapped-linked-lists/1
-// https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
-
-
-
 // APPROACH 1 [Using map]
 
 class Solution {
@@ -12,13 +7,12 @@ public:
         while(headA != NULL) {
             ump[headA] = true;
             headA = headA -> next;
-        }
-        
+        }        
         while(headB != NULL && ump.find(headB) == ump.end()) headB = headB -> next;
-        
         return headB;
     }
 };
+
 
 
 
@@ -32,36 +26,30 @@ public:
 // they have not intersected, we can return directly, 
 // the principle is relatively simple, just look at the set set set null
 
-
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         // create a set to store nodes of list A
         unordered_set<ListNode*> s;
-        
         // add all nodes of list A to the set
-        while (headA != NULL) {
+        while(headA != NULL) {
             s.insert(headA);
             headA = headA->next;
         }
         
         // traverse list B and check if its node is present in the set
-        while (headB != NULL) {
-            if (s.find(headB) != s.end())
-                return headB;
+        while(headB != NULL) {
+            if(s.find(headB) != s.end()) return headB;
             headB = headB->next;
         }
-
         // if there's no intersection, return null
         return NULL;
     }
 };
 
-
 // Here we've used unordered_set instead of set as it provides faster lookup times in practice.
 // Also, we've used nullptr instead of NULL as it's the preferred way of representing null 
 // pointers in modern C++.
-
 
 // T.C. -->  O(m+n), where m and n are the lengths of the two linked lists,
 // because we need to traverse both lists to create the set and check for intersection.
@@ -75,11 +63,7 @@ public:
 
 
 
-
-
-
 // APPROACH 3 [ Count the length of the two linked lists first ]
-
 
 // We can count the length of the two linked lists first, if the length of the two linked lists is not the same,
 // let the linked list go first, until the length of the two linked lists is the same, at this time
@@ -88,19 +72,18 @@ public:
 // otherwise if you have not found an equal node after walking, it means that they have no intersection, 
 // return directly
 
-
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         int lenA = length(headA), lenB = length(headB);
-
         //If the lengths of the nodes are different, the more nodes go first until their lengths are the same
         while (lenA != lenB) {
             if (lenA > lenB) {
                 //If the linked list A is long, then the linked list A goes first
                 headA = headA->next;
                 lenA--;
-            } else {
+            } 
+            else {
                 //If the linked list B is long, then the linked list B goes first
                 headB = headB->next;
                 lenB--;
@@ -108,7 +91,7 @@ public:
         }
 
         //Then start comparing, if they are not equal, keep going down
-        while (headA != headB) {
+        while(headA != headB) {
             headA = headA->next;
             headB = headB->next;
         }
@@ -117,7 +100,6 @@ public:
         //Not empty, that is to say headA is their intersection point
         return headA;
     }
-
 private:
     // count the length of the linked list
     int length(ListNode* node) {
@@ -133,15 +115,14 @@ private:
 
 
 
-// APPROACH 3 [2 Pointer]
 
+// APPROACH 3 [2 Pointer]
 
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *temp1 = headA;
         ListNode *temp2 = headB;
-        
         while(temp1 != temp2){
             if(temp1 == NULL) temp1 = headB;
             else temp1 = temp1->next;
@@ -158,8 +139,9 @@ public:
 
 
 
-// APPROACH 4 [Use of Lambda Function] copied from cn
 
+
+// APPROACH 4 [Use of Lambda Function] copied from cn
 
 // It initializes a lambda function, which sets the synchronization between C++ and C input/output 
 // streams to false and unties the cin stream from the cout stream.
@@ -169,7 +151,6 @@ public:
 // '<value>'\n", where '<value>' is the value of the input line. 
 // If the input line is "0", it writes "No intersection\n" to the output file. 
 // Finally, it flushes the output buffer and exits the program.
-
 
 
 int init = [] {
