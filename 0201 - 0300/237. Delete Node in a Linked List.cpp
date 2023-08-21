@@ -2,18 +2,31 @@
 
 // We are given a linked list 4 -> 5 -> 10-> 13 and we need node 5 to be removed from LL,
 // also the order should be maintained.
-
 // All we need to do is change the value of node 5 to value of node 10 ,
 // and point the node 5 to the address that node 10 points .
-
 // So that Linked list will become 4 -> 10 -> 13
-
 
 class Solution {
 public:
     void deleteNode(ListNode* node) {
         node -> val  = node -> next -> val;
         node -> next = node -> next -> next;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        // Skip the node to be deleted by copying the value of the next node
+        // and then updating the 'next' pointer to skip the next node.
+        ListNode* temp = node->next;
+        node->val = temp->val;
+        node->next = temp->next;
+        delete temp;  // Free the memory of the original next node
     }
 };
 
