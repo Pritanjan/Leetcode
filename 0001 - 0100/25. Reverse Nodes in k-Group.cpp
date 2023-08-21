@@ -47,6 +47,9 @@ public:
 // OR
 
 
+// use recursion to reverse the nodes in groups of k. It works by reversing the first k nodes,
+// then recursively calling the function on the remaining portion of the list.
+
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
@@ -81,5 +84,42 @@ public:
 
 
 
-// APPROACH 2 
+// APPROACH 2 [ Using Iteration ]
+
+// It iterates through the LL while reversing groups of k nodes. 
+// It uses a temporary pointer to reverse the nodes within each group.
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* curr = head;
+        int count = 0;
+        
+        // Count the number of nodes
+        while (curr != nullptr && count < k) {
+            curr = curr->next;
+            count++;
+        }
+        
+        if (count == k) {
+            curr = head;
+            ListNode* prev = nullptr;
+            while (count > 0) {
+                ListNode* temp = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = temp;
+                count--;
+            }
+            if(curr != nullptr) {
+                head->next = reverseKGroup(curr, k); // Recurse on the remaining list
+            }
+            return prev; // New head for this group
+        }
+        
+        return head;
+    }
+};
+
+
 
