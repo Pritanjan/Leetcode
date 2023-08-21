@@ -1,8 +1,4 @@
-// COMPANY TAG AMAZON LINKEDIN MICROSOFT
-
-
 // APPROACH 1 [ TLE ]
-// https://www.geeksforgeeks.org/check-if-a-linked-list-is-circular-linked-list/
 
 class Solution {
 public:
@@ -25,14 +21,12 @@ public:
     bool hasCycle(ListNode *head) {
         // empty list
         if(head == NULL) return false;
-    
         map<ListNode*, bool> visited;
-        ListNode* temp = head;
-        
+        ListNode* temp = head;        
         while(temp != NULL) {
             // cycle is present 
-            if(visited[temp] == true) return 1;           
-        
+            if(visited[temp] == true) return 1;    
+	    // if(ump.find(temp) != ump.end()) return true;
             visited[temp] = true;
             temp = temp -> next;
         }       
@@ -40,10 +34,9 @@ public:
     }
 };
 
-
-
 // T.C. --> O(N)
 // S.C. --> O(N)
+
 
 
 
@@ -55,13 +48,11 @@ public:
 // If they meet, it means there is a ring.
 // If null there is no ring.
 
-
 class Solution {
 public:
     bool hasCycle(ListNode *head) {  
 	// if head is NULL then return false;
-        if(head == NULL || head->next == NULL)
-         	return false;	
+        if(head == NULL || head->next == NULL) return false;	
 	
 	// making two pointers slow and fast and assignning them to head      
         ListNode* slow  = head;
@@ -75,31 +66,27 @@ public:
 
 	    // At the point if slow and fast are at same address
 	    // this means linked list has a cycle in it.
-            if(slow == fast)
-                return true;
+            if(slow == fast) return true;
         }
 	// if traversal reaches to NULL this means no cycle.
         return false;
     }
 };
 
-Time Complexity : O(N)
-Space Complexity : O(1)
-
-
+// Time Complexity : O(N)
+// Space Complexity : O(1)
 
 
 // OR 
+
 
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
 	// if head is NULL then return false;
         if(head == NULL || head->next == NULL) return false;
-        
         ListNode* slow  = head;
-        ListNode* fast = head -> next;
-        
+        ListNode* fast = head -> next;        
         while(slow != fast){
             if(fast == NULL || fast -> next == NULL) return false;
             slow = slow -> next;
@@ -115,19 +102,15 @@ public:
 
 // APPROACH 4 [ Move fast pointer by 3 steps each time, & slow pointer by 1 step each time]
 
-
 class Solution {
 public:
     bool hasCycle(ListNode* head) {
         if(head == nullptr) return false;
-
         ListNode* slow = head;
         ListNode* fast = head;
-        
         while(fast != nullptr && fast->next != nullptr && fast->next->next != nullptr) {
             slow = slow -> next;
             fast = fast -> next -> next -> next;
-            
             if(slow == fast) return true;
         }
         return false;
@@ -145,14 +128,11 @@ class Solution {
 public:
     bool hasCycle(ListNode* head) {
         if(head == nullptr) return false;
-
         ListNode* slow = head;
         ListNode* fast = head;
-        
         while(fast != nullptr && fast->next != nullptr && fast->next->next != nullptr && fast->next->next->next != nullptr) {
             slow = slow -> next;
             fast = fast -> next -> next -> next -> next;
-            
             if(slow == fast) return true;
         }
         return false;
@@ -194,14 +174,11 @@ class Solution {
 public:
     bool hasCycle(ListNode* head) {
         if(head == nullptr) return false;
-
         ListNode* slow = head;
-        ListNode* fast = head;
-        
+        ListNode* fast = head;        
         while(fast != nullptr && fast->next != nullptr && fast->next->next != nullptr) {
             slow = slow -> next;
-            fast = fast -> next -> next -> next;
-            
+            fast = fast -> next -> next -> next;            
             if(slow == fast) return true;
         }
         return false;
@@ -220,14 +197,11 @@ class Solution {
 public:
     bool hasCycle(ListNode* head) {
         if(head == nullptr) return false;
-
         ListNode* slow = head;
-        ListNode* fast = head;
-        
+        ListNode* fast = head;        
         while(fast != nullptr && fast->next != nullptr && fast->next->next != nullptr && fast->next->next->next != nullptr ) {
             slow = slow -> next -> next;
             fast = fast -> next -> next -> next;
-            
             if(slow == fast) return true;
         }
         return false;
@@ -244,25 +218,20 @@ public:
 // current node exists or not, if it exists, it means that there is a ring,
 // and it directly returns true, else continue untill it reaches end of LL
 
-
 class Solution {
 public:
     bool hasCycle(ListNode* head) {
-        unordered_set<ListNode*> set;
-	    
+        unordered_set<ListNode*> set;	    
         while(head != nullptr) {
             // If the node is already in the set, it means there's a cycle.
             if(set.count(head)) return true;
-            
             // Otherwise, add the current node to the set.
             set.insert(head);
             head = head -> next;
-	}
-        
+	}        
 	return false;
     }
 };
-
 
 
 
@@ -275,20 +244,16 @@ public:
 // If there is no ring, delete them one by one from the beginning node,
 // and finally it will definitely be deleted
 
-
 class Solution {
 public:
     bool hasCycle(ListNode* head) {
         // If head is null or head's next is null, return false.
         if(head == nullptr || head -> next == nullptr) return false;
-
         // If head's next is head, there's a cycle.
         if(head -> next == head) return true;
-
         ListNode* nextNode = head -> next;
         // Set head's next to itself to "remove" it from the list.
         head -> next = head;
-        
         // Recursively check the next node.
         return hasCycle(nextNode);
     }
@@ -302,7 +267,6 @@ public:
 
 // If there is a cycle, then after the linked list is reversed,
 // the original head node and the reversed head node point must be the same
-
 
 class Solution {
 public:
@@ -371,33 +335,25 @@ public:
 // QUESTION 1 [ check cycle -> tail to head ]
 // https://www.codingninjas.com/codestudio/problems/circularly-linked_1070232?source=youtube&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan&leftPanelTab=0
 	
-	
 #include <bits/stdc++.h> 
 bool isCircular(Node* head){
     // empty list
     if(head == NULL) return true;
     if(head -> next == NULL) return false;
-    
     Node* temp = head;
     Node* temp1 = head;
     
     while(temp != NULL && temp1 != NULL and temp1 -> next != NULL) {
         temp = temp -> next;
-        temp1 = temp1 -> next -> next;
-        
+        temp1 = temp1 -> next -> next;        
         if(temp == temp1) break;
-    }   
-    
+    }       
     if(temp == temp1 and temp == head) return true;
     return false;
 }
 
-
 // T.C. --> O(N)
 // S.C. --> O(1)
-
-
-
 
 
 
@@ -407,9 +363,7 @@ bool isCircular(Node* head){
 
 bool FCDA(ListNode *head) {  
     // if head is NULL then return false;
-    if(head == NULL || head->next == NULL)
-        return false;	
-	
+    if(head == NULL || head->next == NULL) return false;	
     // making two pointers slow and fast and assignning them to head      
     ListNode* slow  = head;
     ListNode* fast = head;
@@ -419,28 +373,22 @@ bool FCDA(ListNode *head) {
     while(fast && fast -> next){
         slow = slow -> next;
         fast = fast -> next -> next;
-
 	// At the point if slow and fast are at same address
 	// this means linked list has a cycle in it.
         if(slow == fast) return true;
     }
-    
     // if traversal reaches to NULL this means no cycle.
     return false;
 }
 
 bool getStartingNode(TreeNode* head){
-     if(head == NULL)
-         return NULL;
-    
+    if(head == NULL) return NULL;
     TreeNode* meet = FCDA(head);
     TreeNode* slow = head;
-    
     while(slow !- meet){
         slow = slow -> next;
         meet = meet -> next;
     }
-    
     return slow;
 }
 
@@ -468,8 +416,7 @@ Node* FCDA(Node *head) {
 
         // At the point if slow and fast are at same address
         // this means linked list has a cycle in it.
-        if(slow == fast)
-            return slow;
+        if(slow == fast) return slow;
     }
     // if traversal reaches to NULL this means no cycle.
     return NULL;
@@ -497,18 +444,14 @@ Node* getStartingNode(Node* head) {
 
 
 Node *removeLoop(Node *head){
-    if(head == NULL)
-        return NULL;
-    
+    if(head == NULL) return NULL;
     Node* startofLoop = getStartingNode(head);
-    if(startofLoop == NULL)
-        return head;
+    if(startofLoop == NULL) return head;
     Node* temp = startofLoop;
     
     while(temp -> next != startofLoop){
         temp = temp -> next;
-    }
-    
+    }    
     temp -> next = NULL;
     return head;
 }
