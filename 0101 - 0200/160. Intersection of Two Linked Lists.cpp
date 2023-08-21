@@ -1,3 +1,28 @@
+// APPROACH 0 BRUTE FORCE
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        while (headB != NULL) {
+            ListNode* temp = headA;
+            while (temp != NULL) {
+                // If both nodes are the same
+                if (temp == headB) {
+                    return headB;
+                }
+                temp = temp->next;
+            }
+            headB = headB->next;
+        }
+        // Intersection is not present between the lists, return nullptr
+        return NULL;
+    }
+};
+
+
+
+
+
 // APPROACH 1 [Using map]
 
 class Solution {
