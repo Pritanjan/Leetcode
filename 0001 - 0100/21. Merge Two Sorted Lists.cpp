@@ -209,27 +209,29 @@ public:
         };
 
         priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
+        
         while(list1) {
-            pq.push(list1);
-            list1 = list1 -> next;
+            ListNode* newNode = new ListNode(list1->val); // Create a new node with the same value
+            pq.push(newNode);
+            list1 = list1->next;
         }
 
         while(list2) {
-            pq.push(list2);
-            list2 = list2 -> next;
+            ListNode* newNode = new ListNode(list2->val); // Create a new node with the same value
+            pq.push(newNode);
+            list2 = list2->next;
         }
 
         ListNode dummy(0);
         ListNode* curr = &dummy;
         while(!pq.empty()) {
-            curr -> next = pq.top();
+            curr->next = pq.top();
             pq.pop();
-            curr = curr -> next;
+            curr = curr->next;
         }
         return dummy.next;
     }
 };
-
 
 
 
