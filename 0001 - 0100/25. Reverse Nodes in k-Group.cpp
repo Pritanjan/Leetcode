@@ -44,6 +44,40 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* curr = head;
+        int count = 0;
+        
+        // Count the number of nodes in the current group
+        while (curr != nullptr && count < k) {
+            curr = curr->next;
+            count++;
+        }
+        
+        if (count == k) {
+            // Reverse the first k nodes
+            curr = reverseKGroup(curr, k); // Recurse on the remaining list
+            while (count > 0) {
+                ListNode* temp = head->next;
+                head->next = curr;
+                curr = head;
+                head = temp;
+                count--;
+            }
+            head = curr; // New head for this group
+        }
+        
+        return head;
+        
+    }
+};
+
+
 
 
 
