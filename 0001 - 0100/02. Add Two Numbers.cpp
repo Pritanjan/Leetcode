@@ -1,63 +1,48 @@
-SAME AS LC Q 445 Add Two Numbers II
+// SAME AS LC Q 445 Add Two Numbers II
+
 
 // APPROACH 1
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         int sum = 0;
-        ListNode* temp = new ListNode(0) ;
-        
-        ListNode* ans = temp;
-        
-        
-        // ListNode* rtn = new ListNode((l1->val + l2->val) % 10);
+        ListNode* temp = new ListNode(0) ;        
+        ListNode* ans = temp;        
         
         while(l1 or l2){
             if(l1){
                 sum += l1->val;
                 l1 = l1->next;
             }
-            if(l2){
-                sum += l2->val;
-                l2 = l2->next;
+            if(l2) {
+                sum += l2 -> val;
+                l2 = l2 -> next;
             }
             temp -> next = new ListNode(sum % 10);
             temp = temp -> next;
             
-            if(sum > 9)
-                sum = 1;
-            else 
-                sum = 0;
-        }
-        
-        if(sum)
-            temp -> next = new ListNode(sum);
-        
+            if(sum > 9) sum = 1;
+            else sum = 0;
+        }        
+        if(sum) temp -> next = new ListNode(sum);
         return ans -> next;
     }
 };
 
 
 // Time complexity :  O(max(m,n)). Assume that mm and nn represents the length of L1 and L2 respectively, the algorithm above iterates at most max(m,n) times.
-
 // Space complexity : O(max(m,n)). The length of the new list is at most max(m,n)+1.
 
-    
+
+
+
+
+
 // APPROACH 2
+
 class Solution {
 public:
-    //Function to add two numbers represented by linked list.
     Node* reverse(Node* &head){
         Node* curr=head;
         Node* prev=NULL;
@@ -71,9 +56,7 @@ public:
         return prev;
     }
     
-    struct Node* addTwoLists(struct Node* first, struct Node* second)
-    {
-        // code here
+    struct Node* addTwoLists(struct Node* first, struct Node* second) {
         first=reverse(first);
         second=reverse(second);
         int carry=0;
@@ -92,36 +75,25 @@ public:
             else
                 curr->next=temp;
                 curr=temp;
-            if(first)
-            first=first->next;
-            if(second)
-            second=second->next;
+            if(first) first=first->next;
+            if(second) second=second->next;
         }
-        if(carry>0){
+        if(carry>0) {
             temp=new Node(carry);
             curr->next=temp;
             curr=temp;
         }
-        res=reverse(res);
+        res = reverse(res);
         return res;
     }
 };
 
 
 
+
+
+
 // APPROACH 3
-
-
-struct Node {
-    int data;
-    struct Node* next;
-    Node(int x) {
-        data = x;
-        next = NULL;
-    }
-};
-
-*/
 
 class Solution {
 public:
@@ -166,7 +138,11 @@ public:
 };
 
 
-// aPRROaCH 4
+
+
+
+
+// APPROACH 4
 
 class Solution {
 public:
