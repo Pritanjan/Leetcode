@@ -56,3 +56,34 @@ public:
         return dummyHead->next;
     }
 };
+
+
+
+
+
+// APPROACH 3 RECURSION
+
+class Solution {
+public:
+    ListNode* f(ListNode* l1, ListNode* l2, int carry = 0) {
+        if(!l1 && !l2 && carry == 0) return nullptr;
+        int sum = carry;
+        if(l1) {
+            sum += l1->val;
+            l1 = l1->next;
+        }
+        if(l2) {
+            sum += l2->val;
+            l2 = l2->next;
+        }
+
+        ListNode* res = new ListNode(sum % 10);
+        res -> next = f(l1, l2, sum / 10);
+        return res;
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        return f(l1, l2, 0);        
+    }
+};
+
