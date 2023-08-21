@@ -62,60 +62,6 @@ public:
 
 
 
-
-// APPROACH 3 [ Count the length of the two linked lists first ]
-
-// We can count the length of the two linked lists first, if the length of the two linked lists is not the same,
-// let the linked list go first, until the length of the two linked lists is the same, at this time
-// the two linked lists move back at the same time to see if the nodes are the same, 
-// if there are equal, it means that this equal node is the intersection of the two linked lists, 
-// otherwise if you have not found an equal node after walking, it means that they have no intersection, 
-// return directly
-
-class Solution {
-public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        int lenA = length(headA), lenB = length(headB);
-        //If the lengths of the nodes are different, the more nodes go first until their lengths are the same
-        while (lenA != lenB) {
-            if (lenA > lenB) {
-                //If the linked list A is long, then the linked list A goes first
-                headA = headA->next;
-                lenA--;
-            } 
-            else {
-                //If the linked list B is long, then the linked list B goes first
-                headB = headB->next;
-                lenB--;
-            }
-        }
-
-        //Then start comparing, if they are not equal, keep going down
-        while(headA != headB) {
-            headA = headA->next;
-            headB = headB->next;
-        }
-        //At the end, there will be two possibilities in the end, one is that headA is empty,
-        //That is to say, the two do not intersect. Another possibility is headA
-        //Not empty, that is to say headA is their intersection point
-        return headA;
-    }
-private:
-    // count the length of the linked list
-    int length(ListNode* node) {
-        int length = 0;
-        while (node != nullptr) {
-            node = node->next;
-            length++;
-        }
-        return length;
-    }
-};
-
-
-
-
-
 // APPROACH 3 [2 Pointer]
 
 class Solution {
@@ -176,6 +122,53 @@ public:
 
 
 
+// APPROACH 5 [ Count the length of the two linked lists first ]
 
+// We can count the length of the two linked lists first, if the length of the two linked lists is not the same,
+// let the linked list go first, until the length of the two linked lists is the same, at this time
+// the two linked lists move back at the same time to see if the nodes are the same, 
+// if there are equal, it means that this equal node is the intersection of the two linked lists, 
+// otherwise if you have not found an equal node after walking, it means that they have no intersection, 
+// return directly
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int lenA = length(headA), lenB = length(headB);
+        //If the lengths of the nodes are different, the more nodes go first until their lengths are the same
+        while (lenA != lenB) {
+            if (lenA > lenB) {
+                //If the linked list A is long, then the linked list A goes first
+                headA = headA->next;
+                lenA--;
+            } 
+            else {
+                //If the linked list B is long, then the linked list B goes first
+                headB = headB->next;
+                lenB--;
+            }
+        }
+
+        //Then start comparing, if they are not equal, keep going down
+        while(headA != headB) {
+            headA = headA->next;
+            headB = headB->next;
+        }
+        //At the end, there will be two possibilities in the end, one is that headA is empty,
+        //That is to say, the two do not intersect. Another possibility is headA
+        //Not empty, that is to say headA is their intersection point
+        return headA;
+    }
+private:
+    // count the length of the linked list
+    int length(ListNode* node) {
+        int length = 0;
+        while (node != nullptr) {
+            node = node->next;
+            length++;
+        }
+        return length;
+    }
+};
 
 
