@@ -56,3 +56,32 @@ public:
         return res;
     }
 };
+
+
+
+
+
+// APPROACH 4 [ Using a Mapping Array ]
+
+// Here, we can create an array that maps the remainders to characters, 
+// then build the column title by using this mapping array.
+
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        vector<char> mapping = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                                 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                                 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+        string columnTitle = "";
+        while(columnNumber > 0) {
+            columnNumber--;  // Adjust for 1-based indexing
+            int rem = columnNumber % 26;
+            columnTitle = mapping[rem] + columnTitle;
+            columnNumber /= 26;
+        }
+        return columnTitle;
+    }
+};
+
+
