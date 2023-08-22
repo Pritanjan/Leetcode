@@ -67,37 +67,35 @@ public:
 // Time Complexity: O(N^2)
 // Space Complexity: O(1)
 
-
-
-
-
-// APPROACH 3
+// OR
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {        
-        vector<vector<int>> answer;        
+        vector<vector<int>> res;
         sort(nums.begin(),nums.end());
         for(int i=0; i<nums.size(); i++) {
-                int sum  = 0 - nums[i];
-                int left = i+1;
-                int right = nums.size()-1;
-                while(left < right){
-                    if(nums[left] + nums[right] == sum ){
-                        vector <int> triplet = {nums[i], nums[left], nums[right]};
-                        answer.push_back(triplet);
-                        
-                        while(left < right && nums[left]  == triplet[1]) left++;
-                        while(left < right && nums[right] == triplet[2]) right--;
-                    }
-                    else if(nums[left] + nums[right] < sum) left++;
-                    else right--;
+            int sum  = 0 - nums[i];
+            int L = i+1;
+            int R = nums.size()-1;
+            while(L < R){
+                if(nums[L] + nums[R] == sum ){
+                    vector <int> triplet = {nums[i], nums[L], nums[R]};
+                    res.push_back(triplet);
+                    
+                    while(L < R && nums[L] == triplet[1]) L++;
+                    while(L < R && nums[R] == triplet[2]) R--;
                 }
-                while (i + 1 < nums.size() && nums[i + 1] == nums[i]) 
-                i++;            
+                else if(nums[L] + nums[R] < sum) L++;
+                else R--;
             }
-        return answer;
+            while (i+1 < nums.size() && nums[i+1] == nums[i]) 
+            i++;            
+        }
+        return res;
     }
 };
+
+
 
 
