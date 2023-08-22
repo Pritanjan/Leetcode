@@ -202,3 +202,27 @@ public:
 };
 
 
+
+
+
+// APPROACH 5 Using a Stack
+ 
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        stack<int> s;
+        ListNode* curr = head;
+        while(curr) {
+            s.push(curr -> val);
+            curr = curr -> next;
+        }
+
+        curr = head;
+        while(!s.empty()) {
+            if(s.top() != curr -> val) return false;
+            s.pop();
+            curr = curr -> next;
+        }
+        return true;
+    }
+};
