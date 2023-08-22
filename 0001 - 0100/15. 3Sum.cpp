@@ -99,3 +99,37 @@ public:
 
 
 
+
+
+// APPROACH 3 USE HASH SET
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        unordered_set<int> seen;
+        for(int i=0; i<n-2; ++i) {
+            if(i > 0 && nums[i] == nums[i-1]) continue;  // Skip duplicates
+
+            seen.clear();
+            for(int j=i+1; j<n; ++j) {
+                int complement = -nums[i] - nums[j];
+                if(seen.count(complement)) {
+                    res.push_back({nums[i], nums[j], complement});
+                    while(j+1 < n && nums[j] == nums[j+1]) ++j;  // Skip duplicates
+                }
+                seen.insert(nums[j]);
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// APPRAOCH 4 
