@@ -115,40 +115,6 @@ public:
 // s.c. O(1)
 
 
-// OR
-// Reverse the Second Half of the Linked List 
-
-class Solution {
-public:
-    bool isPalindrome(ListNode* head) {
-         if(!head || !head->next) return true;
-
-        ListNode* slow = head;
-        ListNode* fast = head;
-
-        while(fast && fast->next) {
-            slow = slow -> next;
-            fast = fast -> next -> next;
-        }
-
-        ListNode* secondHalf = nullptr;
-        while(slow) {
-            ListNode* temp = slow->next;
-            slow -> next = secondHalf;
-            secondHalf = slow;
-            slow = temp;
-        }
-
-        while(secondHalf) {
-            if(head->val != secondHalf->val) return false;
-            head = head -> next;
-            secondHalf = secondHalf -> next;
-        }
-        return true;
-    }
-};
-
-
 
 
 
@@ -249,3 +215,74 @@ public:
         return recursion(head, head);
     }
 };
+
+
+
+
+
+
+// APPROACH 7 [ Reverse the Second Half of the Linked List  ]
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+         if(!head || !head->next) return true;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast && fast->next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+
+        ListNode* secondHalf = nullptr;
+        while(slow) {
+            ListNode* temp = slow->next;
+            slow -> next = secondHalf;
+            secondHalf = slow;
+            slow = temp;
+        }
+
+        while(secondHalf) {
+            if(head->val != secondHalf->val) return false;
+            head = head -> next;
+            secondHalf = secondHalf -> next;
+        }
+        return true;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* prev = nullptr;
+        
+        while(fast != nullptr && fast -> next != nullptr) {
+            fast = fast -> next -> next;
+            ListNode* temp = slow -> next;
+            slow -> next = prev;
+            prev = slow;
+            slow = temp;
+        }
+        
+        // Odd number of nodes, skip the middle node
+        if(fast != nullptr) slow = slow -> next;
+        
+        while(prev != nullptr && slow != nullptr) {
+            if(prev->val != slow->val) return false;
+            prev = prev -> next;
+            slow = slow -> next;
+        }        
+        return true;
+    }
+};
+
+
+
