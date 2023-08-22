@@ -11,8 +11,7 @@ public:
     }
     
     Node* flatten(Node* head) {
-        if (head == nullptr) return nullptr;
-        
+        if (head == nullptr) return nullptr;        
         Node* temp = head;
         vector<Node*> node;
         dfs(temp, node);
@@ -40,41 +39,28 @@ public:
 
 class Solution {
 public:
-    Node* flatten(Node* head) 
-    {
-        if(!head)
-        {
-            return head;
-        }
-        Node *cur=head;
+    Node* flatten(Node* head) {
+        if(!head) return head;
+        Node *cur = head;
         Node *pcur;
         vector<Node*> node;
-        while(cur||!node.empty())
-        {
-            if(!cur)
-            {
-                cur=node.back();
+        while(cur || !node.empty()) {
+            if(!cur) {
+                cur = node.back();
                 node.pop_back();
-                cur->prev=pcur;
-                pcur->next=cur;
+                cur -> prev = pcur;
+                pcur -> next = cur;
             }
-            else if(cur->child)
-            {
-                if(cur->next)
-                {
-                node.push_back(cur->next);
-                }
-                cur->next=cur->child;
-                cur->next->prev=cur;
-                cur->child=NULL;
+            else if(cur -> child) {
+                if(cur -> next) node.push_back(cur -> next);
+                cur -> next = cur -> child;
+                cur -> next -> prev = cur;
+                cur -> child = NULL;
             }
-            pcur=cur;
-            cur=cur->next;
-        }
-        
+            pcur = cur;
+            cur = cur -> next;
+        }        
         return head;
-
-
     }
 };
 
@@ -98,28 +84,24 @@ public:
         
         while (cur) {
             Node* next = cur->next;
-            if (cur->child) {
+            if(cur->child) {
                 Node* child_last = dfs(cur->child);
                 next = cur->next;
                 cur->next = cur->child;
                 cur->child->prev = cur;
-                if (next) {
+                if(next) {
                     child_last->next = next;
                     next->prev = child_last;
                 }
                 cur->child = nullptr;
                 last = child_last;
-            } else {
-                last = cur;
-            }
+            } 
+            else last = cur;
             cur = next;
-        }
-        
+        }        
         return last;
     }
 };
-
-
 
 
 // OR
@@ -133,19 +115,18 @@ public:
             // record the last node of the linked list
             Node* last = nullptr;
 
-            while (cur) {
+            while(cur) {
                 Node* next = cur->next;
                 // If there are child nodes, then process the child nodes first
-                if (cur->child) {
+                if(cur->child) {
                     Node* child_last = dfs(cur->child);
-
                     next = cur->next;
                     // connect node to child
                     cur->next = cur->child;
                     cur->child->prev = cur;
 
                     // If next is not empty, connect last to next
-                    if (next) {
+                    if(next) {
                         child_last->next = next;
                         next->prev = child_last;
                     }
@@ -154,14 +135,11 @@ public:
                     cur->child = nullptr;
                     last = child_last;
                 }
-                else {
-                    last = cur;
-                }
+                else last = cur;
                 cur = next;
             }
             return last;
         };
-
         dfs(head);
         return head;
     }
@@ -170,24 +148,23 @@ public:
 
 
 
+
+
 // APPROACH 4
 
 class Solution {
 public:
-
     Node* flatten(Node* head) {
         Node* tmp = head;
         stack<Node*> st;
-
-        while (tmp){
-            if (tmp->child){
-                if (tmp->next)
-                    st.push(tmp->next);
+        while(tmp){
+            if(tmp->child){
+                if(tmp->next) st.push(tmp->next);
                 tmp->next = tmp->child;
                 tmp->child->prev = tmp;
                 tmp->child = NULL;
             }
-            if (!tmp->next and !st.empty()) {
+            if(!tmp->next and !st.empty()) {
                 tmp->next = st.top();
                 st.top()->prev = tmp;
                 st.pop();
@@ -199,4 +176,8 @@ public:
 };
 
 
+
+
+
 // APPROACH 5
+
