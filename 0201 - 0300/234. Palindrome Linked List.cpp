@@ -1,29 +1,25 @@
 // APPROACH 1
 
-
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         vector<int> v;
         if(head == NULL or head->next == NULL) return true;
-        else{
+        else {
             ListNode *temp = head;
             while(temp -> next != NULL){
                 v.push_back(temp -> val);
                 temp = temp -> next;
             }
             v.push_back(temp -> val);
-        }
-        
+        }        
         int n = v.size();
         for(int i=0; i<n/2; i++){
-            if(v[i] != v[n-i-1])
-                return false;
+            if(v[i] != v[n-i-1]) return false;
         }
         return true;
     }
 };
-
 
 // T.C. --> O(N) As we iterate over whole LL
 // S.C. --> O(N) As we create an array of size N
@@ -39,8 +35,7 @@ private:
     bool checkPali(vector<int> &v) {
         int n = v.size();
         int L = 0;
-        int R = n-1;
-        
+        int R = n-1;        
         while(L <= R){
             if(v[L] != v[R]) return 0;
             L++;
@@ -48,7 +43,6 @@ private:
         }
         return L;
     }
-    
 public:
     bool isPalindrome(ListNode* head) {
         vector<int> v;
@@ -60,6 +54,8 @@ public:
         return checkPali(v);
     }  
 };
+
+
 
 
 
@@ -94,8 +90,7 @@ public:
     
     
     bool isPalindrome(ListNode* head) {
-        if(head == NULL or head -> next == NULL)
-            return true;
+        if(head == NULL or head -> next == NULL) return true;
         
         // s1 find mid
         ListNode* mid = getMid(head);
@@ -107,22 +102,51 @@ public:
         // compare both half
         ListNode* head1 = head;
         ListNode* head2 = mid -> next;
-        
         while(head2 != NULL){
-            if(head1 -> val != head2 -> val)
-                return false;
+            if(head1 -> val != head2 -> val) return false;
             head1 = head1 -> next;
             head2 = head2 -> next;
-            
-        }
-        
+        }        
         return true;
     }
 };
 
-
 // t.c. O(N)
 // s.c. O(1)
+
+
+// OR
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+         if(!head || !head->next) return true;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast && fast->next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+
+        ListNode* secondHalf = nullptr;
+        while(slow) {
+            ListNode* temp = slow->next;
+            slow -> next = secondHalf;
+            secondHalf = slow;
+            slow = temp;
+        }
+
+        while(secondHalf) {
+            if(head->val != secondHalf->val) return false;
+            head = head -> next;
+            secondHalf = secondHalf -> next;
+        }
+        return true;
+    }
+};
 
 
 
