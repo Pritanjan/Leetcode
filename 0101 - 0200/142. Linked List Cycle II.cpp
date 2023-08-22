@@ -1,3 +1,52 @@
+// APPROACH 0 BRUTE FORCE
+
+class Solution {
+public:
+    void insertNode(ListNode* &head, int val) {
+        ListNode* tmp = new ListNode(val);
+        if(head == NULL) {
+            head = tmp;
+            return;
+        }
+
+        ListNode* temp = head;
+        while(temp -> next != NULL) temp = temp->next;
+        temp -> next = tmp;
+        return;
+    }
+
+    void createCycle(ListNode* &head, int pos) {
+        ListNode* ptr = head;
+        ListNode* temp = head;
+        int cnt = 0;
+        while(temp -> next != NULL) {
+            if(cnt != pos) {
+                ++cnt;
+                ptr = ptr -> next;
+            }
+            temp = temp -> next;
+        }
+        temp -> next = ptr;
+    }
+
+    ListNode* detectCycle(ListNode* head) {
+        unordered_set<ListNode*> st;
+        while(head != NULL) {
+            if(st.find(head) != st.end()) return head;
+            st.insert(head);
+            head = head -> next;
+        }
+        return NULL;
+    }
+};
+
+// T.C. : O(N) Iterating the entire list once.
+// S.C. : O(N) We store all nodes in a hash table.
+
+
+
+
+
 // APPROACH 1 [ Using Hash Map ]
 
 class Solution {
