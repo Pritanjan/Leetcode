@@ -3,8 +3,7 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == NULL)
-            return NULL;
+        if(head == NULL) return NULL;
             
         ListNode* slow = head;
         ListNode* fast = head;
@@ -16,7 +15,7 @@ public:
             len++;
         }
 
-        k = k % len;
+        k = k % len;   // Adjust k to be within the range of list length
         for(int i=0; i<k; i++){
             fast = fast -> next;
         }
@@ -43,14 +42,14 @@ public:
 
 
 
+
 // APPROACH 2
 
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if (!head || !head->next) {
-            return head;
-        }
+        if(!head || !head->next) return head;
+        
         // Length of the linked list
         int n = 1;
         ListNode* curr = head;
