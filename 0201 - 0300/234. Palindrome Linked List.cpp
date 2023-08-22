@@ -226,3 +226,26 @@ public:
         return true;
     }
 };
+
+
+
+
+
+// APPROACH 6 RECURSON
+
+class Solution {
+public:
+    bool recursion(ListNode* &L, ListNode* R) {
+        if(!R) return true;
+        bool isPal = recursion(L, R -> next);
+        if(!isPal) return false;
+
+        bool currentIsPal = (L -> val == R -> val);
+        L = L -> next;  
+        return currentIsPal;
+    }
+
+    bool isPalindrome(ListNode* head) {
+        return recursion(head, head);
+    }
+};
