@@ -36,5 +36,23 @@ public:
 
 
 
-// APPROACH 3 
+// APPROACH 3  [ Using StringBuilder ]
+// Here, we can use a stringstream to build the column title string by repeatedly calculating the
+// remainder and updating the column number.
 
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        stringstream ss;
+        while(columnNumber > 0) {
+            columnNumber--;  // Adjust for 1-based indexing
+            int rem = columnNumber % 26;
+            ss << char('A' + rem);
+            columnNumber /= 26;
+        }
+        
+        string res = ss.str();
+        reverse(res.begin(), res.end());  // Reverse the string
+        return res;
+    }
+};
