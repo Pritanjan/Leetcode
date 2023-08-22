@@ -172,6 +172,31 @@ public:
 
 
 
+// 5th  Counting Occurrences
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        int k = 0; // Pointer to the last position of unique elements
+        
+        for(int i=0; i<n; ) {
+            int num = nums[i];
+            int count = 0;
+            while(i < n && nums[i] == num) {
+                i++;
+                count++;
+            }
+            nums[k] = num;
+            k++;
+        }        
+        return k;
+    }
+};
+
+
+
+
 
 
 
