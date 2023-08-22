@@ -104,3 +104,48 @@ public:
     }
 };
 
+
+
+
+
+// APPROACH 4 [ RECURSION ]
+
+class Solution {
+public:
+    int getLength(ListNode* head) {
+        int length = 0;
+        while(head) {
+            length++;
+            head = head->next;
+        }
+        return length;
+    }
+
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(!head || k == 0) return head;
+                
+        int length = getLength(head);
+        k = k % length;
+        
+        // No rotation needed
+        if(k == 0) return head;  
+        
+        ListNode* curr = head;
+        for(int i=0; i<length-k-1; i++) {
+            curr = curr -> next;
+        }
+        
+        ListNode* new_head = curr -> next;
+        curr -> next = nullptr;
+        
+        new_head = rotateRight(new_head, k);
+        
+        ListNode* new_tail = new_head;
+        while(new_tail -> next) new_tail = new_tail -> next;
+        new_tail -> next = head;
+        return new_head;
+    }
+};
+
+
+
