@@ -49,7 +49,6 @@ class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         if(!head || !head->next) return head;
-        
         // Length of the linked list
         int n = 1;
         ListNode* curr = head;
@@ -71,4 +70,37 @@ public:
     }
 };
 
+
+
+
+
+// APPROACH 3 [  Using Vector to Store Values ]
+
+// Here, we can convert the LL values into a vector, perform the rotation on the vector, 
+// and then reconstruct the linked list with the rotated values.
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(!head || k == 0) return head;        
+        vector<int> v;
+        ListNode* curr = head;
+        while(curr) {
+            v.push_back(curr -> val);
+            curr = curr -> next;
+        }
+        
+        int length = v.size();
+        k = k % length;
+        
+        rotate(v.rbegin(), v.rbegin() + k, v.rend());
+        
+        curr = head;
+        for(int i=0; i<length; i++) {
+            curr -> val = v[i];
+            curr = curr -> next;
+        }        
+        return head;
+    }
+};
 
