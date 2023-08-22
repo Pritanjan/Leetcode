@@ -33,7 +33,6 @@ public:
 
 
 
-
 // APPROACH 3 [ 2 POINTER ]
 
 class Solution {
@@ -52,7 +51,6 @@ public:
     }
 };
 
-
 // Time complexity: O(n)
 // Space Complexity: O(1)
 
@@ -69,7 +67,6 @@ public:
         for(int i=1; i<nums.size(); ++i){
             if(nums[i] != nums[i-1]) nums[cnt++] = nums[i];
         }
-
         return cnt;
     }
 };
@@ -88,7 +85,6 @@ public:
         for(int i=0; i<n; i++) {
             st.insert(arr[i]);
         }
-
         int k = st.size();
         int j = 0;
         for(int x : st) {
@@ -98,14 +94,56 @@ public:
     }
 };
 
-
 // Time complexity: O(n*log(n))+O(n)
 // Space Complexity: O(n)
 
 
     
-    
-    
+
+
+// APPROACH 6 
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> visited(n, 1);
+        vector<int> res;
+
+        for(int i=0; i<n; i++) {
+            if(visited[i] == 1)
+            for(int j=i+1; j<n; j++) {
+                if(nums[i] == nums[j]) {
+                    visited[i] = 0;
+                }
+            }
+            if(visited[i] == 1) {
+                res.push_back(nums[i]);
+            }
+        }
+        nums = res;  // Update the input array with the unique elements
+        return res.size();
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // https://practice.geeksforgeeks.org/problems/6e63df6d2ebdf6408a9b364128bb1123b5b13450/1
 // Make array elements unique
