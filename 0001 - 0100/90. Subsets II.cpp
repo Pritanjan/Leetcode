@@ -65,3 +65,70 @@ public:
     }
 };
 
+
+
+
+
+
+// A3 - Iterative Approach:
+
+// An iterative approach can also be used to generate subsets. 
+// We can think of it as a loop that iterates through the input array and updates the 
+// existing subsets by adding the current element.
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); // Sort to handle duplicates
+        vector<vector<int>> res = {{}};
+        int idx, cnt;
+        for(int i=0; i<nums.size(); ++i) {
+            idx = (i>0 && nums[i] == nums[i-1]) ? cnt : 0;
+            cnt = res.size();
+            for(int j=idx; j<cnt; ++j) {
+                vector<int> subset = res[j];
+                subset.push_back(nums[i]);
+                res.push_back(subset);
+            }
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A4 - Bit Manipulation:
+
+// It uses the binary representation of numbers to generate subsets. 
+// Each bit represents whether an element is included or excluded in the subse
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); // Sort to handle duplicates
+        
+        int n = nums.size();
+        int subsetCount = pow(2, n);
+        vector<vector<int>> result;
+        
+        for (int i = 0; i < subsetCount; ++i) {
+            vector<int> subset;
+            for (int j = 0; j < n; ++j) {
+                if (i & (1 << j)) {
+                    subset.push_back(nums[j]);
+                }
+            }
+            result.push_back(subset);
+        }
+        
+        return result;
+    }
+};
+
+
+
+
+
