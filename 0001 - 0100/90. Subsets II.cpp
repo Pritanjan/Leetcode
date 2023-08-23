@@ -138,3 +138,50 @@ private:
 
 
 
+
+
+// A5 Using a Hash Set
+// It uses a hash set to keep track of unique subsets and avoids inserting duplicate subsets.
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); // Sort to handle duplicates
+        
+        unordered_set<string> s;
+        vector<vector<int>> res;
+        vector<int> curr;
+        
+        f(nums, 0, curr, s);
+        for(const string& s1 : s) {
+            vector<int> subset;
+            stringstream ss(s1);
+            int num;
+            while(ss >> num) subset.push_back(num);
+            res.push_back(subset);
+        }        
+        return res;
+    }
+    
+private:
+    void f(vector<int>& nums, int idx, vector<int>& curr, unordered_set<string>& s) {
+        if(idx == nums.size()) {
+            stringstream ss;
+            for(int num : curr) {
+                ss << num << " ";
+            }
+            s.insert(ss.str());
+            return;
+        }
+        
+        // Exclude the current number
+        f(nums, idx+1, curr, s);
+        
+        // Include the current number
+        curr.push_back(nums[idx]);
+        f(nums, idx+1, curr, s);
+        curr.pop_back(); // Backtrack to the previous state
+    }
+};
+
+
