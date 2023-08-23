@@ -27,7 +27,7 @@ public:
 
 
 
-// APPROACH 2 
+// APPROACH 2  - Backtracking
 
 class Solution {
 public:
