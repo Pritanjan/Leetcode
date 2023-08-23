@@ -1,4 +1,4 @@
-// A1 
+// A1  Backtracking
 
 class Solution {
 public:
@@ -33,7 +33,7 @@ public:
 
 
 
-// A2
+// A2 Recursion
 
 class Solution {
 public:
