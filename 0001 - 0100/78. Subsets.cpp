@@ -73,6 +73,28 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        int n = nums.size();        
+        for(int i=0; i<(1 << n); ++i) {
+            vector<int> subset;
+            for(int j=0; j<n; ++j) {
+                if(i & (1 << j)) {
+                    subset.push_back(nums[j]);
+                }
+            }
+            res.push_back(subset);
+        }        
+        return res;
+    }
+};
+
+
 
 
 
@@ -95,6 +117,31 @@ public:
             res.push_back(subset);
         }        
         return res;
+    }
+};
+
+
+
+
+
+
+// A5
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        if(nums.empty()) return {{}};        
+
+        int last = nums.back();
+        nums.pop_back();
+        vector<vector<int>> v1 = subsets(nums);   // subsetsWithoutLast
+        vector<vector<int>> v2 = v1;              // subsetsWithLast
+        
+        for(auto& subset : v2) {
+            subset.push_back(last);
+        }        
+        v1.insert(v1.end(), v2.begin(), v2.end());
+        return v1;
     }
 };
 
