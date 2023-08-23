@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/permutation-sequence/
+// APPROACH 1 
 
 class Solution {
 public:
@@ -13,14 +13,23 @@ public:
         nums.push_back(n);
         string ans = "";
         k--;
+
         while(1){
-            ans = ans+to_string(nums[k/fact]);
-            nums.erase(nums.begin() + k/fact);
-            if(nums.size() == 0)
-                break;
+            ans = ans + to_string(nums[k / fact]);
+            nums.erase(nums.begin() + k / fact);
+            if(nums.size() == 0) break;
             k %= fact;
             fact /= nums.size();
         }
         return ans;
     }
 };
+
+
+
+
+
+
+// APPROACH 2 
+
+
