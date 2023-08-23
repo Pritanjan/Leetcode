@@ -100,34 +100,7 @@ public:
 
 
 
-// A4 - Bit Manipulation:
-
-// It uses the binary representation of numbers to generate subsets. 
-// Each bit represents whether an element is included or excluded in the subse
-
-class Solution {
-public:
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        sort(nums.begin(), nums.end()); // Sort to handle duplicates
-        
-        int n = nums.size();
-        int subsetCount = pow(2, n);
-        vector<vector<int>> result;
-        
-        for (int i = 0; i < subsetCount; ++i) {
-            vector<int> subset;
-            for (int j = 0; j < n; ++j) {
-                if (i & (1 << j)) {
-                    subset.push_back(nums[j]);
-                }
-            }
-            result.push_back(subset);
-        }
-        
-        return result;
-    }
-};
-
+// A4 
 
 
 
