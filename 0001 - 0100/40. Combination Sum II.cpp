@@ -35,6 +35,43 @@ public:
 
 // A2
 
+class Solution {
+public:
+    void findCombinations(vector<int>& candidates, int target, int idx, vector<int>& curr,vector<vector<int>>& res) {
+        if(target == 0) {
+            res.push_back(curr);
+            return ;
+        }
+        
+        if(idx >= candidates.size() || target < 0) return ;
+        
+        // Include the current candidate
+        curr.push_back(candidates[idx]);
+        findCombinations(candidates, target - candidates[idx], idx+1, curr, res);
+        curr.pop_back();
+        
+        // Skip duplicates
+        while(idx + 1 < candidates.size() && candidates[idx] == candidates[idx + 1]) idx++;
+        
+        // Exclude the current candidate
+        findCombinations(candidates, target, idx+1, curr, res);
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> res;
+        vector<int> curr;
+        findCombinations(candidates, target, 0, curr, res);
+        return res;
+    }
+};
+
+
+
+
+
+
+// A3
 
 
 
