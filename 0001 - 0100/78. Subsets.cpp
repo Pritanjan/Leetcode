@@ -1,4 +1,7 @@
-// A1 -  Recursion
+// A1 -  Backtracking (Recursive):
+
+// It uses recursive backtracking to generate all possible subsets. 
+// At each step, we decide whether to include the current element in the subset or not.
 
 class Solution {
 private:
@@ -21,6 +24,30 @@ public:
 
 
 
+
+
+// A2 -  Bit Manipulation (Iterative)
+
+// It uses bit manipulation to represent whether an element is included in the subset or not. 
+// Each bit position corresponds to an element in the array.
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>> res; 
+        for(int j=0; j<(1 << n); ++j) {
+            vector<int> subset;
+            for(int i=0; i<n; ++i) {
+                if(j & (1 << i)) {
+                    subset.push_back(nums[i]);
+                }
+            }
+            res.push_back(subset);
+        }        
+        return res;
+    }
+};
 
 
 
