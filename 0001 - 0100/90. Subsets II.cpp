@@ -1,4 +1,4 @@
-// APPROACH 1 take u forward
+// APPROACH 1 backtracking  take u forward
 
 class Solution {
 private:
