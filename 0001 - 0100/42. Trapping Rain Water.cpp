@@ -1,3 +1,33 @@
+// A0 Brute Force - TLE
+
+// Here, we consider each index as a potential peak and calculate the trapped water that can be held at
+// that index. The trapped water at each index is the minimum of the maximum heights on the left and
+// right minus the height at that index.
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        if(n <= 2) return 0;
+
+        int water = 0;
+        for(int i=0; i<n; i++) {
+            int leftMax = 0, rightMax = 0;
+            for(int j=i; j>=0; j--)
+                leftMax = max(leftMax, height[j]);
+            for(int j=i; j<n; j++)
+                rightMax = max(rightMax, height[j]);
+            
+            water += min(leftMax, rightMax) - height[i];
+        }
+        return water;
+    }
+};
+
+
+
+
+
 // A1 - Using Two Pointers
 
 // It involves using two pointers, one starting from the left and another starting from the right. 
