@@ -100,7 +100,40 @@ public:
 
 
 
-// A4 
+// A4 - Using Recursion and Counting:
+
+// It uses a recursive function and maintains a count of how many times each number has appeared
+// in the current subset. This helps in handling duplicates effectively.
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); // Sort to handle duplicates
+        vector<vector<int>> result;
+        vector<int> curr;
+        f(nums, 0, curr, result);
+        return result;
+    }    
+private:
+    void f(vector<int>& nums, int idx, vector<int>& curr, vector<vector<int>>& res) {
+        if(idx == nums.size()) {
+            res.push_back(curr);
+            return ;
+        }
+        int cnt = 0;
+        while(idx + cnt < nums.size() && nums[idx + cnt] == nums[idx]) cnt++;        
+        f(nums, idx + cnt, curr, res); // Exclude the current number
+        
+        for(int i=1; i<=cnt; i++) {
+            curr.push_back(nums[idx]);
+            f(nums, idx + cnt, curr, res); // Include the current number
+        }
+        
+        for(int i=1; i<=cnt; i++) {
+            curr.pop_back(); // Backtrack to the previous state
+        }
+    }
+};
 
 
 
