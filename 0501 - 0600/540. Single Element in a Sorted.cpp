@@ -1,4 +1,9 @@
-// A0
+// A0 Brute Force
+// we iterate through the array in steps of 2 and compare each element with the next one. 
+// When we find an element that doesn't have a duplicate next to it, that's the element we're looking for.
+
+// T.C. - O(N)
+// S.C. - O(1)
 
 class Solution {
 public:
@@ -59,7 +64,10 @@ public:
 
 
 
-// A2
+// A2 - XOR Operation
+
+// Since all elements appear twice except for one, XORing all elements will cancel out the pairs,
+// leaving only the element that appears once.
 
 class Solution {
 public:   
@@ -76,3 +84,8 @@ public:
 // i) xor of x with 0 always give x.   x ^ 0 = x
 // ii) xor of same elements give 0.    x ^ x = 0
 // iii) xor in any order give same results.
+
+
+// T.C. - O(log N)
+// S.C. - O(1)
+
