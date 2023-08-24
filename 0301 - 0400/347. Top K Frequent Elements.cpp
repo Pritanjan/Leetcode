@@ -51,6 +51,38 @@ public:
 };
 
 
+// OR
+// Using Priority Queue (Heap)
+
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> ump;
+        for(int i : nums) ump[i]++;
+
+        auto compare = [&](const int a, const int b) {
+            return ump[a] > ump[b]; // Compare in descending order
+        };
+
+        priority_queue<int, vector<int>, decltype(compare)> pq(compare);
+
+        for(auto& i : ump) {
+            pq.push(i.first);
+            if(pq.size() > k) pq.pop();
+        }
+
+        vector<int> res;
+        while(!pq.empty()) {
+            res.push_back(pq.top());
+            pq.pop();
+        }
+        return res;
+    }
+};
+
+
+
 
 
 
