@@ -59,6 +59,27 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int L = 0;
+        int R = nums.size() - 1;
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            if(mid % 2 == 1) mid--; // Ensure mid is even
+            if(nums[mid] != nums[mid + 1]) {
+                if(mid == 0 || nums[mid] != nums[mid - 1]) return nums[mid];
+                R = mid - 2;
+            } 
+            else L = mid + 2;
+        }
+        return nums[L];
+    }
+};
+
 
 
 
