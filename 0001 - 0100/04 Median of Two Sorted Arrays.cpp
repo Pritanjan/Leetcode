@@ -187,3 +187,46 @@ public:
 
 
 // A6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// K-th element of two sorted Arrays
+// https://practice.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1
+
+class Solution {
+public:
+    int kthElement(int arr1[], int arr2[], int n, int m, int k) {
+        int merged[n + m];
+        int i = 0, j = 0, idx = 0;
+        
+        while(i < n && j < m) {
+            if(arr1[i] < arr2[j]) merged[idx++] = arr1[i++];
+            else merged[idx++] = arr2[j++];
+        }
+
+        while(i < n) merged[idx++] = arr1[i++];
+        while(j < m) merged[idx++] = arr2[j++];
+        if(k <= n + m) return merged[k - 1];
+        
+        return -1; // Handle the case when k is out of bounds.
+    }
+};
