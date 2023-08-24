@@ -139,7 +139,7 @@ public:
             else if(maxX > minY) R = partitionX - 1;
             else L = partitionX + 1;
         }
-        throw invalid_argument("Input arrays are not sorted.");
+        retunrn -1;
     }
 };
 
