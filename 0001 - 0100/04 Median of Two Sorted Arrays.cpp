@@ -152,6 +152,9 @@ public:
 
 // A5
 
+// Merge the two sorted arrays into a single array.
+// Calculate the median based on the merged array.
+    
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
