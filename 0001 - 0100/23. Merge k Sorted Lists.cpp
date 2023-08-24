@@ -215,3 +215,124 @@ public:
     }
 };
 
+
+
+
+
+
+// A 5 -  Brute-Force Approach with Optimization:
+
+// Here, We iterates through each list and selecting the minimum element at each step. 
+// While it's not the most efficient method, it's still a viable option for small values of k.
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int k = lists.size();
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+        
+        while(true) {
+            int mi = INT_MAX;
+            int idx = -1;
+            for(int i=0; i<k; ++i) {
+                if(lists[i] && lists[i] -> val < mi) {
+                    mi = lists[i] -> val;
+                    idx = i;
+                }
+            }
+            
+            if(idx == -1) break;
+            curr -> next = lists[idx];
+            curr = curr -> next;
+            lists[idx] = lists[idx] -> next;
+        }        
+        return dummy.next;        
+    }
+};
+
+
+
+
+
+
+//  A 6 -  Parallel Merging - chat gpt
+// If we have access to multi-threading or parallel processing, we can split the k lists into
+// smaller groups and merge them in parallel, then merge the results from each group sequentia
+
+class Solution {
+public:        
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if(!l1) return l2;
+        if(!l2) return l1;
+        if(l1 -> val < l2 -> val) {
+            l1 -> next = mergeTwoLists(l1 -> next, l2);
+            return l1;
+        } 
+        else {
+            l2 -> next = mergeTwoLists(l1, l2 -> next);
+            return l2;
+        }
+    }
+
+    ListNode* parallelMergeKLists(vector<ListNode*>& lists, int L, int R) {
+        if(L == R) return lists[L];
+
+        int mid = L + (R - L) / 2;
+        ListNode* leftList = parallelMergeKLists(lists, L, mid);
+        ListNode* rightList = parallelMergeKLists(lists, mid + 1, R);
+        
+        return mergeTwoLists(leftList, rightList);
+    }
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int k = lists.size();
+        if(k == 0) return nullptr;
+        return parallelMergeKLists(lists, 0, k-1);
+    }
+};
+
+
+
+
+
+
+// A 7 -  Using a Balanced Binary Search Tree:
+
+// Use multiset or multimap (based on balanced BST), we can use them to maintain the sorted order
+// of elements efficiently. 
+// Inserting elements from all lists into the tree and then constructing the final merged list
+// from the tree's elements can be a viable approach.
+
+struct CompareNodes {
+    bool operator()(const ListNode* a, const ListNode* b) const {
+        return a->val < b->val;
+    }
+};
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        multiset<ListNode*, CompareNodes> tree;
+        for (ListNode* list : lists) {
+            while (list) {
+                tree.insert(list);
+                list = list->next;
+            }
+        }
+        
+        ListNode dummy(0);
+        ListNode* current = &dummy;
+        for (const ListNode* node : tree) {
+            current->next = const_cast<ListNode*>(node);
+            current = current->next;
+        }
+        
+        return dummy.next;
+    }
+};
+
+
+
+
+
