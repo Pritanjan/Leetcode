@@ -48,6 +48,7 @@ public:
 // APPROACH 2 
 // THIS CODE DOESENT REMOVE SPACES IN B/W THEM 
 
+
 class Solution {
 public:
     string reverseWords(string s) {
@@ -67,6 +68,17 @@ public:
         // Reverse the whole sentence
         reverse(s.begin(), s.end());
         
+        
+        // Remove extra spaces
+        int i = 0, j = 0;
+        while(j < n) {
+            while (j < n && s[j] == ' ') j++;
+            while (j < n && s[j] != ' ') s[i++] = s[j++];
+            while (j < n && s[j] == ' ') j++;
+            if (j < n) s[i++] = ' ';
+        }
+
+        s.resize(i);
         return s;
     }
 };
