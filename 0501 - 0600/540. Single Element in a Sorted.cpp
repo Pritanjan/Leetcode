@@ -142,3 +142,25 @@ public:
 };
 
 
+
+
+
+
+
+// A4 - Hash Map
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        unordered_map<int, int> ump;
+        for(int num : nums) ump[num]++;
+        
+        for(auto& entry : ump) {
+            if(entry.second == 1) {
+                return entry.first;
+            }
+        }
+        return -1; // Handle error case
+    }
+};
+
