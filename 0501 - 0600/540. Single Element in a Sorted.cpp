@@ -20,7 +20,7 @@ public:
 
 
 
-// A1
+// A1 - Binary Search
 
 class Solution {
 public:
