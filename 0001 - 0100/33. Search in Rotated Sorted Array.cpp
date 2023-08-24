@@ -159,3 +159,33 @@ public:
 };
 
 
+
+
+
+
+
+// A5 - Recursion
+
+class Solution {
+public:
+    int recursion(vector<int>& nums, int target, int L, int R) {
+        if(L > R) return -1;
+        int mid = L + (R - L) / 2;
+        if(nums[mid] == target) return mid;
+        if(nums[L] <= nums[mid]) {  // Left half is sorted
+            if(nums[L] <= target && target < nums[mid]) return recursion(nums, target, L, mid - 1);
+            else return recursion(nums, target, mid + 1, R);
+        }
+        else {  // Right half is sorted
+            if(nums[mid] < target && target <= nums[R]) return recursion(nums, target, mid + 1, R);
+            else return recursion(nums, target, L, mid - 1);
+        }
+    }
+
+    int search(vector<int>& nums, int target) {
+        return recursion(nums, target, 0, nums.size() - 1);
+    }
+};
+
+
+
