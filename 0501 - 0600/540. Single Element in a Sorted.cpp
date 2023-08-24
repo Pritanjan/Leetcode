@@ -85,7 +85,39 @@ public:
 // ii) xor of same elements give 0.    x ^ x = 0
 // iii) xor in any order give same results.
 
-
 // T.C. - O(log N)
 // S.C. - O(1)
+
+
+
+
+
+            
+// A3 - Binary Search with Divide and Conquer
+            
+// We can divide the search range into two subranges based on the properties of the array and
+// the position of the unique element.
+
+class Solution {
+public:
+    int f(const vector<int>& nums, int L, int R) {
+        if(L == R) return nums[L];
+
+        int mid = L + (R-L) / 2;
+        
+        if(mid % 2 == 0) {
+            if(mid + 1 < R and nums[mid] == nums[mid + 1]) return f(nums, mid + 2, R);
+            else return f(nums, L, mid);
+        } 
+        else {
+            if(mid - 1 >= L and nums[mid] == nums[mid - 1]) return f(nums, mid + 1, R);
+            else return f(nums, L, mid - 1);
+        }
+    }
+    
+    int singleNonDuplicate(vector<int>& nums) {
+        return f(nums, 0, nums.size());
+    }
+};
+
 
