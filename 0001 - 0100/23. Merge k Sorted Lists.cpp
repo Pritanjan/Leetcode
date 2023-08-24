@@ -71,39 +71,6 @@ public:
 };
 
 
-// OR
-
-
-struct Compare {
-    bool operator()(const ListNode* a, const ListNode* b) {
-        return a->val > b->val;
-    }
-};
-
-class Solution {
-public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
-        for(ListNode* list : lists) {
-            if(list) pq.push(list);
-        }
-        
-        ListNode dummy(0);
-        ListNode* curr = &dummy;
-        
-        while(!pq.empty()) {
-            ListNode* small = pq.top();
-            pq.pop();
-            curr -> next = small;
-            curr = curr -> next;
-            
-            if(small -> next) pq.push(small -> next);
-        }        
-        return dummy.next;
-    }
-};
-
-
 
 
 
@@ -153,3 +120,65 @@ public:
 
 
 // A4
+
+
+struct Compare {
+    bool operator()(const ListNode* a, const ListNode* b) {
+        return a->val > b->val;
+    }
+};
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
+        for(ListNode* list : lists) {
+            if(list) pq.push(list);
+        }
+        
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+        
+        while(!pq.empty()) {
+            ListNode* small = pq.top();
+            pq.pop();
+            curr -> next = small;
+            curr = curr -> next;
+            
+            if(small -> next) pq.push(small -> next);
+        }        
+        return dummy.next;
+    }
+};
+
+
+// OR SAME AS ABOVE
+
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        auto compare = [](const ListNode* a, const ListNode* b) {
+            return a->val > b->val;
+        };
+
+        priority_queue<ListNode*, vector<ListNode*>, decltype(compare)> pq(compare);
+        for(ListNode* list : lists) {
+            if(list) pq.push(list);
+        }
+
+        ListNode dummy(0);
+        ListNode* curr = &dummy;
+
+        while(!pq.empty()) {
+            ListNode* small = pq.top();
+            pq.pop();
+            curr->next = small;
+            curr = curr->next;
+
+            if (small->next) pq.push(small->next);
+        }
+        return dummy.next;
+    }
+};
+
