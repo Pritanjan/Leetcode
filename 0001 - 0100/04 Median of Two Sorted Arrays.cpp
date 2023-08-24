@@ -4,16 +4,14 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         nums2.insert(end(nums2), begin(nums1), end(nums1));
-        
-        sort(begin(nums2),end(nums2));
-        
+        sort(begin(nums2),end(nums2));        
         int n = nums2.size();
-        if(n%2!=0)
-            return nums2[(n/2)];
-        else
-            return (nums2[(n/2)-1] + nums2[(n/2)])/2.0;
+        if(n % 2 != 0) return nums2[(n/2)];
+        else return (nums2[(n/2)-1] + nums2[(n/2)])/2.0;
     }
 };
+
+
 
 
 
@@ -76,11 +74,7 @@ public:
 
 
 
-
-
 // APPROACH 3
-
-
 
 class Solution {
 public:
@@ -91,10 +85,25 @@ public:
         nums.resize(m+n); // resize nums to have enough space for merged elements
         merge(nums1.begin(), nums1.end(), nums2.begin(),nums2.end(),nums.begin());
 
-        if( (n+m)%2 != 0 )
-            return nums[(n+m)/2];
-        else 
-            return (nums[(n+m)/2] + nums[(n+m)/2-1])/2.0; // use 2.0 to avoid integer division
+        if((n + m) % 2 != 0) return nums[(n+m) / 2];
+        else return (nums[(n+m) / 2] + nums[(n+m) / 2 - 1]) / 2.0; // use 2.0 to avoid integer division
     }
 };
+
+
+// OR
+
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> merged;
+        merge(nums1.begin(), nums1.end(), nums2.begin(), nums2.end(), back_inserter(merged));
+        
+        int n = merged.size();
+        if(n % 2 == 0) return (double)(merged[n / 2 - 1] + merged[n / 2]) / 2.0;
+        else return (double)merged[n / 2];
+    }
+};
+
 
