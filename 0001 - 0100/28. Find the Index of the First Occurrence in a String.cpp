@@ -133,7 +133,8 @@ class Solution {
 public:        
     int strStr(string haystack, string needle) {
         size_t pos = haystack.find(needle);
-        if(pos != string::npos) return (int)(pos);
+        // if(pos != string::npos) return (int)(pos);
+        if(pos != string::npos) return static_cast<int>(pos);
         return -1;
     }
 };
