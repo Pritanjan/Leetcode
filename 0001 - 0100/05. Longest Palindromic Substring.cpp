@@ -183,3 +183,58 @@ public:
     }
 };
 
+
+
+
+
+
+// A4 - Manacher's Algorithm:
+
+// It is an efficient approach to find the longest palindromic substring in linear time complexity.
+// It utilizes the concept of palindrome centers and their boundaries. 
+// This algorithm works by transforming the input string into a new string with special characters
+// inserted between characters and at the beginning and end. 
+// Then, it iteratively extends palindrome boundaries while keeping track of the center with the
+// farthest boundary.
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string res = "#";
+        for(char c : s) {
+            res += c;
+            res += '#';
+        }
+
+        int n = res.size();
+        vector<int> P(n, 0);
+        int center = 0, R = 0;
+        int maxLen = 0, maxCenter = 0;
+
+        for(int i=0; i<n; i++) {
+            int mirror = 2 * center - i;
+            if(i < R) P[i] = min(R - i, P[mirror]);
+
+            int a = i + (1 + P[i]);
+            int b = i - (1 + P[i]);
+
+            while(a < n && b >= 0 && res[a] == res[b]) {
+                P[i]++;
+                a++;
+                b--;
+            }
+
+            if(i + P[i] > R) {
+                center = i;
+                R = i + P[i];
+            }
+
+            if(P[i] > maxLen) {
+                maxLen = P[i];
+                maxCenter = i;
+            }
+        }
+        int start = (maxCenter - maxLen) / 2;
+        return s.substr(start, maxLen);
+    }
+};
