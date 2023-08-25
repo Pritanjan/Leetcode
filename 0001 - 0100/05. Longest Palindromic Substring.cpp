@@ -238,3 +238,54 @@ public:
         return s.substr(start, maxLen);
     }
 };
+
+
+
+
+
+
+// A5 - Palindrome Enumeration - chat gpt
+
+// It involves considering each character as the center of a potential palindrome and expanding outwards.
+// It takes into account both odd and even length palindromes.
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int maxLength = 0;
+        string res = "";
+
+        for(int i=0; i<s.size(); i++) {
+            // Odd length palindrome
+            int L = i, R = i;
+            while(L >= 0 && R < s.size() && s[L] == s[R]) {
+                if(R - L + 1 > maxLength) {
+                    maxLength = R - L + 1;
+                    res = s.substr(L, maxLength);
+                }
+                L--;
+                R++;
+            }
+
+            // Even length palindrome
+            L = i, R = i+1;
+            while(L >= 0 && R < s.size() && s[L] == s[R]) {
+                if(R - L + 1 > maxLength) {
+                    maxLength = R - L + 1;
+                    res = s.substr(L, maxLength);
+                }
+                L--;
+                R++;
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A6
+
