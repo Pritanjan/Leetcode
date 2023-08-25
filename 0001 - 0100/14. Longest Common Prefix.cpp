@@ -94,5 +94,38 @@ public:
 
 
 
-// A 3 
+// A 3 -  Divide and Conquer Approach:
 
+// This approach involves dividing the array of strings into two halves, 
+// finding the common prefix of each half, and then combining the results.
+
+class Solution {
+public:
+    string commonPrefix(const string& L, const string& R) {
+        int len = min(L.length(), R.length());
+        int i = 0;
+        while(i < len && L[i] == R[i]) ++i;
+        return L.substr(0, i);
+    }
+
+    string divideAndConquer(vector<string>& strs, int L, int R) {
+        if(L == R) return strs[L];
+        else {
+            int mid = (L + R) / 2;
+            string leftPrefix = divideAndConquer(strs, L, mid);
+            string rightPrefix = divideAndConquer(strs, mid + 1, R);
+            return commonPrefix(leftPrefix, rightPrefix);
+        }
+    }
+
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.empty()) return "";
+        return divideAndConquer(strs, 0, strs.size() - 1);
+    }
+};
+
+
+
+
+
+// A 4 
