@@ -111,6 +111,25 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    string recursion(int num, const vector<int>& val, vector<string>& symb, size_t idx) {
+        if(num == 0) return "";
+        if(num >= val[idx]) return symb[idx] + recursion(num - val[idx], val, symb, idx);
+        else return recursion(num, val, symb, idx+1);
+    }
+
+    string intToRoman(int num) {
+        vector<int> val = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        vector<string> symb = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        return recursion(num, val, symb, 0);
+    }
+};
+
+
 
 
 
