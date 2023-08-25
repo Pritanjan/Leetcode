@@ -255,4 +255,35 @@ public:
 
 
 
+// A 7 
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        // If haystack is null or if needle is null or if the haystack string is shorter than the needle string Return -1 */
+        if(haystack == null || needle == null || haystack.length() < needle.length()) return -1;
+        // If the needle string is empty, return 0
+        if(needle.equals("")) return 0;
+
+        // Traverse through the haystack string
+        for(int i=0; i<haystack.length() - needle.length() + 1; i++) {
+            // If the character at the current index equals the character at the first needle index
+            if(haystack.charAt(i) == needle.charAt(0))
+                // check to see if the substring at the current index in the haystack */
+                if(haystack.substring(i, needle.length() + i).equals(needle)) return i;  // return the current index
+        }
+        // Otherwise return -1
+        return -1;
+    }
+}
+
+
+// T.C. -  O(N + M)
+// S.C. -  O(1)
+
+
+
+
+
+
+// A 8 
 
