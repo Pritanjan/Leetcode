@@ -148,3 +148,38 @@ public:
     }
 };
 
+
+
+
+
+
+// A3 - Expand Around Center Approach - chat gpt
+
+// This approach involves expanding around each character in the string to find palindromic substrings 
+// centered at that character.
+
+class Solution {
+public:
+    string expandAroundCenter(string s, int L, int R) {
+        while(L >= 0 && R < s.size() && s[L] == s[R]) {
+            L--;
+            R++;
+        }
+        return s.substr(L+1, R-L-1);
+    }
+
+    string longestPalindrome(string s) {
+        int n = s.size();
+        string res = "";
+
+        for(int i=0; i<n; i++) {
+            string s1 = expandAroundCenter(s, i, i);
+            string s2 = expandAroundCenter(s, i, i + 1);
+
+            if(s1.size() > res.size()) res = s1;
+            if(s2.size() > res.size()) res = s2;
+        }
+        return res;
+    }
+};
+
