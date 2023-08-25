@@ -51,3 +51,41 @@ public:
         return res;
     }
 };
+
+
+
+
+
+// A 3  - Using Struct
+
+class Solution {
+public:
+    struct RomanSymbol {
+        int value;
+        const char* symbol;
+    };
+
+    string intToRoman(int num) {
+        const RomanSymbol symbols[] = {
+            {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"},
+            {100, "C"},  {90, "XC"},  {50, "L"},  {40, "XL"},
+            {10, "X"},   {9, "IX"},   {5, "V"},   {4, "IV"},  {1, "I"}
+        };
+
+        string res = "";
+        for(const RomanSymbol& symbol : symbols) {
+            while(num >= symbol.value) {
+                num -= symbol.value;
+                res += symbol.symbol;
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4 
