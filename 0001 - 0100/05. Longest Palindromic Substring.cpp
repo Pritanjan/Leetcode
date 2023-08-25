@@ -1,3 +1,43 @@
+// A 0 - Brute Force - TLE
+
+// Check all possible substrings of the given string and check if each one is a palindrome. 
+// Keep track of the longest palindromic substring encountered
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int L = 0;
+        int R = s.size() - 1;
+        while(L < R) {
+            if(s[L] != s[R]) return false;
+            L++;
+            R--;
+        }
+        return true;
+    }
+
+    string longestPalindrome(string s) {
+        string res = "";
+        int maxLength = 0;
+
+        for(int i=0; i<s.size(); i++) {
+            for(int j=i; j<s.size(); j++) {
+                string tmp = s.substr(i, j - i + 1);
+                if(isPalindrome(tmp) && tmp.size() > maxLength) {
+                    maxLength = tmp.size();
+                    res = tmp;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
 // APPROACH 1 [ Using DP ]
 
 // P(i, j) == P(i+1, j-1) && s[i] == s[j];
