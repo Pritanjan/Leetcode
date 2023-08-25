@@ -130,6 +130,28 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    string recursion(int num, const vector<pair<int, string>>& symbols, size_t idx) {
+        if(num == 0) return "";
+        if(num >= symbols[idx].first) return symbols[idx].second + recursion(num - symbols[idx].first, symbols, idx);
+        else return recursion(num, symbols, idx+1);
+    }
+
+    string intToRoman(int num) {
+        vector<pair<int, string>> symbols = {
+            {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"},
+            {100, "C"},  {90, "XC"},  {50, "L"},  {40, "XL"},
+            {10, "X"},   {9, "IX"},   {5, "V"},   {4, "IV"},  {1, "I"}
+        };
+        return recursion(num, symbols, 0);
+    }           
+};
+
+
 
 
 
