@@ -217,4 +217,33 @@ public:
 
 
 
+// A6 -  Using Arrays
+
+// use 2 arrays to store the Roman numeral characters and their corresponding integer values. 
+// The key idea is to iterate through the given string and check the values of the current and 
+// next characters.
+// If the value of the current character is smaller than the value of the next character, subtract it; 
+// otherwise, add it.
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        int no[7] = {1, 5, 10, 50, 100, 500, 1000};
+        char rom[7] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+
+        int res = 0;
+        int n = s.length();
+        for(int i=0; i<n; ++i) {
+            int currVal = 0, nextVal = 0;
+            for(int j=0; j<7; ++j) {
+                if(s[i] == rom[j]) currVal = no[j];
+                if(i+1 < n && s[i+1] == rom[j]) nextVal = no[j];
+            }
+            
+            if(currVal < nextVal) res -= currVal;
+            else res += currVal;
+        }
+        return res;
+    }
+};
 
