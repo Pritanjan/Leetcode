@@ -33,6 +33,43 @@ public:
 
 
 
-// A2
+// A2 - Using Iteration
 
+class Solution {
+public:
+    int myAtoi(string s) {
+        int i = 0;
+        int sign = 1;
+        int res = 0;
+
+        // Remove leading whitespaces
+        while(i < s.size() && s[i] == ' ') i++;
+
+        // Check for sign
+        if(i < s.size() && (s[i] == '+' || s[i] == '-')) {
+            sign = (s[i++] == '-') ? -1 : 1;
+        }
+
+        // Convert digits
+        while(i < s.size() && isdigit(s[i])) {
+            int digit = s[i] - '0';
+
+            // Check for overflow
+            if(res > INT_MAX / 10 || (res == INT_MAX / 10 && digit > INT_MAX % 10)) {
+                return (sign == 1) ? INT_MAX : INT_MIN;
+            }
+
+            res = res * 10 + digit;
+            i++;
+        }
+        return res * sign;
+    }
+};
+
+
+
+
+
+
+// A3 
 
