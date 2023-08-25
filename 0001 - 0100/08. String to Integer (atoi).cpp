@@ -71,6 +71,44 @@ public:
 
 
 
+// A 5  - Recursion 
+// Same As A 2 
+
+class Solution {
+public:
+    int recursion(string &s, int &i, int sign) {
+        long long res = 0;
+        while(i < s.size() && isdigit(s[i])) {
+            int digit = s[i] - '0';
+            if(res > INT_MAX / 10 || (res == INT_MAX / 10 && digit > INT_MAX % 10)) {
+                return (sign == 1) ? INT_MAX : INT_MIN;
+            }
+            res = res * 10 + digit;
+            i++;
+        }
+        return static_cast<int>(res * sign);
+    }
+
+    int myAtoi(string s) {
+        int i = 0;
+        int sign = 1;
+
+        // Remove leading whitespaces
+        while(i < s.size() && s[i] == ' ') i++;
+        // Check for sign
+        if(i < s.size() && (s[i] == '+' || s[i] == '-')) {
+            sign = (s[i] == '-') ? -1 : 1;
+            i++;
+        }
+        return recursion(s, i, sign);
+    }
+};
+
+
+
+
+
+
 // A3 -  Using stringstream
 
 class Solution {
@@ -149,5 +187,5 @@ public:
 
 
 
-// A 5  
+// A 6 
 
