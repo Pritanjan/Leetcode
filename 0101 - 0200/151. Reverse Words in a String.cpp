@@ -176,6 +176,28 @@ public:
 // S.C. --> O(1)
 
 
+// OR
+// Using reverse iteration
+
+
+class Solution {
+public:
+    string reverseWords(string s) {    
+        string res;
+        int end = s.size();
+
+        for(int i=s.size()-1; i>=0; i--) {
+            if(s[i] == ' ') end = i;
+            else if(i == 0 || s[i-1] == ' ') {
+                if(!res.empty()) res += ' ';
+                res += s.substr(i, end - i);
+            }
+        }
+        return res;
+    }
+};
+
+
 
 
 
