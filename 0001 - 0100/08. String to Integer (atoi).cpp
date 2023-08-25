@@ -71,5 +71,16 @@ public:
 
 
 
-// A3 
+// A3 -  Using stringstream
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        stringstream ss(s);
+        int res = 0;
+        ss >> res;
+        return res;
+    }
+};
+
 
