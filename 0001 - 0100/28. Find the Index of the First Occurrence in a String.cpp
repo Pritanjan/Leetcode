@@ -126,6 +126,22 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:        
+    int strStr(string haystack, string needle) {
+        size_t pos = haystack.find(needle);
+        if(pos != string::npos) return (int)(pos);
+        return -1;
+    }
+};
+
+
+
+
+
 
 // APPROACH 4 [KMP algorithm  for the string matching problem]
 
