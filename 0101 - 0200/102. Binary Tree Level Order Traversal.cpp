@@ -1,10 +1,8 @@
-// APPROACH 1 [ RECURSIVE ]
-
+// A 1 [ RECURSIVE ]
 
 class Solution {
 public:
     vector<vector<int>> ans;
-    
     void LO(TreeNode* root, int depth){
         if(root == NULL) return ;
         if(ans.size() == depth) ans.push_back(vector<int>());
@@ -15,11 +13,10 @@ public:
     }
     
     vector<vector<int>> levelOrder(TreeNode* root) {
-        LO(root,0);
+        LO(root, 0);
         return ans;
     }
 };
-
 
 // Time Complexity: O(N), where N is the number of nodes in the binary tree. 
 // We visit each node exactly once.
@@ -33,28 +30,19 @@ public:
 
 
 
-
-
-
-
-
 // APPROACH 2 [ Iterative with Queue ]
-
-
 
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         if(root == NULL) return ans;
-    
         queue<TreeNode*> que;
-        que.push(root);
-    	
+        que.push(root);    	
+	    
         while(!que.empty()){
             vector<int> v;
             int size = que.size();
-            
             while(size--){
                 root = que.front();
                 que.pop();
@@ -69,9 +57,6 @@ public:
     }
 };	
 
-
-
-
 // Time Complexity: O(N), where N is the number of nodes in the binary tree.
 // We visit each node exactly once.
 
@@ -82,8 +67,8 @@ public:
 
 
 
-// APPROACH 3 [ Iterative with Two Queues ]
 
+// APPROACH 3 [ Iterative with Two Queues ]
 
 class Solution {
 public:
@@ -104,15 +89,12 @@ public:
                 if(node -> left)  nextLevel.push(node -> left);
                 if(node -> right) nextLevel.push(node -> right);
             }
-
             res.push_back(level);
             swap(currLevel, nextLevel);
         }
         return res;
     }
 };
-
-
 
 // Time Complexity: O(N), where N is the number of nodes in the binary tree. 
 // We visit each node exactly once.
@@ -126,5 +108,42 @@ public:
 
 
 
+// A 4 -  Using Queue with NULL Delimiter
+// It uses a NULL delimiter to separate levels while traversing the tree using a single queue.
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        queue<TreeNode*> que;
+        que.push(root);
+        que.push(NULL);
+
+        vector<int> v;    // levelValues
+        while(!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+
+            if(node == NULL) {
+                res.push_back(v);
+                v.clear();
+                if(!que.empty()) que.push(NULL);
+            }
+            else {
+                v.push_back(node -> val);
+                if(node -> left)  que.push(node -> left);
+                if(node -> right) que.push(node -> right);
+            }
+        }
+        return res;
+    }
+};
 
 
+
+
+
+
+// A 5 - 
