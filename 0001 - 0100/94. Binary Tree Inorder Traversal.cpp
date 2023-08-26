@@ -23,6 +23,31 @@ public:
 //The worst case space required is O(n), and in the average case it's O(logn) where n is number of nodes.
 
 
+// OR  -  Using Recursion with Function Object (Functor):
+// This approach utilizes a function object (functor) to encapsulate the recursive logic, 
+// allowing for more flexibility in handling the traversal process.
+
+class Solution {
+public:
+    struct Inorder {
+        vector<int> res;
+        void operator()(TreeNode* node) {
+            if(node == nullptr) return;
+            (*this)(node -> left);
+            res.push_back(node -> val);
+            (*this)(node -> right);
+        }
+    };
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        Inorder in;
+        in(root);
+        return in.res;
+    }
+};
+
+
+
 
 
 
