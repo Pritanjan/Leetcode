@@ -26,6 +26,29 @@ public:
 // to the height of the tree.
 
 
+// OR
+
+
+// In this approach, a recursive function is used to traverse the tree level by level.
+
+class Solution {
+public:
+    void recursion(TreeNode* node, int level, vector<vector<int>>& res) {
+        if(!node) return ;
+        if(level >= res.size()) res.push_back(vector<int>());
+
+        res[level].push_back(node -> val);
+        recursion(node -> left,  level + 1, res);
+        recursion(node -> right, level + 1, res);
+    }
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        recursion(root, 0, res);
+        return res;
+    }
+};
+
 
 
 
@@ -146,27 +169,4 @@ public:
 
 
 
-// A 5 -  Recursive Approach
-In this approach, a recursive function is used to traverse the tree level by level.
-
-cpp
-Copy code
-
-class Solution {
-public:
-    void recursion(TreeNode* node, int level, vector<vector<int>>& res) {
-        if(!node) return ;
-        if(level >= res.size()) res.push_back(vector<int>());
-
-        res[level].push_back(node -> val);
-        recursion(node -> left,  level + 1, res);
-        recursion(node -> right, level + 1, res);
-    }
-
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> res;
-        recursion(root, 0, res);
-        return res;
-    }
-};
-
+// A 5 -  
