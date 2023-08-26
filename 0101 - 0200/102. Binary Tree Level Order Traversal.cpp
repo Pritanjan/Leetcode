@@ -202,5 +202,33 @@ public:
 
 
 
-// A 6
+// A 6 - Using a Queue with Pair (BFS)
+
+// In this approach, we use a single queue to perform BFS traversal, and each element
+// in the queue is a pair consisting of the node and its level.
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        queue<pair<TreeNode*, int>> que;
+        que.push({root, 0});
+
+        while(!que.empty()) {
+            TreeNode* node = que.front().first;
+            int level = que.front().second;
+            que.pop();
+
+            if(level == res.size()) res.push_back({node -> val});
+            else res[level].push_back(node -> val);
+
+            if(node -> left)  que.push({node -> left,  level + 1});
+            if(node -> right) que.push({node -> right, level + 1});
+        }
+        return res;
+    }
+};
+
 
