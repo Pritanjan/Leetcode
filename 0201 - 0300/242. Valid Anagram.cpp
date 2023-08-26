@@ -129,15 +129,20 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         if (s.length() != t.length()) return false;
-        int arr[26] = {0};
+        int arr[26] = {0};   // Count array for characters
         for(char c : s) arr[c - 'a']++;
         for(char c : t) {
             arr[c - 'a']--;
             if(arr[c - 'a'] < 0) return false;
         }
-        return true;
+        // return true;
+        
+        // Check if all character counts are zero
+        return all_of(arr, arr+26, [](int count) { return count == 0; });
     }
 };
+
+
 
 
 
