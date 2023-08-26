@@ -121,4 +121,48 @@ public:
 
 
 
-// A 5 
+
+// A 5  - Use 2 Stack
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> nodes;
+        stack<bool> visited;
+
+        if(root != nullptr) {
+            nodes.push(root);
+            visited.push(false);
+        }
+
+        while(!nodes.empty()) {
+            TreeNode* curr = nodes.top();
+            bool isVisited = visited.top();
+            nodes.pop();
+            visited.pop();
+
+            if(curr == nullptr) continue;
+            if(isVisited) res.push_back(curr -> val);
+            else {
+                if(curr -> right != nullptr) {
+                    nodes.push(curr -> right);
+                    visited.push(false);
+                }
+                nodes.push(curr);
+                visited.push(true);
+                if(curr -> left != nullptr) {
+                    nodes.push(curr -> left);
+                    visited.push(false);
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 6 
