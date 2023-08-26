@@ -53,7 +53,7 @@ public:
 
 
 
-// APPROACH 2 [ Iterative with Queue ]
+// A 2 [ Iterative with Queue ]
 
 class Solution {
 public:
@@ -91,7 +91,7 @@ public:
 
 
 
-// APPROACH 3 [ Iterative with Two Queues ]
+// A 3 [ Iterative with Two Queues ]
 
 class Solution {
 public:
@@ -169,4 +169,38 @@ public:
 
 
 
-// A 5 -  
+// A 5 -  Using a Vector and Index Calculation (BFS)
+
+// In this approach, use a single vector to store nodes at different levels. 
+// We calculate the index range for each level and populate the nodes accordingly.
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        vector<TreeNode*> v = {root};
+        while(!v.empty()) {
+            int n = v.size();
+            res.emplace_back();
+            for(int i=0; i<n; ++i) {
+                TreeNode* node = v[i];
+                res.back().push_back(node -> val);
+
+                if(node -> left)  v.push_back(node -> left);
+                if(node -> right) v.push_back(node -> right);
+            }
+            v.erase(v.begin(), v.begin() + n);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6
+
