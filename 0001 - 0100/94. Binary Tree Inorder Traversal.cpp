@@ -2,20 +2,19 @@
 
 class Solution {
 public:
+    void in(TreeNode* root, vector<int> &res){
+        if(!root) return ;
+        in(root -> left, res);
+        res.push_back(root -> val);
+        in(root -> right, res);
+    }
+    
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> res;
-        inorder(root, res);
+        in(root, res);
         return res;
     }
-private:
-    void inorder(TreeNode* root, vector<int>& res) {
-        if (!root) return;
-        inorder(root->left, res);
-        res.push_back(root->val);
-        inorder(root->right, res);
-    }
 };
-
 
 //Time complexity: O(n)
 //The time complexity is O(n) because the recursive function is T(n)=2·T(n/2)+1.
@@ -28,10 +27,7 @@ private:
 
 
 
-
-
 // APPROACH 2 [ Iterative method using Stack ]
-
 
 class Solution {
 public:
@@ -52,7 +48,6 @@ public:
     }
 };
 
-
 // Time complexity: O(n)
 // Space complexity: O(n)
 
@@ -61,12 +56,7 @@ public:
 
 
 
-
-
-
-
 // APPROACH 3 [ Morris Traversal ]
-
 
 class Solution {
 public:
@@ -76,7 +66,6 @@ public:
             if(root->left) {
                 TreeNode* pre = root->left;
                 while(pre->right && pre->right != root) pre = pre->right;
-                
                 if(!pre -> right) {
                     pre -> right = root;
                     root = root -> left;
@@ -96,7 +85,6 @@ public:
     }
 };
 
-
 // Time complexity: O(n)
 // Space complexity: O(1)
 
@@ -107,7 +95,6 @@ public:
 
 // APPROACH 4 [ Iterative approach using a stack and flag ]
 
-
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
@@ -117,8 +104,7 @@ public:
         
         while(!s.empty()) {
             auto cur = s.top();
-            s.pop();
-            
+            s.pop();            
             if(!cur.first) continue;
             if(cur.second) res.push_back(cur.first->val);
             else {
@@ -133,3 +119,6 @@ public:
 
 
 
+
+
+// A 5 
