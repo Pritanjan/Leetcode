@@ -1,13 +1,13 @@
+// A1
+
 class Solution{
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map<int, map<int, multiset<int>>> nodes; 
-        queue<pair<TreeNode*, pair<int, int>>> que;
-        
         if(root == NULL) return {};
         
-        que.push({root, {0, 0}});
-        
+        map<int, map<int, multiset<int>>> nodes; 
+        queue<pair<TreeNode*, pair<int, int>>> que;
+        que.push({root, {0, 0}});        
         while(!que.empty()) {
             auto temp = que.front();
             que.pop();
@@ -15,7 +15,6 @@ public:
             auto frontNode = temp.first;
             int hd = temp.second.first;
             int level = temp.second.second;
-            
             nodes[hd][level].insert(frontNode->val);
             
             if(frontNode->left) que.push({frontNode->left, {hd-1, level+1}});
@@ -31,10 +30,47 @@ public:
                 }
             }
         }
-        
         return res;
     }
 };
 
 
+// OR
 
+
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> res;
+        if (!root) return res;
+
+        map<int, vector<pair<int, int>>> mp;         // Map to store nodes at each column index
+        queue<pair<TreeNode*, pair<int, int>>> que;  // Queue for BFS traversal
+        que.push({root, {0, 0}});
+
+        while(!que.empty()) {
+            int n = que.size();
+            for(int i=0; i<n; ++i) {
+                TreeNode* node = que.front().first;
+                int col = que.front().second.first;
+                int row = que.front().second.second;
+                que.pop();
+
+                mp[col].push_back({row, node->val});
+                if(node -> left)  que.push({node -> left,  {col - 1, row + 1}});
+                if(node -> right) que.push({node -> right, {col + 1, row + 1}});
+            }
+        }
+
+        // Populate the result by iterating over the mp
+        for(auto& it : mp) {
+            sort(it.second.begin(), it.second.end());   // Sort by row and value
+            vector<int> colValues;
+            for(const auto& p : it.second) {
+                colValues.push_back(p.second);
+            }
+            res.push_back(colValues);
+        }
+        return res;
+    }
+};
