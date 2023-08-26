@@ -1,11 +1,9 @@
 // APPROACH 1 [ RECURSION ]
 
-
 class Solution {
 public:
     void postorder(TreeNode* root, vector<int>& nodes) {
-        if(!root)
-            return ;
+        if(!root) return ;
         postorder(root->left,  nodes);
         postorder(root->right, nodes);
         nodes.push_back(root->val);
@@ -14,15 +12,12 @@ public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> nodes;
         postorder(root, nodes);
-            return nodes;
+        return nodes;
     }
 };
 
 
-
-
 // OR
-
 
 
 class Solution {
@@ -30,11 +25,34 @@ public:
     vector<int> res;
     vector<int> postorderTraversal(TreeNode* root) {
         if(root == NULL) return res;
+        
         postorderTraversal(root -> left);
         postorderTraversal(root -> right);
-        res.push_back(root -> val);
-            
+        res.push_back(root -> val);       
         return res;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    struct Postorder {
+        vector<int> res;
+        void operator()(TreeNode* node) {
+            if(node == nullptr) return;
+            (*this)(node -> left);
+            (*this)(node -> right);
+            res.push_back(node -> val);
+        }
+    };
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        Postorder post;
+        post(root);
+        return post.res;
     }
 };
 
@@ -43,10 +61,7 @@ public:
 
 
 
-
-
 // APPROACH 2 [ USING 2 STACK ]
-
 
 class Solution {
 public:
@@ -56,7 +71,6 @@ public:
 
         stack<TreeNode*> stk1, stk2;
         stk1.push(root); 
-
         while(!stk1.empty()){
             TreeNode* node = stk1.top();
             stk1.pop();
@@ -64,7 +78,6 @@ public:
 
             if(node -> left) stk1.push(node -> left);
             if(node -> right) stk1.push(node -> right);
-
         }        
         
         while(!stk2.empty()) {
@@ -76,7 +89,6 @@ public:
     }
 };
 
-
 // Time complexity: O(n) where n is no of nodes in a binary tree
 // Auxiliary space: O(n) because using stack stk1 and stk2
 
@@ -85,12 +97,7 @@ public:
 
 
 
-
-
-
-
 // APPROACH 3 [  USING 1 STACK ]
-
 
 class Solution {
 public:
@@ -98,44 +105,33 @@ public:
         if(root==NULL) return {};
 
         stack<TreeNode*>st;     
-        st.push(root);
-        
+        st.push(root);        
         vector<int>ans;
-
         while(!st.empty()){
             TreeNode* node=st.top();
             st.pop();
 
-            ans.push_back(node->val);
-            
+            ans.push_back(node->val);            
             if(node->left!=NULL) st.push(node->left);
             if(node->right!=NULL) st.push(node->right);
         }
-
         reverse(ans.begin(),ans.end());
         return ans;
     }
 };
 
 
-
-
-
 // OR
-
-
 
 
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         if(root==NULL) return {};
-
         stack<TreeNode*>st;     
-        st.push(root);
-        
+        st.push(root);        
         vector<int>ans;
-
+        
         while(!st.empty()){
             auto t = st.top();
             if(t->left == nullptr && t->right == nullptr){
@@ -147,27 +143,18 @@ public:
                 st.push(t->right);
                 t->right = nullptr;
             }
-
             if(t->left != nullptr){
                 st.push(t->left);
                 t->left = nullptr;
             }
         }
-
         reverse(ans.begin(),ans.end());
         return ans;
     }
 };
 
 
-
-
-
-
-
 // OR
-
-
 
 
 class Solution {
@@ -175,20 +162,17 @@ public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> res;
         if(root == nullptr) return res;
-        
         stack<TreeNode*> stk;
         stk.push(root);
         
         while(!stk.empty()) {
             root = stk.top();
-            stk.pop();
-            
+            stk.pop();            
             if(root != nullptr) {
                 stk.push(root);
                 stk.push(nullptr);
                 if (root->right != nullptr)  stk.push(root->right);
                 if (root->left != nullptr) stk.push(root->left);
-                
             } 
             else {
                 res.push_back(stk.top()->val);
@@ -198,10 +182,6 @@ public:
         return res;
     }
 };
-
-
-
-
 
 
 
