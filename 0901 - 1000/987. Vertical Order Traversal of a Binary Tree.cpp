@@ -1,4 +1,4 @@
-// A1
+// A1 - BFS
 
 class Solution{
 public:
@@ -74,3 +74,47 @@ public:
         return res;
     }
 };
+
+
+
+
+
+// A2 - DFS
+
+class Solution {
+public:        
+    void dfs(TreeNode* root, int col, int row, map<int, vector<pair<int, int>>>& colMap) {
+        if(!root) return;
+
+        colMap[col].push_back({row, root->val});
+        dfs(root -> left,  col - 1, row + 1, colMap);
+        dfs(root -> right, col + 1, row + 1, colMap);
+    }
+
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        map<int, vector<pair<int, int>>> colMap; // Map to store nodes at each column index
+        dfs(root, 0, 0, colMap);
+
+        // Populate the result by iterating over the columnMap
+        for(auto& it : colMap) {
+            sort(it.second.begin(), it.second.end()); // Sort by row and value
+            vector<int> colVal;
+            for(auto& p : it.second) {
+                colVal.push_back(p.second);
+            }
+            res.push_back(colVal);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 3 
+
