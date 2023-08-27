@@ -1,16 +1,11 @@
-// https://github.com/Pritanjan/Question/blob/main/POTD/gfg/0013%20191122%20Check%20if%20all%20levels%20of%20two%20trees%20are%20anagrams%20or%20not.cpp
-
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p == NULL and q == NULL)  // both trees are empty, so they are the same
-            return true;
-        if(p == NULL or q == NULL)  // one of the trees is empty, so they are different
-            return false;
-        if(p -> val != q -> val)   // the node values are different, so the trees are different
-            return false;
+        if(p == NULL and q == NULL) return true; // both trees are empty, so they are the same
+        if(p == NULL or q == NULL)  return false// one of the trees is empty, so they are different
+        if(p -> val != q -> val) return false;   // the node values are different, so the trees are different
         // recursively check the left and right subtrees
         return isSameTree(p -> left, q -> left) and isSameTree(p -> right, q -> right);
     }
@@ -18,7 +13,11 @@ public:
 
 
 
-// APPROACH 2
+
+
+
+// A 2
+
 // The idea is to use two stacks to keep track of the nodes in the two trees. 
 // It starts by pushing the roots of the two trees onto the stacks (if they exist).
 // Then, it enters a loop where it pops a node from each stack, compares their values, 
@@ -26,7 +25,6 @@ public:
 // If they are, the function pushes them onto the stacks.
 // If not, the function returns false. 
 // The loop continues until the stacks are empty, at which point the function returns true.
-
 
 class Solution {
 public:
@@ -43,23 +41,18 @@ public:
             TreeNode* nodeQ = stkQ.top();
             stkQ.pop();
 
-            if(nodeP -> val != nodeQ -> val) {
-                return false;
-            }
-
+            if(nodeP -> val != nodeQ -> val) return false;
             if(nodeP -> left && nodeQ -> left) {
                 stkP.push(nodeP->left);
                 stkQ.push(nodeQ->left);
-            }else if(nodeP -> left || nodeQ -> left) {
-                return false;
             }
-
+            else if(nodeP -> left || nodeQ -> left) return false;
+            
             if(nodeP -> right && nodeQ -> right) {
                 stkP.push(nodeP -> right);
                 stkQ.push(nodeQ -> right);
-            }else if(nodeP -> right || nodeQ -> right) {
-                return false;
             }
+            else if(nodeP -> right || nodeQ -> right) return false;
         }
         return stkP.empty() && stkQ.empty();
     }
@@ -67,4 +60,8 @@ public:
 
 
 
+
+
+
+// A 3 
 
