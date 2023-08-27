@@ -94,6 +94,64 @@ public:
 
 
 
-// A 3 
+// A 3 -  Level-Order Traversal with a Queue
+
+// Use a single queue to perform a level-order traversal of both trees and
+// compare nodes as you go.
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        queue<TreeNode*> q1, q2;
+        q1.push(p);
+        q2.push(q);
+        
+        while(!q1.empty() && !q2.empty()) {
+            TreeNode *node1 = q1.front(); q1.pop();
+            TreeNode *node2 = q2.front(); q2.pop();
+            
+            if(!node1 && !node2) continue;
+            if(!node1 || !node2 || node1 -> val != node2 -> val) return false;
+            
+            q1.push(node1 -> left);
+            q1.push(node1 -> right);
+
+            q2.push(node2 -> left);
+            q2.push(node2 -> right);
+        }        
+        return q1.empty() && q2.empty();
+    }
+};
+
+
+
+
+
+
+// A 4 -  Preorder Traversal
+
+// Another variation involves performing a pre-order traversal and 
+// comparing the serialized forms of the two trees.
+
+class Solution {
+public:
+    void preorder(TreeNode* node, string &res) {
+        if(!node) {
+            res += "null ";
+            return;
+        }
+        res += to_string(node -> val) + " ";
+        preorder(node -> left,  res);
+        preorder(node -> right, res);
+    }
+
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        string preorderP = "", preorderQ = "";
+        preorder(p, preorderP);
+        preorder(q, preorderQ);
+        return preorderP == preorderQ;
+    }
+};
+
 
 
