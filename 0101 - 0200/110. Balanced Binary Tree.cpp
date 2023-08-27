@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -9,12 +9,10 @@ public:
 
     bool isBalanced(TreeNode* root) {
         int LH = 0, RH = 0;
-
         if(root == NULL) return true;
 
         LH = height(root -> left);
         RH = height(root -> right);
-
         if(abs(LH - RH) > 1) return 0;
 
         // return true;    
@@ -32,6 +30,13 @@ public:
 
 // T.C. O(N^2)
 
+
+
+
+
+
+// A 2
+
 class Solution {
 public:
     int height(TreeNode* root) {
@@ -39,7 +44,6 @@ public:
         
         int LH = height(root->left);
         if (LH == -1) return -1;
-
         int RH = height(root->right);
         if (RH == -1) return -1; 
         
@@ -51,8 +55,6 @@ public:
         return height(root) != -1;
     }
 };
-
-
 
 // T.C. --> O(N)
 // The height function is called once for each node in the tree, so the time complexity
@@ -75,11 +77,7 @@ public:
 
 
 
-
-
-
-// APPROACH 3
-
+// A 3
 
 class Solution {
 public:
@@ -103,7 +101,6 @@ public:
         }
         return true;
     }
-
 private:
     static void dfs(TreeNode* root) {
         if(root == NULL) return ;
