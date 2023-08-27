@@ -118,3 +118,65 @@ private:
 };
 
 
+
+
+
+// A 4  Recursion
+
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if(root == NULL) return 0;
+        else return max(height(root -> left), height(root -> right)) + 1;
+    }
+
+    bool isBalanced(TreeNode* root) {
+        if(root == NULL) return true;
+        else return abs(height(root -> left) - height(root -> right)) <= 1 && isBalanced(root -> left) && isBalanced(root -> right);
+    }
+};
+
+
+
+
+
+// A 5 
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root == nullptr) return true;
+
+        stack<TreeNode*> nodes;
+        stack<int> depths;
+        nodes.push(root);
+        depths.push(1);
+
+        int maxDepth = 0;
+
+        while(!nodes.empty()) {
+            TreeNode* curr = nodes.top();
+            nodes.pop();
+            
+            int depth = depths.top();
+            depths.pop();
+            
+            if(curr -> left == nullptr && curr -> right == nullptr) {
+                maxDepth = max(maxDepth, depth);
+                if(maxDepth - depth > 1) return false;
+            }
+
+            if(curr -> right != nullptr) {
+                nodes.push(curr -> right);
+                depths.push(depth + 1);
+            }
+            if(curr -> left != nullptr) {
+                nodes.push(curr -> left);
+                depths.push(depth + 1);
+            }
+        }
+        return true;
+    }
+};
+
+
