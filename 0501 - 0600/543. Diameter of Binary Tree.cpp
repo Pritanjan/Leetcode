@@ -122,3 +122,45 @@ public:
     }
 };
 
+
+
+
+
+
+// A 5  -  Using a Class with Member Variables - Chat gpt
+
+class Solution {
+private:
+    struct TreeInfo {
+        int diameter;
+        int depth;
+    };
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        TreeInfo treeInfo = getTreeInfo(root);
+        return treeInfo.diameter;
+    }
+    
+    TreeInfo getTreeInfo(TreeNode* node) {
+        if(!node) return {0, 0};
+        
+        TreeInfo leftTree  = getTreeInfo(node->left);
+        TreeInfo rightTree = getTreeInfo(node->right);
+        
+        int diameterThroughNode = leftTree.depth + rightTree.depth;
+        int maxDiameter = max({diameterThroughNode, leftTree.diameter, rightTree.diameter});
+        
+        TreeInfo res;
+        res.diameter = maxDiameter;
+        res.depth = 1 + max(leftTree.depth, rightTree.depth);
+        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6 
