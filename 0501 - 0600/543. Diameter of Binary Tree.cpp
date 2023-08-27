@@ -89,5 +89,36 @@ public:
 
 
 
-// A4 - Iterative Approach DFS
+// A4 - BFS
+
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root) return 0;
+        int diameter = 0;
+        queue<TreeNode*> que;
+        que.push(root);
+        
+        while(!que.empty()) {
+            int levelSize = que.size();
+            for(int i=0; i<levelSize; ++i) {
+                TreeNode* node = que.front();
+                que.pop();
+                
+                int LD = depth(node -> left);
+                int RD = depth(node -> right);
+                diameter = max(diameter, LD + RD);
+                
+                if(node -> left)  que.push(node -> left);
+                if(node -> right) que.push(node -> right);
+            }
+        }
+        return diameter;
+    }
+    
+    int depth(TreeNode* node) {
+        if(!node) return 0;
+        return 1 + max(depth(node -> left), depth(node -> right));
+    }
+};
 
