@@ -118,6 +118,35 @@ private:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root == nullptr) return true;
+
+        queue<TreeNode*> nodes;
+        nodes.push(root);
+        while(!nodes.empty()) {
+            TreeNode* node = nodes.front();
+            nodes.pop();
+
+            if(abs(Height(node -> left) - Height(node -> right)) > 1) return false;
+            if(node -> left)  nodes.push(node -> left);
+            if(node -> right) nodes.push(node -> right);
+        }
+        return true;
+    }
+private:
+    int Height(TreeNode* node) {
+        if(node == nullptr) return 0;
+        return max(Height(node -> left), Height(node -> right)) + 1;
+    }
+};
+
+
+
 
 
 
