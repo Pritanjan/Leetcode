@@ -1,4 +1,7 @@
-// A 1
+// A 1 - Recursive Approach
+
+// use a recursive function to traverse both trees simultaneously and 
+// compare their nodes at each step
 
 class Solution {
 public:
@@ -16,7 +19,7 @@ public:
 
 
 
-// A 2
+// A 2  - Iterative Approach using Stacks
 
 // The idea is to use two stacks to keep track of the nodes in the two trees. 
 // It starts by pushing the roots of the two trees onto the stacks (if they exist).
@@ -59,9 +62,38 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        stack<TreeNode*> s1, s2;
+        s1.push(p);
+        s2.push(q);
+        
+        while(!s1.empty() && !s2.empty()) {
+            TreeNode *node1 = s1.top(); s1.pop();
+            TreeNode *node2 = s2.top(); s2.pop();
+            
+            if(!node1 && !node2) continue;
+            if(!node1 || !node2 || node1 -> val != node2 -> val) return false;
+            
+            s1.push(node1 -> left);
+            s1.push(node1 -> right);
+
+            s2.push(node2 -> left);
+            s2.push(node2 -> right);
+        }        
+        return s1.empty() && s2.empty();
+    }
+};
+
+
 
 
 
 
 // A 3 
+
 
