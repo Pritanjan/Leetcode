@@ -128,6 +128,8 @@ public:
 
 
 
+// Inorder doesnt satisfy it conditions completely
+
 // A 4 -  Preorder Traversal
 
 // Another variation involves performing a pre-order traversal and 
@@ -155,3 +157,26 @@ public:
 
 
 
+
+
+// A 5  - Postorder Traversal
+
+class Solution {
+public:
+    void postorder(TreeNode* node, string &result) {
+        if(!node) {
+            result += "null ";
+            return;
+        }
+        postorder(node->left, result);
+        postorder(node->right, result);
+        result += to_string(node->val) + " ";
+    }
+
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        string postorderP = "", postorderQ = "";
+        postorder(p, postorderP);
+        postorder(q, postorderQ);
+        return postorderP == postorderQ;
+    }
+};
