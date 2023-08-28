@@ -98,6 +98,15 @@ public:
 
 // OR
 
+// In this approach, we maintain two queues: que1 and que2. 
+// When pushing an element, we enqueue it to the que2, then transfer all elements from que1 to que2,
+// and finally, swap the names of the two queues. 
+// This way, the newly pushed element becomes the front of the que1, maintaining the LIFO order.
+
+// This approach doesn't require as much swapping as the A2 a, 
+// which makes it slightly more efficient in terms of time complexity. 
+// It maintains the LIFO order by transferring elements between the two queues when pushing, 
+// effectively reversing their order.
 
 class MyStack {
 private:
@@ -126,6 +135,7 @@ public:
         return que1.empty();
     }
 };
+
 
 
 
