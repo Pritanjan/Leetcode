@@ -65,6 +65,41 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        queue<TreeNode*> que;
+        que.push(root);
+        bool LtR = true;      // leftToRight
+
+        while(!que.empty()) {
+            int n = que.size();  // levelSize
+            vector<int> levelValues(n);
+
+            for(int i=0; i<n; ++i) {
+                TreeNode* node = que.front();
+                que.pop();
+
+                int idx = LtR ? i : n - i - 1;
+                levelValues[idx] = node -> val;
+
+                if(node -> left)  que.push(node -> left);
+                if(node -> right) que.push(node -> right);
+            }
+            res.push_back(levelValues);
+            LtR = !LtR;
+        }
+        return res;
+    }
+};
+
+
 
 
 
