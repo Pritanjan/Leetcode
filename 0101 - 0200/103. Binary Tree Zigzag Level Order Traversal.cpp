@@ -221,5 +221,32 @@ public:
 
 
 
-// A 5 -
+// A 5 - Recursion & 2 vectors
+
+class Solution {
+public:
+    // Perform zigzag Traversal
+    void recursion(TreeNode* node, int level, vector<vector<int>>& res) {
+        if(!node) return;
+        if(res.size() <= level) res.push_back(vector<int>());
+        if(level % 2 == 0) res[level].push_back(node -> val);
+        else res[level].insert(res[level].begin(), node -> val);
+
+        recursion(node -> left,  level + 1, res);
+        recursion(node -> right, level + 1, res);
+    }
+
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        recursion(root, 0, res);
+        return res;
+    }
+};
+
+
+
+
+
+
+//  A 6 - 
 
