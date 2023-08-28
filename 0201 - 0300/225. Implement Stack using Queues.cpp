@@ -96,6 +96,37 @@ public:
 };
 
 
+// OR
+
+
+class MyStack {
+private:
+    queue<int> que1, que2;
+public:
+    void push(int x) {
+        que2.push(x);
+        while(!que1.empty()) {
+            que2.push(que1.front());
+            que1.pop();
+        }
+        swap(que1, que2);
+    }
+
+    int pop() {
+        int tmp = que1.front();
+        que1.pop();
+        return tmp;
+    }
+
+    int top() {
+        return que1.front();
+    }
+
+    bool empty() {
+        return que1.empty();
+    }
+};
+
 
 
 
