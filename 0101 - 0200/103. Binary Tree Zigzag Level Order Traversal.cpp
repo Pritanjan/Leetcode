@@ -176,4 +176,50 @@ public:
 
 
 
-// A 4
+// A 4 - Using a deque (Double-ended Queue)
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        deque<TreeNode*> dq;
+        dq.push_back(root);
+        bool LtR = true;
+
+        while(!dq.empty()) {
+            int n = dq.size();  // level size
+            vector<int> v(n);   // levelValues
+
+            for(int i=0; i<n; ++i) {
+                if(LtR) {
+                    TreeNode* node = dq.front();
+                    dq.pop_front();
+                    v[i] = node -> val;
+
+                    if(node -> left)  dq.push_back(node -> left);
+                    if(node -> right) dq.push_back(node -> right);
+                } 
+                else {
+                    TreeNode* node = dq.back();
+                    dq.pop_back();
+                    v[i] = node -> val;
+                    if(node -> right) dq.push_front(node -> right);
+                    if(node -> left)  dq.push_front(node -> left);
+                }
+            }
+            res.push_back(v);
+            LtR = !LtR;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 5 -
+
