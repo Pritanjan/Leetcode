@@ -141,5 +141,51 @@ public:
 
 
 
-// A 3 
+// A 3 - Using One Queue with Modified Push
+
+// In this approach, we maintain a single queue and use a modified "push" operation. 
+// When pushing an element, we first enqueue all existing elements in the queue, 
+// and then enqueue the new element. 
+// This effectively places the newly pushed element at the back of the queue.
+// To maintain the LIFO order, we can use a temporary queue to reverse the order of elements.
+
+class MyStack {
+private:
+    queue<int> que;
+public:
+    void push(int x) {
+        queue<int> que1;
+        while (!que.empty()) {
+            que1.push(que.front());
+            que.pop();
+        }
+        que.push(x);
+        
+        while(!que1.empty()) {
+            que.push(que1.front());
+            que1.pop();
+        }
+    }
+
+    int pop() {
+        int poppedElement = que.front();
+        que.pop();
+        return poppedElement;
+    }
+
+    int top() {
+        return que.front();
+    }
+
+    bool empty() {
+        return que.empty();
+    }
+};
+
+
+
+
+
+
+// A 4
 
