@@ -1,5 +1,10 @@
 // A1 - Using 1 Queue
 
+// In this approach, we maintain a single queue. 
+// When pushing an element, we enqueue it to the back of the queue and
+// then rotate the queue so that the newly pushed element becomes the front. 
+// This way, we maintain the LIFO order.
+
 class MyStack {
 public:
     queue<int> q;
@@ -46,6 +51,13 @@ public:
 
 
 // A 2 - Using 2 Queue
+
+// In this approach, we maintain two queues: que1 and que2. 
+// When pushing an element, we enqueue it to que1. 
+// When popping an element or getting the top element, we transfer all elements except the last
+// one from que1 to que2. 
+// The last element in que1 becomes the top element or the popped element. 
+// After that, we swap the names of queue1 and queue2.
 
 class MyStack {
 private:
