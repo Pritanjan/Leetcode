@@ -1,3 +1,4 @@
+
 class Solution {
 public:
     int findPos(vector<int> &in, int ele, int n){
