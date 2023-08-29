@@ -1,4 +1,8 @@
-// A 1
+// A 1 - Recursive Approach with Two Pointers:
+
+// We can use two pointers to traverse the tree simultaneously—one pointing to the left subtree and 
+// the other to the right subtree. 
+// Compare the values of nodes pointed by these pointers to check for symmetry.
 
 class Solution {
 public:    
@@ -35,7 +39,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2 - Using a Single Queue with Level Separation
 
 // We start by checking if the root node is NULL. If it is, we return true. 
 // Otherwise, we create a queue and add the left and right child nodes of the root to it.
@@ -126,4 +130,42 @@ public:
 
 
 
-// A 4
+// A 4 - Construct Mirrored Trees and Compare:
+// We can create two new trees by mirroring the left and right subtrees of the original tree.
+// Then, compare the nodes of the two mirrored trees to check for symmetry.
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+        TreeNode* leftMirror = mirrorTree(root -> left);
+        return isSameTree(leftMirror, root -> right);
+    }
+
+    TreeNode* mirrorTree(TreeNode* root) {
+        if(!root) return nullptr;
+
+        TreeNode* mirrored = new TreeNode(root -> val);
+        mirrored -> left  = mirrorTree(root -> right);
+        mirrored -> right = mirrorTree(root -> left);
+        return mirrored;
+    }
+
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p && !q) return true;
+        if(!p || !q) return false;
+        return (p->val == q->val) && 
+            isSameTree(p->left, q->left) &&
+            isSameTree(p->right, q->right);
+    }
+};
+
+
+
+
+
+
+// A 5
+
+
+// 
