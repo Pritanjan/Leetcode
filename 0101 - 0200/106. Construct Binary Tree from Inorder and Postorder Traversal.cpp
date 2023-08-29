@@ -67,4 +67,41 @@ public:
 
 
 
-//  A 2 
+
+//  A 2  - Using Hash Map (Optimized for Inorder Index Lookup)
+
+class Solution {
+public:
+    TreeNode* buildTreeHelper(unordered_map<int, int>& inorderMp, vector<int>& postorder, 
+                            int& postIdx, int inStart, int inEnd) {
+        if(inStart > inEnd) return nullptr;
+
+        int tmp = postorder[postIdx];
+        TreeNode* root = new TreeNode(tmp);
+
+        int idx = inorderMp[tmp];
+        postIdx--;
+
+        root -> right = buildTreeHelper(inorderMp, postorder, postIdx, idx + 1, inEnd);
+        root -> left  = buildTreeHelper(inorderMp, postorder, postIdx, inStart, idx - 1);
+
+        return root;
+    }
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        unordered_map<int, int> inorderMp;
+        for(int i=0; i<n; ++i)
+            inorderMp[inorder[i]] = i;
+
+        int postIdx = n-1;
+        return buildTreeHelper(inorderMp,postorder, postIdx, 0, n-1);
+    }
+};
+
+
+
+
+
+
+// A 3 - sing Iteration and Stack
