@@ -1,13 +1,11 @@
-// APPROACH 1 RECUSIVE DFS
+// A 1 RECUSIVE 
 
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL)
-            return NULL;
+        if(root == NULL) return NULL;
         
         TreeNode* tempRight = root->right;
-            
         root->right = invertTree(root->left) ;
         root->left  = invertTree(tempRight);
         
@@ -16,65 +14,66 @@ public:
 };
 
 
+// OR
 
-
-
-
-
-
-
-// APPROACH 2
 
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL)
-            return root;
+        if(root == NULL) return NULL;        
+        swap(root -> left, root -> right);
+        invertTree(root -> left);
+        invertTree(root -> right);        
+        return root;
+    }
+};
+
+
+
+
+
+
+// A 2 - Iterative Approach using Queue ( BFS )
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL) return root;
         
         queue<TreeNode*> q;
         q.push(root);
-        
         while(!q.empty()){
             TreeNode* node = q.front();
             q.pop();
-            
-            if(node->left != NULL)
-                q.push(node->left);
-            
-            if(node->right != NULL)
-                q.push(node->right);
+            if(node->left != NULL)  q.push(node->left);
+            if(node->right != NULL) q.push(node->right);
             
             // TreeNode* temp = node->left;
             // node->left = node->right;
             // node->right = temp;
-            
             swap(node->left , node->right);
         }
         return root;
     }
 };
 
-//If you draw the 3 or 4 level, just to make sure, 
-//binary tree and invert it on a paper, you will easily
-//see that all have to be done is to swap kids for each
-//node. This can be done many ways: recursion or using 
-//queue to store nodes of one level. Recursion is not 
-//good way to go due to performance overhead and risk 
-//to run it against huge tree. With standard queue 
-//solution looks simple robust and runs faster.
-
-
-
+// If you draw the 3 or 4 level, just to make sure, binary tree and invert it on a paper, 
+// we will easily see that all have to be done is to swap kids for each node. 
+// This can be done many ways: recursion or using queue to store nodes of one level. 
+// Recursion is not good way to go due to performance overhead and risk to run it against huge tree.
+// With standard queue solution looks simple robust and runs faster.
 
 // Time complexity --> O(n), where n is the number of nodes in the tree.
 // Because each node in the tree is visited exactly once, and the swapping operation takes constant time.
-
 
 // SPACE COMPLEXITY SAME AS APPROACH 3
 
 
 
-// APPROACH 3 -- USING STACK
+
+
+
+// A 3 -- USING STACK
 
 // 1. Create an empty stack.
 // 2. Push the root node onto the stack.
@@ -95,26 +94,20 @@ public:
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if (!root) {
-            return nullptr;
-        }
+        if(!root) return nullptr;
+        
         stack<TreeNode*> s;
         s.push(root);
         while (!s.empty()) {
             TreeNode* node = s.top();
             s.pop();
-            if (node->left) {
-                s.push(node->left);
-            }
-            if (node->right) {
-                s.push(node->right);
-            }
+            if(node->left) s.push(node->left);
+            ifnode->right) s.push(node->right);
             swap(node->left, node->right);
         }
         return root;
     }
 };
-
 
 // Time complexity -->  O(n), where n is the number of nodes in the tree. 
 // This is because each node in the tree is visited exactly once, and the swapping operation takes constant time.
@@ -138,18 +131,16 @@ public:
 
 
 
+// A 4 
+
 class Solution {
 public:
-
     void invert(TreeNode* root) {
-        if(root == nullptr) 
-            return;
-        
+        if(root == nullptr) return;
         swap(root->left, root->right);
         invert(root->left);
         invert(root->right);
     }
-
     TreeNode* invertTree(TreeNode* root) {
         invert(root);
         return root;
@@ -157,4 +148,8 @@ public:
 };
 
 
+
+
+
+// A 5 
 
