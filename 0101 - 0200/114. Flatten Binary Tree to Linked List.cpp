@@ -61,6 +61,26 @@ public:
 
 
 
+// A 2 - Stack 
+
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if(!root) return;
+
+        if(root -> left) {
+            TreeNode* rightSubtree = root -> right;
+            root -> right = root -> left;
+            root -> left = NULL;
+            
+            TreeNode* curr = root -> right;
+            while(curr -> right) curr = curr -> right;
+
+            curr -> right = rightSubtree;
+        }
+        flatten(root -> right);
+    }
+};
 
 
 
@@ -68,6 +88,4 @@ public:
 
 
 
-
-
-
+// A 3 
