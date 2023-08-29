@@ -102,7 +102,7 @@ public:
             TreeNode* node = s.top();
             s.pop();
             if(node->left) s.push(node->left);
-            ifnode->right) s.push(node->right);
+            if(node->right) s.push(node->right);
             swap(node->left, node->right);
         }
         return root;
@@ -151,5 +151,20 @@ public:
 
 
 
-// A 5 
+// A 5 - Inverting Using XOR Swap
 
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(!root) return nullptr;
+        
+        root -> left  = invertTree(root -> left);
+        root -> right = invertTree(root -> right);
+        
+        root -> left  = (TreeNode*)((uintptr_t)root -> left ^ (uintptr_t)root -> right);
+        root -> right = (TreeNode*)((uintptr_t)root -> left ^ (uintptr_t)root -> right);
+        root -> left  = (TreeNode*)((uintptr_t)root -> left ^ (uintptr_t)root -> right);
+
+        return root;
+    }
+};
