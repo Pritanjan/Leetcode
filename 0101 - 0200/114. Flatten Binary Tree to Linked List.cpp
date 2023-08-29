@@ -88,4 +88,35 @@ public:
 
 
 
-// A 3 
+// A 3 - Using Stack
+
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if(!root) return;       
+        
+        stack<TreeNode*> stk;
+        stk.push(root);
+        while(!stk.empty()) {
+            TreeNode* curr = stk.top();
+            stk.pop();
+            
+            if(curr -> right) stk.push(curr -> right);
+            if(curr -> left) {
+                curr -> right = curr -> left;
+                curr -> left = NULL;
+                stk.push(curr -> right);
+            }
+
+            if(!stk.empty()) curr -> right = stk.top();
+        }
+    }
+};
+
+
+
+
+
+
+
+// A 4 
