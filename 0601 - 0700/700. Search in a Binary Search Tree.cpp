@@ -18,6 +18,7 @@ public:
 
 
 // A 2 - Recursive DFS
+
 // It utilizes the properties of a BST to traverse the tree in a depth-first manner. 
 // It starts at the root node and recursively searches for the node with the given value.
 
@@ -43,6 +44,7 @@ public:
 
 
 // A 3 - Iterative BFS
+
 // It uses an iterative BFS to traverse the tree level by level. 
 // It searches for the node with the given value and returns the corresponding subtree.
 
@@ -64,3 +66,29 @@ public:
 };
 
 
+
+
+
+
+// A 4 -  Iterative DFS
+
+// It uses an iterative DFS with a stack to traverse the tree. 
+// Similar to the recursive approach, it searches for the node with the given value and
+// returns the corresponding subtree.
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        stack<TreeNode*> stk;
+        stk.push(root);
+        while(!stk.empty()) {
+            TreeNode* node = stk.top();
+            stk.pop();
+            
+            if(node && node -> val == val) return node;           
+            if(node && node -> val > val) stk.push(node -> left);
+            else if(node && node -> val < val) stk.push(node -> right);
+        }        
+        return nullptr;
+    }
+};
