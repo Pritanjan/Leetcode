@@ -110,3 +110,44 @@ public:
 
 
 
+
+// A 3 Using Queue
+
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.empty()) return NULL;
+        
+        int n = nums.size();
+        TreeNode* root = new TreeNode(0); // Value doesn't matter
+        queue<pair<TreeNode*, pair<int, int>>> que;
+        que.push({root, {0, n-1}});
+
+        while(!que.empty()) {
+            auto [node, range] = que.front();
+            que.pop();
+
+            int L = range.first;
+            int R = range.second;
+            int mid = L + (R - L) / 2;
+            node -> val = nums[mid];
+
+            if(L <= mid - 1) {
+                node -> left = new TreeNode(0); // Value doesn't matter
+                que.push({node -> left, {L, mid - 1}});
+            }
+            if(mid + 1 <= R) {
+                node -> right = new TreeNode(0); // Value doesn't matter
+                que.push({node->right, {mid + 1, R}});
+            }
+        }
+        return root;
+    }
+};
+
+
+
+
+
+
+// A 4
