@@ -92,3 +92,60 @@ public:
         return nullptr;
     }
 };
+
+
+
+
+
+
+// A 5 - Morris Traversal
+
+// Morris Traversal is a space-efficient and in-order tree traversal method. 
+// In this approach, we modify the tree's structure temporarily to traverse it without using
+// additional space. 
+// While performing the traversal, we can also check for the target value & return the 
+// corresponding subtree.
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        TreeNode* curr = root;       
+        while(curr) {
+            if(curr -> val == val) return curr;
+            else if(val < curr -> val) curr = curr->left;
+            else curr = curr -> right;
+        }        
+        return nullptr;
+    }
+};
+ 
+
+
+
+
+
+// A 6 -  Double Recursion
+
+// This approach uses two recursive calls to explore both left and right subtrees. 
+// It combines the ideas of binary search and recursive traversal to find the desired node and
+// return the corresponding subtree.
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(!root || root -> val == val) return root;
+                
+        TreeNode* leftResult = searchBST(root -> left, val);
+        if(leftResult) return leftResult;
+                
+        return searchBST(root -> right, val);
+    }
+};
+
+
+
+
+
+
+// A 7 
+
