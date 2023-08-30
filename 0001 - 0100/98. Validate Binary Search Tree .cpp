@@ -81,7 +81,6 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         if(!root) return true;
-
         // 1. Declare a stack for in-order traversal tree nodes
         stack<TreeNode*> stk;
         
@@ -95,16 +94,51 @@ public:
                 stk.push(root);
                 root = root -> left;
             }
-            
             // Obtaining the top node of the stack is actually traversing to 
             // the node in the lower left corner of the binary search tree
             root = stk.top();
             stk.pop();
 
             if(root -> val <= prevVal) return false;
-            
             prevVal = root -> val;
             root = root -> right;
+        }
+        return true;
+    }
+};
+
+
+// OR
+// using 2 stack
+
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (!root) return true;
+
+        stack<TreeNode*> stk1;   // store the nodes 
+        stack<pair<long, long>> stk2;  // store the range of node
+
+        stk1.push(root);
+        stk2.push({LONG_MIN, LONG_MAX});
+
+        while(!stk1.empty()) {
+            TreeNode* node = stk1.top();
+            long mi = stk2.top().first;
+            long mx = stk2.top().second;
+            stk1.pop();
+            stk2.pop();
+
+            if(node -> val <= mi || node -> val >= mx) return false;
+            if(node -> right) {
+                stk1.push(node -> right);
+                stk2.push({node -> val, mx});
+            }
+            if(node -> left) {
+                stk1.push(node -> left);
+                stk2.push({mi, node -> val});
+            }
         }
         return true;
     }
