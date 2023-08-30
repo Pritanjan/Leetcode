@@ -1,4 +1,6 @@
-// APPROACH 1 [  Recursive Traversal with Valid Range ]
+// A 1 [  Recursive Traversal with Valid Range ]
+
+// we perform a DFS on the binary tree & check if each node's value lies within a certain range.
 
 class Solution {
 public:
@@ -14,9 +16,7 @@ public:
 };
 
 
-
 // OR [ from solutions ]
-
 
 
 class Solution {
@@ -37,8 +37,6 @@ public:
     }
 };
 
-
-
 // Time complexity   O(N) since we visit each node exactly once.
 // Space complexity : O(N) Since keep up to the entire tree.
 
@@ -47,18 +45,15 @@ public:
 
 
 
-
-// APPROACH 2 [ INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT ]
+// A 2 [ INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT ]
 
 // IF SORTED --> BST 
 // ELSE --> NOT BST
 
-
 class Solution {
 public:
     void inorder(TreeNode* root, vector<int>& res){
-        if(!root) return ;
-        
+        if(!root) return ;        
         if(root -> left) inorder(root -> left, res);
         res.push_back(root -> val);
         if(root -> right) inorder(root -> right, res);
@@ -67,11 +62,8 @@ public:
     bool isValidBST(TreeNode* root) {
         vector<int> res;
         inorder(root, res);
-
         for(int i=1; i<res.size(); i++) {
-            if(res[i-1] >= res[i]) {
-                return false;
-            }
+            if(res[i-1] >= res[i]) return false;
         }
         return true;
     }
@@ -82,7 +74,8 @@ public:
 
 
 
-// APPROACH 3
+// A 3 -  Iterative In-order Traversal
+// It compares the current node's value with the previously visited node's value.
 
 class Solution {
 public:
@@ -122,4 +115,4 @@ public:
 
 
 
-
+// A 4 - 
