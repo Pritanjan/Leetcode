@@ -1,14 +1,5 @@
 // A 1  [ RECURSIVE ]
 
-// it calls a helper function buildBST to construct the binary search tree recursively. 
-
-// The buildBST function takes three arguments: the input vector nums, and the left and right indices of the current subarray. 
-// It first checks if the left index is greater than the right index, which indicates an empty subarray, and returns nullptr in that case.
-// Otherwise, it computes the midpoint index of the subarray and
-//  constructs a new TreeNode with the corresponding value. 
-// Then, it recursively constructs the left and right subtrees by calling buildBST on the left and right subarrays, respectively, and setting the left and right pointers of the current node to the corresponding subtree roots. 
-// Finally, it returns the root of the constructed binary search tree.
-
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
@@ -28,6 +19,14 @@ public:
 
 // OR
 
+// it calls a helper function buildBST to construct the binary search tree recursively. 
+
+// The buildBST function takes three arguments: the input vector nums, and the left and right indices of the current subarray. 
+// It first checks if the left index is greater than the right index, which indicates an empty subarray, and returns nullptr in that case.
+// Otherwise, it computes the midpoint index of the subarray and
+//  constructs a new TreeNode with the corresponding value. 
+// Then, it recursively constructs the left and right subtrees by calling buildBST on the left and right subarrays, respectively, and setting the left and right pointers of the current node to the corresponding subtree roots. 
+// Finally, it returns the root of the constructed binary search tree.
 
 class Solution {
 public:
