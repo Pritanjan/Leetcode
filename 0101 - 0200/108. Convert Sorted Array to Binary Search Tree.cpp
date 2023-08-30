@@ -107,6 +107,43 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.empty()) return NULL;
+        int n = nums.size();
+        TreeNode* root = new TreeNode(0); // Value doesn't matter
+        TreeNode* current = root;
+        
+        stack<pair<TreeNode*, pair<int, int>>> stk;
+        stk.push({current, {0, n - 1}});
+        while(!stk.empty()) {
+            auto [node, range] = stk.top();
+            stk.pop();
+
+            int L = range.first;
+            int R = range.second;
+            int mid = L + (R - L) / 2;
+            
+            node -> val = nums[mid];
+            if(L <= mid - 1) {
+                node -> left = new TreeNode(0); // Value doesn't matter
+                stk.push({node -> left, {L, mid - 1}});
+            }
+            if(mid + 1 <= R) {
+                node -> right = new TreeNode(0); // Value doesn't matter
+                stk.push({node -> right, {mid + 1, R}});
+            }
+        }
+        return root;
+    }
+};
+
+
+
 
 
 
