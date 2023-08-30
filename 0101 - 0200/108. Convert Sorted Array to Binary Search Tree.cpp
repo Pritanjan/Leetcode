@@ -113,6 +113,14 @@ public:
 
 // A 3 Using Queue
 
+// This approach uses a queue to keep track of the nodes that need to be processed. 
+// It helps ensure that the tree is constructed in a balanced manner
+
+// For each node in the queue, we calculate the middle element of the range and
+// assign it to the node's value. 
+// Then, we create left and right children if the range allows, and push them into the queue 
+// with updated ranges.
+
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
@@ -150,4 +158,56 @@ public:
 
 
 
-// A 4
+// A 4 - Iterative Approach with Arrays
+
+// This approach uses two arrays: one for storing the nodes and another for storing their
+// corresponding ranges. 
+// It iteratively constructs the tree while updating these arrays.
+
+// start by pushing the root node and the entire range into these arrays. 
+// Then, we iteratively pop nodes from the nodes array and update their values and ranges. 
+// New nodes are pushed into the arrays if their ranges are valid.
+
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.empty()) return NULL;
+        int n = nums.size();
+        TreeNode* root = new TreeNode(0); // Value doesn't matter
+
+        vector<TreeNode*> v1;   // keep the track of nodes
+        vector<pair<int, int>> v2;  // keep the track of corresponding range
+
+        v1.push_back(root);
+        v2.push_back({0, n - 1});
+
+        while(!v1.empty()) {
+            TreeNode* node = v1.back();
+            v1.pop_back();
+            auto [L, R] = v2.back();
+            v2.pop_back();
+            
+            int mid = L + (R - L) / 2;
+            node -> val = nums[mid];
+
+            if(L <= mid - 1) {
+                node -> left = new TreeNode(0); // Value doesn't matter
+                v1.push_back(node -> left);
+                v2.push_back({L, mid - 1});
+            }
+            if(mid + 1 <= R) {
+                node -> right = new TreeNode(0); // Value doesn't matter
+                v1.push_back(node -> right);
+                v2.push_back({mid + 1, R});
+            }
+        }
+        return root;
+    }
+};
+
+
+
+
+
+
+// A 5
