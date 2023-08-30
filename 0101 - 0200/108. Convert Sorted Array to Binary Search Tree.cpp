@@ -1,5 +1,13 @@
-// APPROACH 1  [ RECURSIVE ]
+// A 1  [ RECURSIVE ]
 
+// it calls a helper function buildBST to construct the binary search tree recursively. 
+
+// The buildBST function takes three arguments: the input vector nums, and the left and right indices of the current subarray. 
+// It first checks if the left index is greater than the right index, which indicates an empty subarray, and returns nullptr in that case.
+// Otherwise, it computes the midpoint index of the subarray and
+//  constructs a new TreeNode with the corresponding value. 
+// Then, it recursively constructs the left and right subtrees by calling buildBST on the left and right subarrays, respectively, and setting the left and right pointers of the current node to the corresponding subtree roots. 
+// Finally, it returns the root of the constructed binary search tree.
 
 class Solution {
 public:
@@ -13,15 +21,12 @@ public:
         
         root -> left  = sortedArrayToBST(L);
         root -> right = sortedArrayToBST(R);
-        
         return root;
     }
 };
 
 
-
 // OR
-
 
 
 class Solution {
@@ -45,33 +50,13 @@ public:
 
 
 
-// it calls a helper function buildBST to construct the binary search tree recursively. 
-
-// The buildBST function takes three arguments: the input vector nums, and the left and right indices of the current subarray. 
-// It first checks if the left index is greater than the right index, which indicates an empty subarray, and returns nullptr in that case.
-// Otherwise, it computes the midpoint index of the subarray and
-//  constructs a new TreeNode with the corresponding value. 
-// Then, it recursively constructs the left and right subtrees by calling buildBST on the left and right subarrays, respectively, and setting the left and right pointers of the current node to the corresponding subtree roots. 
-// Finally, it returns the root of the constructed binary search tree.
 
 
-
-
-
-
-
-
-
-
-
-// APPROACH 1 [ Iterative Solution ]
-
+// A 2 [ Iterative Solution ]
 
 // same approach as the previous one, but instead of recursion, here stack is used to keep the
 // track of the ranges of the array that need to be processed. 
 // The stack stores a pair of indices representing the left and right endpoints of the current range.
-
-
 
 // The function initializes two stacks stk and nodeStk. 
 // The first stack stk stores the ranges of indices for which BST are to be constructed. 
@@ -83,8 +68,6 @@ public:
 // In each iteration of the loop, the top element of stk and nodeStk are popped,
 // and the midpoint index mid of the range is computed.
 // The value at index mid is assigned to the value of the node pointer at the top of nodeStk.
-
-
 
 class Solution {
 public:
