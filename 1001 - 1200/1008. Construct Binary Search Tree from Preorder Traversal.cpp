@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Recursion
 
 // Give the function ma the maximum number it will handle.
 // The left recursion will take the elements smaller than node->val
@@ -19,6 +19,29 @@ public:
 // bstFromPreorder is called exactly N times. Same as a preorder traversal.
 // Time O(N)
 // Space O(H)
+
+
+// OR
+
+// Binary Search and Recursion
+// we use binary search to find the correct position to insert the nodes while constructing BST.
+
+
+class Solution {
+public:
+    TreeNode* insertNode(TreeNode* root, int val) {
+        if(!root) return new TreeNode(val);
+        if(val < root -> val) root -> left = insertNode(root -> left, val);
+        else root -> right = insertNode(root -> right, val);
+        return root;
+    }
+
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        TreeNode* root = nullptr;
+        for(int val : preorder) root = insertNode(root, val);
+        return root;
+    }
+};
 
 
 
