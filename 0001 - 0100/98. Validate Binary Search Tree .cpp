@@ -115,4 +115,37 @@ public:
 
 
 
-// A 4 - 
+// A 4 -  Breadth-First Traversal with Range Checking
+
+// It uses a level-order traversal (breadth-first traversal) of the binary tree while
+// keeping track of the valid value range for each node. 
+// At each level, we update the valid value range based on the parent node's value range.
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if(!root) return true;
+
+        queue<pair<TreeNode*, pair<long, long>>> que;
+        que.push({root, {LONG_MIN, LONG_MAX}});
+
+        while(!que.empty()) {
+            TreeNode* node = que.front().first;
+            long mi = que.front().second.first;
+            long mx = que.front().second.second;
+            que.pop();
+
+            if(node -> val <= mi || node -> val >= mx) return false;
+            if(node -> left)  que.push({node -> left,  {mi, node -> val}});
+            if(node -> right) que.push({node -> right, {node -> val, mx}});
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
+// A 5 - 
