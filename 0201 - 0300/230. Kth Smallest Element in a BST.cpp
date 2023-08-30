@@ -81,7 +81,7 @@ public:
 
 
 
-// A 3 
+// A 3 - 
 
 class Solution {
 public:
@@ -108,6 +108,24 @@ public:
 
 
 
+// A 4 - Using Priority Queue (Max Heap)
 
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        priority_queue<int> pq; 
+        inorder(root, pq, k);
+        return pq.top();
+    }
+
+    void inorder(TreeNode* node, priority_queue<int>& pq, int k) {
+        if(!node) return ;
+        pq.push(node -> val);
+        if(pq.size() > k) pq.pop(); // Keep the priority queue size limited to k
+
+        inorder(node -> left,  pq, k);
+        inorder(node -> right, pq, k);
+    }
+};
 
 
