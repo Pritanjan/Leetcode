@@ -1,4 +1,4 @@
-// APPROACH 1 Using Inorder and Two Pointers
+// A 1 -  Using Inorder and Two Pointers
 
 // The main idea is to use a sorted array to save the values of the nodes in the BST .`
 // We can use any tree traversal like inOrder, preorder, or postorder  to put the element 
@@ -41,7 +41,7 @@ public:
 
 
 
-// APPROACH 2 Using HashSet
+// A 2 -  Using HashSet
 // This method also works for those who are not BSTs.
 // 1. We will traverse the tree by any way, and record the node value in a Set.
 // 2. The idea is to use a unordered_set to save the values of the nodes in the BST. 
@@ -124,3 +124,38 @@ public:
     }
 };
 
+
+
+
+
+
+// A 4 -  Using a HashSet (Iterative Inorder Traversal)
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        stack<TreeNode*> stk;
+        unordered_set<int> values;
+
+        while(root != nullptr || !stk.empty()) {
+            while(root != nullptr) {
+                stk.push(root);
+                values.insert(root -> val);
+                root = root -> left;
+            }
+            root = stk.top();
+            stk.pop();
+
+            if(values.count(k - root -> val) > 0 && k - root -> val != root -> val) return true;
+            root = root -> right;
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 5 
