@@ -32,8 +32,11 @@ public:
 
 
 
-// A 2 
+// A 2 -  Using In-Order Traversal and List
 // WE WILL FIND INORDER OF THE TREE AND CHECK IF NEXT IS AVAILABLE OR NOT
+
+// This approach uses the in-order traversal of the binary tree to generate a list of elements, 
+// and then the iterator functions (next and hasNext) work with this list.
 
 class BSTIterator {
 public:
@@ -133,7 +136,11 @@ public:
 
 
 
-// A 5
+// A 5 -  Using Two Stacks
+
+// we use two stacks to simulate the in-order traversal of the binary tree. 
+// One stack is used for traversing left nodes, and the other is used to keep track 
+// of nodes with right children.
 
 class BSTIterator {
 private:
