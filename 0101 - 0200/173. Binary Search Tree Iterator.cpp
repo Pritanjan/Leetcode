@@ -220,4 +220,36 @@ public:
 
 
 
-// A 7 
+// A 7  - Recursive Traversal with Stack
+
+class BSTIterator {
+private:
+    stack<pair<TreeNode*, bool>> stk;
+
+public:
+    BSTIterator(TreeNode* root) {
+        if(root) stk.push({root, false});
+    }
+    
+    int next() {
+        while(!stk.empty()) {
+            TreeNode* node = stk.top().first;
+            bool visited = stk.top().second;
+            stk.pop();
+            
+            if(visited) {
+                if(node -> right) stk.push({node -> right, false}); return node -> val;
+            } 
+            else {
+                stk.push({node, true});
+                if (node -> left) s.push({node -> left, false});
+            }
+        }
+        return -1; // This should never happen if hasNext() is true before calling next()
+    }
+    
+    bool hasNext() {
+        return !s.empty();
+    }
+};
+
