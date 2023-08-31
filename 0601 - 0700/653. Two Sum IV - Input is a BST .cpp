@@ -159,3 +159,30 @@ public:
 
 
 // A 5 
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        queue<TreeNode*> que;
+        unordered_set<int> ust;
+        que.push(root);
+
+        while(!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+
+            if(ust.count(k - node -> val) > 0) return true;
+            ust.insert(node -> val);
+            if(node -> left != nullptr) que.push(node->left);
+            if(node -> right != nullptr) que.push(node->right);
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 6
