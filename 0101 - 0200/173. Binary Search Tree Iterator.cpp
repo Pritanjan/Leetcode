@@ -1,10 +1,9 @@
-// APPROACH 1
+// A 1
 // https://www.youtube.com/watch?v=D2jMcmxU4bs
 
 class BSTIterator {
 public:    
     stack<TreeNode *> stack;
-    
     BSTIterator(TreeNode* root) {
         pushAll(root);
     }
@@ -25,22 +24,21 @@ public:
     }
 };
 
-
-
 // T.C  = O(1)
 // S.C. = O(H)
 
 
 
 
-// APPROACH 2 
+
+
+// A 2 
 // WE WILL FIND INORDER OF THE TREE AND CHECK IF NEXT IS AVAILABLE OR NOT
 
 class BSTIterator {
 public:
     vector <int> nums;
     int i = 0;
-    
     void inorder(TreeNode *&root){
         if(!root) return;
         inorder(root -> left);
@@ -69,20 +67,16 @@ public:
 
 
 
-
-// APPROACH 3
-
+// A 3
 
 class BSTIterator {
 public:
     queue<TreeNode*> nodes;
-
     void mid(TreeNode* root){
-        if(root == NULL)return;
-
-        mid(root->left);
+        if(root == NULL) return ;
+        mid(root -> left);
         nodes.push(root);
-        mid(root->right);
+        mid(root -> right);
     }
 
     BSTIterator(TreeNode* root) {
@@ -90,7 +84,7 @@ public:
     }
     
     int next() {
-        int ans = nodes.front()->val;
+        int ans = nodes.front() -> val;
         nodes.pop();
         return ans;
     }
@@ -104,7 +98,8 @@ public:
 
 
 
-// APPROACH 4
+
+// A 4
 
 class BSTIterator {
     deque<TreeNode*> d;
@@ -112,7 +107,6 @@ public:
     BSTIterator(TreeNode* root) {
         dfsLeft(root);
     }
-
     int next() {
         TreeNode* root = d.back();
         int ans = root->val;
@@ -138,3 +132,41 @@ public:
 
 
 
+
+// A 5
+
+class BSTIterator {
+private:
+    stack<TreeNode*> leftStack;
+    stack<TreeNode*> rightStack;
+    
+    void pushLeft(TreeNode* node) {
+        while (node) {
+            leftStack.push(node);
+            node = node->left;
+        }
+    }
+
+public:
+    BSTIterator(TreeNode* root) {
+        pushLeft(root);
+    }
+    
+    int next() {
+        TreeNode* node = leftStack.top();
+        leftStack.pop();
+        pushLeft(node->right);
+        return node->val;
+    }
+    
+    bool hasNext() {
+        return !leftStack.empty();
+    }
+};
+
+
+
+
+
+
+// A 6
