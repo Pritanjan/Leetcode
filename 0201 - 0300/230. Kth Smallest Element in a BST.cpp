@@ -129,3 +129,34 @@ public:
 };
 
 
+
+
+
+
+// A 5
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        if(!root) return -1; // Not found
+
+        int n = countNodes(root -> left);   // leftSubtreeSize
+        if(k == n + 1) return root -> val;
+        else if (k <= n) return kthSmallest(root -> left, k);
+        else return kthSmallest(root -> right, k - n - 1);
+    }
+
+private:
+    int countNodes(TreeNode* node) {
+        if(!node) return 0;
+        return 1 + countNodes(node -> left) + countNodes(node -> right);
+    }
+};
+
+
+
+
+
+
+
+// A 6
