@@ -38,6 +38,43 @@ public:
 // Space Complexity : -**  ` O(N) `
 
 
+// OR
+
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& values) {
+        if(!root) return;
+        inorder(root -> left, values);
+        values.push_back(root -> val);
+        inorder(root -> right, values);
+    }
+    
+    bool binarySearch(vector<int>& values, int target, int start) {
+        int L = start;
+        int R = values.size() - 1;
+
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            if(values[mid] == target) return true;
+            else if(values[mid] < target) L = mid + 1;
+            else R = mid - 1;
+        }
+        return false;
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        vector<int> values;
+        inorder(root, values);
+        for(int i=0; i<values.size(); ++i) {
+            if(binarySearch(values, k - values[i], i+1)) return true;
+        }
+        return false;
+    }
+};
+
+
+
 
 
 
