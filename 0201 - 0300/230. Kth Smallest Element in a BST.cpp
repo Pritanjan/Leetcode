@@ -176,7 +176,7 @@ public:
 
     int kthSmallest(TreeNode* root, int k) {
         vector<int> sortedArray;
-        inorderTraversal(root, sortedArray);
+        inorder(root, sortedArray);
         return sortedArray[k - 1];
     }
 };
