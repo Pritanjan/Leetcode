@@ -158,5 +158,32 @@ private:
 
 
 
+// A 6 - Convert to Sorted Array
 
-// A 6
+// Convert the BST to a sorted array using an in-order traversal and then
+// directly access the kth smallest element from the array. 
+// While this approach isn't the most efficient, it provides a clear way to understand the process.
+
+class Solution {
+public:
+    void inorder(TreeNode* node, vector<int>& sortedArray) {
+        if(!node) return ;
+
+        inorder(node -> left, sortedArray);
+        sortedArray.push_back(node -> val);
+        inorder(node -> right, sortedArray);
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        vector<int> sortedArray;
+        inorderTraversal(root, sortedArray);
+        return sortedArray[k - 1];
+    }
+};
+
+
+
+
+
+
+// A 7
