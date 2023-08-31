@@ -176,4 +176,48 @@ public:
 
 
 
-// A 6
+// A 6 - Morris Traversal
+
+class BSTIterator {
+private:
+    TreeNode* curr;
+    TreeNode* findPredecessor(TreeNode* node) {
+        TreeNode* pred = node->left;
+        while(pred -> right && pred -> right != node) pred = pred - >right;
+        return pred;
+    }
+
+public:
+    BSTIterator(TreeNode* root) {
+        curr = root;
+    }
+    int next() {
+        while(curr -> left) {
+            TreeNode* pred = findPredecessor(current);
+            if(!pred -> right) {
+                pred -> right = curr;
+                curr = curr -> left;
+            } 
+            else {
+                pred -> right = nullptr;
+                int val = curr -> val;
+                curr = curr -> right;
+                return val;
+            }
+        }
+        int val = curr -> val;
+        curr = curr -> right;
+        return val;
+    }
+    
+    bool hasNext() {
+        return curr != nullptr;
+    }
+};
+
+
+
+
+
+
+// A 7 
