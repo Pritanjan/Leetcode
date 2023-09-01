@@ -64,6 +64,41 @@ public:
 // S.C. --> O(W)
 
 
+// OR
+
+
+class Solution {
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        // Return an appropriate default value or throw an exception.
+        if(!root) return -1;        
+
+        int leftmost = -1;
+        queue<TreeNode*> que;
+        que.push(root);
+
+        // Helper recursive function for BFS
+        function<void(int)> bfs = [&](int depth) {
+            int n = que.size();
+            leftmost = que.front()->val;
+
+            while(n--) {
+                TreeNode* node = que.front();
+                que.pop();
+
+                if(node -> left)  que.push(node -> left);
+                if(node -> right) que.push(node -> right);
+            }
+
+            if(!que.empty()) bfs(depth + 1);
+        };
+
+        bfs(0);
+        return leftmost;
+    }
+};
+
+
 
 
 
