@@ -126,5 +126,36 @@ public:
 
 
 
-// A 3 
+// A 3 - Level Order Traversal with a Flag
+
+class Solution {
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        // Return an appropriate default value or throw an exception.
+        if(!root) return -1; 
+
+        queue<TreeNode*> que;
+        que.push(root);
+        int leftmost = -1;
+
+        while(!que.empty()) {
+            int n = que.size();
+            bool isFirstNode = true;
+
+            for(int i=0; i<n; ++i) {
+                TreeNode* node = que.front();
+                que.pop();
+
+                if(isFirstNode) {
+                    leftmost = node -> val;
+                    isFirstNode = false;
+                }
+                if(node -> left)  que.push(node -> left);
+                if(node -> right) que.push(node->right);
+            }
+        }
+        return leftmost;
+    }
+};
+
 
