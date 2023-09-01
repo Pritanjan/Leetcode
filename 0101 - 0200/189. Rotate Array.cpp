@@ -169,4 +169,35 @@ public:
 
 
 
-// A 7
+// A 7 -  Using a Set to Handle Cyclic Permutations
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+        
+        // if (k == 0) return; // No rotation needed
+
+        set<int> visited;
+        for(int i=0; visited.size()<n; i++) {
+            int curr = i;
+            int prev = nums[i];
+            do {
+                int next = (curr + k) % n;
+                int temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+                curr = next;
+                visited.insert(curr);
+            } while(i != curr);
+        }
+    }
+};
+
+
+
+
+
+
+// A 8
