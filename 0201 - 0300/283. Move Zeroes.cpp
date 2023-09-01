@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -94,7 +94,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -120,7 +120,7 @@ public:
 
 
 
-// APPROACH 4
+// A 4
 
 class Solution {
 public:
@@ -141,7 +141,7 @@ public:
 
 
 
-// APPROACH 5 [ USING STL ]
+// A 5 [ USING STL ]
 
 class Solution {
 public:
@@ -187,4 +187,45 @@ public:
 
 
 
-// A 7
+// A 7  Using a Stable Sort  STL
+
+class Solution {
+public:        
+    void moveZeroes(vector<int>& nums) {
+        stable_partition(nums.begin(), nums.end(), [](int num) { return num != 0; });
+    }
+};
+
+
+
+
+
+
+// A 8
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int zeroCount = 0;
+        
+        // Count the number of zeros and overwrite non-zero elements
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == 0) zeroCount++;
+            else nums[i - zeroCount] = nums[i];
+        }
+        
+        // Fill the remaining positions with 0
+        for(int i=nums.size() - zeroCount; i<nums.size(); i++) {
+            nums[i] = 0;
+        }
+    }
+};
+
+
+
+
+
+
+// A 9
+
+
