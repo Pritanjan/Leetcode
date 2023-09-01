@@ -95,3 +95,29 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+        
+        if(k == 0) return; // No rotation needed
+        
+        deque<int> dq(nums.begin(), nums.end());
+        for(int i=0; i<k; i++) {
+            int val = dq.back();
+            dq.pop_back();
+            dq.push_front(val);
+        }        
+        nums.assign(dq.begin(), dq.end());
+    }
+};
+
+
+
+
+
+
+// A 6
+
