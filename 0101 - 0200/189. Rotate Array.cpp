@@ -1,5 +1,9 @@
 // A 1 - Using a Temporary Array
 
+// It creates a temporary array to store the rotated elements efficiently. 
+// It calculates the new index for each element in the temporary array and
+// then copies the elements back to the original array.
+
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -11,6 +15,24 @@ public:
         for(int j=n-k; j<n; j++) ans[i++] = nums[j];
         for(int j=0; j<n-k; j++) ans[i++] = nums[j];        
         nums = ans;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+        
+        vector<int> temp(n);        
+        for(int i=0; i<n; i++) {
+            temp[(i + k) % n] = nums[i];
+        }        
+        nums = temp;
     }
 };
 
