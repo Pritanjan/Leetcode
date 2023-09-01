@@ -1,5 +1,8 @@
 // A 1
 
+// It works by traversing the binary representation of the number from the least significant
+// bit to the most significant bit. If the bit is 1, the count is incremented.
+
 class Solution {
 public:
     int countOne(int n) {
@@ -46,7 +49,12 @@ public:
 
 
 
-// A 2 
+// A 2  - Using the popcount() function
+
+// The popcount() function is an inbuilt function that counts the number 
+// of set bits (1's) in a binary number.
+// We can use this function to count the number of 1's in the binary representation of a number
+// and return an array of the results as follows:
 
 class Solution {
 public:
@@ -68,5 +76,22 @@ public:
 
 
 
-// A 3
+// A 3 - Using DP
+
+// It works by creating a table that stores the number of 1's in the 
+// binary representation of the numbers from 0 to n. 
+// The table can be constructed recursively or iteratively
+
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        vector<int> dp(n + 1);
+        dp[0] = 0;
+        for(int i=1; i<=n; i++) {
+            dp[i] = dp[i >> 1] + (i & 1);
+        }
+        return dp;
+    }
+};
+
 
