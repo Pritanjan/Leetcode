@@ -155,3 +155,36 @@ public:
 
 
 
+
+
+// A 6 - Count Zeros
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int zeroCount = 0;
+        
+        // Count the number of zeros in the array
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == 0) zeroCount++;
+        }
+        
+        // Move non-zero elements to the front, skipping zeros
+        int nonZeroIndex = 0;
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] != 0) nums[nonZeroIndex++] = nums[i];
+        }
+        
+        // Fill the remaining positions with 0
+        for(int i=nums.size() - zeroCount; i<nums.size(); i++) {
+            nums[i] = 0;
+        }
+    }
+};
+
+
+
+
+
+
+// A 7
