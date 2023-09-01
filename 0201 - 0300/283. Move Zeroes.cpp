@@ -286,3 +286,58 @@ public:
 
 
 
+
+
+
+// A 11 - Using Deque
+// It uses a deque (double-ended queue) to store non-zero elements and 
+// then fills the array with these elements in order, followed by zeros.
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        deque<int> v;  // non Zero Elements
+        
+        // Push non-zero elements into the deque
+        for(int num : nums) {
+            if(num != 0) v.push_back(num);
+        }
+        
+        // Fill the array with elements from the deque followed by zeros
+        for(int i=0; i<nums.size(); i++) {
+            if(!v.empty()) {
+                nums[i] = v.front();
+                v.pop_front();
+            } 
+            else nums[i] = 0;
+        }
+    }         
+};
+
+
+
+
+
+
+// A 12 - Using remove and fill
+// It uses the remove algorithm to move non-zero elements to the front of the array
+// and returns an iterator pointing to the new end of the range containing non-zero elements. 
+// Then, it uses std::fill to fill the remaining positions with zero
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        // Use remove to move non-zero elements to the front
+        auto it = remove(nums.begin(), nums.end(), 0);        
+        // Fill the remaining positions with 0
+        fill(it, nums.end(), 0);        
+    }
+};
+
+
+
+
+
+
+// A 13
+
