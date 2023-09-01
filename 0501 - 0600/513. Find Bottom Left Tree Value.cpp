@@ -92,6 +92,36 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        // Return an appropriate default value or throw an exception.
+        if(!root) return -1; 
+        int maxDepth = -1;
+        int leftmost = -1;
+
+        // Helper DFS function
+        function<void(TreeNode*, int)> dfs = [&](TreeNode* root, int level) {
+            if(!root) return ;
+            
+
+            if(level > maxDepth) {
+                maxDepth = level;
+                leftmost = root -> val;
+            }
+            dfs(root ->  left, level + 1);
+            dfs(root -> right, level + 1);
+        };
+
+        dfs(root, 0);
+        return leftmost;
+    }
+};
+
+
 
 
 
