@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1 - BFS
 
 // The idea behind the solution is to perform a level-order traversal of the tree using a queue.
 // We start by pushing the root node onto the queue, and then process each level one by one.
@@ -16,8 +16,7 @@ public:
         int leftmost = root -> val;
 
         while(!que.empty()){
-            int n = que.size();
-            
+            int n = que.size();            
             for(int i=0; i<n; i++){
                 TreeNode* cur = que.front();
                 que.pop();
@@ -31,7 +30,6 @@ public:
     }
 };
 
-
 // T.C. --> O(N), 
 // The algorithm visits every node once, so the time complexity is O(N), 
 // where N is the number of nodes in the tree.
@@ -42,10 +40,8 @@ public:
 // In the worst case, the width of the tree could be n, so the space complexity is also O(n).
 
 
+// OR
 
-
-
-// APPROACH 2 BFS
 
 class Solution {
 public:
@@ -63,7 +59,6 @@ public:
         return leftmost -> val;
     }
 };
-
 
 // T.C. --> O(N)
 // S.C. --> O(W)
@@ -90,11 +85,16 @@ public:
         if(level > maxl){
             maxl = level ; 
             ans = root -> val; 
-        }
-        
+        } 
         solve(root -> left,level + 1); 
         solve(root -> right, level + 1); 
     }
 };
 
+
+
+
+
+
+// A 3 
 
