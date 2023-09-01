@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Using a Temporary Array
 
 class Solution {
 public:
@@ -94,7 +94,7 @@ public:
 
 
 
-// A 5
+// A 5  Using a Deque (Double-Ended Queue)
 
 class Solution {
 public:
@@ -119,5 +119,23 @@ public:
 
 
 
-// A 6
+// A 6 - Using a Temporary Queue
+// Same as A 1 insteaad of vector awe are using queue
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        queue<int> temp;
+        k %= n;
+                
+        for(int i=n-k; i<n; i++) temp.push(nums[i]);        
+        for(int i=n-k-1; i>=0; i--) nums[i+k] = nums[i];        
+        for(int i=0; i<k; i++) {
+            nums[i] = temp.front();
+            temp.pop();
+        }
+    }
+};
+
 
