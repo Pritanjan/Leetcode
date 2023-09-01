@@ -1,0 +1,97 @@
+// A 1
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector <int> ans(n);
+        int i = 0;
+        k %= n;
+        
+        for(int j=n-k; j<n; j++) ans[i++] = nums[j];
+        for(int j=0; j<n-k; j++) ans[i++] = nums[j];        
+        nums = ans;
+    }
+};
+
+
+
+
+
+
+// A 2
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        k = k % nums.size();
+                               							  // k = 3
+        reverse(nums.begin(),nums.end());		          // [1,2,3,4,5]
+        reverse(nums.begin(),nums.begin()+k);		      // [3,2,1,4,5]
+        reverse(nums.begin()+k,nums.end());			      // [1,2,3,5,4] 
+    }
+};
+
+
+
+
+
+
+// A 3
+
+class Solution {
+public:        
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+
+        int L = 0;
+        int R = n - 1;
+        while(L < R) swap(nums[L++], nums[R--]);
+        
+        L = 0;
+        R = k - 1;
+        while(L < R) swap(nums[L++], nums[R--]);
+
+        L = k;
+        R = n - 1;
+        while(L < R) swap(nums[L++], nums[R--]);
+    }
+};
+
+
+
+
+
+
+// A 4
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+        if (k == 0) return; // No rotation needed
+        
+        int cnt = 0;
+        for(int i=0; cnt<n; i++) {
+            int curr = i;
+            int prev = nums[i];
+            do {
+                int next = (curr + k) % n;
+                int temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+                curr = next;
+                cnt++;
+            } while (i != curr);
+        }
+    }
+};
+
+
+
+
+
+
+// A 5
