@@ -78,7 +78,7 @@ public:
 
 
 
-// APPROACH 4
+// A 4 - Two Pointers with Skipping Duplicates
 
 class Solution {
 public:
@@ -196,6 +196,52 @@ public:
 
 
 
+
+
+
+// A 8 -  Using an Unordered Map
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        unordered_map<int, bool> mp;
+        int k = 0;
+        for(int i=0; i<nums.size(); i++) {
+            if(!mp[nums[i]]) {
+                mp[nums[i]] = true;
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
+    }
+};
+
+
+
+
+
+
+// A 9 -  Counting Duplicates and Removing Excess
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        if(n <= 1) return n;
+
+        vector<int> v;
+        v.push_back(nums[0]);
+        for(int i=1; i<n; i++) {
+            if(nums[i] != nums[i-1]) v.push_back(nums[i]);
+        }
+
+        for(int i=0; i<v.size(); i++) {
+            nums[i] = v[i];
+        }
+        return v.size();
+    }
+};
 
 
 
