@@ -188,6 +188,10 @@ public:
 
 
 // A 7  Using a Stable Sort  STL
+// This approach uses the stable_partition function of STL. 
+// It partitions the array into two parts: -
+// one with non-zero elements and another with zeros, 
+// while maintaining the relative order within each partition.
 
 class Solution {
 public:        
@@ -201,7 +205,10 @@ public:
 
 
 
-// A 8
+// A 8  -  Counting Zeros and Overwriting
+// It counts the number of zeros while overwriting non-zero elements, 
+// while moving them to the front. 
+// After processing all elements, it fills the remaining positions with zeros.
 
 class Solution {
 public:
@@ -226,6 +233,30 @@ public:
 
 
 
-// A 9
+// A 9  Using a Queue
+// It uses a queue to store non-zero elements and then fills the array with these 
+// elements in order, followed by zero
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        queue<int> v;  // non Zero Elements
+        
+        // Push non-zero elements into the queue
+        for(int num : nums) {
+            if(num != 0) v.push(num);
+        }
+        
+        // Pop elements from the queue and fill the array
+        for(int i=0; i<nums.size(); i++) {
+            if(!v.empty()) {
+                nums[i] = v.front();
+                v.pop();
+            } 
+            else nums[i] = 0;
+        }
+    }         
+};
+
 
 
