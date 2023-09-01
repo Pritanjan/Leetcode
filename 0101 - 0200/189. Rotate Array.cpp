@@ -122,6 +122,10 @@ public:
 // A 6 - Using a Temporary Queue
 // Same as A 1 insteaad of vector awe are using queue
 
+// It uses a queue to temporarily store the last 'k' elements and 
+// then shifts the first 'n-k' elements to the right and
+// copies the elements from the queue back to the beginning
+
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -139,3 +143,8 @@ public:
 };
 
 
+
+
+
+
+// A 7
