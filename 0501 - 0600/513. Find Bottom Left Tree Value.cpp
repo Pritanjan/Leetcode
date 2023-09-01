@@ -64,7 +64,12 @@ public:
 // S.C. --> O(W)
 
 
-// OR
+// OR 
+
+// Recursive BFS (Depth as Function Argument):
+// We perform a BFS with a recursive function. 
+// We pass the current depth as an argument to the function, 
+// and when the recursion ends, we have the leftmost value at the last level.
 
 
 class Solution {
