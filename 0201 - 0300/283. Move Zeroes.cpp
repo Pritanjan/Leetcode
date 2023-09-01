@@ -94,7 +94,9 @@ public:
 
 
 
-// A 3
+// A 3  -  Counting and Rearranging
+// It counts the non-zero elements while rearranging the array in-place by
+// overwriting zeros with non-zero elements, and then fills the remaining positions with zeros.
 
 class Solution {
 public:
@@ -213,8 +215,7 @@ public:
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int zeroCount = 0;
-        
+        int zeroCount = 0;        
         // Count the number of zeros and overwrite non-zero elements
         for(int i=0; i<nums.size(); i++) {
             if(nums[i] == 0) zeroCount++;
@@ -233,7 +234,32 @@ public:
 
 
 
-// A 9  Using a Queue
+// A 9  -  Reverse Iteration with Swap
+// It iterates in reverse and whenever it encounters a zero, 
+// it shifts all elements to its right by one position to overwrite the zero. 
+// It then reduces the effective length of the array
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        for(int i=n-1; i>=0; i--) {
+            if(nums[i] == 0) {
+                for(int j=i; j<n-1; j++) {
+                    swap(nums[j], nums[j+1]);
+                }
+                n--; // Reduce the length of the array
+            }
+        }
+    }
+};
+
+
+
+
+
+
+// A 10  -  Using a Queue
 // It uses a queue to store non-zero elements and then fills the array with these 
 // elements in order, followed by zero
 
