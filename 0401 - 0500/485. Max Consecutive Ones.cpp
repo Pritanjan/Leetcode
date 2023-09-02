@@ -154,7 +154,7 @@ public:
 
 
 
-// APPROACH 5 Sliding Window:
+// A 5 Sliding Window:
 
 // WE can use a sliding window approach to keep track of the current window of consecutive 1's and
 // update the maximum count.
@@ -178,4 +178,31 @@ public:
 
 
 // A 6 
+// use find function to locate the first occurrence of 0 in the array and
+// calculate the maximum consecutive 1's before that position.
 
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxCnt = 0;
+        int currCnt = 0;
+        
+        auto zeroPos = find(nums.begin(), nums.end(), 0);
+        for(auto it=nums.begin(); it!=nums.end(); ++it) {
+            if(it == zeroPos) {
+                maxCnt = max(maxCnt, currCnt);
+                currCnt = 0;
+                zeroPos = find(zeroPos + 1, nums.end(), 0);
+            }
+            currCnt += *it;
+        }        
+        return max(maxCnt, currCnt);
+    }
+};
+
+
+
+
+
+
+// A 7
