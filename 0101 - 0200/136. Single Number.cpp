@@ -1,4 +1,4 @@
-// APPROACH 1 [ BRUTE FORCE] 
+// A 1 [ BRUTE FORCE] 
 
 class Solution {
     public int singleNumber(int[] nums) {
@@ -13,14 +13,14 @@ class Solution {
     }
 }
 
-
 // T..C. --> O(N^2)
 
 
 
 
 
-// APPROACH 2 [ BIT MANIPULATION ]
+
+// A 2 [ BIT MANIPULATION ]
 
 // use the XOR operation to find the single number. 
 // XORing a number with itself results in 0, so when we XOR all the numbers in the array, 
@@ -43,7 +43,7 @@ class Solution {
 
 
 
-// APPROACH 3 [ SORTIUNG ]
+// A 3 [ SORTIUNG ]
 
 class Solution {
 public:
@@ -62,6 +62,20 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int singleNumber(std::vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size(); i += 2) {
+            if(i+1 == nums.size() || nums[i] != nums[i+1]) return nums[i];
+        }        
+        return -1; // Handle the case when there is no single element (shouldn't occur in this problem).
+    }
+};
+
 // T..C. --> O(N log N)
 
 
@@ -69,8 +83,7 @@ public:
 
 
 
-// APPROACH 4
-
+// A 4
 
 // Using a map allows us to store the count of occurrences for each number. We can iterate 
 // over the array, incrementing the count for each number in the map. 
@@ -81,14 +94,12 @@ public:
     int singleNumber(vector<int>& nums) {
         unordered_map<int,int> freq;
         for(auto i : nums) freq[i]++;
-
         for(auto i : freq){
             if(i.second == 1) return i.first;
         }
         return 0;
     }
 };
-
 
 
 // OR
@@ -99,7 +110,6 @@ public:
     int singleNumber(vector<int>& nums) {
         unordered_map<int,int> freq;
         for(auto i : nums) freq[i]++;
-
         for(auto i : nums){
             if(freq[i] == 1) return i;
         }
@@ -107,12 +117,14 @@ public:
     }
 };
 
-
 // T..C. --> O(N log N)
 
 
 
-// APPROACH 5 [ Hash Set ]
+
+
+
+// A 5 [ Hash Set ]
 
 // use a hash set to keep track of the unique numbers. For each number in the array, 
 // if it already exists in the hash set, we remove it. At the end, the 
@@ -130,8 +142,6 @@ public:
     }
 };
 
-
-
 // T..C. --> O(N)
 
 
@@ -139,13 +149,11 @@ public:
 
 
 
-
-// APPROACH 6 MATH
+// A 6  -  MATH
 
 // Use the mathematical property that the sum of all elements in the array,
 // multiplied by 2, 
 // minus the sum of the original array will give us the single number.
-
 
 class Solution {
 public:
@@ -166,10 +174,11 @@ public:
     }
 };
 
-
 // T..C. --> O(N)
 
 
 
 
 
+
+// A 7 
