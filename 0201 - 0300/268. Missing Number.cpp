@@ -182,4 +182,83 @@ public:
 
 
 
-// A 7
+// A 7 - Bit Set:
+// Use a bit set (or boolean array) to mark the presence of numbers from 0 to n. 
+// Iterate through the array and set the corresponding bit or mark the boolean flag. 
+// Finally, find the first unset bit or the first false flag, which represents the missing number
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        vector<bool> v(n+1, false);
+        for(int num : nums) {
+            v[num] = true;
+        }
+        
+        for(int i=0; i<=n; i++) {
+            if(!v[i]) return i;
+        }
+        return -1; // This line should never be reached if there is a missing number
+    }
+};
+
+
+
+
+
+
+// A 8 - Cyclic Sort:
+// It involves cyclically sorting the elements in the array. 
+// Since the numbers in the array are distinct and range from 0 to n, 
+// if you place each number in its correct position (e.g., place 0 at index 0, 1 at index 1, etc.), 
+// the missing number will be the first index where the value does not match the index.
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        for(int i=0; i<n; i++) {
+            while(nums[i] >= 0 && nums[i] < n && nums[i] != nums[nums[i]]) {
+                swap(nums[i], nums[nums[i]]);
+            }
+        }
+        for(int i=0; i<n; i++) {
+            if(nums[i] != i) return i;
+        }
+        return n;
+    }
+};
+
+
+
+
+
+
+// A 9 - Sum Difference (Mathematical):
+// Extenction of A 1
+
+
+// Instead of calculating the sum of all elements and then subtracting it from the expected sum,
+// We can calculate the expected difference. 
+// This approach can be more efficient in terms of avoiding integer overflow.
+
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        int expectedDiff = n;
+        for(int i=0; i<n; i++) {
+            expectedDiff += i - nums[i];
+        }
+        return expectedDiff;
+    }
+};
+
+
+
+
+
+
+// A 10
