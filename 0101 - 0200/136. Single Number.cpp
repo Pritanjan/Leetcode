@@ -181,4 +181,23 @@ public:
 
 
 
-// A 7 
+// A 7  Bit Counting:
+// create a 32-bit array to store the count of each bit position for all numbers in the array.
+// Then, iterate through the count array and construct the single element by setting bits that have 
+// a count not divisible by 2.
+
+class Solution {
+public:
+    int singleNumber(std::vector<int>& nums) {
+        int res = 0;
+        for(int i=0; i<32; ++i) {
+            int sum = 0;
+            for(int num : nums) {
+                sum += ((num >> i) & 1);
+            }
+            if(sum % 2 != 0) res |= (1 << i);
+        }        
+        return res;
+    }
+};
+
