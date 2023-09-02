@@ -164,6 +164,53 @@ public:
 
 // A 7
 
+// Create two hash tables (unordered maps): one to store the elements seen so far and their corresponding
+//     indices and another to store the complements needed to reach the target.
+// Iterate through the array from left to right.
+// For each element, calculate its complement (the value needed to reach the target).
+// Check if the complement exists in the complement hash table. If found, return the indices of the
+//    current element and its complement.
+// If the complement is not found, insert the current element into the seen hash table.
+// If no solution is found after iterating through the array, return an empty vector.
+
+// T.C. --> O(N)
+// S.C. --> O(N)
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> seen; // Store elements and their indices
+        unordered_map<int, int> complements; // Store complements needed to reach the target
+        vector<int> res;
+
+        for(int i=0; i<nums.size(); ++i) {
+            int num = nums[i];
+            int complement = target - num;
+
+            if(complements.find(num) != complements.end()) {
+                // Found complement in complements hash table
+                res.push_back(complements[num]);
+                res.push_back(i);
+                return res;
+            }
+            seen[num] = i; // Store the current element and its index
+            complements[complement] = i; // Store the complement needed for future lookups
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 8 
+
+
+
+
+
 
 
 
