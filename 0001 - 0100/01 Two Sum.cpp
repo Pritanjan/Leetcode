@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 // use a nested loop to check all pairs of elements for their sum. 
 // Time complexity of O(n^2).
@@ -44,7 +44,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 // Use a hash map to store each element's index as we traverse through the array. 
 // For each element, we can check if the difference between the target and the current element exists in
@@ -70,7 +70,7 @@ public:
 
 
 
-// APPROACH 3  Sorting 2 Pointer
+// A 3  Sorting 2 Pointer
 
 // It involves sorting the array and then using two pointers to move towards each other
 // while looking for the sum. 
@@ -103,7 +103,7 @@ public:
 
 
 
-// APPROACH 5 . Using a Set:
+// A 5 . Using a Set:
 // WE can use a set to store the elements you've seen so far while iterating through the array. 
 // Time complexity of O(n) and requires additional space for the set.
 
@@ -131,6 +131,38 @@ public:
     }
 };
 
+
+
+
+
+
+// A 6 
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> ump;
+        vector<int> res;
+        for (int i = 0; i < nums.size(); ++i) {
+            int complement = target - nums[i];
+
+            if(ump.find(complement) != ump.end()) {
+                res.push_back(ump[complement]);
+                res.push_back(i);
+                return res;
+            }
+            ump[nums[i]] = i;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 7
 
 
 
