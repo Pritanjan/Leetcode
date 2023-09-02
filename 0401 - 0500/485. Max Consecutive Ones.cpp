@@ -1,4 +1,30 @@
-// APPROACH 1  Linear Scan
+// A 0  -  Brute Force Approach:
+// iterate through array, keeping track of the current consecutive count of 1's and 
+// updating the maximum count as you go.
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxCnt = 0;
+        int currCnt = 0;
+        
+        for(int num : nums) {
+            if(num == 1) {
+                currCnt++;
+                maxCnt = max(maxCnt, currCnt);
+            } 
+            else currCnt = 0;
+        }        
+        return maxCnt;
+    }
+};
+
+
+
+
+
+
+// A 1  Linear Scan
 
 // Traverse the array linearly and keep track of the current consecutive count of 1's and
 // the maximum consecutive count encountered.
