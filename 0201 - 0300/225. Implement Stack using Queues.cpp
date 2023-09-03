@@ -98,6 +98,7 @@ public:
 
 // OR
 
+
 // In this approach, we maintain two queues: que1 and que2. 
 // When pushing an element, we enqueue it to the que2, then transfer all elements from que1 to que2,
 // and finally, swap the names of the two queues. 
