@@ -222,4 +222,31 @@ public:
 
 
 
-// A 8
+// A 8 - Radix Sort:
+// Radix sort is another sorting algorithm that can be used to sort the colors. 
+// Since there are only three distinct colors (0, 1, and 2), 
+// we can apply radix sort to sort the colors in linear time:
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+        
+        // Counting sort for the least significant digit (0s).
+        vector<int> count(3, 0);
+        vector<int> output(n);
+        
+        for(int i=0; i<n; i++) count[nums[i]]++;        
+        for(int i=1; i<3; i++) count[i] += count[i-1];  
+        for(int i=n-1; i>=0; i--) {
+            output[count[nums[i]] - 1] = nums[i];
+            count[nums[i]]--;
+        }
+        
+        // Copy sorted output to the original array.
+        for(int i=0; i<n; i++) {
+            nums[i] = output[i];
+        }
+    }
+};
+
