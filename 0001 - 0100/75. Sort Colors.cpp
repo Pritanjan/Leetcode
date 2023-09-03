@@ -193,4 +193,33 @@ public:
 
 
 
-// A 7
+// A 7 Merge Sort 
+// Implement a variation of the merge sort algorithm to sort the colors. 
+// This approach creates 3 separate arrays for each color and 
+// then merges them back into the original array:
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> R, W, B;
+        
+        for(int i=0; i<n; i++) {
+            if(nums[i] == 0) R.push_back(nums[i]);
+            else if(nums[i] == 1) W.push_back(nums[i]);
+            else B.push_back(nums[i]);
+        }
+        
+        int idx = 0;
+        for(int num : R) nums[idx++] = num;
+        for(int num : W) nums[idx++] = num;
+        for(int num : B) nums[idx++] = num;
+    }
+};
+
+
+
+
+
+
+// A 8
