@@ -20,7 +20,7 @@ public:
 
 
 
-// APPROACH 1 [ One Pass Approach ]
+// A 1 [ One Pass Approach ]
 
 class Solution {
 public:
@@ -48,7 +48,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2  - 2 Pointer  
 
 class Solution {
 public:
@@ -57,14 +57,13 @@ public:
         int L = 0;
         int R = 1;
         while(R < pr.size()) {
-            if(pr[L] < pr[R]) maxPr = max(maxPr, pr[R] - pr[L]);
-            else L = R;
-            
-            R++;
+            if(pr[L] < pr[R]) maxPr = max(maxPr, pr[R++] - pr[L]);
+            else L = R++;
         }
         return maxPr;
     }
 };
+
 
 
 
@@ -140,6 +139,28 @@ public:
 };
 
 
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        stack<int> stk;
+        int maxProfit = 0;        
+        for(auto price : prices) {
+            // Pop prices that are greater than the current price
+            while(!stk.empty() && price < stk.top()) stk.pop(); 
+            // If the stack is empty or the current price is the lowest so far, push it
+            if(stk.empty()) stk.push(price); 
+            // Calculate and update the maximum profit
+            else maxProfit = max(maxProfit, price - stk.top()); 
+        }        
+        return maxProfit;
+    }
+};
 
 
 
