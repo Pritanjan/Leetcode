@@ -1,4 +1,4 @@
-// APPROACH 1    
+// A 1    
 // DUTCH NATIONAL FLAG (DNF)
 
 // This programming problem was proposed by Edsger Dijkstra. The flag of the Netherlands consists 
@@ -17,6 +17,7 @@
 // If array [mid] = 1 , then no swapping is required. Increment mid pointer once.
 // If array [mid] = 2 , then we swap array [mid] with array [R] and decrement the high pointer once.
 
+// Binary Search
     
 class Solution {
 public:
@@ -45,11 +46,33 @@ public:
 };
 
 
+// OR
+// Counting Sort (Dutch National Flag Algorithm):
+
+
+class Solution {
+public:        
+    void sortColors(vector<int>& nums) {
+        int cnt[3] = {0, 0, 0};
+        int n = nums.size();
+        
+        for(int i=0; i<n; i++) cnt[nums[i]]++;
+        
+        int idx = 0;
+        for(int color=0; color<3; color++) {
+            for(int j=0; j<cnt[color]; j++) {
+                nums[idx++] = color;
+            }
+        }
+    }
+};
 
 
 
-// APPROACH 2
 
+
+
+// A 2
 
 class Solution {
 public:
@@ -70,7 +93,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -94,7 +117,8 @@ public:
 
 
 
-// APPROACH 4
+
+// A 4
 
 class Solution {
 public:
@@ -121,3 +145,4 @@ public:
 
 
 
+// A 5
