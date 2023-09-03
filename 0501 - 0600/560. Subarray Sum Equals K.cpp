@@ -1,5 +1,58 @@
-// https://leetcode.com/problems/subarray-sum-equals-k/
+// A 0  - Brute Force Approach:
+// Use nested loops to generate all subarrays and calculate their sums.
+// Keep a count of subarrays with a sum equal to k.
+// It is less efficient and
+// It has a time complexity of O(N^2), where N is the length of the input array.
 
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int cnt = 0;
+        for(int i=0; i<nums.size(); i++) {
+            int sum = 0;
+            for(int j=i; j<nums.size(); j++) {
+                sum += nums[j];
+                if(sum == k) cnt++;
+            }
+        }
+        return cnt;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int count = 0;
+        int n = nums.size();
+        vector<int> dp(n);
+
+        for (int i = 0; i < n; i++) {
+            dp[i] = nums[i];
+            if (dp[i] == k) {
+                count++;
+            }
+            for (int j = i - 1; j >= 0; j--) {
+                dp[j] += nums[i];
+                if (dp[j] == k) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+};
+
+
+
+
+
+
+// A 1 - Hash Map
 // return the total number of subarrays whose sum equals to k.
 
 class Solution {
@@ -20,6 +73,54 @@ public:
         return ans; 
     }
 };
+
+
+
+
+
+
+// A 2  -  Prefix Sum Array Approach:
+
+// Calculate the prefix sum of the input array nums and store it in a separate array prefixSum.
+// Initialize a variable count to keep track of the total number of subarrays with a sum of k.
+// Iterate through the prefixSum array and, for each element prefixSum[i], calculate the number of subarrays ending at index i with a sum of k. This can be done by counting the number of times prefixSum[i] - k appears in the prefixSum array up to index i.
+// Update the count accordingly.
+// Return the count as the answer.
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int cnt = 0;
+        int n = nums.size();
+        vector<int> v(n+1, 0);
+
+        // Calculate the prefix sum array.
+        for(int i=0; i<n; i++) {
+            v[i+1] = v[i] + nums[i];
+        }
+
+        unordered_map<int, int> ump;
+        for(int i=0; i<=n; i++) {
+            if(ump.find(v[i] - k) != ump.end()) {
+                cnt += ump[v[i] - k];
+            }
+            ump[v[i]]++;
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // return subarrays whose sum equals to k.
