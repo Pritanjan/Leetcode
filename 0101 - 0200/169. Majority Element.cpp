@@ -126,4 +126,53 @@ public:
 
 
 
-// A 6 
+// A 6 - Randomized Algorithm:
+// It uses randomization to probabilistically find the majority element.
+// It repeatedly selects a random index from the array and checks if the corresponding element 
+// is the majority element. 
+// The more iterations you perform, the higher the probability of finding the correct majority element.
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        while(true) {
+            int tmp = nums[rand() % n];
+            int cnt = 0;
+            for(int num : nums) {
+                if(num == tmp) cnt++;
+            }
+            if(cnt > n / 2) return tmp;
+        }
+    }    
+};
+
+
+
+
+
+
+// A 7  - Bit Manipulation 
+// We can find the majority element by examining each bit position in the binary representation
+// of the elements.
+// For each bit, count the number of set bits (1s) in that position for all elements. 
+// If the count is greater than n / 2, set that bit in the result.
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int majority = 0;
+        for(int i=0; i<32; i++) {
+            int cnt = 0;
+            for(int num : nums) {
+                if((num & (1 << i)) != 0) cnt++;
+            }
+            if(cnt > n / 2) majority |= (1 << i);
+        }
+        return majority;
+    }
+};
+
+
+
