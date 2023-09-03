@@ -1,8 +1,6 @@
-// My Solution
-// https://leetcode.com/problems/majority-element-ii/solutions/1925892/c-4-solution-brute-force-hash-map-moore-s-voting-algorithm-stl/
-
-
-// APPROACH 1 [ BRUT FORCE] TLE
+// A 1 [ BRUT FORCE] TLE
+// simply count the occurrences of each element in the array and 
+// return the element with a count greater than n / 2.
 
 class Solution {
 public:
@@ -23,7 +21,10 @@ public:
 
 
 
-// APPROACH 2 [ USING HASH MAP ]
+
+// A 2 [ USING HASH MAP ]
+// Use a hash map to count the occurrences of each element in the array, 
+// and then return the element with the highest count.
 
 class Solution {
 public:
@@ -43,9 +44,10 @@ public:
 
 
 
-// APPROACH 3 - Moore’s voting algorithm
+// A 3 - Moore’s voting algorithm
 // It is an efficient algorithm to finds the majority element in linear time
 // and constant space complexity.
+// It finds the majority element in a single pass through the array
 
 class Solution {
 public:
@@ -71,7 +73,10 @@ public:
 
 
 
-// APPROACH 4 - STL
+// A 4 - STL
+// Sort the array and return the middle element. 
+// Since the majority element always appears more than n / 2 times, 
+// the middle element will be the majority element.
 
 class Solution {
 public:
@@ -87,3 +92,38 @@ public:
 	
 
 
+// A 5 - Divide and Conquer Approach
+
+// Divide the array into two halves, find the majority element in each half, and then compare the results.
+// If the majority element in the left and right halves is the same, return it; 
+// otherwise, count the occurrences of both candidates and return the one with more occurrences.
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        return f(nums, 0, nums.size() - 1);
+    }
+
+    int f(vector<int>& nums, int L, int R) {
+        if(L == R) return nums[L];        
+        int mid = L + (R - L) / 2;
+        int leftMajority = f(nums, L, mid);
+        int rightMajority = f(nums, mid + 1, R);
+        
+        if(leftMajority == rightMajority) return leftMajority;
+                
+        int LCnt = count(nums.begin() + L, nums.begin() + R+ 1, leftMajority);
+        int RCnt = count(nums.begin() + L, nums.begin() + R+ 1, rightMajority);
+        
+        return (LCnt > RCnt) ? leftMajority : rightMajority;
+    }    
+};
+
+// T.C. -->  O(n log n) due to the recursive calls.
+
+
+
+
+
+
+// A 6 
