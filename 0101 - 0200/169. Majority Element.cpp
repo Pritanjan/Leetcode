@@ -88,8 +88,23 @@ public:
 };
 
 
+// OR
+// use the nth_element() function to partially sort the array such that 
+// the majority element ends up in the middle position. 
+// Then, we can return the element at that middle position.
 
-	
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        nth_element(nums.begin(), nums.begin() + n / 2, nums.end());
+        return nums[n / 2];
+    }
+};
+
+
+
+
 
 
 // A 5 - Divide and Conquer Approach
