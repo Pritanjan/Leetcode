@@ -168,3 +168,16 @@ public:
         return root;
     }
 };
+
+
+
+
+
+
+
+
+
+// https://practice.geeksforgeeks.org/problems/check-if-tree-is-isomorphic/1
+// invert tree
+// https://github.com/Pritanjan/Question/blob/main/POTD/gfg/0115%20030923%20Check%20if%20Tree%20is%20Isomorphic.cpp
+
