@@ -1,4 +1,9 @@
-// APPROACH 1
+// A 1
+
+// Find the largest index k such that nums[k] < nums[k + 1]. If no such index exists, just reverse nums and done.
+// Find the largest index l > k such that nums[k] < nums[l].
+// Swap nums[k] and nums[l].
+// Reverse the sub-array nums[k + 1:].
 
 class Solution {
 public:
@@ -51,7 +56,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -64,7 +69,21 @@ public:
 
 
 
-// APPROACH 3
+// A 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 2ND QUESTION PRINTING NEXT PERMUTATION OF A GIVEN NUMBER
 // https://www.codingninjas.com/codestudio/problems/bob-homework_2656187?topList=amazon-sde-challenge
