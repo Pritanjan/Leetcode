@@ -1,5 +1,4 @@
-// APPROACH 1
-
+// A 1
 
 class Solution {
 public:
@@ -17,8 +16,7 @@ public:
                     c.insert(j);
                 }
             }
-        }
-        
+        }  
         for(int i=0; i<n; i++) {
             for(int j=0; j<m; j++) {
                 if(r.count(i) or c.count(j))
@@ -30,11 +28,7 @@ public:
 };
 
 
-
-
 // OR
-
-
 
 
 class Solution {
@@ -42,7 +36,6 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         vector<bool> row(matrix.size());
         vector<bool> column(matrix[0].size());
-
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix[0].size(); j++) {
                 if (matrix[i][j] == 0) {
@@ -51,7 +44,6 @@ public:
                 }
             }
         }
-
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix[0].size(); j++) {
                 if (row[i] || column[j]) {
@@ -63,13 +55,7 @@ public:
 };
 
 
-
-
-
 // OR
-
-
-
 
 
 class Solution {
@@ -77,7 +63,35 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
-        
+        vector<int> rows(m, 0);
+        vector<int> cols(n, 0);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    rows[i] = 1;
+                    cols[j] = 1;
+                }
+            }
+        }        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (rows[i] == 1 || cols[j] == 1) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
         int mat[m][n];			
         memset(mat, 0, sizeof(mat));
 
@@ -101,11 +115,7 @@ public:
 
 
 
-
-
-
-// APPROACH 2
-
+// A 2
 
 class Solution {
 public:
@@ -163,3 +173,10 @@ public:
         }
     }
 };
+
+
+
+
+
+
+// A 3
