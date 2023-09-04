@@ -198,6 +198,59 @@ public:
 
 
 
+// A 7 Using Recursive Swap:
+// This approach recursively swaps groups of four elements until the entire matrix is rotated.
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix, int i = 0) {
+        int n = matrix.size();
+        if (i >= n / 2) return;
+
+        for (int j = i; j < n - i - 1; ++j) {
+            int tmp = matrix[i][j];
+            matrix[i][j] = matrix[n - j - 1][i];
+            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+            matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+            matrix[j][n - i - 1] = tmp;
+        }
+
+        rotate(matrix, i + 1);
+    }
+};
+
+
+
+
+
+
+// A 8
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        vector<vector<int>> temp(n, vector<int>(n));   
+        for(int i=0; i<n; ++i) {
+            for(int j=0; j<n; ++j) {
+                temp[j][n-i-1] = matrix[i][j];
+            }
+        }        
+        matrix = temp; // Copy the rotated matrix back to the original matrix
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
