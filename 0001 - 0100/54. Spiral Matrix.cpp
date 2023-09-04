@@ -224,3 +224,30 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        int m = matrix.size();
+        if(m == 0) return res; // Handle empty matrix case
+        
+        int n = matrix[0].size();
+        if(n == 0) return res; // Handle empty matrix case
+
+        int layer = 0;
+        while(layer < (min(m, n) + 1) / 2) {
+            for(int i=layer; i<n-layer; ++i) res.push_back(matrix[layer][i]);
+            for(int i=layer+1; i<m-layer; ++i) res.push_back(matrix[i][n - layer - 1]);
+            if(layer < m-1 - layer) { // Check if there are more than 1 row
+                for(int i=n-2-layer; i>=layer; --i) res.push_back(matrix[m - layer - 1][i]);
+            }
+            if(layer < n-1 - layer) { // Check if there are more than 1 column
+                for(int i=m-2-layer; i>layer; --i) res.push_back(matrix[i][layer]);
+            }
+            ++layer;
+        }
+        return res;
+    }
+};
+
