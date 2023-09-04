@@ -1,5 +1,8 @@
 // A 1
 
+// Using Extra Space (Hash Sets):
+// This approach uses two hash sets to keep track of which rows and columns need to be zeroed out.
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -31,6 +34,9 @@ public:
 // OR
 
 
+// Using Extra Space (Arrays):
+// This approach uses two arrays to keep track of which rows and columns need to be zeroed out.
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -57,6 +63,9 @@ public:
 
 // OR
 
+
+// Using Extra Space (Arrays):
+// This approach uses two arrays to keep track of which rows and columns need to be zeroed out.
 
 class Solution {
 public:
@@ -87,6 +96,7 @@ public:
 // OR
 
 
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -115,7 +125,10 @@ public:
 
 
 
-// A 2
+// A 2 - In-Place Approach:
+// It modifies the matrix in place without using extra space. 
+// It uses the first row and first column to keep track of which rows 
+// and columns need to be zeroed out.
 
 class Solution {
 public:
