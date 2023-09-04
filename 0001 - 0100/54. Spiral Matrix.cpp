@@ -251,3 +251,55 @@ public:
     }
 };
 
+
+
+
+
+
+// A 6 - : Using a Separate Visited Matrix
+// We maintain a separate boolean matrix to keep track of visited elements in the input matrix. 
+// We simulate the spiral traversal by updating the direction and coordinates 
+// based on the visited matrix.
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        int m = matrix.size();
+        if(m == 0) return res;
+        
+        int n = matrix[0].size();
+        if(n == 0) return res;
+
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Right, Down, Left, Up
+
+        int row = 0, col = 0, dir = 0;
+        for(int i=0; i<m*n; ++i) {
+            res.push_back(matrix[row][col]);
+            visited[row][col] = true;
+
+            int newRow = row + directions[dir][0];
+            int newCol = col + directions[dir][1];
+
+            if(newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && !visited[newRow][newCol]) {
+                row = newRow;
+                col = newCol;
+            }
+            else {
+                dir = (dir + 1) % 4;
+                row += directions[dir][0];
+                col += directions[dir][1];
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 7
+
