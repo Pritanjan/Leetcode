@@ -224,7 +224,9 @@ public:
 
 
 
-// A 8
+// A 8 - Using a Temporary Matrix:
+// Create a temporary matrix to store the rotated values.
+// Copy values from the original matrix to the temporary matrix in the rotated positions.
 
 class Solution {
 public:
