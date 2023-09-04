@@ -1,5 +1,5 @@
 // ROTATING 90 DEGREE CLOCKWISE
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -10,8 +10,7 @@ public:
             for(int j=i+1; j<C; j++){
                 swap(matrix[i][j], matrix[j][i]);
             }
-        }
-        
+        }        
         for(int i=0; i<(C/2); i++){
             for(int j=0; j<R; j++){
                 swap(matrix[j][i], matrix[j][C-1-i]);
@@ -21,30 +20,11 @@ public:
 };
 
 
-// OR
-
-
-class Solution {
-public:
-    void rotate(vector<vector<int>>& matrix) {
-        int n=matrix.size();
-        for(int i=0;i<n/2;i++) {
-            for(int j=0;j<(n+1)/2;j++) {
-                int temp=matrix[i][j];
-                matrix[i][j]=matrix[n-j-1][i];
-                matrix[n-j-1][i]=matrix[n-i-1][n-j-1];
-                matrix[n-i-1][n-j-1]=matrix[j][n-i-1];
-                matrix[j][n-i-1]=temp;
-            }
-        }
-    }
-};
 
 
 
 
-
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -101,7 +81,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -113,8 +93,7 @@ public:
                 swap(matrix[i][j], matrix[j][i]);
                 cout<<i<<" "<<j<<endl;
             }
-        }
-        
+        }        
         // row reverse code below
         int k;
         for(int i = 0; i < n; i++){
@@ -132,20 +111,34 @@ public:
 
 
 
-// APPRAOCH 4  Transpose and Reverse Rows
+// A 4  -  Rotate in Cycles:
+// Divide the matrix into cycles, starting from the outermost and moving towards the center.
+// Within each cycle, swap four elements (corners) in a clockwise direction.
+    
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        // transpose the matrix
-        int n = matrix.size();
-        for(int i=0; i<n; i++) {
-            for(int j=i+1; j<n; j++) {
-                swap(matrix[i][j], matrix[j][i]);
+        int n = matrix.size();        
+        for(int layer=0; layer < n/2; ++layer) {
+            int first = layer;
+            int last = n-1-layer;
+            for(int i=first; i<last; ++i) {
+                int offset = i - first;
+                int top = matrix[first][i];
+                
+                // Left -> Top
+                matrix[first][i] = matrix[last - offset][first];
+                
+                // Bottom -> Left
+                matrix[last - offset][first] = matrix[last][last - offset];
+                
+                // Right -> Bottom
+                matrix[last][last - offset] = matrix[i][last];
+                
+                // Top -> Right
+                matrix[i][last] = top;
             }
         }
-        // reverse the matrix
-        for(int i=0; i<n; i++)
-            reverse(matrix[i].begin(), matrix[i].end());
     }
 };
 
@@ -154,8 +147,7 @@ public:
 
 
 
-
-// APPROACH 5  ROTATE IN 4 SDTEPS
+// A 5  -  Transpose and Reverse Rows
 
 class Solution {
 public:
@@ -178,15 +170,13 @@ public:
 
 
 
-
-// APPROACH 6 Cycle Replacements
+// A 6 Cycle Replacements
 // Rotate each cycle of elements in the matrix.
 
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        
+        int n = matrix.size();    
         for(int j=0; j<n / 2; ++j) {
             int first = j;
             int last = n - j - 1;
