@@ -1,4 +1,4 @@
-// APPROACH 1 Using 1 extra variable x
+// A 1 Using 1 extra variable x
 
 class Solution {
 public:
@@ -49,7 +49,7 @@ public:
 
 
 
-// APPROACH 2 Without Using  extra variable x
+// A 2 Without Using  extra variable x
 
 class Solution {
 public:
@@ -91,11 +91,47 @@ public:
 };
 
 
+// OR
+
+// Simulation
+// This approach simulates the spiral traversal by maintaining four boundaries: 
+// top, bottom, left, and right, and then iteratively traversing the matrix 
+// while adjusting these boundaries
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        if(matrix.empty()) return res;
+
+        int top = 0, bottom = matrix.size() - 1, left = 0, right = matrix[0].size() - 1;
+
+        while(top <= bottom && left <= right) {
+            // Traverse top row
+            for(int i=left; i<=right; ++i) res.push_back(matrix[top][i]); ++top;
+            // Traverse right column
+            for(int i=top; i<=bottom; ++i) res.push_back(matrix[i][right]); --right;
+            // Ensure there is a bottom row to traverse
+            if(top <= bottom) {
+                // Traverse bottom row
+                for(int i=right; i>=left; --i) res.push_back(matrix[bottom][i]); --bottom;
+            }
+            // Ensure there is a left column to traverse
+            if(left <= right) {
+                 // Traverse left column
+                for(int i=bottom; i>=top; --i) res.push_back(matrix[i][left]); ++left;
+            }
+        }
+        return res;        
+    }
+};
 
 
 
 
-// APPROACH 3 RECURSION
+
+
+// A 3 RECURSION
 
 class Solution {
 public:
@@ -123,3 +159,68 @@ public:
 
 
 
+
+
+// A 4  -  Using Direction Enumeration
+// In this approach, use an enumeration for directions (right, down, left, up) and
+// move through the matrix in a spiral pattern by changing direction whenever 
+// we reach the boundary or encounter a visited cell.
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        if(matrix.empty()) return res;
+
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+
+        enum Direction { RIGHT, DOWN, LEFT, UP };
+        Direction direction = RIGHT;
+
+        int top = 0, bottom = m-1, left = 0, right = n-1;
+
+        while(top <= bottom && left <= right) {
+            if(direction == RIGHT) {
+                for(int i=left; i<=right; ++i) {
+                    res.push_back(matrix[top][i]);
+                    visited[top][i] = true;
+                }
+                ++top;
+            }
+            else if(direction == DOWN) {
+                for(int i=top; i<=bottom; ++i) {
+                    res.push_back(matrix[i][right]);
+                    visited[i][right] = true;
+                }
+                --right;
+            }
+            else if(direction == LEFT) {
+                for(int i=right; i>=left; --i) {
+                    res.push_back(matrix[bottom][i]);
+                    visited[bottom][i] = true;
+                }
+                --bottom;
+            }
+            else if(direction == UP) {
+                for(int i=bottom; i>=top; --i) {
+                    res.push_back(matrix[i][left]);
+                    visited[i][left] = true;
+                }
+                ++left;
+            }
+
+            // Change direction
+            direction = static_cast<Direction>((direction + 1) % 4);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 5
