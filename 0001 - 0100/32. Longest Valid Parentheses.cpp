@@ -155,60 +155,56 @@ public:
 // A 4  -  Using Memoization
 
 // Intuition:
-// The problem statement is asking for the length of the longest valid parentheses substring. One way to think about this problem is that for every ‘(‘ we encounter, we need a corresponding ‘)’ somewhere else in the string to form a valid parentheses pair. Therefore, a valid substring must start with an ‘(‘ and end with a ‘)’, and any number of valid parentheses pairs can be in between.
+// The problem statement is asking for the length of the longest valid parentheses substring.
+// One way to think about this problem is that for every ‘(‘ we encounter, we need a corresponding ‘)’ 
+// somewhere else in the string to form a valid parentheses pair. 
+// Therefore, a valid substring must start with an ‘(‘ and end with a ‘)’, and
+// any number of valid parentheses pairs can be in between.
 
 // Approach:
-// The approach used here is to use a stack to keep track of the indexes of the characters in the input string. When a ‘(‘ character is encountered, its index is pushed onto the stack. When a ‘)’ character is encountered, the top index on the stack is popped. The difference between the current index and the top index on the stack represents the length of a valid substring ending at the current index. If the stack is empty after a ‘)’ is popped, it means that no matching ‘(‘ has been found, so the current index is pushed onto the stack as the new base for future valid substrings. By doing so, the solution keeps track of the potential valid parentheses starts and ends, and makes use of the property that any valid parentheses substring must be closed by an earlier opened one. Finally, the algorithm returns the max length at the end of the loop.
-
-
-#include <bits/stdc++.h>
-using namespace std;
+// The approach used here is to use a stack to keep track of the indexes of the characters in
+// the input string. 
+// When a ‘(‘ character is encountered, its index is pushed onto the stack. 
+// When a ‘)’ character is encountered, the top index on the stack is popped. 
+// The difference between the current index and the top index on the stack represents 
+// the length of a valid substring ending at the current index. 
+// If the stack is empty after a ‘)’ is popped, it means that no matching
+// ‘(‘ has been found, so the current index is pushed onto the stack 
+// as the new base for future valid substrings. 
+// By doing so, the solution keeps track of the potential valid parentheses starts and ends, 
+// and makes use of the property that any valid parentheses substring must be closed
+// by an earlier opened one. Finally, the algorithm returns the max length at the end of the loop.
 
 class Solution {
 public:
     int longestValidParentheses(string s) {
         int n = s.size();
         int maxLen = 0;
-        vector<int> memo(n, -1);
-
-        for (int i = 0; i < n; i++) {
-            maxLen = max(maxLen, lonParen(i, s, memo));
+        vector<int> v(n, -1);
+        for(int i=0; i<n; i++) {
+            maxLen = max(maxLen, f(i, s, v));
         }
-
         return maxLen;
     }
 
-    int lonParen(int i, string& s, vector<int>& memo) {
-        if (i <= 0) {
-            return 0;
+    int f(int i, string& s, vector<int>& v) {
+        if(i <= 0) return 0;
+        if(v[i] != -1) return v[i];
+        if(s[i] == '(') v[i] = 0;
+        else if(s[i] == ')' && s[i-1] == '(') v[i] = f(i-2, s, v) + 2;
+        else if(s[i] == ')' && s[i - 1] == ')') {
+            int len = f(i-1, s, v);
+            if(i-1-len >= 0 && s[i-1-len] == '(') v[i] = len+2 + f(i-len-2, s, v);
+            else v[i] = 0;
         }
-
-        if (memo[i] != -1) {
-            return memo[i];
-        }
-
-        if (s[i] == '(') {
-            memo[i] = 0;
-        } else if (s[i] == ')' && s[i - 1] == '(') {
-            memo[i] = lonParen(i - 2, s, memo) + 2;
-        } else if (s[i] == ')' && s[i - 1] == ')') {
-            int len = lonParen(i - 1, s, memo);
-            if (i - 1 - len >= 0 && s[i - 1 - len] == '(') {
-                memo[i] = len + 2 + lonParen(i - len - 2, s, memo);
-            } else {
-                memo[i] = 0;
-            }
-        }
-
-        return memo[i];
+        return v[i];
     }
 };
 
+// T.C. - O(n), As it simply iterates the string once.
+// S.C. - O(n), As it uses a stack to keep track of the indexes of the characters in the input string.
 
 
 
 
-
-// Time complexity: O(n),Here, The algorithm has a time complexity of O(n) because it simply iterates the string once.
-// Auxiliary Space: O(n),Space complexity is O(n) because it uses a stack to keep track of the indexes of the characters in the input string.
 
