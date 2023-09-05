@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -16,7 +16,8 @@ public:
 
 
 
-// APPROACH 2 [ ITERATIVE ]
+
+// A 2 [ ITERATIVE ]
 
 class Solution {
     public int search(int[] nums, int target) {
@@ -33,11 +34,9 @@ class Solution {
 		if(nums[mid] == target){
 			answer = mid;    // if found, put it into answer
 			right = mid - 1;
-		}
-			
+		}			
 		// if the mid element is greater than target, it means the array in the right is of no use.
 		else if(nums[mid] > target) right = mid - 1;
-
 		// if the mid element is lesser than target, it means the array in the left is of no use.
 		else left = mid + 1;
 
@@ -48,10 +47,8 @@ class Solution {
     }
 }
 
-
 // Time Complexity : - O(log N)
 // Space Complexity :- O(1)
-
 
 
 // OR
@@ -78,7 +75,7 @@ public:
 
 
 
-// APPROACH 3 [ RCURSIVE ]
+// A 3 [ RCURSIVE ]
 
 class Solution {
 public:
@@ -103,7 +100,8 @@ public:
 
 
 
-// APPROACH 4 [ STL ]
+
+// A 4 [ STL ]
 
 class Solution {
 public:
@@ -113,7 +111,6 @@ public:
         return -1;
     }
 };
-
 
 // Here, we use the lower_bound function to perform the binary search. 
 // The lower_bound function returns an iterator to the first element in the sorted range nums that is
@@ -135,7 +132,8 @@ public:
 
 
 
-// APPROACH 5 [ STL ]
+
+// A 5 [ STL ]
 
 class Solution {
 public:
@@ -156,8 +154,6 @@ public:
 
 // If the target was not found, we simply return -1 to indicate that the value was not present in the array.
 
-
-
 // Time Complexity : - O(log N)
 // because both binary_search and lower_bound use binary search algorithms internally
 // to locate the target value or its insertion position.
@@ -167,7 +163,9 @@ public:
 
 
 
-// A 6
+// A 6 - Two-Pointer Approach
+// Maintain 2 pointers, one at the beginning and one at the end of the array, and
+// move them towards each other based on the comparison with the targe
 
 class Solution {
 public:
