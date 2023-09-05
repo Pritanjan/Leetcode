@@ -1,4 +1,4 @@
-// APPROACH 1 SORTIONG
+// A 1 SORTIONG
 
 class Solution {
 public:
@@ -25,8 +25,6 @@ public:
 // we must allocate linear space to store a copy of intervals and sort that.
 
 
-
-
 // OR
 
 
@@ -48,7 +46,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -78,7 +76,7 @@ public:
 
 
 
-// APPROACH 3 USE PRIORITY QUEUE
+// A 3 USE PRIORITY QUEUE
 
 class Solution {
 public:
@@ -88,7 +86,6 @@ public:
         };
         
         priority_queue<vector<int>, vector<vector<int>>, decltype(compare)> pq(compare);
-        
         for(vector<int>& interval : intervals) {
             pq.push(interval);
         }
@@ -110,7 +107,7 @@ public:
 
 
 
-// APPROPACH 4 [ SWEEP LINE] CHATGPT
+// A 4 [ SWEEP LINE] CHATGPT
 
 class Solution {
 public:
@@ -149,7 +146,7 @@ public:
 
 
 
-// APPRAOCH 5 BST(map)
+// A 5 BST(map)
 
 class Solution {
 public:
@@ -178,4 +175,45 @@ public:
 };
 
 
+
+
+
+ 
+// A 6  -  Using a Stack
+// Sort the intervals based on the start values.
+// Initialize an empty stack to store the merged intervals.
+// Iterate through the sorted intervals, merging overlapping intervals using a stack.
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        if (intervals.empty()) return {};
+
+        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
+            return a[0] < b[0];
+        });
+
+        vector<vector<int>> merged;
+        stack<vector<int>> stk;
+        stk.push(intervals[0]);
+
+        for(int i=1; i<intervals.size(); ++i) {
+            vector<int> cur = intervals[i];
+            vector<int> top = stk.top();
+
+            if(cur[0] <= top[1]) {
+                stk.pop();
+                top[1] = max(top[1], cur[1]);
+                stk.push(top);
+            } 
+            else stk.push(cur);
+        }
+
+        while(!stk.empty()) {
+            merged.insert(merged.begin(), stk.top());
+            stk.pop();
+        }
+        return merged;
+    }
+};
 
