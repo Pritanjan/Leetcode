@@ -163,3 +163,30 @@ public:
 // to locate the target value or its insertion position.
 
 
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int L = 0;
+        int R = nums.size() - 1;
+        while(L <= R) {
+            if(nums[L] == target) return L;
+            if(nums[R] == target) return R;
+            L++;
+            R--;
+        }
+        return -1;
+    }    
+};
+
+
+
+
+
+
+// A 7
