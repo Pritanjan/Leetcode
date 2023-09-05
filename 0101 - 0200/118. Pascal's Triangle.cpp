@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 // just do it in a straightforward, each time generate a new line, first push all 1
 // vector into res and then update the elements from 1 to i-1.
@@ -41,8 +41,11 @@ public:
 };
 
 
-// OR
+// OR 
 
+// Using a Single Loop and Formula:
+// It uses a single loop to generate each row of Pascal's triangle based on the formula
+// C(n, k) = C(n, k-1) * (n-k+1) / k.
 
 class Solution {
 public:
@@ -51,7 +54,8 @@ public:
         for(int i=0; i<numRows; ++i) {
             vector<int> row(i+1, 1);
             for(int j=1; j<i; ++j) {
-                row[j] = res[i-1][j-1] + res[i-1][j];            
+                // row[j] = res[i-1][j-1] + res[i-1][j];            
+                row[j] = row[j - 1] * (i - j + 1) / j;
             }
             res.push_back(row);
         }
@@ -62,7 +66,9 @@ public:
 
 
 
-// APPROACH 2
+
+
+// A 2
 
 class Solution {
 public:
@@ -86,3 +92,6 @@ public:
 
 
 
+
+
+// A 3
