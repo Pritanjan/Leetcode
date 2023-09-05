@@ -90,6 +90,29 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ret;
+        if(numRows == 0) return ret;
+        ret.push_back(vector<int> (1,1));
+
+        for(int i=1; i<numRows; i++){
+            vector<int> newRow(i+1, 1);
+            vector<int> prevRow = ret.back();
+            for(int j=1; j<i; j++) {
+                newRow[j] = prevRow[j-1] + prevRow[j];
+            }
+            ret.push_back(newRow);
+        }
+        return ret;
+    }
+};
+
+
 
 
 
