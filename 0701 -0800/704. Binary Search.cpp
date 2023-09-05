@@ -187,4 +187,30 @@ public:
 
 
 
-// A 7
+// A 7 - Jump Search:
+// Jump search is an efficient search algorithm for sorted arrays. 
+// It works by jumping ahead by a fixed interval and then performing linear search in that interval.
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int n = nums.size();
+        int step = sqrt(n); // Set the step size
+
+        int prev = 0;
+        while(nums[min(step, n) - 1] < target) {
+            prev = step;
+            step += sqrt(n);
+            if(prev >= n) return -1;
+        }
+
+        // Perform linear search in the current block
+        for(int i=prev; i<min(step, n); ++i) {
+            if(nums[i] == target) return i;
+        }
+        return -1;
+    }
+};
+
+
+
