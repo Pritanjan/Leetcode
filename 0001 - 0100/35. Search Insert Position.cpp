@@ -35,9 +35,13 @@ public:
 class Solution {
 public:
     int searchInsert(vector<int>& A, int target) {
-        return lower_bound(A.begin(), A.end(), target) - A.begin();
+        // return lower_bound(A.begin(), A.end(), target) - A.begin();
+        return lower_bound(nums.begin(), nums.end(), target, [](int a, int b) {
+            return a < b;
+        }) - nums.begin();        
     }
 };
+
 
 
 // OR  Using distance Function
