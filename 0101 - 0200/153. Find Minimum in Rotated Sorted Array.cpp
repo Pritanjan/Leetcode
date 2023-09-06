@@ -90,12 +90,26 @@ public:
 
 // T.C. --> O(N), where N is the size of the input vector nums. 
 // The min_element function iterates through the entire vector to find the minimum element.
-
 // S.C. --> O(1), because no additional space is being used other than the input vector.
     
 
+// OR
+
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        // Use the STL rotate function to rotate the array back to its sorted order
+        rotate(nums.begin(), min_element(nums.begin(), nums.end()), nums.end());
+        
+        // The minimum element will now be at the beginning of the array
+        return nums[0];
+    }
+};
+
     
-    
+
+
 
 
 // A 4 - Recursion
