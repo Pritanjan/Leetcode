@@ -241,3 +241,19 @@ public:
 
 
 // A 8
+
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        vector<int> sortedArr = nums;
+        sort(sortedArr.begin(), sortedArr.end());        
+        return binary_search(sortedArr.begin(), sortedArr.end(), target);
+    }
+};
+
+
+
+
+
+
+// A 9
