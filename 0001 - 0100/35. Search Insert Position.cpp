@@ -40,14 +40,45 @@ public:
 };
 
 
-// OR
+// OR  Using distance Function
 
+// This approach uses distance along with lower_bound to find the insertion positio
+// T.C. -> O(log n), as lower_bound performs a binary search internally
 
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
         auto it = lower_bound(nums.begin(), nums.end(), target);
         return distance(nums.begin(), it);
+    }
+};
+
+
+// OR  - Binary Search Using partition_point
+
+// partition_point function can be used to find the insertion position in a sorted range. 
+// T.C. -> O(log n), as partition_point performs a binary search internally
+
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+         auto it = partition_point(nums.begin(), nums.end(), [target](int val) {
+            return val < target;
+        });
+        return distance(nums.begin(), it); 
+    }
+};
+
+
+// OR
+
+// This approach is similar to A2 b byt it combines the use of distance and lower_bound in a single line
+// T.C. -> O(log n), as lower_bound performs a binary search internally
+
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        return distance(nums.begin(), lower_bound(nums.begin(), nums.end(), target));
     }
 };
 
