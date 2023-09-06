@@ -1,4 +1,4 @@
-// APPROACH 1 [ BINARY SEARCH ]
+// A 1 [ BINARY SEARCH ]
 
 class Solution {
 public:
@@ -23,14 +23,14 @@ public:
 // but if the target < nums[mid], then high = mid - 1 = low - 1. 
 // The target position must be low, not the high.
 
-
-
-
 // T.C. -->  O(log N)
 
 
 
-// APPROACH 2
+
+
+
+// A 2
 
 class Solution {
 public:
@@ -40,21 +40,30 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        auto it = lower_bound(nums.begin(), nums.end(), target);
+        return distance(nums.begin(), it);
+    }
+};
 
 
 
 
 
-// APPROACH 3
+
+// A 3
 
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
        int n=nums.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]>=target){
-                return i;
-            }
+        for(int i=0;i<n;i++) {
+            if(nums[i]>=target) return i;
         }
         return n;
     }
@@ -65,8 +74,7 @@ public:
 
 
 
-
-// APPROACH 4
+// A 4
 
 class Solution {
 public:
@@ -86,7 +94,8 @@ public:
 
 
 
-// APPROACH 5
+
+// A 5
 
 class Solution {
 public:
@@ -110,3 +119,6 @@ public:
 
 
 
+
+
+// A 6
