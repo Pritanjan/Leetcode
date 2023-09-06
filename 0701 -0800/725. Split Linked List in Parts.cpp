@@ -87,4 +87,42 @@ public:
 
 
 
-// A 3
+// A 3 -  Using an Array
+// First convert the linked list into an array of nodes, making it easier to split into k parts.
+
+class Solution {
+public:
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+        vector<ListNode*> res(k, nullptr);
+        vector<ListNode*> v; // Convert linked list to an array of nodes
+
+        ListNode* curr = head;
+        int cnt = 0;
+        while(curr) {
+            v.push_back(curr);
+            curr = curr -> next;
+            cnt++;
+        }
+
+        int size = cnt / k;
+        int extra = cnt % k;
+        int i = 0;
+        for(int j=0; j<k; j++) {
+            int cnt1 = size + (extra-- > 0 ? 1 : 0);
+            if(cnt1 > 0) {
+                res[j] = v[i];
+                ListNode* tail = v[i + cnt1 - 1];
+                tail -> next = nullptr;
+                i += cnt1;
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4
