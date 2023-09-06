@@ -205,7 +205,10 @@ public:
 
 
 
-// A 7
+// A 7 - Modified Binary Search with Early Termination 
+// Performs a binary search but stops when it becomes clear that the target is not in
+// the remaining portion of the array.
+// T.C.  - O(log N)
 
 class Solution {
 public:
@@ -240,7 +243,12 @@ public:
 
 
 
-// A 8
+// A 8 - Convert to Normal Sorted Array 
+
+// We can convert the rotated array into a normal sorted array by creating a new array
+// and copying the elements from the rotated array. 
+// After conversion, you can perform a binary search on the sorted array.
+// T.C. O(N)
 
 class Solution {
 public:
