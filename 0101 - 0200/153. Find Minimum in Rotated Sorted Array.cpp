@@ -132,5 +132,25 @@ public:
 
 
 
-// A 5
+// A 5  -  Using a Priority Queue (Min Heap)
+// It uses a min heap priority queue to find the minimum element. 
+// It inserts all elements into the priority queue, and the top of the priority queue will contain
+// the minimum element.
 
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        priority_queue<int, vector<int>, greater<int>> pq;
+        for(auto num : nums) {
+            pq.push(num);
+        }        
+        return pq.top();
+    }
+};
+
+
+
+
+
+
+// A 6
