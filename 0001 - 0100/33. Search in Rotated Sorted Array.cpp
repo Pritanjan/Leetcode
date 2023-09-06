@@ -188,4 +188,34 @@ public:
 };
 
 
+// OR
 
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        auto L = nums.begin();
+        auto R = nums.end() - 1;
+        while(L <= R) {
+            auto mid = L + ((R - L) >> 2);
+
+            if(*mid == target) return distance(nums.begin(), mid);
+            if(*L <= *mid) {
+                if(target >= *L && target < *mid) R = mid - 1;
+                else L = mid + 1;
+            } 
+            else {
+                if(target > *mid && target <= *R) L = mid + 1;
+                else R = mid - 1;
+            }
+        }
+        return -1; 
+    }
+};
+
+
+
+
+
+
+// A 6
