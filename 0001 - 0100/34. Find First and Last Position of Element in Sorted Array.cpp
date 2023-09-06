@@ -57,6 +57,20 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:    
+    vector<int> searchRange(vector<int>& nums, int target) {
+        auto idx1 = lower_bound(nums.begin(), nums.end(), target);
+        auto idx2 = upper_bound(nums.begin(), nums.end(), target) - nums.begin() - 1;        
+        if(idx1 != nums.end() && *idx1 == target) return {static_cast<int>(idx1 - nums.begin()), static_cast<int>(idx2)};
+        else return {-1, -1};
+    }
+};
+
+
 
 
 
