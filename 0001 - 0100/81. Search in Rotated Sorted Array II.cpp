@@ -187,5 +187,23 @@ public:
 
 
 
-// A 6
+// A 6 - USing Set
+// Use set to store unique elements from the rotated array and 
+// then check if the target exists in the set. 
+// T.C. O(n) due to the set insertion and lookup operations.
+
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        unordered_set<int> ust(nums.begin(), nums.end());
+        return ust.count(target) > 0;
+    }
+};
+
+
+
+
+
+
+// A 7
 
