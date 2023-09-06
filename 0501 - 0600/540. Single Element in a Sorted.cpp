@@ -1,4 +1,4 @@
-// A0 Brute Force
+// A 0 Brute Force
 // we iterate through the array in steps of 2 and compare each element with the next one. 
 // When we find an element that doesn't have a duplicate next to it, that's the element we're looking for.
 
@@ -20,7 +20,7 @@ public:
 
 
 
-// A1 - Binary Search
+// A 1 - Binary Search
 
 class Solution {
 public:
@@ -107,14 +107,39 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int L = 0;
+        int R = nums.size() - 1;
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            if(nums[mid] == nums[mid ^ 1]) L = mid + 1;
+            else R = mid;
+        }
+        return nums[L];
+    }
+};
 
 
 
 
-// A2 - XOR Operation
+
+
+// A 2 - XOR Operation
 
 // Since all elements appear twice except for one, XORing all elements will cancel out the pairs,
 // leaving only the element that appears once.
+
+// i) xor of x with 0 always give x.   x ^ 0 = x
+// ii) xor of same elements give 0.    x ^ x = 0
+// iii) xor in any order give same results.
+
+// T.C. - O(log N)
+// S.C. - O(1)
 
 class Solution {
 public:   
@@ -128,19 +153,12 @@ public:
     }
 };
 
-// i) xor of x with 0 always give x.   x ^ 0 = x
-// ii) xor of same elements give 0.    x ^ x = 0
-// iii) xor in any order give same results.
-
-// T.C. - O(log N)
-// S.C. - O(1)
-
 
 
 
 
             
-// A3 - Binary Search with Divide and Conquer
+// A 3 - Binary Search with Divide and Conquer
             
 // We can divide the search range into two subranges based on the properties of the array and
 // the position of the unique element.
@@ -149,9 +167,7 @@ class Solution {
 public:
     int f(const vector<int>& nums, int L, int R) {
         if(L == R) return nums[L];
-
-        int mid = L + (R-L) / 2;
-        
+        int mid = L + (R-L) / 2;        
         if(mid % 2 == 0) {
             if(mid + 1 < R and nums[mid] == nums[mid + 1]) return f(nums, mid + 2, R);
             else return f(nums, L, mid);
@@ -160,8 +176,7 @@ public:
             if(mid - 1 >= L and nums[mid] == nums[mid - 1]) return f(nums, mid + 1, R);
             else return f(nums, L, mid - 1);
         }
-    }
-    
+    }    
     int singleNonDuplicate(vector<int>& nums) {
         return f(nums, 0, nums.size());
     }
@@ -172,15 +187,13 @@ public:
 
 
 
-
-// A4 - Hash Map
+// A 4 - Hash Map
 
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
         unordered_map<int, int> ump;
         for(int num : nums) ump[num]++;
-        
         for(auto& entry : ump) {
             if(entry.second == 1) {
                 return entry.first;
@@ -190,3 +203,9 @@ public:
     }
 };
 
+
+
+
+
+
+// A 5
