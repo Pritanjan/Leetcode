@@ -20,6 +20,26 @@ public:
 
 
 
+// A 5 - Linear Search:
+// Perform linear search through the array and compare adjacent elements to find the single element.
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        for(int i=0; i<nums.size()-1; i+=2) {
+            if(nums[i] != nums[i+1]) {
+                return nums[i];
+            }
+        }
+        return nums.back();
+    }
+};
+
+
+
+
+
+
 // A 1 - Binary Search
 
 class Solution {
@@ -208,4 +228,8 @@ public:
 
 
 
-// A 5
+// A 5 -  Linw 23
+
+
+// A 6
+
