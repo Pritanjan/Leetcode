@@ -28,6 +28,27 @@ public:
 // S.C. --> O(1), since we're using only a constant amount of additional space.
 
 
+// OR
+
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int L = 0;
+        int R = nums.size() - 1;
+        
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            // The minimum element must be in the left half, excluding mid
+            if(nums[mid] < nums[R]) R = mid;
+            // The minimum element must be in the right half, including mid
+            else L = mid + 1;
+        }   
+        return nums[L];
+    }
+};
+
+
 
 
 
