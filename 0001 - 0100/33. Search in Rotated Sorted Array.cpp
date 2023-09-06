@@ -234,5 +234,43 @@ public:
 
 
 
-// A 7
+// A 7 using pivot & binary search
+// Find the pivot index using distance and then perform binary search to find the target element.
 
+// distance STL is used to find the pivot index (the index of the smallest element) and \
+// then perform a binary search in the rotated sorted array. 
+// We adjust the mid-point index to account for the rotation by adding pivotIdx and
+// taking the modulo operation to wrap around the array
+
+// T.C. - O(log N)
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        // Empty array, target not found
+        if(nums.empty()) return -1; 
+
+        // Find the pivot index using distance
+        int pivotIdx = distance(nums.begin(), min_element(nums.begin(), nums.end()));
+
+        // Perform binary search
+        int L = 0;
+        int R = nums.size() - 1;
+
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            int rotatedMid = (mid + pivotIdx) % nums.size();
+            if(nums[rotatedMid] == target) return rotatedMid;
+            if(nums[rotatedMid] < target) L = mid + 1;
+            else R = mid - 1;
+        }
+        return -1; 
+    }
+};
+
+
+
+
+
+
+// A 8
