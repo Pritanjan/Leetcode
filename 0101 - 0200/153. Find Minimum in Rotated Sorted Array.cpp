@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 // Looking at subarray with index [L, R]. We can find out that if the first member < last member, 
 // Since there is no rotation in the array. So we could directly return the first element
@@ -9,13 +9,11 @@
 // If value of the element in the middle is larger than the first element,
 // we know the rotation is at the second half of this array. Else, it is in the first half in the array.
 
-
 class Solution {
 public:
     int findMin(vector<int>& nums) {
         int l = 0; 
         int r = nums.size() - 1;
-        
         while(l < r){
             int mid = l + (r-l)/2;
             if(nums[l] < nums[r]) return nums[l];
@@ -26,7 +24,6 @@ public:
     }
 };
 
-
 // T.C. --> O(log n), since we're dividing the search space in half at each iteration. 
 // S.C. --> O(1), since we're using only a constant amount of additional space.
 
@@ -35,19 +32,18 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
     int findMin(vector<int>& nums) {
         int min = nums[0];
-        for(int i=0; i<nums.size();i++){
+        for(int i=0; i<nums.size();i++) {
             if(nums[i] < min) min = nums[i];
         }
         return min;
     }
 };
-
 
 // T.C. --> O(N), where N is the size of the input vector nums.
 // Because we're iterating through the entire vector in the for loop.
@@ -61,7 +57,7 @@ public:
 
 
 
-// APPROACH 3 [ C++ STL ]
+// A 3 [ C++ STL ]
 
 class Solution {
 public:
@@ -70,12 +66,35 @@ public:
     }
 };
 
-
 // T.C. --> O(N), where N is the size of the input vector nums. 
 // The min_element function iterates through the entire vector to find the minimum element.
 
 // S.C. --> O(1), because no additional space is being used other than the input vector.
     
+
     
     
-    
+
+
+// A 4 - Recursion
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        return recursion(nums, 0, nums.size() - 1);
+    }
+    int recursion(vector<int>& nums, int L, int R) {
+        if(L == R) return nums[L];        
+        int mid = L + (R - L) / 2;
+        if(nums[mid] > nums[R]) return recursion(nums, mid + 1, R);
+        else return recursion(nums, L, mid);
+    }
+};
+
+
+
+
+
+
+// A 5
+
