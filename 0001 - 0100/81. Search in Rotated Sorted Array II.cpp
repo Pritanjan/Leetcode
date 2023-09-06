@@ -1,11 +1,10 @@
-// APPROACH 1 
+// A 1 
 
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        for(int i=0; i<nums.size(); i++){
-            if(nums[i]==target)
-                return true;
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == target) return true;
         }
         return false;
     }
@@ -16,7 +15,7 @@ public:
 
 
 
-// APPROACH 2 [ Binary Search with 2 Popinter ]
+// A 2 [ Binary Search with 2 Popinter ]
 
 class Solution {
 public:
@@ -44,7 +43,6 @@ public:
 
 
 // OR
-
 // modify  binary search algorithm to handle the rotated array. 
 
 // Steps -
@@ -88,7 +86,7 @@ public:
 
 
 
-// APPROACH 3 [ Binary Search With Pivot ] LeetCode
+// A 3 [ Binary Search With Pivot ] LeetCode
 
 class Solution {
 public:
@@ -139,7 +137,8 @@ public:
 
 
 
-// APPROACH 4 [ One-Pass Binary Search ]
+
+// A 4 [ One-Pass Binary Search ]
 
 // The key idea is to adjust the binary search conditions based 
 // on the rotated array's characteristics
@@ -166,4 +165,27 @@ public:
     }
 };
 
+
+
+
+
+
+// A 5 - STL
+
+// find function perform linear search 
+// leess effiecent then binary search
+
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        return find(nums.begin(), nums.end(), target) != nums.end();
+    }
+};
+
+
+
+
+
+
+// A 6
 
