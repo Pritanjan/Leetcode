@@ -207,3 +207,37 @@ public:
 
 // A 7
 
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        return recursion(nums, target, 0, nums.size() - 1);
+    }
+
+    bool recursion(vector<int>& nums, int target, int L, int R) {
+        if(L > R) return false;
+        int mid = L + (R - L) / 2;
+        
+        if(nums[mid] == target) return true;
+        if(nums[L] < nums[mid]) {
+            if(nums[L] <= target && target < nums[mid]) return recursion(nums, target, L, mid - 1);
+            else return recursion(nums, target, mid + 1, R);
+        }
+        else if(nums[L] > nums[mid]) {
+            if(nums[mid] < target && target <= nums[R]) return recursion(nums, target, mid + 1, R);
+            else return recursion(nums, target, L, mid - 1);
+        } 
+        else {
+            // Handle the case where nums[left] == nums[mid]
+            if(nums[mid] != nums[R]) return recursion(nums, target, mid + 1, R);
+            // Search in both halves since we can't determine which side is sorted.
+            else return recursion(nums, target, L, mid - 1) || recursion(nums, target, mid + 1, R);
+        }
+    }
+};
+
+
+
+
+
+
+// A 8
