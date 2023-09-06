@@ -126,6 +126,25 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        return binarySearch(nums.begin(), nums.end(), target, nums);
+    }
+
+    int binarySearch(vector<int>::iterator L, vector<int>::iterator R, int target, vector<int>& nums) {
+        if(L >= R) return distance(nums.begin(), L);
+        auto mid = L + distance(L, R) / 2;
+        if(*mid == target) return distance(nums.begin(), mid);
+        else if(*mid < target) return binarySearch(mid + 1, R, target, nums);
+        else return binarySearch(L, mid, target, nums);
+    }
+};
+
+
 
 
 
