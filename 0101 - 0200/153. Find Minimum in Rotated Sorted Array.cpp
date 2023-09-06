@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Binary Search
 
 // Looking at subarray with index [L, R]. We can find out that if the first member < last member, 
 // Since there is no rotation in the array. So we could directly return the first element
@@ -53,7 +53,8 @@ public:
 
 
 
-// A 2
+// A 2 -  Linear Search
+// Iterates through the array and keeps track of the minimum element. W
 
 class Solution {
 public:
@@ -78,7 +79,7 @@ public:
 
 
 
-// A 3 [ C++ STL ]
+// A 3  -  STL 
 
 class Solution {
 public:
