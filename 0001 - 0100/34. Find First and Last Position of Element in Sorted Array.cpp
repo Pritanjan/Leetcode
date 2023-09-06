@@ -61,7 +61,7 @@ public:
 
 
 
-// A 3
+// A 3 -- Single Binary Search for Both Start and End Positions
 
 class Solution {
 public:
@@ -115,6 +115,9 @@ public:
 
 
 // A 5 -  Binary Search for Both Start and End Positions seperatelky
+// Same as A3 just here iHave define seperately
+// in A4 we use STL in place function in place of binary search algortighm to find first & last 
+// occurence of the element
 
 class Solution {
 public:
