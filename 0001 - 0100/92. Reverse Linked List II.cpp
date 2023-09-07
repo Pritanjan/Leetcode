@@ -220,7 +220,9 @@ public:
 
 
 // OR
-
+// Using Pointers(Without Dummy Node)
+// reverses the sublist from left to right without using a dummy node. 
+// It uses 2 pointers to keep track of the current and previous node
 
 class Solution {
 public:
