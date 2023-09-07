@@ -19,7 +19,6 @@ class Solution {
 public:
     double myPow(double x, int n) {
         if(n == 0) return 1.0;
-        
         long long absN = abs(static_cast<long long>(n));
         double res = 1.0;
         while(absN > 0) {
@@ -36,7 +35,8 @@ public:
 
 
 
-// APPROACH 1
+
+// A 1
 
 class Solution {
 public:
@@ -51,7 +51,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -75,8 +75,7 @@ public:
 
 
 
-
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -111,7 +110,7 @@ public:
 
 
 
-// APPROACH 4
+// A 4
 
 class Solution {
 public:
@@ -130,4 +129,22 @@ public:
     }
 };
 
+
+
+
+
+// A 5 - STL
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        return pow(x, n);
+    }
+};
+
+
+
+
+
+// A 6
 
