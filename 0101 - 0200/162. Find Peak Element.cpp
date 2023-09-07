@@ -1,29 +1,25 @@
-// A 1
+// A 1 - Binary Search iterately
 
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        
         int L = 0;
-        int R = nums.size()-1;
-        
-        while(L < R){
-            int mid = L + (R-L)/2;
-            
-            if(nums[mid] > nums[mid+1])
-                R = mid;
-            else
-                L = mid + 1;
+        int R = nums.size()-1;         
+        while(L < R) {
+            int mid = L + (R-L)/2;             
+            // Peak is in the left half, including mid
+            if(nums[mid] > nums[mid+1]) R = mid;
+            // Peak is in the right half, excluding mid
+            else L = mid + 1;
         }
         return L;
     }
 };
 
-//Time complexity : O(log_2(n). We reduce the search space in 
-//half at every step. Thus, the total search space will be 
-//consumed in log_2(n)steps. Here,n refers to the size of array.
-
-//Space complexity : O(1). Constant extra space is used.
+// Time complexity : O(log_2(n). We reduce the search space in 
+// half at every step. Thus, the total search space will be 
+// consumed in log_2(n)steps. Here,n refers to the size of array.
+// Space complexity : O(1). Constant extra space is used.
 
 
 
@@ -36,8 +32,7 @@ class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
         for(int i=0; i<nums.size() - 1; i++){
-            if(nums[i] > nums[i+1])
-                return i;
+            if(nums[i] > nums[i+1]) return i;
         }
         return nums.size() - 1;
     }
@@ -72,5 +67,34 @@ public:
     }
 };
 
+
+
+
+
+
+// A 4 -  Binary Search Recursively
+
+class Solution {
+public:
+    int recursion(vector<int> &nums, int L, int R) {
+        if(L == R) return L;
+        int mid = L + (R-L) / 2;
+        // Peak is in the left half, including mid
+        if(nums[mid] > nums[mid+1]) return recursion(nums, L, mid) ;
+        // Peak is in the right half, excluding mid
+        else return recursion(nums, mid+1, R);
+    }
+
+    int findPeakElement(vector<int>& nums) {        
+        return recursion(nums, 0, nums.size()-1);
+    }
+};
+
+
+
+
+
+
+// A 5
 
 
