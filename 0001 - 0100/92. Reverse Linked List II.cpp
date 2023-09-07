@@ -72,11 +72,196 @@ public:
 
 
 
-// A 2
+// A 2 - Iterative Approach
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head or L == R) return head;
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+        for(int i=1; i<L; i++){
+            prev = prev -> next;
+        }
+
+        ListNode *curr = prev -> next;
+        for(int i=L; i<R; i++) {
+            ListNode *tmp = curr -> next;
+            curr -> next = tmp -> next;
+            tmp -> next = prev -> next;
+            prev -> next = tmp;
+        }
+        return dummy -> next;
+    }
+};
 
 
 
 
 
 
+// A 3 - Recursion
 
+class Solution {
+public:        
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+        
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = prev -> next;
+        }
+
+        // Reverse the sublist from left to right using recursion
+        ListNode* newHead = reverseList(prev -> next, R-L+1);
+
+        // Connect the reversed sublist back to the original list
+        prev -> next = newHead;
+        return dummy -> next;
+    }
+
+    ListNode* reverseList(ListNode* head, int n) {
+        if(!head || n <= 1) return head;
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        ListNode* next = nullptr;
+
+        while(n > 0) {
+            next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+            n--;
+        }
+        head -> next = current;
+        return prev;
+    }
+};
+
+
+
+
+
+
+// A 4 - Using Stack
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+        
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = prev -> next;
+        }
+
+        // Use a stack to reverse the sublist from left to right
+        stack<ListNode*> stk;
+        ListNode* curr = prev -> next;
+        for(int i=L; i<=R; ++i) {
+            stk.push(curr);
+            curr = curr -> next;
+        }
+
+        while(!stk.empty()) {
+            prev -> next = stk.top();
+            stk.pop();
+            prev = prev -> next;
+        }
+        prev -> next = curr;
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 5 - Use 2 Pointer
+// Use 2 pointer to reverse list from left to right
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = prev -> next;
+        }
+
+        // Initialize two pointers for reversal
+        ListNode* Lptr = prev -> next;
+        ListNode* Rptr = Lptr -> next;
+
+        // Reverse the sublist from left to right
+        for(int i=L; i<R; ++i) {
+            Lptr -> next = Rptr -> next;
+            Rptr -> next = prev -> next;
+            prev -> next = Rptr;
+            Rptr = Lptr -> next;
+        }
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 6 - 
+// Reverses the sublist from left to right separately and then stitches it back into the original list.
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = prev -> next;
+        }
+
+        ListNode* curr = prev->next;
+        ListNode* rev = nullptr;
+
+        // Reverse the sublist from left to right
+        for(int i=L; i<=R; ++i) {
+            ListNode* temp = curr -> next;
+            curr -> next = rev;
+            rev = curr;
+            curr = temp;
+        }
+
+        // Connect the reversed sublist back to the original list
+        prev -> next -> next = curr;
+        prev -> next = rev;
+                
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 7 
