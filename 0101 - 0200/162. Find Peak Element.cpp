@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -27,7 +27,10 @@ public:
 
 
 
-// APPROACH 2
+
+
+
+// A 2
 
 class Solution {
 public:
@@ -45,6 +48,29 @@ public:
 
 
 
+// A 3
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return 0;        
+        if(nums[0] > nums[1]) return 0;         
+        if(nums[n-1] > nums[n-2]) return n-1;
+        
+        int i = n / 2;
+        if(nums[i+1] > nums[i]) i++; 
+        while(i < n-1 && nums[i-1] < nums[i] && nums[i] < nums[i+1]) i++;
+        if(nums[i] > nums[i-1] && nums[i] > nums[i+1]) return i;
+        
+        i = n / 2;        
+        if(nums[i-1] > nums[i]) i--;        
+        while(i > 0 && nums[i] < nums[i-1] && nums[i] > nums[i+1]) i--;
+        if(nums[i] > nums[i-1] && nums[i] > nums[i+1]) return i;
+        
+        return -1;
+    }
+};
 
 
 
