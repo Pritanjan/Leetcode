@@ -56,11 +56,21 @@ public:
 class Solution {
 public:
     double myPow(double x, int n) {
-	if(n == 0) return 1;  
-        if(n < 0) return 1/x * myPow(1/x, -(n+1));        
-        return (n%2 == 0) ? myPow(x*x, n/2 ) : x*myPow(x*x, n/2);
+        if(n == 0) return 1.0;  // Any number to the power of 0 is 1.
+        if(n == 1) return x;    // Any number to the power of 1 is itself.
+        if(n < 0) {
+            x = 1 / x;          // If n is negative, invert x.
+            // Handle the case of INT_MIN to avoid overflow.
+            if(n == INT_MIN) {
+                x *= x;
+                n /= 2;
+            }
+            n = -n;
+        }
+        return (n % 2 == 0) ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2);
     }
 };
+
 
 
 
