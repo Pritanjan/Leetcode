@@ -264,4 +264,49 @@ public:
 
 
 
+// A 7 - Usinge array to store the array that r needed to be reversed
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prev = dummy;
+
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = prev -> next;
+        }
+
+        ListNode* curr = prev->next;
+        vector<int> rev;
+
+        // store the value of the nodes in the sublist to reverse
+        for(int i=L; i<=R; ++i) {
+            rev.push_back(curr -> val);
+            curr = curr -> next;
+        }
+
+        // update the value of node in the sublist
+        for(int i=R; i>=L; i--) {
+            prev -> next -> val = rev[i-L];
+            prev= prev -> next;
+        }                
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 8
+
+
+
+
+
 // A 7 
