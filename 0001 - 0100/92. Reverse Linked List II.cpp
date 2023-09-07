@@ -219,6 +219,44 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int L, int R) {
+        if(!head || L == R) return head;
+            
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+        // Find the node before the left position
+        for(int i=1; i<L; ++i) {
+            prev = curr;
+            curr = curr -> next;
+        }
+
+        ListNode* sublistPrev = prev;
+        ListNode* sublistTail = curr;
+
+        // Reverse the sublist from left to right
+        for(int i=L; i<=R; ++i) {
+            ListNode* next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        if(sublistPrev) sublistPrev -> next = prev;
+        else head = prev;
+        // If reversing from the beginning
+
+        sublistTail -> next = curr;
+        return head;
+    }
+};
+
+
 
 
 
