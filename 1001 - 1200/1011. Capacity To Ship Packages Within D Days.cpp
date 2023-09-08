@@ -72,5 +72,37 @@ public:
 
 
 
-// A 3
+// A 3  -  DP
 
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int D) {
+        int maxWeight = *max_element(weights.begin(), weights.end());
+        int sumWeight = accumulate(weights.begin(), weights.end(), 0);        
+
+        int L = max(maxWeight, sumWeight / D);
+        int R = sumWeight;
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            int days = 1;
+            int currentWeight = 0;            
+            for(int weight : weights) {
+                if(currentWeight + weight > mid) {
+                    days++;
+                    currentWeight = 0;
+                }
+                currentWeight += weight;
+            }            
+            if(days > D) L = mid + 1;
+            else R = mid;
+        }        
+        return L;
+    }
+};
+
+
+
+
+
+
+// A 4
