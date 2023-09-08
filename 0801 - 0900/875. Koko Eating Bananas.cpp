@@ -8,7 +8,8 @@ public:
         while(L < R){
             int mid = (L+R)/2;
             int hrs = 0;            
-            
+
+            // for(int i : piles) hrs += (i + mid - 1)/mid;
             for(int i : piles) hrs += i/mid + (i % mid != 0);
             if(hrs <= h) R = mid;
             else L = mid + 1;
