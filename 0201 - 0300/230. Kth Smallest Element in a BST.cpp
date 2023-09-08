@@ -187,3 +187,51 @@ public:
 
 
 // A 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1
+// Kth largest element in BST
+
+class Solution {
+public:
+    vector<int> v;
+    void in(Node* root){
+        if(root == NULL) return ;
+        in(root -> left);
+        v.push_back(root -> data);
+        in(root -> right);
+    }
+    
+    int kthLargest(Node *root, int K) {
+        in(root);
+        int i = v.size()-1;
+        while(--K) i--;
+        return v[i];
+    }
+};
+
+
