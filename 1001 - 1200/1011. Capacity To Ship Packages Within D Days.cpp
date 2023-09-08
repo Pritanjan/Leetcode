@@ -1,3 +1,5 @@
+// A 1
+
 class Solution {
 public:
     // Check whether the packages can be shipped in less than "days" days with
@@ -21,9 +23,7 @@ public:
             totalLoad += weight;
             maxLoad = max(maxLoad, weight);
         }
-
         int l = maxLoad, r = totalLoad;
-
         while (l < r) {
             int mid = (l + r) / 2;
             if (feasible(weights, mid, days)) {
@@ -37,4 +37,40 @@ public:
 };
 
 
+
+
+
+
+// A 2 Binary Search
+
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int D) {
+        int L = *max_element(weights.begin(), weights.end());
+        int R = accumulate(weights.begin(), weights.end(), 0);        
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            int days = 1;
+            int currentWeight = 0;
+            
+            for(int weight : weights) {
+                if(currentWeight + weight > mid) {
+                    days++;
+                    currentWeight = 0;
+                }
+                currentWeight += weight;
+            }            
+            if(days > D) L = mid + 1;
+            else R = mid;
+        }        
+        return L;
+    }
+};
+
+
+
+
+
+
+// A 3
 
