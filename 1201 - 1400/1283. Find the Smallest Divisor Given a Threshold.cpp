@@ -42,8 +42,9 @@ public:
             int mid = (R - L ) / 2 + L;
             int sum = 0;
             for(int i=0; i<nums.size(); i++) {
-                sum += ceil(static_cast<double>(nums[i]) / mid); 
-	        // sum += (nums[i] + mid - 1) / mid;
+                // sum += ceil(static_cast<double>(nums[i]) / mid); 
+		// sum += ceil((double)(nums[i]) / mid); 
+	        sum += (nums[i] + mid - 1) / mid;
             }        
             if(sum > threshold) L = mid + 1;
             else R = mid;
