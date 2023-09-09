@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Counting Open and Close Parentheses
 
 // 1. Initialize a variable count to store the number of opening parentheses, i.e. ‘(‘.
 // 2. Add every ‘(‘ to the result if count is greater than 0, i.e. add all ‘(‘ after 
@@ -29,4 +29,29 @@ public:
 
 
 
-// A 2
+// A 2 - Use stack
+
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        string res = "";
+        stack<char> stk;  // stack stores paraenthesius 
+        for(char c : s) {
+            if(c == '(') {
+                if(!stk.empty()) res += c;
+                stk.push(c);
+            } 
+            else {
+                stk.pop();
+                if(!stk.empty()) res += c;
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 3
