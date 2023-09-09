@@ -220,7 +220,46 @@ public:
 
 
 
+// A 8 - Recursion
+// Divide the matrix into submatrices and recursively searching for the target
+// in the appropriate submatrix. 
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return false;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        return searchSubmatrix(matrix, target, 0, 0, m-1, n-1);
+    }
+
+    bool searchSubmatrix(vector<vector<int>>& matrix, int target, int top, int L, int bottom, int R) {
+        if(top > bottom || L > R) return false;
+        int midRow = top + (bottom - top) / 2;
+        int midCol = L + (R - L) / 2;
+        int midVal = matrix[midRow][midCol];
+
+        if(midVal == target) return true;
+        // Search in the right and bottom submatrices
+        else if(midVal < target) {
+            return searchSubmatrix(matrix, target, midRow + 1, L, bottom, R) ||
+                   searchSubmatrix(matrix, target, top, midCol + 1, midRow, R);
+        } 
+        // Search in the left and top submatrices
+        else {
+            return searchSubmatrix(matrix, target, top, L, midRow - 1, R) ||
+                   searchSubmatrix(matrix, target, midRow, L, bottom, midCol - 1);
+        }
+    }
+};
+
+
+
+
+
+
 // A 9
+
 
 class Solution {
 public:
