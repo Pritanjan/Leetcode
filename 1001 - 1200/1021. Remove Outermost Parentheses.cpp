@@ -54,4 +54,27 @@ public:
 
 
 
-// A 3
+// A 3 
+
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        int cnt = 0;
+        int idx = 0;
+        string res = "";
+        for(int i=0; i<s.size(); ++i) {
+            if(s[i] == '(') cnt++;
+            else if(s[i] == ')') {
+                cnt--;
+                if(cnt == 0) {
+                    // We found the matching closing parenthesis
+                    res += s.substr(idx + 1, i - idx - 1);
+                    idx = i + 1; // Skip the outermost closing parenthesis
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
