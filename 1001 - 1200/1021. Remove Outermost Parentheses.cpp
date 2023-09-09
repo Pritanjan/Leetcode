@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
