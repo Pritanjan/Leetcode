@@ -131,6 +131,27 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int curr = 1;
+        int miss = 0;
+        for(int num : arr) {
+            while (num > curr) {
+                miss++;
+                if(miss == k) return curr;
+                curr++;
+            }
+            curr = num + 1;
+        }        
+        return arr.back() + k - miss;
+    }
+};
+
+
 
 
 
