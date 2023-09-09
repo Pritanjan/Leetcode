@@ -281,3 +281,27 @@ public:
 
 
 
+
+
+
+// A 10
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return false;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        // Flatten the matrix into a one-dimensional vector
+        vector<int> res;
+        for(int i=0; i<m; ++i) {
+            for(int j=0; j<n; ++j) {
+                res.push_back(matrix[i][j]);
+            }
+        }
+        // Use binary_search to find the target
+        return binary_search(res.begin(), res.end(), target);
+    }
+};
+
+
