@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Binary Search
 
 class Solution {
 public:
@@ -41,7 +41,9 @@ public:
 
 
 
-// A 3
+// A 3 - Using Set
+// Use a set to keep track of the elements in the array and
+// then iterate through positive integers until you find the kth missing numbe
 
 class Solution {
 public:
@@ -60,11 +62,32 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        unordered_set<int> ust(arr.begin(), arr.end());    
+        int miss = 0;
+        int curr = 1;
+        while(true) {
+            if(ust.find(curr) == ust.end()) miss++;            
+            if(miss == k) return curr;            
+            curr++;
+        }        
+        return -1; // Handle invalid input or edge cases
+    }
+};
 
 
 
 
-// A 4
+
+
+// A 4 -  Linear Search
+// We can perform a linear search through the array, counting missing numbers 
+// until we reach the kth missing number.
 
 class Solution {
 public:
@@ -88,4 +111,4 @@ public:
 
 
 
-// A 5'
+// A 5
