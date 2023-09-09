@@ -108,6 +108,30 @@ public:
 };
 
 
+// OR
+// It optimizes the linear search by keeping track of the last encountered element. 
+// It reduces the number of iterations
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int last = 0;
+        int miss = 0;
+        for(int num : arr) {
+            miss += num - last - 1;
+            if(miss >= k) {
+                return k - miss + num - 1;
+            }            
+            last = num;
+        }        
+        // If k is greater than the missing numbers in the array, the kth missing
+        // number will be beyond the last element of the array.
+        return arr.back() + k - miss;
+    }
+};
+
+
+
 
 
 
