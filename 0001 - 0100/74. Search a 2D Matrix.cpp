@@ -1,20 +1,15 @@
-// APPROACH 1 [ Treat the 2D matrix as a flattened 1D array and perform binary search ]
+// A 1 [ Treat the 2D matrix as a flattened 1D array and perform binary search ]
 
 // 1  So a cell value can be calculated by:
 //    cell value = Total col * row + col.
-//
 // 2  To get the row we’ll divide the cell value by the total column:
 //    row = cell value / Total col.
-//
 // 3  For columns, we have to take the remainder values when an int is divided by the column value.
 //    col = cell value % Total col.
-//
 // 4  Now simply run Binary search algorithm & search the target.
 //    Time complexity: O(logn).
-
 //    Now the number of columns = matrix[0].length
 //    So to fetch element at any index, we can do it by, matrix[index/column][index%column].
-
 
 class Solution {
 public:
@@ -23,7 +18,6 @@ public:
         int column = matrix[0].size();
         int left   = 0;
         int right  = row * column -1;
-        
         while(left <= right){
             int mid = (left + right)/2;
             if(target == matrix [mid / column] [mid % column] )  return true;
@@ -35,22 +29,21 @@ public:
 };
 
 // matrix[index/column][index%column]
-// O(log mn)
+// O(log m n)
 
 
 
 
 
 
-// APPROAH 2 Using Bool
+// A 2 Using Bool
 
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int i = 0, j = matrix[0].size()-1;
-        bool isFound = false;
-            
-      // Staircase search technique  
+       int i = 0, j = matrix[0].size()-1;
+       bool isFound = false;
+       // Staircase search technique  
        while(j>=0 && i < matrix.size()) {
            if(matrix[i][j]==target) {
                isFound = true;
@@ -68,7 +61,7 @@ public:
 
 
 
-// APPROAH 3 [ Optimal Binary Search on Matrix Diagonals ]  without Using Bool 
+// A 3 [ Optimal Binary Search on Matrix Diagonals ]  without Using Bool 
 
 // It takes advantage of the fact that the matrix is sorted both row-wise and column-wise.
 // Start at the top-right corner of the matrix and move diagonally while 
@@ -96,7 +89,7 @@ public:
 
 
 
-// APPROACH 4 [ Use binary search twice - first on rows, then on columns ]
+// A 4 [ Use binary search twice - first on rows, then on columns ]
 
 class Solution {
 public:
@@ -133,7 +126,7 @@ public:
 
 
 
-// APPROACH 5 [ Optimal Binary Search on Rows ]
+// A 5 [ Optimal Binary Search on Rows ]
 
 // Here, we perform a binary search on each row of the matrix to find the potential row where
 // the target might exist. 
@@ -144,7 +137,6 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int m = matrix.size();
         int n = matrix[0].size();
-        
         for(int i=0; i<m; ++i) {
             int L = 0;
             int R = n-1;
@@ -158,4 +150,75 @@ public:
         return false;
     }
 };
+
+
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return false;        
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        int top = 0;
+        int bottom = m - 1;        
+        // First binary search to find the row
+        while(top <= bottom) { 
+            int mid = top + (bottom - top) / 2;
+            if(matrix[mid][0] <= target) top = mid + 1;
+            else bottom = mid - 1;
+        }
+        
+        if(bottom < 0) return false;        
+
+        // Second binary search within the found row
+        int row = bottom;
+        int L = 0;
+        int R = n - 1;        
+        while(L <= R) {
+            int mid = L + (R - L) / 2;
+            int midVal = matrix[row][mid];
+            
+            if(midVal == target) return true;
+            else if(midVal < target) L = mid + 1;
+            else R = mid - 1;
+        }        
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 7
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return false;
+        
+        int m = matrix.size();
+        int n = matrix[0].size();
+        for(int i=0; i<m; ++i) {
+            for(int j=0; j<n; ++j) {
+                if(matrix[i][j] == target) return true;
+            }
+        }        
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 9
 
