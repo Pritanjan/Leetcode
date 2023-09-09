@@ -136,3 +136,33 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int mx = arr.back();
+        vector<bool> v(mx+k, false);
+
+        for(int num : arr) {
+            v[num-1] = true;
+        }
+        int cnt = 0;
+        int res = 0;
+        for(int i=0; i < mx+k; ++i) {
+            if(!v[i]) {
+                ++cnt;
+                if(cnt == k) {
+                    res = i+1;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 6
