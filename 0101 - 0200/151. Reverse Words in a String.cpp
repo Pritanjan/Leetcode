@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -48,7 +48,6 @@ public:
 // APPROACH 2 
 // THIS CODE DOESENT REMOVE SPACES IN B/W THEM 
 
-
 class Solution {
 public:
     string reverseWords(string s) {
@@ -68,7 +67,6 @@ public:
         // Reverse the whole sentence
         reverse(s.begin(), s.end());
         
-        
         // Remove extra spaces
         int i = 0, j = 0;
         while(j < n) {
@@ -77,7 +75,6 @@ public:
             while (j < n && s[j] == ' ') j++;
             if (j < n) s[i++] = ' ';
         }
-
         s.resize(i);
         return s;
     }
@@ -88,10 +85,8 @@ public:
 
 
 
-// APPROACH 3
-// CORRECT CODE 
+// A 3
 // Reverse words in a given string using the swap operation: FROM GFG
-
 
 class Solution {
 public:
@@ -140,7 +135,6 @@ public:
     }
 };
 
-
 // T.C. --> O(N)
 // S.C. --> O(N)
 
@@ -148,9 +142,8 @@ public:
 
 
 
+// A 4 - LAST FROM GFG
 
-// APPROACH 4
-// LAST FROM GFG
 class Solution {
 public:
     string reverseWords(string s) {
@@ -165,12 +158,10 @@ public:
             }
             else temp += ch;
         }
-
         if(temp != "") ans = temp + " " + ans;
         return ans.substr(0, ans.length()-1);
     }
 };
-
 
 // T.C. --> O(N)
 // S.C. --> O(1)
@@ -185,7 +176,6 @@ public:
     string reverseWords(string s) {    
         string res;
         int end = s.size();
-
         for(int i=s.size()-1; i>=0; i--) {
             if(s[i] == ' ') end = i;
             else if(i == 0 || s[i-1] == ' ') {
@@ -201,7 +191,7 @@ public:
 
 
 
-// APPROACH 5
+// A 5
 
 class Solution {
 public:
@@ -227,7 +217,6 @@ public:
                 }
             }
         }
-
         //The size of slow is the size after removing extra spaces.
         s.resize(slow); 
     }
@@ -253,3 +242,41 @@ public:
     }
 };
 
+
+
+
+
+// A 6 - Using two-pointer 
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n = s.length();
+        int i = 0;
+        
+        // Remove leading spaces
+        while(i < n && s[i] == ' ') i++;
+                
+        string res = "";
+        while(i < n) {
+            int j = i;
+            while(j < n && s[j] != ' ') j++;
+            string word = s.substr(i, j - i);
+            
+            if(res.empty()) res = word;
+            else res = word + " " + res;
+                        
+            while(j < n && s[j] == ' ') j++;
+            
+            i = j;
+        }        
+        s = res;
+        return res;
+    }
+};
+
+
+
+
+
+// A 7
