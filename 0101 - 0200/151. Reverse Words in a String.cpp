@@ -279,4 +279,79 @@ public:
 
 
 
-// A 7
+// A 7 - Using Stack
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string> stk;
+        istringstream iss(s);
+        string word;
+        
+        while(iss >> word) {
+            stk.push(word);
+        }
+        
+        string reversed;
+        while(!stk.empty()) {
+            reversed += stk.top();
+            stk.pop();            
+            if(!stk.empty()) reversed += " ";
+        }        
+        return reversed;        
+    }
+};
+
+
+
+
+
+// A 8
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        // Remove leading spaces
+        int i = 0;
+        while(i < s.length() && s[i] == ' ') {
+            i++;
+        }
+        s = s.substr(i);
+        
+        // reversing words       
+        // Reverse the entire string
+        reverse(s.begin(), s.end());
+        int start = 0;
+        int end = 0;
+        int n = s.length();
+
+        while(start < n) {
+            // Find the start and end of a word
+            while(start < n && s[start] == ' ') start++;
+            end = start;
+            while(end < n && s[end] != ' ') end++;
+            
+            // Reverse the word
+            reverse(s.begin() + start, s.begin() + end);
+            start = end;
+        }
+
+        // Remove extra spaces
+        i = 0;
+        int j = 0;
+        while(j < n) {
+            while(j < n && s[j] == ' ') j++;
+            while(j < n && s[j] != ' ') s[i++] = s[j++];
+            if(j < n) s[i++] = ' ';
+        }
+
+        s.erase(s.begin() + i, s.end());
+        return s;
+    }
+};
+
+
+
+
+
+// A 9
