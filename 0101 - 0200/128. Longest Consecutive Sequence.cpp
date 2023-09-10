@@ -150,6 +150,40 @@ public:
 };
 
 
+// OR
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        
+        unordered_map<int, bool> visited;
+        unordered_map<int, int> sequenceLength;
+        for(int num : nums) visited[num] = false;
+
+        int maxLen  = 0;
+        for(int num : nums) {
+            if(!visited[num]) {
+                int currNum = num;
+                int currLen = 1;
+
+                while(visited.find(currNum + 1) != visited.end()) {
+                    currNum++;
+                    currLen++;
+                    visited[currNum] = true;
+                }
+
+                while(visited.find(num - 1) != visited.end()) {
+                    num--;
+                    currLen++;
+                    visited[num] = true;
+                }
+                maxLen = max(maxLen, currLen);
+            }
+        }
+        return maxLen ;
+    }
+};
 
 
 
