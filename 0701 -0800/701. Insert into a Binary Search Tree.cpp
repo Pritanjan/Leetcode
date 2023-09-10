@@ -1,11 +1,9 @@
-// APPROACH 1 [ Iterative Approach ]
-
+// A 1 [ Iterative Approach ]
 
 class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
-        if(root == NULL)
-            return new TreeNode (val);
+        if(root == NULL) return new TreeNode (val);
         
         TreeNode* head = root;
         while(1){
@@ -14,16 +12,14 @@ public:
                     root->left = new TreeNode(val);
                     break;
                 }
-                else
-                    root = root->left;
+                else root = root->left;
             }
-            else{
+            else {
                 if(root->right == NULL){
                     root->right = new TreeNode(val);
                     break;
                 }
-                else 
-                    root = root->right;
+                else root = root->right;
             }
         }
         return head;
@@ -34,12 +30,7 @@ public:
 
 
 
-
-
-
-
-// APPROACH 2 [ recursive ]
-
+// A 2 [ recursive ]
 
 class Solution {
 public:
@@ -55,6 +46,32 @@ public:
 
 
 
+// A 3 -  Parent Pointer Approac
+// Keep track of the parent node as we traverse the BST to find the appropriate location for insertion.
+
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode* newNode = new TreeNode(val);
+        if(!root) return newNode;
+        
+        TreeNode* parent = nullptr;
+        TreeNode* curr = root;
+
+        while(curr) {
+            parent = curr;
+            if(val < curr -> val) curr = curr -> left;
+            else curr = curr -> right;
+        }
+        if(val < parent -> val) parent -> left = newNode;
+        else parent -> right = newNode;
+        
+        return root;
+    }
+};
 
 
 
+
+
+// A 4
