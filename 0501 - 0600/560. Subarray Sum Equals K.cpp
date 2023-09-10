@@ -1,3 +1,7 @@
+// Largest subarray with 0 sum
+// https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
+
+
 // A 0  - Brute Force Approach:
 // Use nested loops to generate all subarrays and calculate their sums.
 // Keep a count of subarrays with a sum equal to k.
