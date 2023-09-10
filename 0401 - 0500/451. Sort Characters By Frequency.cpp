@@ -186,3 +186,41 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// A 7  -  Use STL
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        // Create a vector to store character-frequency pairs.
+        vector<pair<char, int>> freq;
+        
+        // Count the frequency of each character in the string.
+        for(char c : s) {
+            auto it = find_if(freq.begin(), freq.end(), [c](const pair<char, int>& p) {
+                              return p.first == c;
+                           });
+            if(it != freq.end()) it -> second++;
+            else freq.emplace_back(c, 1);
+        }
+
+        // Sort the vector based on character frequency in descending order.
+        sort(freq.begin(), freq.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
+                return a.second > b.second;
+        });
+
+        // Sort the vector based on character frequency in descending order.
+        string res = accumulate(freq.begin(), freq.end(), string(), 
+                                [](const string& s, const pair<char, int>& p) {
+                                    return s + string(p.second, p.first);
+                                });
+        return res;
+    }
+};
+
+
