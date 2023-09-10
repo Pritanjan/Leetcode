@@ -156,3 +156,33 @@ public:
 };
 
 
+
+
+
+// A 6 - Using a Multimap for Sorting:
+
+class Solution {
+public:
+    string frequencySort(string s) {
+         // Create a map to store the frequency of each character.
+        unordered_map<char, int> charFreq;
+
+        // Count the frequency of each character in the string.
+        for(char c : s) {
+            charFreq[c]++;
+        }
+
+        // Create a multimap to store characters sorted by frequency.
+        multimap<int, char, greater<int>> freqMap;
+        for(auto& entry : charFreq) {
+            freqMap.insert({entry.second, entry.first});
+        }
+
+        // Reconstruct the sorted string.
+        string res = "";
+        for(auto& entry : freqMap) {
+            res += string(entry.first, entry.second);
+        }
+        return res;
+    }
+};
