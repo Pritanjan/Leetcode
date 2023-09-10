@@ -29,6 +29,31 @@ public:
 };
 
 
+// or
+
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s.size() != t.size()) return false;
+
+        char sToT[256] = {0}; 
+        char tToS[256] = {0};         
+        for(int i=0; i<s.length(); ++i) {
+            if(sToT[s[i]] == 0 && tToS[t[i]] == 0) {
+                sToT[s[i]] = t[i];
+                tToS[t[i]] = s[i];
+            } 
+            else {
+                if(sToT[s[i]] != t[i] || tToS[t[i]] != s[i]) return false;
+            }
+        }        
+        return true;
+    }
+};
+
+
+
 
 
 
