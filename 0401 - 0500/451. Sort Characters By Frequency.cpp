@@ -129,3 +129,30 @@ public:
 
 // A 5 
 
+class Solution {
+public:
+    string frequencySort(string s) {
+        // Count the frequency of each character using an array.
+        int charFreq[256] = {0};
+        for(char c : s) charFreq[c]++;
+
+        // Create an array of string buckets to store characters with the same frequency.
+        vector<string> v(s.size() + 1, "");
+        for(int i=0; i<256; i++) {
+            if(charFreq[i] > 0) {
+                v[charFreq[i]].append(charFreq[i], static_cast<char>(i));
+            }
+        }
+
+        // Reconstruct the sorted string by appending characters from buckets.
+        string res = "";
+        for(int i=s.size(); i>=0; i--) {
+            if(!v[i].empty()) {
+                res += v[i];
+            }
+        }
+        return res;
+    }
+};
+
+
