@@ -80,3 +80,31 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int cnt = 0;
+        int n = nums.size();
+        vector<int> prefixSum(n + 1, 0);
+        vector<int> modCount(k, 0);
+        
+        modCount[0] = 1; 
+        int sum = 0;
+        for(int i=0; i<n; ++i) {
+            sum += nums[i];
+            int rem = (sum % k + k) % k;
+            cnt += modCount[rem];
+            modCount[rem]++;
+        }        
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 4
+
+// 
