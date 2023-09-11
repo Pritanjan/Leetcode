@@ -103,3 +103,45 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int calculate(string s) {
+        int n = s.length();
+        vector<int> v;
+        int curr = 0;
+        char op = '+';
+
+        if(s.empty()) return 0;
+        unordered_set<char> operators = {'+', '-', '*', '/'};
+        unordered_set<char> nums = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+        for(int i=0; i<s.length(); ++i) {
+            char c = s[i];
+
+            if(nums.find(c) != nums.end()) curr = curr * 10 + (c - '0');
+            if(operators.find(c) != operators.end() || i == n-1) {
+                if(op == '+') v.push_back(curr);
+                else if(op == '-') v.push_back(-curr);
+                else if(op == '*') v.back() *= curr;
+                else if(op == '/') v.back() = v.back() / curr;
+                
+                curr = 0;
+                op = c;
+            }
+        }
+
+        int res = 0;
+        for(int num : v) {
+            res += num;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4
+
