@@ -1,4 +1,4 @@
-// APPROACH 1 (USING STACK)
+// A 1 (USING STACK)
 // Use a stack that keeps track of current open brackets. 
 
 // 1. Create a stack. 
@@ -7,16 +7,13 @@
 //      If character is ‘)’, pop an element.
 //      Maintain maximum count during the traversal. 
 
-
 class Solution {
 public:
     int maxDepth(string s) {
         stack<int> stk; 
         int cnt = 0;
         for(auto i : s){
-            if(i == '(' ){
-                stk.push(i);
-            } 
+            if(i == '(' ) stk.push(i);
             else if(i == ')' ) {
                 if(cnt < stk.size()) cnt = stk.size();
                 stk.pop();
@@ -27,13 +24,12 @@ public:
 };
 
 // Time Complexity: O(N) where n is number of elements in given string. 
-//      As, we are using a loop to traverse N times so it will cost us O(N) time 
+// As, we are using a loop to traverse N times so it will cost us O(N) time 
 // Auxiliary Space: O(N), as we are using extra space for stack.
 
 
+// OR
 
-
-// APPROACH 2
 
 // 1. Intuition is that we iterate through each character of the string and if the character 
 //    happens to be open parentheses then we add it to our stack.
@@ -51,9 +47,8 @@ public:
             if (c == '(') {
                 stack.push(c);
                 max = max > stack.size() ? max : stack.size();
-            } else if (c == ')') {
-                stack.pop();
             }
+            else if (c == ')') stack.pop();
         }
         return max; 
     }
@@ -65,7 +60,9 @@ public:
 
 
 
-// APPROACH 3
+
+
+// A 2
 // 1. We can avoid using stack since the only character we are dealing with is open and
 //    closing parentheses.
 // 2. Instead, we can maintain open parentheses and increment whenever open parentheses
@@ -81,20 +78,19 @@ public:
                 depth += 1;
                 max = max > depth ? max : depth;
             } 
-            else if(c == ')') {
-                depth -= 1;
-            }
+            else if(c == ')') depth -= 1;
         }
         return max;
     }
 };
-
-
 
 // Time Complexity: O(N) where n is number of elements in given string. 
 // Auxiliary Space: O(1)
 
 
 
+
+
+// A 3
 
 
