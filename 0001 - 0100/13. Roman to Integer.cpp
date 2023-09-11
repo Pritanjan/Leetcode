@@ -183,20 +183,29 @@ public:
 class Solution {
 public:
     int romanToInt(string s) {
-        unordered_map<char, int> v = {
-            {'I', 1},
-            {'V', 5},
-            {'X', 10},
-            {'L', 50},
-            {'C', 100},
-            {'D', 500},
-            {'M', 1000}
-        };
+        // unordered_map<char, int> v = {
+        //     {'I', 1},
+        //     {'V', 5},
+        //     {'X', 10},
+        //     {'L', 50},
+        //     {'C', 100},
+        //     {'D', 500},
+        //     {'M', 1000}
+        // };
+
+        unordered_map<char,int> ump;
+        ump['I']=1;
+        ump['V']=5;
+        ump['X'] = 10;
+        ump['L']=50;
+        ump['C'] = 100;
+        ump['D']= 500;
+        ump['M']=1000;
 
         int res = 0;
         int prevVal = 0;
         for(int i=s.length()-1; i>=0; --i) {
-            int currVal = v[s[i]];
+            int currVal = ump[s[i]];
             if(currVal >= prevVal) res += currVal;
             else res -= currVal;
             prevVal = currVal;
@@ -209,7 +218,7 @@ public:
 
 
 
-// A6 -  Using Arrays
+// A 6 -  Using Arrays
 
 // Use 2 arrays to store the Roman numeral characters and their corresponding integer values. 
 // The key idea is to iterate through the given string and check the values of the current and 
