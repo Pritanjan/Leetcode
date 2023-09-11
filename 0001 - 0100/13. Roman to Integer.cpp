@@ -240,6 +240,37 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        char symb[] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+        int  val[]  = {1, 5, 10, 50, 100, 500, 1000};
+        
+        unordered_map<char, int> ump;
+        for(int i=0; i<7; i++) {
+            ump[symb[i]] = val[i];
+        }
+
+        int res = 0;
+        const char* str = s.c_str();
+        while(*str) {
+            if(ump[*str] < ump[*(str + 1)]) {
+                res += ump[*(str + 1)] - ump[*str];
+                str += 2;
+            } 
+            else {
+                res += ump[*str];
+                str++;
+            }
+        }
+        return res;
+    }
+};
+
+
 
 
 
