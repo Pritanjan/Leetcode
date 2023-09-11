@@ -93,4 +93,34 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int maxDepth(string s) {
+        int res = 0;
+        int currDepth = 0;
+        int i = 0;
+
+        while(i < s.length()) {
+            if(s[i] == '(') {
+                int j = i+1;
+                int openCnt = 1;
+                while(j < s.length() && openCnt > 0) {
+                    if(s[j] == '(') openCnt++;
+                    else if(s[j] == ')') openCnt--;
+                    j++;
+                }
+                res = max(res, maxDepth(s.substr(i+1, j-i-2)) + 1); 
+                i = j;
+            } 
+            else i++;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 4
 
