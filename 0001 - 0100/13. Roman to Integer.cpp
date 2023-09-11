@@ -1,4 +1,4 @@
-// APPROACH 2 [ Map and Linear Scanning ]
+// A 2 [ Map and Linear Scanning ]
 
 class Solution {
 public:
@@ -26,8 +26,7 @@ public:
 
 
 
-
-// APPROACH 1 [ Map and Reverse Scanning ]
+// A 1 [ Map and Reverse Scanning ]
 
 class Solution {
 public:
@@ -41,7 +40,6 @@ public:
         // map.insert({'C', 100});
         // map.insert({'D', 500});
         // map.insert({'M', 1000});
-        
         unordered_map<char,int> map = {
             {'I', 1},
             {'V', 5},
@@ -64,8 +62,7 @@ public:
 
 
 
-
-// APPROACH 3 [ Use Switch }
+// A 3 [ Use Switch }
 
 class Solution {
 public:
@@ -151,13 +148,13 @@ public:
 
 
 
-// APPROACH 4 [ Recursive]
+
+// A 4 [ Recursive]
 
 class Solution {
 public:
     int recursive(string s, unordered_map<char, int>& roman) {
         if(s.empty()) return 0;
-
         int val = roman[s.front()];
         if(s.length() > 1 && roman[s[1]] >  val) return recursive(s.substr(1), roman) - val;
         else return val + recursive(s.substr(1), roman);
@@ -181,8 +178,7 @@ public:
 
 
 
-
-// APPROACH 5 [ Precompute All Possible Values ]
+// A 5 [ Precompute All Possible Values ]
 
 class Solution {
 public:
@@ -199,13 +195,10 @@ public:
 
         int res = 0;
         int prevVal = 0;
-
         for(int i=s.length()-1; i>=0; --i) {
             int currVal = v[s[i]];
-
             if(currVal >= prevVal) res += currVal;
             else res -= currVal;
-
             prevVal = currVal;
         }
         return res;
@@ -216,10 +209,9 @@ public:
 
 
 
-
 // A6 -  Using Arrays
 
-// use 2 arrays to store the Roman numeral characters and their corresponding integer values. 
+// Use 2 arrays to store the Roman numeral characters and their corresponding integer values. 
 // The key idea is to iterate through the given string and check the values of the current and 
 // next characters.
 // If the value of the current character is smaller than the value of the next character, subtract it; 
@@ -246,4 +238,50 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// A 7 - Using Stack
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> ump = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
+        int res = 0;
+        stack<int> stk;
+
+        for(char c : s) {
+            int val = ump[c];
+            if(!stk.empty() && val > stk.top()) {
+                res -= stk.top();
+                stk.pop();
+            }
+            stk.push(val);
+        }
+
+        while(!stk.empty()) {
+            res += stk.top();
+            stk.pop();
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 8
 
