@@ -23,7 +23,6 @@ public:
     ListNode* middleNode(ListNode* head) {
         vector<ListNode*> res;
         ListNode* curr =  head;
-
         while(curr != nullptr) {
             res.push_back(curr);
             curr = curr -> next;
@@ -34,6 +33,7 @@ public:
 
 // Time Complexity: O(N), where N is the number of nodes in the given list.
 // Space Complexity: O(N), the space used by A.
+
 
 
 
@@ -59,6 +59,7 @@ public:
 
 // Time Complexity: O(N), where NN is the number of nodes in the given list.
 // Space Complexity: O(1), the space used by slow and fast.
+
 
 
 
@@ -198,3 +199,28 @@ public:
 
 
 
+
+// A 6 - Using a Single Pointer and a Counter:
+// maintain a counter that keeps track of the number of nodes encountered while traversing the list.
+// Then, iterate through the list again to find the middle node using the counter.
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        int cnt = 0;
+        ListNode* curr = head;
+        ListNode* mid = head;
+        while(curr != nullptr) {
+            if(cnt % 2 == 1) mid = mid -> next;
+            cnt++;
+            curr = curr -> next;
+        }
+        return mid;
+    }
+};
+
+
+
+
+
+// A 7
