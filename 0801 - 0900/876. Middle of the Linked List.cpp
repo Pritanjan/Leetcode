@@ -39,10 +39,9 @@ public:
 
 
 
-// A 2 [ Using slow and fast pointers ]
-// When traversing the list with a pointer first,
-// make another pointer second that traverses twice as second. 
-// When second reaches the end of the list, first must be in the middle.
+// A 2 [ Using slow and fast pointers ]  OR [ Tortoise-Hare-Approach ]
+// When traversing the list with a pointer first, make another pointer second that
+// traverses twice as second. When second reaches the end of the list, first must be in the middle.
 
 class Solution {
 public:
