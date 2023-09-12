@@ -23,6 +23,33 @@ public:
 };
 
 
+// OR 2 map
+
+
+class Solution {
+public:
+    int minDeletions(string s) {
+        unordered_map<char, int> freqMp;
+        // Count the frequency of each character in the string.
+        for(char c : s) freqMp[c]++;
+        
+        unordered_map<int, int> cntMp; // Maps frequency to count of characters with that frequency
+        int minDel = 0;
+        for(auto& it : freqMp) {
+            int tmp = it.second;
+            
+            // Increase the frequency until it's unique or 0.
+            while(cntMp[tmp] > 0) {
+                tmp--;
+                minDel++;
+            }
+            if(tmp > 0) cntMp[tmp] = 1;
+        }        
+        return minDel;
+    }
+};
+
+
 
 
 
