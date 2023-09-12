@@ -79,3 +79,38 @@ public:
 // Memory: O(1) as we will not store more than 26 different frequencies.
 
 
+
+
+
+// A 3 - using an Array to Count Frequencies (same as A1 b)
+
+class Solution {
+public:
+    int minDeletions(string s) {
+        vector<int> freq(26, 0);
+        for(char c : s) freq[c-'a']++;
+        
+        // vector<int> cnt(1001, 0);
+        vector<int> cnt(s.size()+1, 0);
+        int minDel = 0;
+
+        for(int i=0; i<26; i++) {
+            int tmp = freq[i];
+            if(tmp > 0) {
+                while(cnt[tmp] > 0) {
+                    tmp--;
+                    minDel++;
+                }
+                if(tmp > 0) cnt[tmp] = 1;
+            }
+        }        
+        return minDel;
+    }
+};
+
+
+
+
+
+// A 4
+
