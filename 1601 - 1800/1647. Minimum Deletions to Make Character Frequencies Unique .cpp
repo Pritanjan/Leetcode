@@ -74,6 +74,30 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int minDeletions(string s) {
+        int freq[26] = {};
+        unordered_set<int> freqUq;
+        for(char i : s) freq[i - 'a']++;
+        
+        int del = 0;
+        for(int i=0; i<26; i++) {
+            int f = freq[i];
+            while(freq[i] > 0 && freqUq.count(f) > 0) {
+                del++;
+                f--;
+            }
+            if(f > 0) freqUq.insert(f);
+        }
+        return del;
+    }
+};
+
+
 
 
 
