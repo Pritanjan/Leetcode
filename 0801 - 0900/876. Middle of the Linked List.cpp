@@ -1,5 +1,4 @@
-// APPROACH 1 
-
+// A 1 
 // Put every node into an vector v in order. 
 // Then the middle node is just v[v.length // 2], 
 // since we can retrieve each node by index.
@@ -15,6 +14,24 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        vector<ListNode*> res;
+        ListNode* curr =  head;
+
+        while(curr != nullptr) {
+            res.push_back(curr);
+            curr = curr -> next;
+        }
+        return res[res.size()/2];
+    }
+};
+
 // Time Complexity: O(N), where N is the number of nodes in the given list.
 // Space Complexity: O(N), the space used by A.
 
@@ -22,9 +39,7 @@ public:
 
 
 
-
-// APPROACH 2 [ Using slow and fast pointers ]
-
+// A 2 [ Using slow and fast pointers ]
 // When traversing the list with a pointer first,
 // make another pointer second that traverses twice as second. 
 // When second reaches the end of the list, first must be in the middle.
@@ -42,7 +57,6 @@ public:
     }
 };
 
-
 // Time Complexity: O(N), where NN is the number of nodes in the given list.
 // Space Complexity: O(1), the space used by slow and fast.
 
@@ -50,7 +64,8 @@ public:
 
 
 
-// APPROACH 3 [ Using two pointers and a counter ]
+
+// A 3 [ Using two pointers and a counter ]
 
 class Solution {
 public:
@@ -64,7 +79,6 @@ public:
         }
         int middle = len/2;
         temp = head;
-        
         while(middle--) temp = temp -> next;        
         return temp;
     }
@@ -74,7 +88,8 @@ public:
 
 
 
-// APPROACH 3 [ Finding the length of the LL then travesrse for n/2 ]
+
+// A 3 [ Finding the length of the LL then travesrse for n/2 ]
 
 class Solution {
 public:
@@ -108,7 +123,7 @@ public:
 
 
 
-// APPROACH 4 [ Using recursion ]
+// A 4 [ Using recursion ]
 
 class Solution {
 public:
@@ -136,7 +151,6 @@ public:
         int pos = 0;
         recursion(head, mid, pos);return mid;
     }
-
     void recursion(ListNode* curr, ListNode*& mid, int& pos) {
         if(!curr) return ;        
         recursion(curr -> next, mid, pos);
@@ -148,7 +162,8 @@ public:
 
 
 
-// APPROACH 5 [ STACK ]
+
+// A 5 [ STACK ]
 
 class Solution {
 public:
