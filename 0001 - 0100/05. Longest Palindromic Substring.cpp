@@ -177,6 +177,45 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int n = s.size();
+        if(n <= 1) return s;
+        
+        string res = "";
+        int maxLen = 0;
+        for(int i=0; i<n; i++) {
+            // Check for odd-length palindromes
+            int L = i, R = i;
+            while(L >= 0 && R < n && s[L] == s[R]) {
+                if(R-L+1 > maxLen) {
+                    maxLen = R-L+1;
+                    res = s.substr(L, maxLen);
+                }
+                L--;
+                R++;
+            }
+
+            // Check for even-length palindromes
+            L = i;
+            R = i+1;
+            while(L >= 0 && R < n && s[L] == s[R]) {
+                if(R-L+1 > maxLen) {
+                    maxLen = R-L+1;
+                    res = s.substr(L, maxLen);
+                }
+                L--;
+                R++;
+            }
+        }
+        return res;
+    }
+};
+
 
 
 
