@@ -50,6 +50,30 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int minDeletions(string s) {
+        unordered_map<char, int> freqMp;
+        for(char c : s) freqMp[c]++;
+        
+        unordered_map<int, int> freq;
+        int minDel = 0;
+        for(auto& it : freqMp) {
+            int tmp = it.second;
+            while(freq.count(tmp) > 0) {
+                tmp--;
+                minDel++;
+            }
+            if(tmp > 0) freq[tmp] = 1;
+        }        
+        return minDel;
+    }
+};
+
+
 
 
 
