@@ -29,6 +29,7 @@ public:
 
 
 
+
 // A 2
 
 class Solution {
@@ -79,7 +80,6 @@ public:
             delete to_remove;
             return head;
         }
-
         head->next = removeNthFromEnd(head->next, n);
         return head;
     }
@@ -188,27 +188,68 @@ public:
 
 
 
+// A 6 - Using a vector to store nodes
 
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        vector<ListNode*> v;
+        ListNode* curr = head;
+        while(curr) {
+            v.push_back(curr);
+            curr = curr -> next;
+        }
 
+        int target = v.size() - n;
+        if(target == 0) {
+            ListNode* temp = head;
+            head = head -> next;
+            delete temp;
+            return head;
+        }
 
-
-
-
-// Nth node from end of linked list
-
-#include<bits/stdc++.h>
-//Function to find the data of nth node from the end of a linked list.
-int getNthFromLast(Node *head, int n) {
-    stack<Node*> st;
-    while(head){
-        st.push(head);
-        head = head -> next;
+        ListNode* prev = v[target - 1];
+        ListNode* temp = prev -> next;
+        prev -> next = prev -> next -> next;
+        delete temp;
+        return head;
     }
-    n--;
-    while(n--) {
-        st.pop();
-        if(st.empty()) return -1;
-    }        
-    return st.top()->data;
-}
+};
+
+
+
+
+
+
+// A 7  -  Using Stack
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        stack<ListNode*> nodes;
+        ListNode* curr = head;
+        while(curr) {
+            nodes.push(curr);
+            curr = curr -> next;
+        }
+
+        for(int i=0; i<n; i++) nodes.pop();        
+        if(nodes.empty()) {
+            ListNode* temp = head;
+            head = head -> next;
+            delete temp;
+            return head;
+        }
+        ListNode* prev = nodes.top();
+        ListNode* temp = prev -> next;
+        prev -> next = prev -> next -> next;
+        delete temp;
+        return head;
+    }
+};
+
+
+
+
+
 
