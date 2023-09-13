@@ -255,35 +255,3 @@ public:
 
 // A 6 
 
-class Solution {
-public:
-    ListNode *detectCycle(ListNode *head) {
-        ListNode *slow = head;
-        ListNode *fast = head;
-        ListNode *meet = nullptr;
-
-        while(fast != nullptr && fast -> next != nullptr) {
-            slow = slow -> next;
-            fast = fast -> next -> next;
-
-            if(slow == fast) {
-                meet = slow;
-                break;
-            }
-        }
-
-        if(meet == nullptr) return nullptr; // No cycle
-        
-        slow = head;
-        while(slow != meet) {
-            slow = slow -> next;
-            meet = meet -> next;
-        }
-        return slow; // Return the starting node of the cycle
-    }
-};
-
-
-
-
-
