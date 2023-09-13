@@ -215,6 +215,38 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if(!head || !head->next) return true;
+        stack<int> stk;
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        // Push the first half of the list onto the stack
+        while(fast && fast->next) {
+            stk.push(slow -> val);
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+
+        // If the list has an odd length, skip the middle element
+        if(fast) slow = slow -> next;
+
+        // Compare the second half of the list with the reversed first half
+        while(slow) {
+            if(stk.top() != slow -> val) return false;
+            stk.pop();
+            slow = slow -> next;
+        }
+        return true;
+    }
+};
+
+
 
 
 
