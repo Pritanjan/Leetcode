@@ -1,30 +1,26 @@
-// APPROACH 1 [ fast & slow pointer ]
+// A 1 [ fast & slow pointer ]
 
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
         ListNode*fast = head;
         ListNode*slow = head;
-        
         // iterate first n node using fast pointer
         while(n--) fast = fast->next;
         
-        // if fast is already null, then we 
-        // will have to delete head itself. 
-		// Therefore return next of head
+        // if fast is already null, then we will have to delete head itself. 
+	// Therefore return next of head 
         if(!fast) return head -> next;
         
-        // Now, iterate till fast reaches the last node of list
+        // Now, iterate till fast reaches the last node of list 
 	// while maintaining the gap of n b/w fast and slow.
-        while(fast -> next){
+        while(fast -> next) {
             fast = fast -> next;
             slow = slow -> next;
         }
         
         // remove the nth node from last
         slow -> next = slow -> next -> next;
-		
         return head;
     }
 };
@@ -33,11 +29,7 @@ public:
 
 
 
-
-
-
-
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -69,10 +61,7 @@ public:
 
 
 
-
-
-
-// APPROACH 3 [ RECURSION ]
+// A 3 [ RECURSION ]
 
 class Solution {
 public:
@@ -97,12 +86,49 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int m = removeNode(head, n);
+        return m == n ? head -> next : head;
+    }
+    
+    int removeNode(ListNode* node, int n) {
+        if(node -> next == NULL) return 1;
+        int m = removeNode(node->next, n);
+        if(m == n) {
+            if(m == 1) node -> next = NULL;
+            else node -> next = node -> next -> next;
+        }
+        return m+1;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    int cur = 0;
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+       if(!head) return NULL;
+       head -> next = removeNthFromEnd(head -> next, n);
+       cur++;
+       if(n == cur) return head -> next;
+       return head;
+    }
+};
 
 
 
 
-// APPROACH 4 
 
+
+// A 4 
 
 class Solution {
 public:
@@ -111,7 +137,6 @@ public:
         ListNode* h = head;
         ListNode* prev = nullptr;
         ListNode* remove = h;
-        
         while(head != nullptr) {
             if(i-n > 0) {
                 prev = remove;
@@ -120,7 +145,6 @@ public:
             head = head->next;
             i++;
         }
-
         if(prev != nullptr) prev->next = remove->next;
         else h = h->next;
         return h;
@@ -132,33 +156,7 @@ public:
 
 
 
-// NO
-
-
-
-
-
-
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        int m = removeNode(head, n);
-        return m == n ? head->next : head;
-    }
-    
-    int removeNode(ListNode* node, int n) {
-        if(node->next == NULL) return 1;
-        
-        int m = removeNode(node->next, n);
-        if(m == n){
-            if(m == 1) node->next = NULL;
-            else node->next = node->next->next;
-        }
-        return m+1;
-    }
-};
-
-
+// A 5 Using Hash Map
 
 class Solution {
 public:
@@ -188,17 +186,8 @@ public:
 
 
 
-class Solution {
-public:
-    int cur=0;
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-       if(!head) return NULL;
-       head -> next = removeNthFromEnd(head -> next, n);
-       cur++;
-       if(n == cur) return head -> next;
-       return head;
-    }
-};
+
+
 
 
 
@@ -209,21 +198,17 @@ public:
 
 #include<bits/stdc++.h>
 //Function to find the data of nth node from the end of a linked list.
-int getNthFromLast(Node *head, int n)
-{
+int getNthFromLast(Node *head, int n) {
     stack<Node*> st;
     while(head){
         st.push(head);
         head = head -> next;
     }
-    
     n--;
-    while(n--){
+    while(n--) {
         st.pop();
-        if(st.empty())
-            return -1;
-    }
-        
+        if(st.empty()) return -1;
+    }        
     return st.top()->data;
 }
 
