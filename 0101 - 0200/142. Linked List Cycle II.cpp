@@ -1,4 +1,4 @@
-// APPROACH 0 BRUTE FORCE
+// A 0 BRUTE FORCE
 
 class Solution {
 public:
@@ -47,7 +47,7 @@ public:
 
 
 
-// APPROACH 1 [ Using Hash Map ]
+// A 1 [ Using Hash Map ]
 
 class Solution {
 public:
@@ -85,7 +85,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 ListNode* detectCycle(ListNode* head) {
     if(!head || !head->next) return NULL;
@@ -124,7 +124,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -173,5 +173,51 @@ public:
         return fast;
     }
 };
+
+
+
+
+
+// A 4 -  Floyd's Tortoise and Hare Algorithm (Without Extra Data Structures)
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        // Phase 1: Detect if there is a cycle
+        bool hasCycle = false;
+        while(fast != nullptr && fast -> next != nullptr) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+
+            // If there is a cycle, break the loop
+            if(slow == fast) {
+                hasCycle = true;
+                break;
+            }
+        }
+
+        // If there is no cycle
+        if(!hasCycle) return nullptr;
+        
+        // Phase 2: Find the starting node of the cycle
+        slow = head;
+        while(slow != fast) {
+            slow = slow -> next;
+            fast = fast -> next;
+        }
+        return slow; // Return the starting node of the cycle
+    }
+};
+
+
+
+
+
+
+// A 5
+
 
 
