@@ -66,6 +66,30 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        ListNode* next = nullptr;
+
+        while(curr != nullptr) {
+            next = curr -> next;  // Store the next node.
+            curr -> next = prev;  // Reverse the link.
+            
+            // Move prev and current one step forward.
+            prev = curr;
+            curr = next;
+        }
+        return prev;  // The new head is the previous tail.
+    }
+};
+
+
+
 
 
 
