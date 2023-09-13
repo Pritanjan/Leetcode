@@ -279,37 +279,43 @@ public:
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-         if(!head || !head->next) return true;
-
+        if(!head || !head->next) return true;
+        
+        // Find the middle of the list
         ListNode* slow = head;
         ListNode* fast = head;
-
         while(fast && fast->next) {
-            slow = slow -> next;
-            fast = fast -> next -> next;
+            slow = slow->next;
+            fast = fast->next->next;
         }
 
-        ListNode* secondHalf = nullptr;
-        while(slow) {
-            ListNode* temp = slow->next;
-            slow -> next = secondHalf;
-            secondHalf = slow;
-            slow = temp;
+        // Reverse the second half of the list
+        ListNode* prev = nullptr;
+        ListNode* curr = slow;
+        while(curr) {
+            ListNode* nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
         }
 
-        while(secondHalf) {
-            if(head->val != secondHalf->val) return false;
-            head = head -> next;
-            secondHalf = secondHalf -> next;
+        // Compare the reversed second half with the first half
+        while(prev) {
+            if(prev->val != head->val) return false;
+            prev = prev->next;
+            head = head->next;
         }
         return true;
     }
 };
 
 
+
+
+
+
 // OR
 // Reversing the First Half
-
 
 class Solution {
 public:
