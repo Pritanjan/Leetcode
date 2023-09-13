@@ -292,3 +292,34 @@ private:
 
 
 
+
+// A 8
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr || head->next == nullptr) return head;
+        
+        vector<ListNode*> v;
+        ListNode* curr = head;
+        while(curr != nullptr) {
+            v.push_back(curr);
+            curr = curr -> next;
+        }
+
+        reverse(v.begin(), v.end());
+        for(int i=0; i<v.size() - 1; ++i) {
+            v[i] -> next = v[i+1];
+        }
+
+        v.back() -> next = nullptr;
+        return v.front();
+    }
+};
+
+
+
+
+
+
+// A 9
