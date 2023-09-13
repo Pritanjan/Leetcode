@@ -35,7 +35,7 @@ public:
 
 
 
-// APPROACH 2 [ USING 3 POINTER ]
+// A 2 [ USING 3 POINTER ]
 
 class Solution {
 public:
@@ -69,7 +69,7 @@ public:
 
 
 
-// APPROACH 3 [ Iterative solution ] pg 9
+// A 3 [ Iterative solution ] pg 9
 
 class Solution {
 public:
@@ -78,7 +78,6 @@ public:
         
         ListNode * prev = NULL;
         ListNode * curr = head;
-        
         while(curr != NULL){
             ListNode * fd = NULL;
             fd = curr -> next;
@@ -97,7 +96,7 @@ public:
 
 
 
-// APPROACH 4 [ Recursion ]
+// A 4 [ Recursion ]
 
 class Solution {
 public:
@@ -107,11 +106,9 @@ public:
             head = prev;
             return ;
         }
-        
         Recursion(head,  curr -> next, curr);          
         // curr -> next = prev;
-    }
-    
+    }    
     ListNode* reverseList(ListNode* head) {
         ListNode * curr = head;
         ListNode * prev = NULL;
@@ -151,12 +148,11 @@ public:
 
 
 
-// APPROACH 5 [ Using stack ] FIFO
+// A 5 [ Using stack ] FIFO
 //  because stacks uses FIFO The implementation principle is to put the linked list nodes
 // into the stack one by one, and then out of the stack one by one after all the stacks, 
 // and when they come out of the stack, they are stringing the nodes of the stack into a 
 // new linked list. 
-
 
 class Solution {
 public:
@@ -180,15 +176,46 @@ public:
         node->next = NULL;
         return dummy;
     }
+};
 
+
+// OR
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        stack<ListNode*> stk;
+        while(head != nullptr) {
+            stk.push(head);
+            head = head -> next;
+        }
+        
+        ListNode* newHead = nullptr;
+        ListNode* curr = nullptr;
+        while(!stk.empty()) {
+            if(newHead == nullptr) {
+                newHead = stk.top();
+                curr = newHead;
+            } 
+            else {
+                curr -> next = stk.top();
+                curr = curr -> next;
+            }
+            stk.pop();
+        }        
+        if(curr != nullptr) curr -> next = nullptr;        
+        return newHead;
+    }
 };
 
 
 
 
 
-// APPROACH 6 [ . Reversing in Pairs ]
-// Here, we reverse the LL in pairs of nodes. This is useful when we want to reverse the list
+
+// A 6 [ Reversing in Pairs ]
+// We reverse the LL in pairs of nodes. This is useful when we want to reverse the list
 // in a grouped manner.
 
 class Solution {
@@ -225,7 +252,7 @@ public:
 
 
 
-// APPROACH 7  [ Reversing by Swapping Values ]
+// A 7  [ Reversing by Swapping Values ]
 // Here, we swap values of nodes symmetrically across the middle of the list until we reach middle.
 // This method doesn't involve changing pointers but just swaps the values in the nodes.
 
@@ -234,7 +261,6 @@ public:
     ListNode* reverseList(ListNode* head) {
         ListNode* curr = head;
         int cnt = 0; // Count the number of nodes
-
         while(curr) {
             cnt++;
             curr = curr -> next;
@@ -247,13 +273,11 @@ public:
             ListNode* node_i = getNodeAtPosition(head, i);
             ListNode* node_j = getNodeAtPosition(head, j);
             swap(node_i -> val, node_j -> val);
-
             i++;
             j--;
         }
         return head;
-    }
-    
+    }    
 private:
     ListNode* getNodeAtPosition(ListNode* head, int pos) {
         ListNode* curr = head;
