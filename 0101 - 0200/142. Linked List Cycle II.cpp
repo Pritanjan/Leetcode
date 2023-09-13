@@ -179,6 +179,8 @@ public:
 
 
 // A 4 -  Floyd's Tortoise and Hare Algorithm (Without Extra Data Structures)
+// It uses two pointers, slow and fast, to traverse the list. 
+// Once a cycle is detected, it finds the starting node of the cycle as in the previous approaches.
 
 class Solution {
 public:
@@ -219,5 +221,36 @@ public:
 
 // A 5
 
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *slow = head;
+        ListNode *fast = head;
+        ListNode *meet = nullptr;
+
+        while(fast != nullptr && fast -> next != nullptr) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+
+            if(slow == fast) {
+                meet = slow;
+                break;
+            }
+        }
+
+        if(meet == nullptr) return nullptr; // No cycle
+        
+        slow = head;
+        while(slow != meet) {
+            slow = slow -> next;
+            meet = meet -> next;
+        }
+        return slow; // Return the starting node of the cycle
+    }
+};
 
 
+
+
+
+// A 6 
