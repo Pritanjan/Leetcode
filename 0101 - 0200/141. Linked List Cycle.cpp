@@ -190,7 +190,7 @@ public:
 
 
 
-// APPROACH 4(iv) [ Move fast pointer by 4 steps each time, & slow pointer by 2 step each time]
+// APPROACH 4(v) [ Move fast pointer by 4 steps each time, & slow pointer by 2 step each time]
 
 
 class Solution {
