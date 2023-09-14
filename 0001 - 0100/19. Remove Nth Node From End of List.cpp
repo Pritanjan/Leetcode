@@ -162,23 +162,18 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* temp = head;
-        unordered_map<int, ListNode*> m;
-        int index = 1;
-        while (temp != nullptr) {
-            m[index++] = temp;
+        unordered_map<int, ListNode*> ump;
+        int idx = 1;
+        while(temp != nullptr) {
+            ump[idx++] = temp;
             temp = temp->next;
         }
-        int size = m.size();
-        if (size == 1) {
-            return nullptr;
-        }
-        if (n == 1) {
-            m[size-1]->next = nullptr;
-        } else if (n == size) {
-            head = head->next;
-        } else {
-            m[size-n]->next = m[size-n+2];
-        }
+        
+        int size = ump.size();
+        if(size == 1) return nullptr;
+        if(n == 1) ump[size - 1] -> next = nullptr;
+        else if(n == size) head = head -> next;
+        else ump[size - n] -> next = ump[size - n+2];
         return head;
     }
 };
