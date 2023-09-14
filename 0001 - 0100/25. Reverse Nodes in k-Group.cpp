@@ -125,3 +125,54 @@ public:
 
 // T.C. --> O(N)
 
+
+
+
+
+
+// A 3 Iterative Approach with Stack:
+// Traverse the linked list in groups of k nodes.
+// Use a stack to reverse each group of k nodes.
+// Attach the reversed groups back together to form the modified list.
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        stack<ListNode*> stk;
+        ListNode* dummy = new ListNode(0);
+        ListNode* curr = dummy;
+        
+        while(true) {
+            int cnt = 0;
+            ListNode* tmp = head;
+            
+            while(tmp && cnt < k) {
+                stk.push(tmp);
+                tmp = tmp -> next;
+                cnt++;
+            }
+            if(cnt != k) {
+                curr -> next = head;
+                break;
+            }
+            
+            while(!stk.empty()) {
+                curr -> next = stk.top();
+                curr = curr -> next;
+                stk.pop();
+            }
+            curr -> next = tmp;
+            head = tmp;
+        }        
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 4
+
+
