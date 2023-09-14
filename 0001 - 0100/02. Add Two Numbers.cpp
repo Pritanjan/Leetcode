@@ -1,5 +1,4 @@
 // SAME AS LC Q 445 Add Two Numbers II
-
 // APPROACH 1 [ Elementary Math ]
 
 class Solution {
@@ -34,7 +33,6 @@ public:
 
 
 
-
 // APPROACH 2
 
 class Solution {
@@ -47,9 +45,11 @@ public:
             int x = l1 ? l1->val : 0;
             int y = l2 ? l2->val : 0;
             int sum = carry + x + y;
+            
             carry = sum / 10;
             curr->next = new ListNode(sum % 10);
             curr = curr->next;
+            
             l1 = l1 ? l1->next : nullptr;
             l2 = l2 ? l2->next : nullptr;
         }
@@ -76,12 +76,10 @@ public:
             sum += l2->val;
             l2 = l2->next;
         }
-
         ListNode* res = new ListNode(sum % 10);
         res -> next = f(l1, l2, sum / 10);
         return res;
     }
-
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         return f(l1, l2, 0);        
     }
