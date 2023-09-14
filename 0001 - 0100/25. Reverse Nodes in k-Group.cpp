@@ -217,5 +217,54 @@ public:
 
 
 
+
 // A 5
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* tail = dummy; // Initialize the tail pointer
+
+        while(true) {
+            ListNode* gpStrt = tail -> next;
+            ListNode* gpEnd = tail -> next;
+            int cnt = 0;
+            
+            // Check if there are at least k nodes in the group
+            while(gpEnd && cnt < k) {
+                gpEnd = gpEnd -> next;
+                cnt++;
+            }
+            
+            if(cnt == k) { // If there are k nodes in the group
+                ListNode* prev = nullptr;
+                ListNode* curr = gpStrt;
+                // Reverse the k nodes in the group
+                for(int i=0; i<k; i++) {
+                    ListNode* next = curr -> next;
+                    curr -> next = prev;
+                    prev = curr;
+                    curr = next;
+                }
+                // Connect the reversed group to the previous tail
+                tail -> next = prev;
+                gpStrt -> next = curr;
+                // Update the tail pointer for the next iteration
+                tail = gpStrt;
+            } 
+            // If there are less than k nodes left, break the loop
+            else break;
+        }
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 6
 
