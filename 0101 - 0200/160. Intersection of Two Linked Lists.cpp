@@ -292,6 +292,9 @@ public:
 
 
 // A 8
+// first find the lengths of both linked lists and calculate the length difference. 
+// Then, you truncate the longer list so that both lists have the same length from their starting point. 
+// After that, compare nodes of both lists one by one until you find the intersection point.
 
 class Solution {
 public:
@@ -333,9 +336,13 @@ public:
     }
 };
 
+// Here, we traverse both LL twice : once to find the lengths and once to compare nodes
+// It's less efficient than the two-pointer approach, which traverses both lists only once
+
 
 
 
 
 
 // A 9 
+
