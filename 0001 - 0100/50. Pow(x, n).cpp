@@ -168,4 +168,30 @@ public:
 
 // A 7
 
+class Solution {
+public:
+    double myPow(double x, int n) {
+        unordered_map<int, double> ump;
+        return myPowHelper(x, n, ump);
+    }
 
+private:
+    double myPowHelper(double x, int n, unordered_map<int, double>& ump) {
+        // Any number to the power of 0 is 1.
+        if(n == 0) return 1.0; 
+        if(ump.find(n) != ump.end()) return ump[n];
+        
+        double half = myPowHelper(x, n / 2, ump);
+        double res = half * half;
+        if(n % 2 != 0) res *= (n < 0) ? 1.0 / x : x;
+        
+        ump[n] = res;
+        return res;
+    }
+};
+
+
+
+
+
+// A 8
