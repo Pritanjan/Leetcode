@@ -248,3 +248,40 @@ public:
 
 
 
+// A 8 - count nodes & delete nth node
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int cnt = 0;
+        ListNode* curr = head;
+        while(curr) {
+            cnt++;
+            curr = curr -> next;
+        }
+
+        if(cnt == n) {
+            ListNode* temp = head;
+            head = head -> next;
+            delete temp;
+            return head;
+        }
+
+        curr = head;
+        for(int i=0; i<cnt-n-1; i++) {
+            curr = curr -> next;
+        }
+
+        ListNode* temp = curr -> next;
+        curr -> next = curr -> next -> next;
+        delete temp;
+        return head;
+    }
+};
+
+
+
+
+
+
+// A 9 - 
