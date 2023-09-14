@@ -64,7 +64,8 @@ public:
         
         // traverse list B and check if its node is present in the set
         while(headB != NULL) {
-            if(s.find(headB) != s.end()) return headB;
+            if(s.count(headB)) return headB;
+            // if(s.find(headB) != s.end()) return headB;
             headB = headB->next;
         }
         // if there's no intersection, return null
