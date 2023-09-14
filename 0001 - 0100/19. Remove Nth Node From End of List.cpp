@@ -284,4 +284,46 @@ public:
 
 
 
-// A 9 - 
+// A 9 -  Reverse the list, delete the nth node, and reverse again
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while(curr) {
+            ListNode* next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        head = reverseList(head);
+        if(n == 1) {
+            ListNode* temp = head;
+            head = head -> next;
+            delete temp;
+            return reverseList(head);
+        }
+
+        ListNode* curr = head;
+        for(int i=0; i<n-2; i++) {
+            curr = curr -> next;
+        }
+
+        ListNode* temp = curr -> next;
+        curr -> next = curr -> next -> next;
+        delete temp;
+        return reverseList(head);
+    }
+};
+
+
+
+
+
+
+// A 10
