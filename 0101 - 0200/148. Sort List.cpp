@@ -92,6 +92,38 @@ public:
 
 
 
+// A 2 - Insertion Sort
+
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if(!head || !head->next) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+
+        ListNode* sortedTail = head;
+        ListNode* curr = head->next;
+
+        while(curr) {
+            if(curr -> val < sortedTail -> val) {
+                ListNode* prev = dummy;
+                while(prev -> next -> val < curr -> val) prev = prev -> next;
+                sortedTail -> next = curr -> next;
+                curr -> next = prev -> next;
+                prev -> next = curr;
+            } 
+            else sortedTail = curr;
+            curr = sortedTail -> next;
+        }
+        return dummy -> next;
+    }
+};
+
+
+
+
+
 
 
 
