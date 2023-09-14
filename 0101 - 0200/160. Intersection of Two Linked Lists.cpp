@@ -17,6 +17,11 @@ public:
     }
 };
 
+// T.C. --> O(m * n), 
+// as it uses nested loops to compare each node in one list with each node in the other list.
+// S.C. --> O(1), no DS is used
+
+
 
 
 
@@ -35,6 +40,11 @@ public:
         return headB;
     }
 };
+
+// T.C. --> O(m + n), Building the hash map for the first list takes O(m) time, 
+// and then checking for intersection in the second list takes O(n) time.
+// S.C. --> O(1),  it uses a hash map to store nodes from the first list.
+
 
 
 
@@ -72,11 +82,9 @@ public:
 };
 
 // Here we've used unordered_set instead of set as it provides faster lookup times in practice.
-
 // T.C. -->  O(m + n), where m and n are the lengths of the two linked lists,
 // because we need to traverse both lists to create the set and check for intersection.
-// S.C. -->  O(m + n), because we need to store all nodes of one of the lists in the set.
-
+// S.C. -->  O(min(m, n)), because we need to store all nodes of one of the lists in the set.
 // Note that the space complexity can be improved to O(min(m, n)) by storing the nodes
 // of the smaller list in the set instead of the larger one, but the time complexity remains the same.
 
@@ -103,6 +111,9 @@ public:
         return temp1;
     }
 };
+
+// T.C. --> O(m + n), It uses two pointers that traverse the lists once.
+// S.C. --> O(1), it doesn't use any additional data structures.
 
 
 
@@ -192,6 +203,10 @@ private:
     }
 };
 
+// T.C. --> O(m + n),
+// counts the lengths of both lists in separate passes and then compares nodes in a single pass
+// S.C. --> O(1), it doesn't use any additional data structures other than a few integer variables
+
 
 
 
@@ -240,6 +255,10 @@ public:
     }
 };
 
+// T.C. --> O(m + n), 
+// counts the lengths of both lists in separate passes and then compares nodes in a single pass
+// S.C. --> O(1), it doesn't use any additional data structures other than a few integer variables
+
 
 
 
@@ -286,12 +305,16 @@ public:
     }
 };
 
+// T.C. --> O(m + n), It uses the Floyd's cycle detection algorithm, which traverses the lists once.
+// S.C. --> O(1), No DS is used
+
 
 
 
 
 
 // A 8
+// SAME AS A6
 // first find the lengths of both linked lists and calculate the length difference. 
 // Then, you truncate the longer list so that both lists have the same length from their starting point. 
 // After that, compare nodes of both lists one by one until you find the intersection point.
@@ -374,6 +397,9 @@ public:
         return intersection;
     }
 };
+
+// T.C. --> O(m + n), it uses two stacks to reverse the lists and then compares nodes in a single pass.
+// S.C. --> O(m + n), it uses two stacks to store all nodes from both lists.
 
 
 
