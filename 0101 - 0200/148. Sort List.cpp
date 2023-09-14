@@ -1,4 +1,4 @@
-// \\ APPROACH 1 [ FIND MID & THEN PERFORM MERGE SORT ]
+// A 1 [ FIND MID & THEN PERFORM MERGE SORT ]
 
 class Solution {
 public:
@@ -47,13 +47,29 @@ public:
         ans = ans -> next;
         return ans;
     }
+
+    // OR
+    // ListNode* merge(ListNode* L, ListNode* R){
+    //     if(!L) return R;
+    //     if(!R) return L;
+        
+    //     ListNode* merged;
+    //     if(L -> val < R -> val) {
+    //         merged = L;
+    //         merged -> next = merge(L -> next, R);
+    //     } 
+    //     else {
+    //         merged = R;
+    //         merged -> next = merge(L, R -> next);
+    //     }
+    //     return merged;
+    // }
     
     ListNode* sortList(ListNode* head) {
         if(head == NULL or head -> next == NULL) return head;
         
         // break LL into 2 halves, after finding mid
         ListNode* mid = findMid(head);
-        
         ListNode* L = head;
         ListNode* R = mid -> next;
         mid -> next = NULL;
@@ -64,14 +80,20 @@ public:
         
         // merge both L and R halves
         ListNode* ans = merge(L, R);
-            
         return ans;
     }
 };
 
-
 // T.C. --> O(N Log N)
 // S.C. --> O(Log N)
+
+
+
+
+
+
+
+
 
 
 
