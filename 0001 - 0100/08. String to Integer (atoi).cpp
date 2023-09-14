@@ -126,7 +126,7 @@ public:
 
 
 
-// A 4 - Using Finite State Machine - Chat gpt
+// A 4 - Chat gpt
 
 class Solution {
 public:
@@ -181,6 +181,42 @@ public:
         return static_cast<int>(res * sign);
     }
 };
+
+
+// OR
+
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        int res = 0;
+        int sign = 1;
+        bool flag = false; // To track if we have started parsing digits
+        
+        for(char c : s) {
+            // Skip leading whitespace
+            if(!flag && c == ' ') continue; 
+            else if(!flag && (c == '+' || c == '-')) {
+                flag = true;
+                sign = (c == '-') ? -1 : 1;
+            } 
+            else if(isdigit(c)) {
+                flag = true;
+                int digit = c - '0';
+
+                // Check for overflow
+                if(res > (numeric_limits<int>::max() - digit) / 10) {
+                    return (sign == 1) ? numeric_limits<int>::max() : numeric_limits<int>::min();
+                }
+                res = res * 10 + digit;
+            } 
+            // Stop if non-digit character encountered
+            else break; 
+        }
+        return res * sign;
+    }
+};
+
 
 
 
