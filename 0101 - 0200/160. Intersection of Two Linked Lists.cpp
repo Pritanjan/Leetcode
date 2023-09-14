@@ -344,5 +344,41 @@ public:
 
 
 
-// A 9 
+// A 9  -  USing 2 Stack
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        stack<ListNode*> stkA;
+        stack<ListNode*> stkB;
+
+        // Push nodes from listA onto stack A
+        while(headA) {
+            stkA.push(headA);
+            headA = headA -> next;
+        }
+        // Push nodes from listB onto stack B
+        while(headB) {
+            stkB.push(headB);
+            headB = headB -> next;
+        }
+
+        ListNode* intersection = nullptr;
+
+        // Pop nodes from both stacks until they differ
+        while(!stkA.empty() && !stkB.empty() && stkA.top() == stkB.top()) {
+            intersection = stkA.top();
+            stkA.pop();
+            stkB.pop();
+        }
+        return intersection;
+    }
+};
+
+
+
+
+
+
+// A 10
 
