@@ -172,7 +172,50 @@ public:
 
 
 
+// A 4 - Using Two-Pointer Approach:
+// Maintain 2 pointers, one pointing to the start of the current group, 
+// and the other pointing to the end of the previous group.
+// Reverse each group in-place and connect it to the previous group.
 
-// A 4
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(!head || k == 1) return head;
 
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* prevGpEnd = dummy;
+        ListNode* currGpStrt = head;
+
+        int len = 0;
+        ListNode* tmp = head;
+        while(tmp) {
+            len++;
+            tmp = tmp -> next;
+        }
+
+        while(len >= k) {
+            ListNode* curr = currGpStrt;
+            ListNode* prev = prevGpEnd;
+            for(int i=0; i<k; ++i) {
+                ListNode* next = curr -> next;
+                curr -> next = prev;
+                prev = curr;
+                curr = next;
+            }
+            prevGpEnd  -> next = prev;
+            currGpStrt -> next = curr;
+            prevGpEnd = currGpStrt;
+            currGpStrt = curr;
+            len -= k;
+        }
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+// A 5
 
