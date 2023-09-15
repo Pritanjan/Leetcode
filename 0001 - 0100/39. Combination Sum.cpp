@@ -175,3 +175,46 @@ public:
 
 
 // A 5
+// we use a set to store unique combinations and then convert them back to a vector for the final result. 
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<vector<int>>> dp(target+1, vector<vector<int>>());
+        dp[0].push_back(vector<int>());
+
+        for(int i=1; i<=target; ++i) {
+            for(int num : candidates) {
+                if(i - num >= 0) {
+                    for(vector<int> comb : dp[i - num]) {
+                        // Ensure the combination is in non-decreasing order
+                        if(comb.empty() || num >= comb.back()) {
+                            vector<int> tmp = comb;
+                            tmp.push_back(num);
+                            dp[i].push_back(tmp);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Remove duplicate combinations
+        set<vector<int>> uqComb;
+        for (vector<int> comb : dp[target]) {
+            uqComb.insert(comb);
+        }
+
+        vector<vector<int>> res;
+        for (vector<int> comb : uqComb) {
+            res.push_back(comb);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6
