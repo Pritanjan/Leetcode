@@ -169,6 +169,39 @@ public:
 
 
 
+// A 6 
+// Start from empty subset in output list.
+// At each step one takes new integer into consideration and generates
+// new subsets from the existing ones.
+    
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        res.push_back(vector<int>());
+
+        for(int num : nums) {
+            vector<vector<int>> subsets;
+            for(vector<int> curr : res) {
+                curr.push_back(num);
+                subsets.push_back(curr);
+            }
+            for(vector<int> curr : subsets) {
+                res.push_back(curr);
+            }
+        }
+        return res;
+    }
+};
+
+// T.C. --> O(N * 2^N)
+// S.C. --> O(N * 2^N)
+
+
+
+
+
+
 
 
 
