@@ -103,13 +103,19 @@ public:
 
 // A 6 Lookup Table:
 // Create a lookup table with known powers of two and check if n matches any of them.
-    
+
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
-        static unordered_set<int> powers_of_two = {1, 2, 4, 8, 16, 32, /* add more as needed */};
-        return powers_of_two.find(n) != powers_of_two.end();
+        unordered_set<int> mp = {1, 2, 4, 8, 16, 32, /* add more as needed */};
+        return mp.find(n) != mp.end();
     }
 };
 
+
+
+
+
+
+// A 7
 
