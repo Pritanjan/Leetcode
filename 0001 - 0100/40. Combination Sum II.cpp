@@ -101,3 +101,52 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        deque<int> comb;
+        
+        unordered_map<int, int> mp;
+        for(int candidate : candidates) {
+            if(mp.find(candidate) != mp.end()) mp[candidate]++;
+            else mp[candidate] = 1;
+        }
+        
+        // Convert the counter table to a list of (num, count) tuples
+        vector<pair<int, int>> v;
+        for(auto it : mp) {
+            v.push_back(make_pair(it.first, it.second));
+        }
+        backtrack(comb, target, 0, v, res);
+        return res;
+    }
+private:
+    void backtrack(deque<int>& comb, int rem, int curr, vector<pair<int, int>>& v, vector<vector<int>>& res) {
+        if(rem <= 0) {
+            // Make a deep copy of the current combination
+            if(rem == 0) res.push_back(vector<int>(comb.begin(), comb.end()));
+            return ;
+        }
+        
+        for(int i=curr; i<v.size(); ++i) {
+            int candidate = v[i].first;
+            int freq = v[i].second;
+            
+            if(freq <= 0) continue ;
+            
+            // Add a new element to the current combination
+            comb.push_back(candidate);
+            v[i].second--;
+            
+            // Continue the exploration with the updated combination
+            backtrack(comb, rem - candidate, i, v, res);
+            
+            // Backtrack the changes, so that we can try another candidate
+            v[i].second++;
+            comb.pop_back();
+        }
+    }
+};
+
+
