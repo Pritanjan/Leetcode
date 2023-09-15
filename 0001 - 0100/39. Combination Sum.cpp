@@ -132,3 +132,46 @@ public:
         return ans; // return the final answer array
     }
 };
+
+
+
+
+
+
+// A 4
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        queue<pair<int, vector<int>>> que;
+        que.push({0, {}});
+        
+        while(!que.empty()) {
+            int sum = que.front().first;
+            vector<int> combination = que.front().second;
+            que.pop();
+            
+            if(sum == target) {
+                res.push_back(combination);
+                continue ;
+            }
+            
+            for(int num : candidates) {
+                if(sum + num <= target && (combination.empty() || num >= combination.back())) {
+                    vector<int> newCombination = combination;
+                    newCombination.push_back(num);
+                    que.push({sum + num, newCombination});
+                }
+            }
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 5
