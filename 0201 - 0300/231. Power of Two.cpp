@@ -1,18 +1,22 @@
-// https://leetcode.com/problems/power-of-two/
+// A 1
 
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
         if(n == 1073741824)
             return true;
-        int  q = 1;
         for(int i=0; i<30; i++){
-            // if(n == pow(2,i))
-            if(n == q)
+            if(n == pow(2,i))
                 return true;
-                
-            q = 2 * q;
         }
         return false;
     }
 };
+
+
+
+
+
+
+// A 2
+
