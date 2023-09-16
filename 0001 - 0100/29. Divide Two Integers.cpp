@@ -67,6 +67,38 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    typedef long long int ll;
+    int divide(ll dividend, ll divisor) {
+        if(divisor == -1) {
+            if(dividend == INT_MIN) return INT_MAX; // Overflow case
+            return -(dividend);
+        }        
+        int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+        ll div = llabs(dividend);
+        ll dis = llabs(divisor);
+        
+        ll que = 0;
+        while(div >= dis) {
+            ll temp = dis;
+            ll m = 1;
+            while(div >= (temp << 1)) {
+                temp <<= 1;
+                m <<= 1;
+            }
+            div -= temp;
+            que += m;
+        }
+        return sign * que;
+    }
+};
+
+
+
 
 
 
