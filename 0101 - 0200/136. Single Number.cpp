@@ -145,6 +145,28 @@ public:
 // T..C. --> O(N)
 
 
+// OR
+
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_set<int> uqSt;
+        unordered_set<int> seenSt;
+        
+        for(int num : nums) {
+            if(uqSt.count(num) == 0) uqeSt.insert(num);
+            else seenSt.insert(num);
+        }
+        
+        for(int num : uqSt) {
+            if(seenSt.count(num) == 0) return num;
+        }        
+        return -1; // Handle the case when there is no single element (shouldn't occur in this problem).
+    }
+};
+
+
 
 
 
