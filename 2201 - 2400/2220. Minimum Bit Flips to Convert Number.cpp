@@ -38,7 +38,6 @@ public:
 
 
 
-
 // A 2 - STL
 
 class Solution {
@@ -47,6 +46,7 @@ public:
         return __builtin_popcount(a^b);
     }
 };
+
 
 
 
@@ -108,4 +108,59 @@ public:
 
 
 
-// A 5
+// A 5  -  Count the number of bits to be flipped to convert A to B
+// 1. Convert A and B to binary numbers.
+// 2. Compare using ‘equal to’ operator if equal then return 0 otherwise iterate and 
+// 3. compare the ith of A to ith of B and count the operations 
+// 4. print the count.
+
+// T.C. --> O(log N) 
+// S.C. --> O(N) 
+
+class Solution {
+public:
+    int minBitFlips(int a, int b) {
+        string a1 = binary(a);
+        string b1 = binary(b);
+        int na = a1.size(), nb = b1.size();
+        int cnt = 0;
+        int diff = abs(na - nb);
+
+        if(na > nb) {
+            for(int i=0; i<diff; i++) {
+                if(a1[i] == '1') cnt++;
+            }
+        } 
+        else if(na < nb) {
+            for(int i=0; i<diff; i++) {
+                if(b1[i] == '1') cnt++;
+            }
+        }
+        na = na - 1;
+        nb = nb - 1;
+
+        while(na >= 0 && nb >= 0) {
+            if(a1[na] != b1[nb]) cnt++;
+            na--;
+            nb--;
+        }        
+        return cnt;
+    }
+
+    string binary(int num) {
+        string s = "";
+        while(num) {
+            if(num & 1) s += '1';
+            else s += '0';
+            num >>= 1;
+        }
+        reverse(s.begin(), s.end());
+        return s;
+    }
+};
+
+
+
+
+
+
