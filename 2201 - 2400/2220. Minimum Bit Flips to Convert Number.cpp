@@ -1,4 +1,5 @@
-// A 1
+// A 1 - Bit Manipulation with XOR
+// It XORs the two numbers and counts the set bits in the result using a faster bitwise trick:
 
 class Solution {
 public:
@@ -15,7 +16,10 @@ public:
 
 
 // OR
-
+// Bit-by-Bit Comparison
+// It compares the corresponding bits of the two numbers from left to right and
+// counts the positions where they differ. 
+// It stops when the two numbers become the same:
 
 class Solution {
 public:
