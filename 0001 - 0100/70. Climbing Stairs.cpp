@@ -80,36 +80,31 @@ public:
 
 class Solution {
 public:
-    typedef std::vector<std::vector<long long>> Matrix;
-
+    typedef vector<vector<long long>> Matrix;
     Matrix matrixMultiply(const Matrix& A, const Matrix& B) {
         int n = A.size();
         int m = B.size();
         int p = B[0].size();
         
-        Matrix C(n, std::vector<long long>(p, 0));
-        
+        Matrix C(n, std::vector<long long>(p, 0));        
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < p; ++j) {
                 for (int k = 0; k < m; ++k) {
                     C[i][j] += A[i][k] * B[k][j];
                 }
             }
-        }
-        
+        }        
         return C;
     }
 
     Matrix matrixPower(const Matrix& A, int n) {
         int size = A.size();
-        if (n == 1) {
-            return A;
-        }
-        
-        if (n % 2 == 0) {
+        if(n == 1) return A;
+        if(n % 2 == 0) {
             Matrix half_pow = matrixPower(A, n / 2);
             return matrixMultiply(half_pow, half_pow);
-        } else {
+        } 
+        else {
             Matrix half_pow = matrixPower(A, (n - 1) / 2);
             Matrix temp = matrixMultiply(half_pow, half_pow);
             return matrixMultiply(temp, A);
@@ -117,9 +112,7 @@ public:
     }
 
     int climbStairs(int n) {
-        if (n <= 2) {
-            return n;
-        }
+        if(n <= 2) return n;
         
         Matrix transition = {{1, 1}, {1, 0}};
         Matrix result = matrixPower(transition, n - 1);
@@ -137,20 +130,15 @@ public:
 
 class Solution {
 private:
-    std::unordered_map<int, int> memo;
+    unordered_map<int, int> memo;
 
     int calculate(int n) {
-        if (n <= 2) {
-            return n;
-        }
-        if (memo.find(n) != memo.end()) {
-            return memo[n];
-        }
+        if(n <= 2) return n;
+        if(memo.find(n) != memo.end()) return memo[n];
         int result = calculate(n - 1) + calculate(n - 2);
         memo[n] = result;
         return result;
     }
-
 public:
     int climbStairs(int n) {
         return calculate(n);
@@ -204,6 +192,8 @@ public:
 
 
 // A 8
+// calculate the binomial coefficient for each possible number of 2-step climbs (0 to n/2) and 
+// sum them up to find the total number of distinct ways to climb the stairs.
 
 class Solution {
 public:
@@ -236,4 +226,29 @@ public:
 
 // A 9
 
+class Solution {
+public:
+    vector<int> v; // Memoization table to store computed results
+    int climbStairs(int n) {
+        if(n <= 2) return n;
+        
+        // Check if the result for 'n' has already been computed
+        if(v.size() <= n) v.resize(n+1, -1);
+        else if(v[n] != -1) return v[n];
+
+        // Compute the result for 'n' by recursively calculating the subproblems
+        int ways = climbStairs(n-1) + climbStairs(n-2);
+
+        // Store the computed result in the memoization table
+        v[n] = ways;
+        return ways;
+    }
+};
+
+
+
+
+
+
+// A 10
 
