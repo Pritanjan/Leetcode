@@ -52,5 +52,25 @@ public:
 
 
 
-// A 3 
+// A 3 Conversion to Binary Strings
+// We convert both a and b to binary strings and count the positions where they differ.
 
+class Solution {
+public:
+    int minBitFlips(int a, int b) {
+        string a1 = bitset<32>(a).to_string();
+        string b1 = bitset<32>(b).to_string();
+        int cnt = 0;
+        for(int i=0; i<32; i++) {
+            if(a1[i] != b1[i]) cnt++;
+        }    
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 4 - 
