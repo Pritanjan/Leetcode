@@ -167,6 +167,28 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_set<int> uqSt;
+        unordered_set<int> seenSt;
+        
+        for(int num : nums) {
+            if(uqSt.count(num) == 0) uqSt.insert(num);
+            else seenSt.insert(num);
+        }
+        
+        for(int num : uqSt) {
+            if(seenSt.count(num) == 0) return num;
+        }        
+        return -1;
+    }
+};
+
+
 
 
 
