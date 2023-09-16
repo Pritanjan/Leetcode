@@ -168,14 +168,19 @@ public:
 
 
 // OR
-
+// Using Two Sets
+// 1. Use two sets: one to store the unique elements and another to store the elements 
+//    that have been seen more than once.
+// 2. Iterate through the array, adding elements to the unique set if they are not already in it,
+//    and adding elements to the seen set if they are already in the unique set.
+// 3. Finally, return the difference between the unique set and the seen set,
+//    which will contain the single number.
 
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         unordered_set<int> uqSt;
-        unordered_set<int> seenSt;
-        
+        unordered_set<int> seenSt;        
         for(int num : nums) {
             if(uqSt.count(num) == 0) uqSt.insert(num);
             else seenSt.insert(num);
@@ -261,4 +266,27 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// A 8  -  
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ones = 0, twos = 0;
+        
+        for (int num : nums) {
+            ones = (ones ^ num) & ~twos;
+            twos = (twos ^ num) & ~ones;
+        }
+        
+        return ones;
+    }
+};
+
+
 
