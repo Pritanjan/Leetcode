@@ -205,4 +205,35 @@ public:
 
 // A 8
 
+class Solution {
+public:
+    // Function to calculate the binomial coefficient (n choose k)
+    long long binomialCoefficient(int n, int k) {
+        if(k == 0 || k == n) return 1;
+                
+        long long res = 1;
+        k = min(k, n - k); // Use the smaller of k and n-k for efficiency
+        for(int i=0; i<k; ++i) {
+            res *= (n - i);
+            res /= (i + 1);
+        }
+        return res;
+    }
+
+    int climbStairs(int n) {
+        int res = 0;
+        for(int i=0; i<=n / 2; ++i) {
+            res += binomialCoefficient(n - i, i);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 9
+
 
