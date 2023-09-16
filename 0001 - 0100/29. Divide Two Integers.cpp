@@ -133,3 +133,39 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    typedef long long int ll;
+    int divide(ll dividend, ll divisor) {
+        if(divisor == -1 and dividend == INT_MIN)  return INT_MAX; 
+                
+        int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+        ll div = llabs(dividend);
+        ll dis = llabs(divisor);
+        
+        ll que = 0;
+        ll currDis = dis;
+        ll m = 1;
+
+        while(div >= (currDis << 1)) {
+            currDis <<= 1;
+            m <<= 1;
+        }
+        while(div >= dis) {
+            if(div >= currDis) {
+                div -= currDis;
+                que += m;
+            }
+            currDis >>= 1;
+            m >>= 1;
+        }
+        return sign * que;
+    }
+};
+
+
+
+
+
+
+// A 5
