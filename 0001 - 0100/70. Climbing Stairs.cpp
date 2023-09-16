@@ -86,10 +86,10 @@ public:
         int m = B.size();
         int p = B[0].size();
         
-        Matrix C(n, std::vector<long long>(p, 0));        
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < p; ++j) {
-                for (int k = 0; k < m; ++k) {
+        Matrix C(n, vector<long long>(p, 0));        
+        for(int i=0; i<n; ++i) {
+            for(int j=0; j<p; ++j) {
+                for(int k=0; k<m; ++k) {
                     C[i][j] += A[i][k] * B[k][j];
                 }
             }
@@ -115,8 +115,7 @@ public:
         if(n <= 2) return n;
         
         Matrix transition = {{1, 1}, {1, 0}};
-        Matrix result = matrixPower(transition, n - 1);
-        
+        Matrix result = matrixPower(transition, n - 1);        
         return result[0][0] + result[0][1];
     }
 };
