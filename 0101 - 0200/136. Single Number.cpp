@@ -175,6 +175,23 @@ public:
 };
 
 // T..C. --> O(N)
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_set<int> uniqueSet;
+        int sum = 0;
+        int uniqueSum = 0;
+        
+        for (int num : nums) {
+            sum += num;
+            if (uniqueSet.insert(num).second) {
+                uniqueSum += num;
+            }
+        }
+        
+        return 2 * uniqueSum - sum;
+    }
+};
 
 
 
