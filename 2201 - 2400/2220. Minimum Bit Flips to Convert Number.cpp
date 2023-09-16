@@ -58,6 +58,7 @@ public:
 class Solution {
 public:
     int minBitFlips(int a, int b) {
+        // Convert integers to binary strings
         string a1 = bitset<32>(a).to_string();
         string b1 = bitset<32>(b).to_string();
         int cnt = 0;
@@ -65,6 +66,21 @@ public:
             if(a1[i] != b1[i]) cnt++;
         }    
         return cnt;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    int minBitFlips(int a, int b) {
+        bitset<32> bitA(a);
+        bitset<32> bitB(b);
+        
+        bitset<32> res = bitA ^ bitB;
+        return res.count();
     }
 };
 
@@ -158,6 +174,12 @@ public:
         return s;
     }
 };
+
+
+
+
+
+// A 6
 
 
 
