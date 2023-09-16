@@ -104,3 +104,32 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    typedef long long int ll;
+    int divide(ll dividend, ll divisor) {
+        if(divisor == -1 and dividend == INT_MIN)  return INT_MAX; 
+                
+        int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+        ll div = llabs(dividend);
+        ll dis = llabs(divisor);
+        
+        ll que = 0;
+        ll tmp = 0;
+        for(int i=31; i>=0; i--) {
+            if(tmp + (dis << i) <= div) {
+                tmp += dis << i;
+                que |= 1LL << i;
+            }
+        }
+        return sign * que;
+    }
+};
+
+
+
+
+
+
+// A 4
+
