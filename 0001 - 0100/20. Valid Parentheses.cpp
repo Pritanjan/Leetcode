@@ -153,6 +153,7 @@ public:
                                                {'}', '{'}     };
         stack<char> stk;
         for(char &ch : s) {
+            // if(ump.find(ch) != ump.end()) {
             if(ump.count(ch)) {
                 if(stk.empty() or ump[ch] != stk.top()) return false;
                 stk.pop();
