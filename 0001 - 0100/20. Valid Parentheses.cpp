@@ -169,4 +169,41 @@ public:
 
 
 
-// A 4
+// A 4 - Check for Balanced Bracket expression without using stack 
+
+// 1. Initialize a variable i with -1.
+// 2. Iterate through the string and 
+//    - If it is an open bracket then increment the counter by 1 and replace ith character of the string
+//      with the opening bracket.
+//    - Else if it is a closing bracket of the same corresponding opening bracket 
+//      (opening bracket stored in exp[i]) then decrement i by 1.
+// 3. At last, if we get i = -1, then the string is balanced and we will return true.
+//    Otherwise, the function will return false.
+
+class Solution {
+public:
+     bool isValid(string s) {
+        int i = -1;
+        for(auto& ch : s) {
+            if(ch == '(' || ch == '{' || ch == '[') s[++i] = ch;
+            else {
+                if(i >= 0 && ((s[i] == '(' && ch == ')') || (s[i] == '{' && ch == '}') || (s[i] == '[' && ch == ']'))) i--;
+                else return false;
+            }
+        }
+        return i ==- 1;
+    }
+};
+
+// T.C. --> O(N)
+// S.C. --> O(1)
+
+
+
+
+
+
+// A 5
+
+
+
