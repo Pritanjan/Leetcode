@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/reordered-power-of-2/
+// A 1
 
 class Solution {
 public:
@@ -30,3 +30,49 @@ public:
         return false;
     }
 };
+
+
+
+
+
+
+// A 2
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        // Convert n to a string
+        string str_n = to_string(n);
+        
+        // Generate powers of two up to 10^9 (2^29)
+        vector<string> v;
+        for(int i=0; i<30; i++) {
+            v.push_back(to_string(1 << i));
+        }
+        
+        // Count the frequency of each digit in n
+        unordered_map<char, int> cnt;
+        for (char digit : str_n) {
+            cnt[digit]++;
+        }
+        
+        // Check if any power of two has the same digit frequencies
+        for(const string& it : v) {
+            if(it.size() == str_n.size()) {
+                unordered_map<char, int> cnt1;
+                for(char digit : it) {
+                    cnt1[digit]++;
+                }
+                if(cnt == cnt1) return true;
+            }
+        }        
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 3
