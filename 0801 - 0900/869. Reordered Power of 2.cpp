@@ -42,7 +42,7 @@ class Solution {
 public:
     bool reorderedPowerOf2(int n) {
         // Convert n to a string
-        string str_n = to_string(n);
+        string s = to_string(n);
         
         // Generate powers of two up to 10^9 (2^29)
         vector<string> v;
@@ -52,13 +52,13 @@ public:
         
         // Count the frequency of each digit in n
         unordered_map<char, int> cnt;
-        for (char digit : str_n) {
+        for (char digit : s) {
             cnt[digit]++;
         }
         
         // Check if any power of two has the same digit frequencies
         for(const string& it : v) {
-            if(it.size() == str_n.size()) {
+            if(it.size() == s.size()) {
                 unordered_map<char, int> cnt1;
                 for(char digit : it) {
                     cnt1[digit]++;
