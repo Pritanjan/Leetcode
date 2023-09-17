@@ -1,7 +1,10 @@
 // NEXT SMALL ELEMENT
 // https://github.com/Pritanjan/time-pass/blob/main/Stack/7%20Next%20Smaller%20Element.cpp
 
-// APPROACH 1
+
+
+// NEXT GREATER ELEMENT
+// A 1
 
 class Solution {
 public:
@@ -21,12 +24,35 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> res;
+        for(int num1 : nums1) {
+            bool found = false;
+            int next = -1;
+            for(int num2 : nums2) {
+                if(found && num2 > num1) {
+                    next = num2;
+                    break;
+                }
+                if(num2 == num1) found = true;
+            }
+            res.push_back(next);
+        }
+        return res;
+    }
+};
 
 
 
 
 
-// APPROACH 2
+
+// A 2
 
 class Solution {
 public:
@@ -43,7 +69,6 @@ public:
             mp[nums2[i]] = st.empty() ? -1 : st.top(); // Store the next greater element of nums2[i] in the map
             st.push(nums2[i]); // Push nums2[i] into the stack
         }
-
         // Traverse nums1 to find the corresponding next greater elements
         for (int i=0; i<nums1.size(); i++) {
             ans[i] = mp[nums1[i]]; // Assign the next greater element of nums1[i] to ans[i]
@@ -52,9 +77,12 @@ public:
     }
 };
 
-
 // T.C. --> O(n), where n is the size of nums2, as we traverse the array only once. 
 // S.C. --> O(n), as we use a stack and a map to store the elements and their next greater elements
 
 
 
+
+
+
+// A 3
