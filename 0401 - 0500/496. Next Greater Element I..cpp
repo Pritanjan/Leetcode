@@ -86,3 +86,42 @@ public:
 
 
 // A 3
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> res;
+        stack<int> st;
+
+        // Create a vector to store the next greater elements for nums2
+        vector<int> v(nums2.size(), -1);
+        for(int i=0; i<nums2.size(); ++i) {
+            while(!st.empty() && nums2[i] > nums2[st.top()]) {
+                v[st.top()] = nums2[i];
+                st.pop();
+            }
+            st.push(i);
+        }
+
+        for(int num : nums1) {
+            int idx = -1;
+            for(int i=0; i<nums2.size(); ++i) {
+                if(nums2[i] == num) {
+                    idx = i;
+                    break;
+                }
+            }
+            if(idx != -1) res.push_back(v[idx]);
+            else res.push_back(-1);
+        }
+        return res;        
+    }
+};
+
+
+
+
+
+
+// A 4
+
