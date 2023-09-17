@@ -113,3 +113,63 @@ public:
     }
 };
 
+
+
+
+
+// A 4
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        // Count the frequency of each digit in n
+        vector<int> v(10, 0);
+        while(n > 0) {
+            v[n % 10]++;
+            n /= 10;
+        }
+        
+        // Check if any power of two has the same digit frequencies
+        for(int i=1; i<=1e9; i *= 2) {
+            vector<int> v1(10, 0);   // store power cnt
+            int temp = i;
+            while(temp > 0) {
+                v1[temp % 10]++;
+                temp /= 10;
+            }
+            if(v == v1) return true;
+        }        
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 5
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        vector<int> cnt = cntDigits(n);
+        for(int i=0; i<31; i++) {
+            if(cnt == cntDigits(1 << i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+private:
+    vector<int> cntDigits(int num) {
+        vector<int> cnt(10, 0);
+        while(num > 0) {
+            cnt[num % 10]++;
+            num /= 10;
+        }
+        return cnt;
+    }
+};
+
+
