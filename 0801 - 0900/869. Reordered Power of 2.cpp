@@ -71,8 +71,45 @@ public:
 };
 
 
+// 1. Convert the given integer n into a string to manipulate its digits.
+// 2. Generate a list of all the powers of two that can be represented as strings 
+//    (up to a certain limit, let's say 10^9, which is 2^29).
+// 3. For each power of two string, check if it's possible to reorder the digits of the input string
+//    to match the power of two string. To do this, compare the frequency of each digit in both strings.
+// 4. If you find a match, return true; otherwise, return false after checking all powers of two.
+
+
 
 
 
 
 // A 3
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        // Convert n to a string
+        string s = to_string(n);
+        int size = s.length();
+        
+        // Generate powers of two up to 10^9 (2^29)
+        vector<string> v;
+        for(int i=0; i<30; i++) {
+            int pow = 1 << i;
+            if(to_string(pow).length() == size) {
+                v.push_back(to_string(pow));
+            }
+        }
+        
+        // Generate all permutations of the digits of str_n
+        sort(s.begin(), s.end());
+        do {
+            // Check if the permutation matches any power of two
+            if(s[0] != '0' && binary_search(v.begin(), v.end(), s)) {
+                return true;
+            }
+        } while(next_permutation(s.begin(), s.end()));
+        return false;
+    }
+};
+
