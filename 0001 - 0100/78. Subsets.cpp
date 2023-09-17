@@ -28,6 +28,39 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+private:
+    void createSubsets(int idx, vector<int>& nums, vector<int>& curr, vector<vector<int>>& subsets) {
+        if(idx == nums.size()) {
+            subsets.push_back(curr); // Add the current subset to the result
+            return ;
+        }
+        
+        // Exclude the current element
+        createSubsets(idx + 1, nums, curr, subsets);
+        
+        // Include the current element
+        curr.push_back(nums[idx]);
+        createSubsets(idx + 1, nums, curr, subsets);
+        
+        // Backtrack by removing the last element to explore other possibilities
+        curr.pop_back();
+    }
+    
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> subsets;
+        vector<int> curr;
+        createSubsets(0, nums, curr, subsets);
+        return subsets;
+    }
+};
+
+
+
 
 
 
