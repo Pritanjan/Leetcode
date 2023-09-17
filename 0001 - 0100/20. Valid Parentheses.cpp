@@ -77,36 +77,6 @@ public:
 
 class Solution {
 public:
-    bool isValid(string s) {
-        vector<char> v;
-        v.reserve(s.length());
-        for(char c : s) {
-            switch (c) {
-                case '[':
-                    v.push_back(']');
-                    break;
-                case '(':
-                    v.push_back(')');
-                    break;
-                case '{':
-                    v.push_back('}');
-                    break;
-                default:
-                    if(v.empty() || v.back() != c) return false;
-                    v.pop_back();
-                    break;
-            }
-        }
-        return v.empty();
-    }
-};
-
-
-// OR
-
-
-class Solution {
-public:
     bool isValid(string s) {        
         stack<char> parenthis;
         for (char& c : s) {
@@ -205,5 +175,47 @@ public:
 
 // A 5
 
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> v;
+        v.reserve(s.length());
+        for(char c : s) {
+            switch (c) {
+                case '[':
+                    v.push_back(']');
+                    break;
+                case '(':
+                    v.push_back(')');
+                    break;
+                case '{':
+                    v.push_back('}');
+                    break;
+                default:
+                    if(v.empty() || v.back() != c) return false;
+                    v.pop_back();
+                    break;
+            }
+        }
+        return v.empty();
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+     bool isValid(string s) {
+        vector<char> v;
+        for(char c : s) {
+            if (v.size() == 0 && (c == ')' || c == ']' || c == '}')) return false;
+            else if((c == ')' and v.back() == '(') or (c == ']' and v.back() == '[') or (c == '}' and v.back() == '{')) v.pop_back();
+            else v.push_back(c);
+        }
+        return not v.size();
+    }
+};
 
 
