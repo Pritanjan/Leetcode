@@ -77,6 +77,35 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> res;
+        unordered_map<int, int> mp;
+        deque<int> dq;
+
+        // Find next greater elements and store them in the map
+        for(int num : nums2) {
+            while(!dq.empty() && num > dq.back()) {
+                mp[dq.back()] = num;
+                dq.pop_back();
+            }
+            dq.push_back(num);
+        }
+
+        // Populate the result vector for nums1
+        for(int num : nums1) {
+            if(mp.find(num) != mp.end()) res.push_back(mp[num]);
+            else res.push_back(-1);
+        }
+        return res;
+    }
+};
+
 // T.C. --> O(n), where n is the size of nums2, as we traverse the array only once. 
 // S.C. --> O(n), as we use a stack and a map to store the elements and their next greater elements
 
