@@ -219,3 +219,38 @@ public:
 };
 
 
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    bool isValid(string s) {
+        char c[10005];
+        int len = 0, ok = 1;
+        for(int i=0; i<s.length() && ok; ++i){
+        char curr = s[i];
+
+        if(curr == ')'){
+            if(c[len] == '(') len--;
+            else c[++len] = ')';
+        }
+        else if(curr == ']'){
+            if(c[len] == '[') len--;
+            else c[++len] = ']';
+        }
+        else if(curr == '}'){
+            if(c[len] == '{') len--;
+            else c[++len] = '}';
+        }
+        else c[++len] = curr;
+
+        if(len < 0) ok = 0;
+    }
+    if(!ok || len > 0) return 0;
+    return 1;
+    }
+};
+
