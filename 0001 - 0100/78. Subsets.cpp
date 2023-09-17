@@ -263,6 +263,40 @@ public:
 
 
 
+// A 8  - Leetcode A1 
+// start from empty subset in res.
+// At each step one takes new integer into consideration & generates new subsets from the existing ones.
+    
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        res.push_back(vector<int>());
+
+        for(auto num : nums) {
+            vector<vector<int>> tmp;
+            for(vector<int> curr : res) {
+                vector<int> subset = curr;
+                subset.push_back(num);
+                tmp.push_back(subset);
+            }
+            for(vector<int> curr : tmp) {
+                res.push_back(curr);
+            }
+        }
+        return res;
+    }
+};
+
+// T.C. --> O(N * 2^N)
+// S.C. --> O(N * 2^N)
+
+
+
+
+
+
+
 
 
 
