@@ -75,5 +75,53 @@ public:
 
 // A 3
 
+class MinStack {
+private:
+    stack<int> stk;
+    int mi;
+public:
+    MinStack() {
+        // Initialize minElement to a very large value.
+        mi = INT_MAX; 
+    }
+
+    void push(int val) {
+        // If the new value is less than or equal to the 
+        // current minimum, update minElement.
+        if(val <= mi) {
+            // Push the previous minimum onto the stack.
+            stk.push(mi); 
+            mi = val; 
+            // Update minElement to the new minimum.
+        }
+        stk.push(val);
+    }
+
+    void pop() {
+        // If the element being popped is current minimum,
+        // update minElement.
+        if(stk.top() == mi) {
+            stk.pop(); // Pop the previous minimum.
+            mi = stk.top(); // Update minElement to the new minimum.
+            stk.pop(); // Pop the actual value.
+        } 
+        else stk.pop(); // Pop the actual value.
+    }
+
+    int top() {
+        // Return the top element of the main stack.
+        return stk.top();
+    }
+
+    int getMin() {
+        // Return the minimum element tracked by minElement.
+        return mi;
+    }
+};
 
 
+
+
+
+
+// A 4
