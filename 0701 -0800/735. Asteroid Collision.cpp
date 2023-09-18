@@ -108,4 +108,54 @@ public:
 
 
 
+// A 3
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int> &asteroids) {
+        deque<int> dq;        
+        for(int asteroid : asteroids) {
+            // Asteroid moving right, just push it
+            if(asteroid > 0) dq.push_back(asteroid);
+            else {
+                // Asteroid moving left
+                bool collision = false;
+                while(!dq.empty() && dq.back() > 0) {
+                    int prev = dq.back();
+                    dq.pop_back();
+                    
+                    // Compare sizes of asteroids
+                    if(prev + asteroid < 0) {
+                        // The smaller asteroid explodes
+                        continue; // Check the next right-moving asteroid
+                    }
+                    else if(prev + asteroid == 0) {
+                        // Both asteroids explode
+                        collision = true;
+                        break; // Stop checking
+                    } 
+                    else {
+                        // Left-moving asteroid survives
+                        collision = true;
+                        dq.push_back(prev);
+                        break; // Stop checking
+                    }
+                }
+
+                // No collision with right-moving asteroids
+                if(!collision && (dq.empty() || dq.back() < 0)) {
+                    dq.push_back(asteroid);
+                }
+            }
+        }
+        return vector<int>(dq.begin(), dq.end());
+    }
+};
+
+
+
+
+
+
+// A 4
 
