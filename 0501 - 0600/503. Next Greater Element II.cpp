@@ -28,7 +28,7 @@ public:
 
 
 // Array is circular
-// A 1
+// A 1 -  Brute Force
 
 class Solution {
 public:
@@ -54,7 +54,7 @@ public:
 
 
 
-// A 2
+// A 2 - Using Stack
 
 class Solution {
 public:
@@ -85,5 +85,32 @@ public:
 
 
 
-// A 3
+// A 3 -  Using a Double-ended Queue (Deque)
+// Same as A 2
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums){
+        int n = nums.size();
+        vector<int> res(n, -1);
+        deque<int> dq;
+
+        for(int i=0; i<2*n; ++i) {
+            int idx = i % n;            
+            while (!dq.empty() && nums[dq.back()] < nums[idx]) {
+                res[dq.back()] = nums[idx];
+                dq.pop_back();
+            }
+            if (i < n) dq.push_back(i);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4
 
