@@ -86,3 +86,91 @@ public:
 
 
 // A 3
+// first, counting the number of soldiers in each row, and then finding the k weakest rows
+// using custom comparator with partial_sort
+
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        int m = mat.size();
+        int n = mat[0].size();
+        
+        vector<int> cnts(m); // To store the count of soldiers in each row
+        
+        // Step 1: Count the number of soldiers in each row
+        for(int i=0; i<m; ++i) {
+            cnts[i] = accumulate(mat[i].begin(), mat[i].end(), 0);
+        }
+        
+        // Step 2: Define a custom comparator for partial_sort
+        auto compare = [&cnts](int a, int b) {
+            if(cnts[a] != cnts[b]) {
+                return cnts[a] < cnts[b];
+            }
+            return a < b;
+        };
+        
+        // Create a vector of row indices [0, 1, 2, ..., m-1]
+        vector<int> idx(m);
+        iota(idx.begin(), idx.end(), 0);
+        
+        // Use partial_sort to find the k weakest rows efficiently
+        partial_sort(idx.begin(), idx.begin() + k, idx.end(), compare);
+        
+        // Extract the first k row indices
+        return vector<int>(idx.begin(), idx.begin() + k);
+    }
+};
+
+
+
+
+
+
+// A 4 
+
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        int m = mat.size();
+        int n = mat[0].size();
+        
+        vector<int> res;
+        // Binary search for the weakest row
+        auto tmp = [&](int idx) {
+            int L = 0;
+            int R = n - 1;
+            while(L <= R) {
+                int mid = L + (R - L) / 2;
+                if(mat[idx][mid] == 1) L = mid + 1;
+                else R = mid - 1;
+            }
+            return L; // Number of soldiers in the weakest row
+        };
+        
+        // Create a vector of pairs (number of soldiers, row index)
+        vector<pair<int, int>> cnts;
+        for(int i=0; i<m; ++i) {
+            int sol = tmp(i);
+            cnts.push_back({sol, i});
+        }
+        
+        // Custom comparator to sort based on soldiers and row indices
+        sort(cnts.begin(), cnts.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            if(a.first != b.first) return a.first < b.first;
+            return a.second < b.second;
+        });
+        
+        // Extract the k weakest rows
+        for(int i=0; i<k; ++i) {
+            res.push_back(cnts[i].second);
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+// A 5
