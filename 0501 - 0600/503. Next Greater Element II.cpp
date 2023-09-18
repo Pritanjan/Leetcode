@@ -166,4 +166,41 @@ public:
 
 // A 5
 
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, -1);
+        deque<int> dq;
+        ListNode* head = nullptr;
+
+        // Initialize the circular linked list
+        for(int i=2*n-1; i>=0; --i) {
+            int j = i % n;
+            ListNode* tmp = new ListNode(nums[j]);
+            tmp -> next = head;
+            head = tmp;
+        }
+
+        for(int i=0; i<2*n; ++i) {
+            int j = i % n;
+
+            while(!dq.empty() && nums[dq.back()] < head -> val) {
+                res[dq.back()] = head -> val;
+                dq.pop_back();
+            }
+
+            if(i < n) dq.push_back(j);
+            head = head -> next; // Move to the next element in the circular linked list
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6
 
