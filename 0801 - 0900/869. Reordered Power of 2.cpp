@@ -37,6 +37,12 @@ public:
 
 
 // A 2
+// 1. Convert the given integer n into a string to manipulate its digits.
+// 2. Generate a list of all the powers of two that can be represented as strings 
+//    (up to a certain limit, let's say 10^9, which is 2^29).
+// 3. For each power of two string, check if it's possible to reorder the digits of the input string
+//    to match the power of two string. To do this, compare the frequency of each digit in both strings.
+// 4. If you find a match, return true; otherwise, return false after checking all powers of two.
 
 class Solution {
 public:
@@ -71,13 +77,36 @@ public:
 };
 
 
-// 1. Convert the given integer n into a string to manipulate its digits.
-// 2. Generate a list of all the powers of two that can be represented as strings 
-//    (up to a certain limit, let's say 10^9, which is 2^29).
-// 3. For each power of two string, check if it's possible to reorder the digits of the input string
-//    to match the power of two string. To do this, compare the frequency of each digit in both strings.
-// 4. If you find a match, return true; otherwise, return false after checking all powers of two.
+// OR
 
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        // Count the frequency of each digit in n
+        unordered_map<int, int> digitCnt;
+        while(n > 0) {
+            digitCnt[n % 10]++;
+            n /= 10;
+        }
+
+        // Check powers of two
+        int pow = 1;
+        while(pow <= 1e9) {
+            unordered_map<int, int> powCnt;
+            int temp = pow;
+            while(temp > 0) {
+                powCnt[temp % 10]++;
+                temp /= 10;
+            }
+
+            if(digitCnt == powCnt) return true;
+            // Double the power
+            pow <<= 1;
+        }
+        return false;
+    }
+};
 
 
 
@@ -172,4 +201,52 @@ private:
     }
 };
 
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        vector<int> digits;
+        while(n > 0) {
+            digits.push_back(n % 10);
+            n /= 10;
+        }
+        sort(digits.begin(), digits.end());
+        
+        // Precompute powers of two up to 10^9 (2^29)
+        unordered_set<int> ust;
+        for(int i=0; i<30; i++) {
+            ust.insert(1 << i);
+        }
+        
+        do {
+            if(digits[0] != 0) {
+                int permuted = 0;
+                for(int digit : digits) permuted = permuted * 10 + digit;                
+                if(ust.count(permuted)) return true;          
+            }
+        } while(next_permutation(digits.begin(), digits.end()));
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 7
+
+
+
+
+
+
+
+
+// A 8
 
