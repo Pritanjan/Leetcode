@@ -8,33 +8,6 @@
 class Solution {
 public:
     vector<int> kWeakestRows(vector<vector<int>>& matrix, int k) {
-        vector< pair<int,int> > v;
-        vector<int> ans;
-        int row = matrix.size();
-        int col = matrix[0].size();        
-        for(int i=0; i<row; i++){
-            int count = 0;
-            for(int j=0; j<col; j++){
-                if(matrix[i][j] == 1)
-                    count++;
-            }
-            v.push_back(make_pair(count, i));            
-        }
-        sort(v.begin(), v.end());
-        for(int i=0; i<k; i++){
-            ans.push_back(v[i].second);
-        }
-        return ans;
-    }
-};
-
-
-// OR
-
-
-class Solution {
-public:
-    vector<int> kWeakestRows(vector<vector<int>>& matrix, int k) {
         // pair: (count of soldiers, row index)
         vector< pair<int,int> > v;
         int row = matrix.size();
