@@ -81,6 +81,29 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n, -1); 
+        stack<pair<int, int>> st; 
+
+        for(int i=0; i<n*2; i++) {
+            int idx = i % n; 
+            while(!st.empty() && st.top().first < nums[idx]) {
+                ans[st.top().second] = nums[idx]; 
+                st.pop();
+            }            
+            if(i < n) st.push(make_pair(nums[idx], idx));
+        }
+        return ans;
+    }
+};
+
+
 
 
 
@@ -113,4 +136,34 @@ public:
 
 
 // A 4
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, -1);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;  // minHeap
+        
+        for(int i=0; i<2*n; ++i) {
+            int j = i % n;
+            
+            while(!pq.empty() && pq.top().first < nums[j]) {
+                int idx = pq.top().second;
+                res[idx] = nums[j];
+                pq.pop();
+            }
+            
+            if(i < n) pq.push(make_pair(nums[j], j));
+        }        
+        return res;        
+    }
+};
+
+
+
+
+
+
+// A 5
+
 
