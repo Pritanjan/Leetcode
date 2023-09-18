@@ -204,3 +204,65 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> LAsteroids;
+        stack<int> RAsteroids;
+        
+        for(int asteroid : asteroids) {
+            // Asteroid moving right, push it to the right stack
+            if(asteroid > 0) RAsteroids.push(asteroid);
+            else {
+                // Asteroid moving left
+                bool collision = false;
+                while(!RAsteroids.empty()) {
+                    int RAsteroid = RAsteroids.top();
+                    // Compare sizes of asteroids
+                    if(RAsteroid < abs(asteroid)) {
+                        // The right-moving asteroid is smaller and explodes
+                        RAsteroids.pop();
+                    }
+                    else if(RAsteroid == abs(asteroid)) {
+                        // Both asteroids explode
+                        RAsteroids.pop();
+                        collision = true;
+                        break;
+                    } 
+                    // The left-moving asteroid is smaller or equal, no collision
+                    else {            
+                        collision = true;
+                        break;
+                    }
+                }
+                
+                // No collision with right-moving asteroids, push the left-moving asteroid
+                if(!collision) LAsteroids.push(asteroid);
+            }
+        }
+        
+        // Combine the left and right asteroids from the stacks
+        vector<int> res;
+        while(!LAsteroids.empty()) {
+            res.push_back(LAsteroids.top());
+            LAsteroids.pop();
+        }
+        while(!RAsteroids.empty()) {
+            res.push_back(RAsteroids.top());
+            RAsteroids.pop();
+        }
+        
+        // Reverse to maintain correct order
+        reverse(res.begin(), res.end()); 
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6
+
