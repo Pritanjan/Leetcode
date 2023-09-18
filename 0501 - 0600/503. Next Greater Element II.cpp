@@ -1,8 +1,34 @@
 // Next smaller element
 // https://github.com/Pritanjan/time-pass/blob/main/Stack/7%20Next%20Smaller%20Element.cpp
 
+// https://practice.geeksforgeeks.org/problems/214734e358208c1c6811d9b237b518f6b3c3c094/1
+// IF the array is not circular
 
-// APPROACH 1
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& arr){
+        int n = arr.size();
+        stack<int> st;
+        st.push(-1);
+        vector<int> ans(n);
+    
+        for(int i=n-1; i>=0; i--){
+            while(st.top() != -1 and st.top() <= arr[i]){
+                st.pop();
+            }
+            ans[i] = st.top();
+            st.push(arr[i]);
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+// Array is circular
+// A 1
 
 class Solution {
 public:
@@ -28,38 +54,7 @@ public:
 
 
 
-// APPROACH 2
-
-// https://practice.geeksforgeeks.org/problems/214734e358208c1c6811d9b237b518f6b3c3c094/1
-// IF THE aRRaY IS NOT CIRCULaR
-
-class Solution {
-public:
-    vector<int> nextGreaterElements(vector<int>& arr){
-        int n = arr.size();
-        stack<int> st;
-        st.push(-1);
-        vector<int> ans(n);
-    
-        for(int i=n-1; i>=0; i--){
-            while(st.top() != -1 and st.top() <= arr[i]){
-                st.pop();
-            }
-            ans[i] = st.top();
-            st.push(arr[i]);
-        }
-        return ans;
-    }
-};
-
-
-
-
-
-
-
-// APPROACH 3
-
+// A 2
 
 class Solution {
 public:
@@ -87,4 +82,8 @@ public:
 
 
 
+
+
+
+// A 3
 
