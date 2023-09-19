@@ -184,7 +184,9 @@ public:
 
 
 
-// A 7 - Bit Manipulation
+// A 7 - 
+// convert the binary array to a string and then split it based on '0'. 
+// The maximum length of consecutive ones will be the length of the longest substring of '1's.
 
 class Solution {
 public:
