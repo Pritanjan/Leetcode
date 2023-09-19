@@ -145,3 +145,47 @@ public:
 
 // A 5
 
+class Solution {
+public:
+    string removeZero(string str) {
+        // Count leading zeros
+        int i = 0;
+        while(str[i] == '0') i++;
+    
+        // The erase function removes i characters
+        // from the given index (0 here)
+        str.erase(0, i);
+        return str;
+    }
+
+    string removeKdigits(string num, int k) {
+        vector<char> res;
+        for(char digit : num) {
+            while(k > 0 && !res.empty() && res.back() > digit) {
+                res.pop_back();
+                k--;
+            }
+            res.push_back(digit);
+        }
+        
+        // Remove remaining digits if k > 0
+        while(k > 0) {
+            res.pop_back();
+            k--;
+        }
+        
+        // Convert the vector to a string
+        string result(res.begin(), res.end());
+        
+        // Ensure that the result is not empty and remove leading zeros
+        result = removeZero(result);
+        return result.empty() ? "0" : result;
+    }         
+};
+
+
+
+
+
+
+// A 6
