@@ -184,4 +184,34 @@ public:
 
 
 
-// A 7
+// A 7 - Bit Manipulation
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        string s;
+        for (int num : nums) {
+            s += to_string(num);
+        }
+        
+        stringstream ss(s);
+        string token;
+        int maxCount = 0;
+        
+        while(getline(ss, token, '0')) {
+            maxCount = max(maxCount, static_cast<int>(token.size()));
+        }
+        
+        return maxCount;
+    }
+};
+
+
+
+
+
+
+
+// A 8
+
+
