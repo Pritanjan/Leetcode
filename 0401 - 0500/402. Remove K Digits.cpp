@@ -104,3 +104,44 @@ public:
 
 
 // A 4
+
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        deque<char> dq;        
+        for(char digit : num) {
+            while(k > 0 && !dq.empty() && dq.back() > digit) {
+                dq.pop_back();
+                k--;
+            }
+            dq.push_back(digit);
+        }
+        
+        // Remove remaining digits if k > 0
+        while(k > 0) {
+            dq.pop_back();
+            k--;
+        }
+        
+        // Build the result string
+        string res = "";
+        while(!dq.empty()) {
+            res += dq.front();
+            dq.pop_front();
+        }
+        
+        // Remove leading zeros
+        int i = 0;
+        while(i < res.length() && res[i] == '0') i++;
+        
+        return(i == res.length()) ? "0" : res.substr(i);
+    }
+};
+
+
+
+
+
+
+// A 5
+
