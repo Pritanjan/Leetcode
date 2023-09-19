@@ -192,4 +192,26 @@ public:
 
 
 // A 7
+// Create an array cnt of size n + 1 to store the count of each number from 1 to n.
+// Iterate through the given nums array and increment the corresponding count in the array.
+// When you encounter a number with a count greater than 1, return it as the duplicate.
 
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size() - 1;
+        vector<int> cnt(n+1, 0);
+        for(int num : nums) {
+            cnt[num]++;
+            if(cnt[num] > 1) return num;
+        }        
+        return -1; // No duplicate found (optional)
+    }
+};
+
+
+
+
+
+
+// A 8
