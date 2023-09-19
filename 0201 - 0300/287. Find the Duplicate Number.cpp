@@ -1,5 +1,8 @@
 // SAME AS LC 442 -  442. Find All Duplicates in an Array
 // A 1 [ BRUTE FORCE ]
+// 1. Sort the given array in place (can make a copy of the array to preserve the original order if needed).
+// 2. Iterate through the sorted array and check for adjacent elements that are the same.
+// 3. Return the duplicate element.
 
 class Solution {
 public:
@@ -17,7 +20,10 @@ public:
 
 
 
-// A 2 [ HASH MAP ]
+// A 2 [ HASH SET ]
+// 1. Use a HashSet to keep track of visited numbers.
+// 2. Iterate through the array, and for each number, check if it's already in the HashSet.
+// 3. If it is, return that number as the duplicate.
 
 class Solution {
 public:
@@ -49,27 +55,16 @@ public:
 };
 
 
-// OR
-
-
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        unordered_set<int> seen;
-        for(auto i : nums) {
-            if(seen.count(i)) return i;
-            else seen.insert(i);
-        }        
-        return -1;
-    }
-};
-
-
 
 
 
 
 // A 3 [ BINARY_SEARCH  ]
+// 1. Use binary search to find the repeated number.
+// 2. Calculate the middle element and count the numbers less than or equal to the middle element
+//    in the array.
+// 3. If the count is greater than the middle element, then the repeated no must be in the first half; 
+//    otherwise, it's in the second half.
 
 class Solution {
 public:
@@ -95,6 +90,11 @@ public:
 
 
 // A 4 [ Floyd's Tortoise and Hare (Cycle Detection) ]
+// 1. Use two pointers, one tortoise and one hare, to detect a cycle in the array.
+// 2. Initialize tortoise and hare to the first element.
+// 3. Move tortoise one step at a time and hare two steps at a time until they meet.
+// 4. Once they meet, reset one pointer to the start and move both at the same pace until they meet again. 
+//    The meeting point is the repeated number.
 
 class Solution {
 public:
