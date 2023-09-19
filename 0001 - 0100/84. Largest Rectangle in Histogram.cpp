@@ -1,3 +1,30 @@
+// A 0 - Brute Force 
+// It involves checking every possible rectangle starting from each bar in the histogram and
+// calculating its area
+
+class Solution {
+public:      
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        int maxArea = 0;        
+        for (int i = 0; i < n; i++) {
+            int minHeight = heights[i];
+            for (int j = i; j < n; j++) {
+                minHeight = min(minHeight, heights[j]);
+                int width = j - i + 1;
+                int area = minHeight * width;
+                maxArea = max(maxArea, area);
+            }
+        }        
+        return maxArea;
+    }  
+};
+
+
+
+
+
+
 // A 1
 
 class Solution {
@@ -145,6 +172,42 @@ public:
 
 
 // A 3
+
+class Solution {
+public:      
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        vector<int> left(n), right(n);
+        stack<int> s1, s2;
+        
+        for(int i=0; i<n; i++) {
+            while(!s1.empty() && heights[i] <= heights[s1.top()]) {
+                s1.pop();
+            }
+            left[i] = s1.empty() ? -1 : s1.top();
+            s1.push(i);
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            while (!s2.empty() && heights[i] <= heights[s2.top()]) {
+                s2.pop();
+            }
+            right[i] = s2.empty() ? n : s2.top();
+            s2.push(i);
+        }
+        
+        int maxArea = 0;
+        for (int i = 0; i < n; i++) {
+            int width = right[i] - left[i] - 1;
+            maxArea = max(maxArea, heights[i] * width);
+        }        
+        return maxArea;
+    }
+};
+
+
+// OR
+
+
 // Largest Rectangular Area in a Histogram by finding the next and the previous smaller element:
 
 // Find the previous and the next smaller element for every element of the histogram,
@@ -158,7 +221,8 @@ public:
 // 2. For every element, we will store the index of the previous smaller and next smaller element in 
 //    leftSmall[] and rightSmall[] arrays respectively
 // 3. Now for every element, we will calculate the area by taking this ith element as the smallest in
-//    the range leftSmall[i] and rightSmall[i] and multiplying it with the difference of left_smaller[i] and right_smaller[i]
+//    the range leftSmall[i] and rightSmall[i] and multiplying it with the difference of leftSmall[i] 
+//    and rightSmall[i]
 // 4. We can find the maximum of all the areas calculated in step 3 to get the desired maximum area
 
 class Solution {
@@ -181,11 +245,11 @@ public:
             stk.push(idx);
             idx++;
         }
-
         for(int j=0; j<n; j++) {
-            area = max(area, arr[j] * (rightSmall[j]
-                                    - leftSmall[j] - 1));
+            area = max(area, arr[j] * (rightSmall[j] - leftSmall[j] - 1));
         }
         return area;
     }
 };
+
+
