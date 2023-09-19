@@ -1,12 +1,11 @@
 // SAME AS LC 442 -  442. Find All Duplicates in an Array
-
-// APPROACH 1 [ BRUTE FORCE ]
+// A 1 [ BRUTE FORCE ]
 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        for(int i=0; i<nums.size(); i++){
+        for(int i=0; i<nums.size(); i++) {
             if(nums[i] == nums[i+1]) return nums[i];
         }
         return -1;
@@ -18,7 +17,7 @@ public:
 
 
 
-// APPROACH 2 [ HASH MAP ]
+// A 2 [ HASH MAP ]
 
 class Solution {
 public:
@@ -50,26 +49,39 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        unordered_set<int> seen;
+        for(auto i : nums) {
+            if(seen.count(i)) return i;
+            else seen.insert(i);
+        }        
+        return -1;
+    }
+};
 
 
 
 
-// APPROACH 3 [ BINARY_SEARCH  ]
+
+
+// A 3 [ BINARY_SEARCH  ]
 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         int L = 1;
         int R = nums.size() - 1;
-        
         while(L < R) {
             int mid = L + (R-L) / 2;
-            int cnt = 0;
-            
+            int cnt = 0;            
             for(int i : nums) {
                 if(i <= mid) cnt++;
-            }
-            
+            }            
             if(cnt <= mid) L = mid + 1;
             else R = mid;
         }        
@@ -81,7 +93,8 @@ public:
 
 
 
-// APPROACH 4 [ Floyd's Tortoise and Hare (Cycle Detection) ]
+
+// A 4 [ Floyd's Tortoise and Hare (Cycle Detection) ]
 
 class Solution {
 public:
@@ -101,7 +114,6 @@ public:
             tortoise = nums[tortoise];
             hare = nums[hare];
         }
-        
         return hare;
     }
 };
@@ -111,7 +123,7 @@ public:
 
 
 
-// APPROACH 5 [ Linked List Cycle Detection ]
+// A 5 [ Linked List Cycle Detection ]
 
 class Solution {
 public:
@@ -124,14 +136,12 @@ public:
             slow = nums[slow];
             fast = nums[nums[fast]];
         }
-        
         // Phase 2: Find the entrance to the cycle
         fast = 0;
         while (slow != fast) {
             slow = nums[slow];
             fast = nums[fast];
-        }
-        
+        }        
         return slow;
     }         
 };
