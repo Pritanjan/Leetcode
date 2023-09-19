@@ -148,3 +148,48 @@ public:
 
 
 
+
+
+
+// A 6 - Bit Manipulation 
+// 1. Initialize a variable result to 0.
+// 2. Iterate through the bits from the least significant bit (LSB) to the most significant bit (MSB).
+// 3. For each bit position, count the no of elements in the array and the numbers from 1 to n
+//    that have a set bit at that position.
+// 4. If the count of set bits for the array elements is greater than the count for the numbers 
+//    from 1 to n, then set the corresponding bit in result.
+// 5. After iterating through all bit positions, result will contain the binary representation 
+//    of the repeated number.
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size() - 1;
+        int res = 0;
+        
+        for(int bitPos = 0; bitPos < 32; ++bitPos) {
+            int countArray = 0;
+            int countNumbers = 0;
+            int mask = 1 << bitPos;
+            
+            for(int num : nums) {
+                if(num & mask) countArray++;
+            }
+            for(int i=1; i<=n; ++i) {
+                if(i & mask) countNumbers++;
+            }
+            if(countArray > countNumbers) {
+                res |= mask;
+            }
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 7
+
