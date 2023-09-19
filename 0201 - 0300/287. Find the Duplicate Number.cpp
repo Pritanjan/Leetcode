@@ -191,7 +191,7 @@ public:
 
 
 
-// A 7
+// A 7 - Counting Approach:
 // Create an array cnt of size n + 1 to store the count of each number from 1 to n.
 // Iterate through the given nums array and increment the corresponding count in the array.
 // When you encounter a number with a count greater than 1, return it as the duplicate.
@@ -215,3 +215,28 @@ public:
 
 
 // A 8
+// 1. For each element nums[i], negate the element at the index nums[i] 
+//    (i.e., change the sign of nums[nums[i]]).
+// 2. If encounter an element at an index that is already negative, return the absolute value
+//    of that element as the repeated number.
+    
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size();   
+        for(int i=0; i<n; ++i) {
+            int idx = abs(nums[i]);
+            if(nums[idx] < 0) return idx;
+            else nums[idx] = -nums[idx];
+        }        
+        return -1; // No duplicate found (optional)
+    }
+};
+
+
+
+
+
+
+// A 9
+
