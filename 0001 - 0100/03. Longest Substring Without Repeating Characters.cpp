@@ -163,3 +163,42 @@ public:
 // S.C. --> O(1),  
 // Since the size of the v vector is constant at 256.
 
+
+
+
+
+
+// A 6 
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.length();
+        int maxLen = 0;
+        int L = 0;
+        int R = 0;
+
+        while(R < n) {
+            char curr = s[R];
+            int idx = s.find(curr, L);
+
+            // If the current character is repeated within the current substring
+            if(idx != string::npos && idx < R) L = idx + 1;
+            maxLen = max(maxLen, R - L + 1);
+            R++;
+        }
+        return maxLen;
+    }
+};
+
+// 1. Use two pointers, L and R, to define the current substring.
+// 2. For each character at the right pointer, use find method to check if it appears within the current
+//    substring defined by L and R. 
+//    If it does, and its index is less than right, it means character is repeated within the current substring.
+//    In this case, we update the left pointer to the index of the repeated character plus one.
+// 3. We update the maximum length of the substring (maxLen) at each step.
+
+// T.C. --> O(N), where N is the length of the input string, as we visit each character at most twice. 
+// S.C. --> O(1), because we are not using additional data structures.
+
+
