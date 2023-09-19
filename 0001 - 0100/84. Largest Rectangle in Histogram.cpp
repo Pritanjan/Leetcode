@@ -1,4 +1,4 @@
-// A 0 - Brute Force 
+// A 0 - Brute Force  TLE
 // It involves checking every possible rectangle starting from each bar in the histogram and
 // calculating its area
 
@@ -253,3 +253,36 @@ public:
 };
 
 
+
+
+
+
+// A 4 - Recursion  TLE 
+// It divides the problem into smaller subproblems and recursively finds the maximum area. 
+// It then combines the results to get the maximum area of the entire histogram.
+
+class Solution {
+public:
+    int recursion(vector<int>& heights, int L, int R) {
+        if(L > R) return 0;
+        int miIdx = L;
+        for(int i=L; i<=R; i++) {
+            if(heights[i] < heights[miIdx]) miIdx = i;
+        }
+        
+        int area = heights[miIdx] * (R - L + 1);
+        int leftArea = recursion(heights, L, miIdx - 1);
+        int rightArea = recursion(heights, miIdx + 1, R);
+        return max(area, max(leftArea, rightArea));
+    }
+
+    int largestRectangleArea(vector<int>& heights) {
+        return recursion(heights, 0, heights.size() - 1);
+    }
+};
+
+
+
+
+
+// A 5
