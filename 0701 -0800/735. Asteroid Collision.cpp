@@ -164,31 +164,23 @@ public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> res;
         for(int asteroid : asteroids) {
-            // If result is empty or current asteroid is moving right, just push it
             if(res.empty() || asteroid > 0) res.push_back(asteroid);
             else {
-                // Current asteroid is moving left
                 bool collision = false;
                 while(!res.empty() && res.back() > 0) {
                     int prev = res.back();
                     res.pop_back();
-                    
-                    // Compare sizes of asteroids
-                    // The smaller asteroid explodes, continue checking
                     if(prev + asteroid < 0) continue;
                     else if(prev + asteroid == 0) {
-                        // Both asteroids explode, stop checking
                         collision = true;
                         break;
                     } 
-                    // Right asteroid explodes, push it back and continue checking
                     else {       
-                        res.push_back(prevAsteroid);
+                        res.push_back(prev);
                         collision = true;
                         break;
                     }
                 }
-                // If no collision with right-moving asteroids, push the left-moving asteroid
                 if(!collision && (res.empty() || res.back() < 0)) {
                     res.push_back(asteroid);
                 }
