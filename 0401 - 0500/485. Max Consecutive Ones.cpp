@@ -28,7 +28,6 @@ public:
 
 
 // A 1  Linear Scan
-
 // Traverse the array linearly and keep track of the current consecutive count of 1's and
 // the maximum consecutive count encountered.
 
@@ -52,7 +51,8 @@ public:
 
 
 
-// APPROACH 2
+
+// A 2
 
 class Solution {
 public:
@@ -61,7 +61,6 @@ public:
         for (int i=0; i<nums.size(); i++) {
             s += to_string(nums[i]);
         }
-
         vector<string> substrings;
         string temp = "";
         for (int i=0; i<s.size(); i++) {
@@ -87,7 +86,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -113,18 +112,19 @@ public:
 
 
 
-// APPROACH 4
+// A 4
 
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
-        int cur = 0;
-        int maximum = 0;
+        int maxCnt = 0;
+        int currCnt = 0;        
         for(int num : nums) {
-            cur = (cur + num) * num;
-            if(cur > maximum) maximum = cur;
-        }
-        return maximum;
+            // currCnt = (currCnt + 1) * num;
+            currCnt = (currCnt + num) * num;
+            maxCnt = max(maxCnt, currCnt);
+        }        
+        return maxCnt;
     }
 };
 
@@ -134,7 +134,6 @@ public:
 
 
 // A 5 Sliding Window:
-
 // WE can use a sliding window approach to keep track of the current window of consecutive 1's and
 // update the maximum count.
 
@@ -157,15 +156,13 @@ public:
 
 
 // A 6 
-// use find function to locate the first occurrence of 0 in the array and
-// calculate the maximum consecutive 1's before that position.
+// Use find function to locate the 1st occurrence of 0 in array & calculate the maximum consecutive 1's before that position.
 
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int maxCnt = 0;
-        int currCnt = 0;
-        
+        int currCnt = 0;        
         auto zeroPos = find(nums.begin(), nums.end(), 0);
         for(auto it=nums.begin(); it!=nums.end(); ++it) {
             if(it == zeroPos) {
@@ -195,19 +192,16 @@ public:
         for (int num : nums) {
             s += to_string(num);
         }
-        
         stringstream ss(s);
         string token;
         int maxCount = 0;
         
         while(getline(ss, token, '0')) {
             maxCount = max(maxCount, static_cast<int>(token.size()));
-        }
-        
+        }        
         return maxCount;
     }
 };
-
 
 
 
