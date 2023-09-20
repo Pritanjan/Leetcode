@@ -74,6 +74,12 @@ public:
 
 
 // A 4
+// initialize reversed to 0 to accumulate the reversed bits.
+// We iterate through the 32 bits of the input n in a loop.
+// In each iteration, we left-shift the reversed number by 1 bit to make room for the next bit.
+// We set the least significant bit of reversed to the current bit of n using bitwise OR (|).
+// We right-shift n by 1 bit to process the next bit.
+// Repeat steps 3-5 for all 32 bits.
 
 class Solution {
 public:
