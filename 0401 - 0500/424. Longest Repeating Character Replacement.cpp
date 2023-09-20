@@ -59,3 +59,45 @@ public:
         return maxLength;
     }
 };
+
+
+
+
+
+
+// A 3
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+         int maxLen = 0; // Initialize the length of the longest valid substring
+        int maxCnt = 0; // Initialize the maximum character count in any window
+        int L = 0; // Initialize the left pointer of the window
+        unordered_map<char, int> cnt; // Map to store the count of each character
+
+        for(int R=0; R<s.length(); R++) {
+            cnt[s[R]]++; // Increment the count of the current character
+            maxCnt = max(maxCnt, cnt[s[R]]); // Update maxCount
+
+            // Calculate the number of replacements needed to make all characters in the current window the same
+            int tmp = (R - L + 1) - maxCnt;
+
+            // If the number of replacements needed exceeds k, we need to shrink the window
+            if(tmp > k) {
+                cnt[s[L]]--; // Decrement the count of the character going out of the window
+                L++; // Move the left pointer to the right, effectively shrinking the window
+            }
+            // Update maxLength for the current window
+            maxLen = max(maxLen, R - L + 1);
+        }    
+        return maxLen; // Return the length of the longest substring with the same character
+    }
+};
+
+
+
+
+
+
+// A 4
+
