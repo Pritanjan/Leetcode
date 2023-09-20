@@ -50,5 +50,28 @@ public:
 
 
 
-// A 3
+// A 3  -  Divide-and-conquer 
+// a. We use bitwise operations to swap adjacent pairs of bits, then nibbles (4-bit groups), and
+//    finally bytes (8-bit groups). This is done in a series of shifts and masks.
+// b. The key idea is to reverse the bits in smaller chunks and then combine them to obtain the final result.
+    
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        // Swap adjacent pairs of bits, then nibbles, and finally bytes.
+        n = ((n >> 1) & 0x55555555) | ((n & 0x55555555) << 1);
+        n = ((n >> 2) & 0x33333333) | ((n & 0x33333333) << 2);
+        n = ((n >> 4) & 0x0F0F0F0F) | ((n & 0x0F0F0F0F) << 4);
+        n = ((n >> 8) & 0x00FF00FF) | ((n & 0x00FF00FF) << 8);
+        n = ((n >> 16) & 0x0000FFFF) | ((n & 0x0000FFFF) << 16);
+        return n;
+    }
+};
+
+
+
+
+
+
+// A 4
 
