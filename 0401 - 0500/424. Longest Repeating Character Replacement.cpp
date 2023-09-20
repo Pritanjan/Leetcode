@@ -133,5 +133,54 @@ public:
 
 
 
-// A 5
+// A 5 - LEetcode A 1
 
+class Solution {
+public:
+    bool canMakeValidSubstring(const string& s, int substringLength, int k) {
+        vector<int> freqMap(26, 0);
+        int maxFrequency = 0;
+        int start = 0;
+
+        for (int end = 0; end < s.length(); end++) {
+            freqMap[s[end] - 'A']++;
+
+            if (end + 1 - start > substringLength) {
+                freqMap[s[start] - 'A']--;
+                start++;
+            }
+
+            maxFrequency = max(maxFrequency, freqMap[s[end] - 'A']);
+
+            if (substringLength - maxFrequency <= k) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    int characterReplacement(string s, int k) {
+        int lo = 1;
+        int hi = s.length() + 1;
+
+        while (lo + 1 < hi) {
+            int mid = lo + (hi - lo) / 2;
+
+            if (canMakeValidSubstring(s, mid, k)) {
+                lo = mid;
+            } else {
+                hi = mid;
+            }
+        }
+
+        return lo;
+
+    }
+};
+
+ 
+
+
+
+// A 6
