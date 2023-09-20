@@ -75,3 +75,26 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t rev = 0;
+        for(int i=0; i<32; ++i) {  
+            // Left shift the reversed number to make room for the next bit.
+            rev <<= 1;    
+            // Set the least significant bit of reversed to the current bit of n.
+            rev |= (n & 1);  
+            // Right shift n to process the next bit.
+            n >>= 1;            
+        }
+        return rev;
+    }
+};
+
+
+
+
+
+
+// A 5
+
