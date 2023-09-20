@@ -101,3 +101,37 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int maxLen = 0;
+        int L = 0;
+        unordered_map<char, int> cnt;
+        priority_queue<int> pq;
+
+        for(int R=0; R<s.length(); R++) {
+            cnt[s[R]]++;
+            pq.push(cnt[s[R]]);
+
+            // Calculate the number of replacements needed
+            int tmp = R - L + 1 - pq.top();
+
+            // If the number of replacements needed exceeds k, shrink the window
+            if(tmp > k) {
+                cnt[s[L]]--;
+                pq.pop();
+                L++;
+            }
+            maxLen = max(maxLen, R - L + 1);
+        }
+        return maxLen;
+    }
+};
+
+
+
+
+
+
+// A 5
+
