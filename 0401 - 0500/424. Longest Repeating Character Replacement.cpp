@@ -34,3 +34,28 @@ public:
 
 
 // A 2
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> charCount(26, 0); // Count of each uppercase English character
+        int maxCount = 0; // Maximum character count in the current window
+        int L = 0; // Left pointer of the window
+        int maxLength = 0; // Length of the longest valid substring
+
+        for(int R=0; R<s.length(); R++) {
+            charCount[s[R] - 'A']++; // Increment count of the current character
+            maxCount = max(maxCount, charCount[s[R] - 'A']); // Update maxCount
+
+            // If the length of the current window minus maxCount exceeds k, shrink the window
+            if(R - L + 1 - maxCount > k) {
+                charCount[s[L] - 'A']--; // Decrement count of the character going out of the window
+                L++; // Shrink the window from the left
+            }
+
+            // Update the maxLength for the current window
+            maxLength = max(maxLength, R - L + 1);
+        }
+        return maxLength;
+    }
+};
