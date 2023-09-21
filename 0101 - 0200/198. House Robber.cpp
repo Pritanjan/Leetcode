@@ -143,5 +143,34 @@ public:
 
 
 
-// A 5
+// A 5 -  Using Two Arrays
+// Modification of the DP approach but uses two arrays instead of just two variables. 
+// One array stores the maximum robbed amount considering the current house, and
+// other array stores maximum robbed amount without considering current house.
 
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0) return 0;
+        if(n == 1) return nums[0];
+
+        vector<int> rob(n, 0);
+        vector<int> skip(n, 0);
+
+        rob[0] = nums[0];
+
+        for(int i=1; i<n; ++i) {
+            rob[i] = skip[i - 1] + nums[i];
+            skip[i] = max(rob[i - 1], skip[i-1]);
+        }
+        return max(rob[n-1], skip[n-1]);
+    }
+};
+
+
+
+
+
+
+// A 6
