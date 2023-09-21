@@ -42,7 +42,7 @@ public:
 
 
 
-// A 2
+// A 2 - 2 Pointer
 
 class Solution {
 public:
@@ -77,4 +77,26 @@ public:
 
 
 
-// A 3
+// A 3 - DP
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int n = nums.size();
+        vector<int> prefix(n+1, 0);
+        unordered_map<int, int> cntMap;
+        int cnt = 0;
+
+        for(int i=0; i<n; i++) {
+            prefix[i+1] = prefix[i] + nums[i];
+            int target = prefix[i+1] - goal;
+            if(prefix[i+1] == goal) cnt++;
+            if(cntMap.find(target) != cntMap.end()) {
+                cnt += cntMap[target];
+            }
+            cntMap[prefix[i+1]]++;
+        }
+        return cnt;
+    }
+};
+
