@@ -100,3 +100,50 @@ public:
     }
 };
 
+
+
+
+
+// A 4 - L1 
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int sum = 0;
+        for(int x : nums) sum += x;
+
+        // v[i] = location of i-th one (1 indexed)
+        vector<int> v(sum + 2, 0);
+        int t = 0;
+        v[t++] = -1;
+        for(int i=0; i<nums.size(); ++i) {
+            if(nums[i] == 1) v[t++] = i;
+        }
+        v[t] = nums.size();
+
+        int ans = 0;
+        if(goal == 0) {
+            for(int i=0; i<v.size()-1; ++i) {
+                // w: number of zeros between consecutive ones
+                int w = v[i+1] - v[i] - 1;
+                ans += w * (w + 1) / 2;
+            }
+            return ans;
+        }
+
+        for(int i=1; i<v.size() - goal; ++i) {
+            int j = i + goal - 1;
+            int L = v[i] - v[i-1];
+            int R = v[j+1] - v[j];
+            ans += L * R;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+// 
+
