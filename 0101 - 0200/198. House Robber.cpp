@@ -61,7 +61,6 @@ public:
 
         // Create an array to store the maximum amount of money robbed up to the current house
         vector<int> dp(n, 0);
-
         // Initialize the first two elements of dp
         dp[0] = nums[0];
         dp[1] = max(nums[0], nums[1]);
@@ -73,11 +72,12 @@ public:
             // If we skip the current house, we take the maximum from the previous house (i - 1)
             dp[i] = max(dp[i-2] + nums[i], dp[i-1]);
         }
-
         // The last element of dp contains the maximum amount that can be robbed
         return dp[n-1];
     }
 };
+
+// T.C. --> O(N)
 
 
 
@@ -86,5 +86,27 @@ public:
 
 // A 3 
 
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        unordered_map<int, int> mp;
+        return recursion(nums, nums.size() - 1, mp);
+    }
+private:
+    int recursion(const vector<int>& nums, int i, unordered_map<int, int>& mp) {
+        if(i < 0) return 0;
+        if(mp.count(i)) return mp[i];
+        int curr = nums[i] + recursion(nums, i-2, mp);
+        int skip = recursion(nums, i-1, mp);
+        int res = max(curr, skip);
+        mp[i] = res;
+        return res;
+    }
+};
 
-// T.C. --> O(N)
+
+
+
+
+
+// A 4
