@@ -230,7 +230,48 @@ public:
 };
 
 
+// OR
 
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+
+        // Ensure nums1 is the smaller array.
+        if(m > n) {
+            swap(nums1, nums2);
+            swap(m, n);
+        }
+
+        int imin = 0, imax = m;
+        int halfLen = (m + n + 1) / 2;
+        double res = 0;
+
+        while(imin <= imax) {
+            int i = (imin + imax) / 2;
+            int j = halfLen - i;
+
+            int maxLeft1 = (i == 0) ? INT_MIN : nums1[i-1];
+            int minRight1 = (i == m) ? INT_MAX : nums1[i];
+            int maxLeft2 = (j == 0) ? INT_MIN : nums2[j-1];
+            int minRight2 = (j == n) ? INT_MAX : nums2[j];
+
+            if(maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+                // Found correct partition.
+                if((m + n) % 2 == 0) res = (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) / 2.0;
+                else res = max(maxLeft1, maxLeft2);
+                break;
+            }
+            else if(maxLeft1 > minRight2) imax = i - 1;
+            // Need to move left in nums1.
+            else imin = i + 1;
+            // Need to move right in nums1.
+        }
+        return res;
+    }
+};
 
 
 
