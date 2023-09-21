@@ -24,17 +24,25 @@ public:
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int h1 = 0, h2 = 0, h3 = 0;
-        int temp = 0;        
-        for(int i=0; i<nums.size(); i++) {
-            temp = nums[i] + max(h2,h3) ;
-            h3 = h2;
-            h2 = h1;
-            h1 = temp;
+        int n = nums.size();
+        if(n == 0) return 0;
+        if(n == 1) return nums[0];
+
+        int notRobbed = 0;          // Maximum profit when the current house is not robbed
+        int justRobbed = nums[0];   // Maximum profit when the current house is just robbed
+        int robbed = 0;             // Maximum profit when the current house is robbed
+
+        for(int i=1; i<n; ++i) {
+            int tmp = notRobbed;          // Store the previous notRobbed value
+            notRobbed = max(notRobbed, max(justRobbed, robbed)); // Transition to the next notRobbed state
+            justRobbed = tmp + nums[i];   // Transition to the next justRobbed state
+            robbed = justRobbed;          // Transition to the next robbed state
         }
-        return max(h1,h2);
+        return max(notRobbed, max(justRobbed, robbed)); // Return the maximum profit among all states
     }
 };
+
+
  
 // 1. Use 3 variables to store the amount of money the robber have if robbed in previous three houses;
 //    for the current house the amount will be the either :
