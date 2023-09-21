@@ -44,3 +44,37 @@ public:
 
 // A 2
 
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int L = 0;
+        int R = 0;
+        int sum = 0;
+        int cnt = 0;
+        int n = nums.size();
+
+        while(R < n) {
+            sum += nums[R];
+            while(L < R and sum > goal) {
+                sum -= nums[L];
+                L++;
+            }
+            if(sum == goal) {
+                int tmp = L;
+                while(tmp < R and nums[tmp] == 0) {
+                    tmp++;
+                    cnt++;
+                }
+                cnt++;
+            }
+            R++;
+        }
+        return cnt;        
+    }
+};
+
+
+
+
+
+// A 3
