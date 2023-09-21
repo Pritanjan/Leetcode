@@ -20,18 +20,22 @@ public:
 
 // OR
 
+// 1. Use 3 variables to store the amount of money the robber have if robbed in previous three houses;
+//    for the current house the amount will be the either :
+// 2. if robbed amount in 2 last house is more than 3rd last then robbed money for current house will be
+//    the sum of money in current house and 2 last house.
+// 3. else the robbed amount in current house would be the sum of money in current and 3rd last house.
 
 class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size();
         if(n == 0) return 0;
-        if(n == 1) return nums[0];
-
+        if(n == 1) return nums[0]
+            
         int notRobbed = 0;          // Maximum profit when the current house is not robbed
         int justRobbed = nums[0];   // Maximum profit when the current house is just robbed
         int robbed = 0;             // Maximum profit when the current house is robbed
-
         for(int i=1; i<n; ++i) {
             int tmp = notRobbed;          // Store the previous notRobbed value
             notRobbed = max(notRobbed, max(justRobbed, robbed)); // Transition to the next notRobbed state
@@ -42,14 +46,6 @@ public:
     }
 };
 
-
- 
-// 1. Use 3 variables to store the amount of money the robber have if robbed in previous three houses;
-//    for the current house the amount will be the either :
-// 2. if robbed amount in 2 last house is more than 3rd last then robbed money for current house will be
-//    the sum of money in current house and 2 last house.
-// 3. else the robbed amount in current house would be the sum of money in current and 3rd last house.
-
 // T.C. --> O(N)
 // S.C. --> O(1)
 
@@ -58,8 +54,8 @@ public:
 
 
 
-// A 2
-
+// A 2  -  DP
+  
 class Solution {
 public:
     int rob(vector<int>& nums) {
@@ -84,8 +80,33 @@ public:
         return dp[n-1];
     }
 };
-
 // T.C. --> O(N)
+
+// OR
+
+class Solution {
+public:
+    int rob(vector<int>& arr) {
+        int n = arr.size();
+        if(n == 0) return 0;
+        if(n == 1) return arr[0];
+        
+        vector<int> dp(n, -1);
+        return f(n-1, arr, dp);
+    }
+
+private:
+    int f(int i, vector<int>& arr, vector<int>& dp) {
+        if(i == 0) return arr[i];
+        if(i < 0)  return 0;
+        if(dp[i] != -1) return dp[i];
+        
+        int notake = f(i-1, arr, dp);
+        int take = arr[i] + f(i-2, arr, dp);
+        
+        return dp[i] = max(take, notake);
+    }
+};
 
 
 
@@ -129,7 +150,6 @@ public:
         int n = nums.size();
         if(n == 0) return 0;
         if(n == 1) return nums[0];
-
         int evSum = 0;
         int odSum = 0;
         for(int i=0; i<n; ++i) {
@@ -165,9 +185,7 @@ public:
 
         vector<int> rob(n, 0);
         vector<int> skip(n, 0);
-
         rob[0] = nums[0];
-
         for(int i=1; i<n; ++i) {
             rob[i] = skip[i - 1] + nums[i];
             skip[i] = max(rob[i - 1], skip[i-1]);
