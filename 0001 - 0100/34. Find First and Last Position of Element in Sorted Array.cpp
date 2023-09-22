@@ -202,3 +202,18 @@ public:
 
 
 // A 6
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int x) {
+        vector<int> v;
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == x) {
+                v.push_back(i);
+            }
+        }        
+        if(v.empty()) return {-1, -1};
+        else return {v.front(), v.back()};
+    }
+};
+
