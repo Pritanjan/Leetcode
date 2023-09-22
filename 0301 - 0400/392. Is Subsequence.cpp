@@ -31,8 +31,7 @@ public:
                 return false; // Character not found in t
             }
             pos++; // Move to the next position in t
-        }
-        
+        }        
         return true;
     }
 };
@@ -91,7 +90,6 @@ public:
         int n = t.length();
 
         vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
-
         for(int i=0; i<=n; ++i) {
             dp[0][i] = true; // Empty string is always a subsequence
         }
