@@ -215,5 +215,35 @@ public:
 
 
 
-// A 6 
+// A 6  - Using a Parent Pointer
+// Each node of the binary tree has a pointer to its parent node. 
+// With this additional information, we can traverse the tree without the need for a stack or recursion.
 
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        TreeNode* curr = root;
+        TreeNode* prev = nullptr;
+        while(curr) {
+            if(!curr->left) {
+                res.push_back(curr -> val);
+                curr = curr -> right;
+            } 
+            else {
+                prev = curr -> left;
+                while(prev -> right && prev -> right != curr) prev = prev -> right;
+                if(!prev->right) {
+                    prev -> right = curr;
+                    curr = curr -> left;
+                }
+                else {
+                    prev -> right = nullptr;
+                    res.push_back(curr -> val);
+                    curr = curr -> right;
+                }
+            }
+        }
+        r res;
+    }
+};
