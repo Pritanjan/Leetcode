@@ -38,6 +38,24 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        auto it = t.begin();
+        for(char c : s) {
+            it = find(it, t.end(), c);
+            // If character not found in t, return false
+            if(it == t.end()) return false;  
+            it++; // Move iterator to the next position in t
+        }
+        return true;
+    }
+};
+
+
 
 
 
