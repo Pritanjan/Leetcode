@@ -127,39 +127,6 @@ public:
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        if(root==NULL) return {};
-        stack<TreeNode*>st;     
-        st.push(root);        
-        vector<int>ans;
-        
-        while(!st.empty()){
-            auto t = st.top();
-            if(t->left == nullptr && t->right == nullptr){
-                ans.push_back(t->val);
-                st.pop();
-            }
-            
-            if(t->right != nullptr){
-                st.push(t->right);
-                t->right = nullptr;
-            }
-            if(t->left != nullptr){
-                st.push(t->left);
-                t->left = nullptr;
-            }
-        }
-        reverse(ans.begin(),ans.end());
-        return ans;
-    }
-};
-
-
-// OR
-
-
-class Solution {
-public:
-    vector<int> postorderTraversal(TreeNode* root) {
         vector<int> res;
         if(root == nullptr) return res;
         stack<TreeNode*> stk;
