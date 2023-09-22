@@ -104,3 +104,31 @@ public:
     }
 };
 
+
+
+
+
+// A 5 - Recursion 
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t, int sIdx, int tIdx) {
+        // If we have successfully traversed all characters in s, it's a subsequence
+        if(sIdx == s.length()) return true;
+        
+        // If we've reached the end of t but not yet found all characters in s, it's not a subsequence
+        if(tIdx == t.length()) return false;
+        
+        // If the current characters match, move to the next character in s
+        if(s[sIdx] == t[tIdx]) {
+            return isSubsequence(s, t, sIdx + 1, tIdx + 1);
+        }
+        
+        // If the current characters don't match, move to the next character in t
+        return isSubsequence(s, t, sIdx, tIdx + 1);
+    }
+
+    bool isSubsequence(string s, string t) {
+        return isSubsequence(s, t, 0, 0);
+    }
+};
