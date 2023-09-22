@@ -132,3 +132,23 @@ public:
         return isSubsequence(s, t, 0, 0);
     }
 };
+
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    bool isSubsequence(const char* s, const char* t) {
+        for (; *s && *t; t++) {
+            s += (*s == *t);
+        }
+        return !(*s);
+    }
+
+    bool isSubsequence(string s, string t) {
+        return isSubsequence(s.c_str(), t.c_str());
+    }
+};
