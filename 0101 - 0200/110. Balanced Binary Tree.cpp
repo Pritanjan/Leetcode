@@ -151,7 +151,11 @@ public:
 
 
 
-// A 5 
+// A 5  - DFS - Iterative 
+// Maintain a stack to simulate the DFS traversal and use a hash map to store the heights
+// of each node to avoid redundant calculations. 
+// Also keep track of the maximum height encountered during the traversal and
+// check if the tree remains balanced while traversing.
 
 class Solution {
 public:
