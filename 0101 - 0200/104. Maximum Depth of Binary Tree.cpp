@@ -200,3 +200,49 @@ public:
     }
 };
 
+
+
+
+
+
+// A 6 - Morris Traversal
+
+class Solution {
+public:
+	int maxDepth(TreeNode* root) {
+		int currDepth = 0;
+		int maxDepth = 0;
+
+		while(root != nullptr) {
+			if(root -> left == nullptr) {
+				root = root -> right;
+				++currDepth;
+				maxDepth = max(maxDepth, currDepth);
+			}
+            else {
+				TreeNode* pred = root -> left;
+				int depth = 2;
+				while(pred -> right != nullptr && pred -> right != root) {
+					pred = pred -> right;
+					++depth;
+				}
+
+				if(pred -> right == nullptr) {
+					pred -> right = root;
+					root = root -> left;
+					++currDepth;
+				} 
+                else {
+					pred -> right = nullptr;
+					root = root -> right;
+					currDepth -= depth;
+					++currDepth;
+					maxDepth = max(maxDepth, currDepth);
+				}
+			}
+		}
+		return maxDepth;
+	}
+};
+
+
