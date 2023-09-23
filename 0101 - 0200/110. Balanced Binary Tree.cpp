@@ -269,3 +269,49 @@ private:
 
 
 
+
+
+// A 7 - DFS
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return checkBalance(root).first;
+    }
+    
+private:
+    // Returns a pair of bool (balance status) and int (height)
+    pair<bool, int> checkBalance(TreeNode* root) {
+        if (root == nullptr) {
+            // A null node is balanced with a height of 0
+            return make_pair(true, 0);
+        }
+        
+        // Recursively check left subtree
+        pair<bool, int> left = checkBalance(root->left);
+        if (!left.first) {
+            // If the left subtree is unbalanced, no need to proceed further
+            return make_pair(false, 0);
+        }
+        
+        // Recursively check right subtree
+        pair<bool, int> right = checkBalance(root->right);
+        if (!right.first) {
+            // If the right subtree is unbalanced, no need to proceed further
+            return make_pair(false, 0);
+        }
+        
+        // Check balance at the current node
+        bool isBalanced = abs(left.second - right.second) <= 1;
+        
+        // Calculate the height of the current node
+        int height = 1 + max(left.second, right.second);
+        
+        return make_pair(isBalanced, height);
+    }
+};
+
+
+
+
+
