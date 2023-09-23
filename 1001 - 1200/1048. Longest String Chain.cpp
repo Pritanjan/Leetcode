@@ -25,9 +25,39 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int longestStrChain(vector<string>& words) {
+        sort(words.begin(), words.end(), [](const string& a, const string& b){
+            return a.length() < b.length();
+        });
+
+        int maxLen = 1;
+        unordered_map<string, int> ump;
+
+        for(const string& word : words) {
+            int currLen = 1;
+            for(int i=0; i<word.length(); ++i) {
+                string pred = word.substr(0, i) + word.substr(i + 1);
+                if(ump.find(pred) != ump.end()) {
+                    currLen = max(currLen, ump[pred] + 1);
+                }
+            }
+            ump[word] = currLen;
+            maxLen = max(maxLen, currLen);
+        }
+        return maxLen;
+    }
+};
+
+
 
 
 
 
 // A 2
+
 
