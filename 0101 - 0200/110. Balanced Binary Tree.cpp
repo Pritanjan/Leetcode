@@ -6,7 +6,6 @@ public:
         if(!root) return NULL;
         return 1 + max(height(root->left), height(root->right));
     }
-
     bool isBalanced(TreeNode* root) {
         int LH = 0, RH = 0;
         if(root == NULL) return true;
@@ -14,8 +13,6 @@ public:
         LH = height(root -> left);
         RH = height(root -> right);
         if(abs(LH - RH) > 1) return 0;
-
-        // return true;    
         // this function only checks if the root node is balanced or not, 
         // but it does not check if its subtrees are balanced. 
       
@@ -40,8 +37,7 @@ public:
 class Solution {
 public:
     int height(TreeNode* root) {
-        if (!root) return 0;
-        
+        if (!root) return 0;        
         int LH = height(root->left);
         if (LH == -1) return -1;
         int RH = height(root->right);
@@ -50,27 +46,17 @@ public:
         if (abs(LH - RH) > 1) return -1;
         return max(LH, RH) + 1;
     }
-    
     bool isBalanced(TreeNode* root) {
         return height(root) != -1;
     }
 };
 
-// T.C. --> O(N)
-// The height function is called once for each node in the tree, so the time complexity
-// of the height function is O(n), where n is the number of nodes in the tree. 
-// The isBalanced function calls the height function once.
-
-// S.C.
+// T.C. --> O(N), As the height function is called once for each node in the tree.
+// S.C. --> O(log N)
 // On the basis of height function
-// O(log N) [best  case] (when the tree is balanced)
-// O(N)     [Wrost Case] (when the tree is completely unbalanced).
-// O(log N) [avg   case]
-
-// On the basis of isBalanced function 
-// O(1).
-
-// S.C. -->  O(log N)
+// O(log N)  [best  case] (when the tree is balanced)
+// O(N)      [Wrost Case] (when the tree is completely unbalanced).
+// O(log N)  [avg   case]
 
 
 
@@ -82,16 +68,14 @@ public:
 class Solution {
 public:
     static bool isBalanced(TreeNode* root) {
-        if (root == NULL) return true;
-        
+        if (root == NULL) return true;        
         dfs(root);
         queue<TreeNode*> que;
         que.push(root);
-
-        while (!que.empty()) {
+        
+        while(!que.empty()) {
             TreeNode* node = que.front();
             que.pop();
-
             int leftHeight = (node->left == NULL) ? 0 : node->left->val;
             int rightHeight = (node->right == NULL) ? 0 : node->right->val;
             
@@ -103,11 +87,10 @@ public:
     }
 private:
     static void dfs(TreeNode* root) {
-        if(root == NULL) return ;
-    
+        if(root == NULL) return ;    
         dfs(root->left);
         dfs(root->right);
-
+        
         if(root != NULL && root->left == NULL && root->right == NULL) root->val = 1;
         else {
             int leftHeight = (root->left == NULL) ? 0 : root->left->val;
@@ -125,13 +108,12 @@ class Solution {
 public:
     bool isBalanced(TreeNode* root) {
         if(root == nullptr) return true;
-
         queue<TreeNode*> nodes;
         nodes.push(root);
         while(!nodes.empty()) {
             TreeNode* node = nodes.front();
             nodes.pop();
-
+            
             if(abs(Height(node -> left) - Height(node -> right)) > 1) return false;
             if(node -> left)  nodes.push(node -> left);
             if(node -> right) nodes.push(node -> right);
@@ -158,7 +140,6 @@ public:
         if(root == NULL) return 0;
         else return max(height(root -> left), height(root -> right)) + 1;
     }
-
     bool isBalanced(TreeNode* root) {
         if(root == NULL) return true;
         else return abs(height(root -> left) - height(root -> right)) <= 1 && isBalanced(root -> left) && isBalanced(root -> right);
@@ -169,43 +150,10 @@ public:
 
 
 
+
 // A 5 
 
-class Solution {
-public:
-    bool isBalanced(TreeNode* root) {
-        if(root == nullptr) return true;
 
-        stack<TreeNode*> nodes;
-        stack<int> depths;
-        nodes.push(root);
-        depths.push(1);
 
-        int maxDepth = 0;
-
-        while(!nodes.empty()) {
-            TreeNode* curr = nodes.top();
-            nodes.pop();
-            
-            int depth = depths.top();
-            depths.pop();
-            
-            if(curr -> left == nullptr && curr -> right == nullptr) {
-                maxDepth = max(maxDepth, depth);
-                if(maxDepth - depth > 1) return false;
-            }
-
-            if(curr -> right != nullptr) {
-                nodes.push(curr -> right);
-                depths.push(depth + 1);
-            }
-            if(curr -> left != nullptr) {
-                nodes.push(curr -> left);
-                depths.push(depth + 1);
-            }
-        }
-        return true;
-    }
-};
 
 
