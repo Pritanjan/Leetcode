@@ -1,4 +1,4 @@
-// APPROACH 1 [ RECURSION -- Top To Bottom ]
+// A 1 [ RECURSION -- Top To Bottom ]
 
 class Solution {
 public:
@@ -30,10 +30,8 @@ public:
         if(!node) return NULL;
         int LD = depth(node->left) ;    // RETURNS LENGTH OF LEFT NODE
         int RD = depth(node->right);    // RETURNS LENGTH OF RIGHT NODE
-        
-        return 1+ max(LD, RD);          // 1 IS ADDED FOR ROOT NODE 
-    }
-    
+        return 1 + max(LD, RD);          // 1 IS ADDED FOR ROOT NODE 
+    }    
     int maxDepth(TreeNode* root) {
         return depth(root);
     }
@@ -56,8 +54,7 @@ public:
 
 
 
-// APPROACH 2 [ BFS ]
-
+// A 2 [ BFS ]
 // It uses the concept of Level Order Traversal but we wont be adding null in the Queue.
 // We will simply increase the counter when the level will increase and then remove all the nodes
 // from the queue of the current Level.
@@ -67,18 +64,14 @@ public:
     int maxDepth(TreeNode* root) {
         int depth = 0;
         if(root == NULL) return 0;
-        
         queue<TreeNode*> q;
         q.push(root);
-        while(!q.empty()){
-            ++depth;
-            
+        while(!q.empty()) {
+            ++depth;            
             int size = q.size();
             // while(size--){
             for(int i=0; i<size; ++i){
-                TreeNode* temp = q.front();
-                q.pop();
-                
+                TreeNode* temp = q.front(); q.pop();
                 if(temp -> left)  q.push(temp -> left);
                 if(temp -> right) q.push(temp -> right);
             }
@@ -91,45 +84,8 @@ public:
 
 
 
-// APPROACH 3  [ DFS ]
 
-class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        if(!root) return 0;
-        
-        int maxDepth = 0;
-        stack<TreeNode*> nodeStack;        
-        nodeStack.push(root);
-
-        stack<int> depthStack;
-        depthStack.push(1);
-        
-        while(!nodeStack.empty()) {
-            TreeNode* node = nodeStack.top();
-            nodeStack.pop();
-            int depth = depthStack.top();
-            depthStack.pop();
-            
-            maxDepth = max(maxDepth, depth);
-            if(node -> right) {
-                nodeStack.push(node -> right);
-                depthStack.push(depth + 1);
-            }             
-            if(node -> left) {
-                nodeStack.push(node->left);
-                depthStack.push(depth + 1);
-            }
-        }
-        return maxDepth;
-    }
-};
-
-
-
-
-
-// APPROACH 4
+// A 3
 
 class Solution {
 public:
@@ -151,7 +107,6 @@ public:
         }
         return 1;
     }
-
     int maxDepth(TreeNode* root) {
         if(root == NULL) return 0;
         solve(root);
@@ -164,7 +119,42 @@ public:
 
 
 
-// APPROACH 5  - DFS with Stack
+// A 4  [ DFS ]
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root) return 0;
+        stack<TreeNode*> stk1;   // store the node value
+        stk1.push(root);         
+        stack<int> stk2;         // store the depth 
+        stk2.push(1);
+
+        int maxDepth = 0;        
+        while(!stk1.empty()) {
+            TreeNode* node = stk1.top(); stk1.pop();
+            int depth = stk2.top(); stk2.pop();
+            
+            maxDepth = max(maxDepth, depth);
+            if(node -> right) {
+                stk1.push(node -> right);
+                stk2.push(depth + 1);
+            }             
+            if(node -> left) {
+                stk1.push(node->left);
+                stk2.push(depth + 1);
+            }
+        }
+        return maxDepth;
+    }
+};
+
+
+
+
+
+
+// A 5  - DFS with Stack
 
 class Solution {
 public:
@@ -178,7 +168,6 @@ public:
             TreeNode* node = stk.top().first;
             int depth = stk.top().second;
             stk.pop();
-            
             if(node) {
                 maxDepth = max(maxDepth, depth);
                 stk.push(make_pair(node -> left,  depth + 1));
@@ -202,9 +191,7 @@ public:
 
         int maxDepth = 0;
         while(!stk.empty()) {
-            auto [node, depth] = stk.top();
-            stk.pop();
-
+            auto [node, depth] = stk.top(); stk.pop();            
             maxDepth = max(maxDepth, depth);
             if(node -> left)  stk.push({node -> left, depth + 1});
             if(node -> right) stk.push({node -> right, depth + 1});            
