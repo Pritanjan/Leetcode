@@ -108,17 +108,14 @@ public:
         while(!nodeStack.empty()) {
             TreeNode* node = nodeStack.top();
             nodeStack.pop();
-
             int depth = depthStack.top();
             depthStack.pop();
             
             maxDepth = max(maxDepth, depth);
-            
             if(node -> right) {
                 nodeStack.push(node -> right);
                 depthStack.push(depth + 1);
-            }
-             
+            }             
             if(node -> left) {
                 nodeStack.push(node->left);
                 depthStack.push(depth + 1);
@@ -191,3 +188,28 @@ public:
         return maxDepth;
     }
 };
+
+
+// OR
+
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0;
+        stack<pair<TreeNode*, int>> stk;
+        stk.push({root, 1});
+
+        int maxDepth = 0;
+        while(!stk.empty()) {
+            auto [node, depth] = stk.top();
+            stk.pop();
+
+            maxDepth = max(maxDepth, depth);
+            if(node -> left)  stk.push({node -> left, depth + 1});
+            if(node -> right) stk.push({node -> right, depth + 1});            
+        }        
+        return maxDepth;
+    }
+};
+
