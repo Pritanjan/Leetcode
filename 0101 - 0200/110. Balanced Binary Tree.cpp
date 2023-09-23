@@ -128,6 +128,45 @@ private:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root == nullptr) return true;
+        
+        queue<TreeNode*> nodes;
+        nodes.push(root);        
+        while(!nodes.empty()) {
+            int n = nodes.size();
+            // bool level_balanced = true; // Assume the current level is balanced            
+            for(int i=0; i<n; i++) {
+                TreeNode* node = nodes.front();
+                nodes.pop();
+                
+                int LH = getHeight(node->left);
+                int RH = getHeight(node->right);
+                
+                // If the current node is unbalanced, return false
+                if(abs(LH - RH) > 1) return false;                 
+                if(node -> left)  nodes.push(node -> left);
+                if(node -> right) nodes.push(node -> right);
+            }
+        }
+        
+        return true; // If the tree is balanced at every level, return true
+    }
+private:
+    int getHeight(TreeNode* root) {
+        if(root == nullptr) return 0;
+        int LH = getHeight(root -> left);
+        int RH = getHeight(root -> right);
+        return 1 + max(LH, RH);
+    }
+};
+
+
 
 
 
