@@ -163,4 +163,37 @@ public:
 
 
 
-// A 6 
+// A 6  - iterative  approach using stack
+
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root) return 0;
+        unordered_map<TreeNode*, int> heights; // store the heights
+        stack<TreeNode*> nodes;    // store the value of nodes
+        
+        TreeNode* curr = root;
+        TreeNode* prev = nullptr;
+        int dia = 0;
+        while(curr || !nodes.empty()) {
+            while(curr) {
+                nodes.push(curr);
+                curr = curr -> left;
+            }
+            curr = nodes.top();
+            if(curr -> right && curr -> right != prev) curr = curr -> right;
+            else {
+                nodes.pop();
+                int LH = heights[curr->left];
+                int RH = heights[curr->right];
+                heights[curr] = 1 + max(LH, RH);
+                dia = max(dia, LH + RH);
+                prev = curr;
+                curr = nullptr;
+            }
+        }
+        return dia;
+    }
+};
+
+
