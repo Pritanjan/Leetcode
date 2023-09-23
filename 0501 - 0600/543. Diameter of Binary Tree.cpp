@@ -1,18 +1,15 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
     int height(TreeNode* root){
         if(!root) return 0;
-
         int Lheight = height(root -> left);
         int Rheight = height(root -> right);
         return max(Lheight, Rheight) + 1;
     }
-
     int diameterOfBinaryTree(TreeNode* root) {
         if(root == NULL) return 0;
-
         int op1 = diameterOfBinaryTree(root -> left);
         int op2 = diameterOfBinaryTree(root -> right);
         int op3 = height(root -> left) + height(root -> right);
@@ -26,21 +23,18 @@ public:
 
 
 
-// APPROACH 2  -   DFS -  Recursive Approach:
+
+// A 2  -   DFS -  Recursive Approach:
 
 class Solution {
 public:
     int height(TreeNode* root, int &diameter){
         if(!root) return 0;
-
         int Lheight = height(root -> left, diameter);
         int Rheight = height(root -> right, diameter);
-
         diameter = max(diameter, Lheight + Rheight);
         return max(Lheight, Rheight) + 1;
     }
-
-
     int diameterOfBinaryTree(TreeNode* root) {
         int Ldiameter = 0;
         height(root, Ldiameter);
@@ -53,7 +47,7 @@ public:
 
 
 
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -62,10 +56,9 @@ public:
             pair<int, int> p = make_pair(0,0);
             return p;
         }
-
         pair<int, int> L = D(root -> left);
         pair<int, int> R = D(root -> right);
-
+        
         int op1 = L.first; 
         int op2 = R.first;
         int op3 = L.second + R.second;
@@ -73,10 +66,8 @@ public:
         pair<int, int>  res;
         res.first = max(op1, max(op2, op3));
         res.second = max(L.second, R.second) + 1;
-
         return res;
     }
-
     int diameterOfBinaryTree(TreeNode* root) {
         return D(root).first;
     }
@@ -98,7 +89,6 @@ public:
         int diameter = 0;
         queue<TreeNode*> que;
         que.push(root);
-        
         while(!que.empty()) {
             int levelSize = que.size();
             for(int i=0; i<levelSize; ++i) {
@@ -114,8 +104,7 @@ public:
             }
         }
         return diameter;
-    }
-    
+    }    
     int depth(TreeNode* node) {
         if(!node) return 0;
         return 1 + max(depth(node -> left), depth(node -> right));
@@ -139,8 +128,7 @@ public:
     int diameterOfBinaryTree(TreeNode* root) {
         TreeInfo treeInfo = getTreeInfo(root);
         return treeInfo.diameter;
-    }
-    
+    }    
     TreeInfo getTreeInfo(TreeNode* node) {
         if(!node) return {0, 0};
         
@@ -153,7 +141,6 @@ public:
         TreeInfo res;
         res.diameter = maxDiameter;
         res.depth = 1 + max(leftTree.depth, rightTree.depth);
-        
         return res;
     }
 };
