@@ -153,7 +153,44 @@ public:
 
 // A 5 
 
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root == nullptr) return true;
+        
+        stack<TreeNode*> nodes;   // store the value of nodes
+        unordered_map<TreeNode*, int> heights;  // store the height
+        TreeNode* prev = nullptr;
+        int maxHeight = 0;
 
+        while(root || !nodes.empty()) {
+            while(root) {
+                nodes.push(root);
+                root = root -> left;
+            }
+            root = nodes.top();
+            if(root -> right && root -> right != prev) root = root -> right;
+            else {
+                nodes.pop();
+                int LH = heights[root -> left];
+                int RH = heights[root -> right];
+                heights[root] = 1 + max(LH, RH);
+                if(abs(LH - RH) > 1) return false;
+                maxHeight = max(maxHeight, heights[root]);
+                prev = root;
+                root = nullptr;
+            }
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
+// A 6
 
 
 
