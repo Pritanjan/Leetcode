@@ -1,18 +1,33 @@
-// https://leetcode.com/problems/find-pivot-index/solutions/2425048/c-2-solution-with-explanation/
 // Equal Left and Right Subarray Sum
-
-// APPROACH 1
-
-
-
-
-
-
-// APPROACH 2
+// A 1
 
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
+        int n = nums.size();
+        int total = 0;
+        for(int i=0; i<n; i++) total += nums[i];
+        int L = 0;
+        for(int i=0; i<n; i++) {
+            int R = total - L - nums[i];
+            if(L == R) return i;
+            L += nums[i];
+        }
+        return -1;
+    }
+};
+
+
+
+
+
+
+// A 2
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        // int sum = accumulate(nums.begin(), nums.end(),0);
         int sum = 0;
         for(auto i : nums) sum += i;
         
@@ -26,47 +41,26 @@ public:
 };
 
 
-// OR
 
 
-class Solution {
-public:
-    int pivotIndex(vector<int>& nums) {
-        int sum = accumulate(nums.begin(), nums.end(),0);
-        
-        int ans = 0;
-        for(int i=0; i<nums.size(); i++){
-            if(ans == sum - ans - nums[i] ) return i;
-            
-            ans += nums[i];
-        }
-        return -1;        
-    }
-};
- 
 
 
-// APPROACH 3
+// A 3
 
 class Solution{
 public:
     int equalSum(vector<int>& A, int N) {
         int i = 0, sum = 0, sum1 = 0;
-        if(N == 1)
-            return 1;
-
+        if(N == 1) return 1;
         while(i < N) {
             sum += A[i];
             i++;
         }
-
         for(i = N-1; i > 0; i--) {
             sum -= A[i];
             sum1 += A[i];
-            if(sum == (sum1 - A[i]))
-                return i+1;
+            if(sum == (sum1 - A[i])) return i+1;
         }
-
         return -1;
     }
 };
@@ -75,18 +69,17 @@ public:
 
 
 
-// APPROACH 4
+
+// A 4
 
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-        int i=0;
-        while(i<nums.size()){
+        int i = 0;
+        while(i < nums.size()){
             int Lsum = accumulate(nums.begin(), nums.begin()+i, 0);
-            int Rsum = accumulate(nums.begin()+i+1, nums.end(),0);
-    
-            if(Lsum == Rsum)
-                return i;
+            int Rsum = accumulate(nums.begin()+i+1, nums.end(), 0);
+            if(Lsum == Rsum) return i;
             i++;
         }
         return -1;
@@ -97,28 +90,23 @@ public:
 
 
 
-// APPROACH 5
+
+// A 5
 
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
         int sum = 0;
         int left = 0;
-        int fact = 1;
-        
-        for(int i=0; i<nums.size(); i++){
-            sum += nums[i];
-        }
-
-        for(int j=0; j<nums.size(); j++){
-            if((left*2 + nums[j]) == sum){
+        int fact = 1;        
+        for(int i=0; i<nums.size(); i++) sum += nums[i];
+        for(int j=0; j<nums.size(); j++) {
+            if((left*2 + nums[j]) == sum) {
                 fact = 0;
                 return j;
             }
-
             left += nums[j];
         }
-
         if(fact == 1) return -1;
         return 0;
     }
@@ -129,8 +117,7 @@ public:
 
 
 
-// APPROACH 6
-
+// A 6
 // We can maintain sum of left subarray and sum of right subarray, 
 // all while excluding the current element.
 // If the sum is equal then we return the index of the current iteration, 
@@ -143,15 +130,11 @@ public:
         for (int num : nums) {
             rsum += num;
         }
-
-        for (int i = 0; i < nums.size(); i++) {
+        for(int i=0; i<nums.size(); i++) {
             rsum -= nums[i];
-            if (lsum == rsum) {
-                return i;
-            }
+            if(lsum == rsum) return i;
             lsum += nums[i];
         }
-
         return -1;
     }
 };
@@ -161,53 +144,14 @@ public:
 
 
 
-class Solution {
-public:
-    int equalSum(int N, vector<int> &A) {
-        int i = 0, sum = 0, sum1 = 0;
-        if(N == 1)
-            return 1;
-
-        while(i < N) {
-            sum += A[i];
-            i++;
-        }
-
-        for(i = N-1; i > 0; i--) {
-            sum -= A[i];
-            sum1 += A[i];
-            if(sum == (sum1 - A[i]))
-                return i+1;
-        }
-
-        return -1;
-    }
-};
 
 
 
 
 
 
-class Solution {
-public:
-    int equalSum(int N, vector<int> &A) {
-        if(N == 1)
-         return N;
-        int left = A[0],right = A[N-1];
-        int i=1,j=N-2;
-        while(i<=j)
-        {
-            if(left == right and i == j)
-              return i+1;
-            else if(left<right)
-             left += A[i++];
-            else 
-             right += A[j--];
-        }
-        return -1;
-    }
-};
+
+
 
 
 
