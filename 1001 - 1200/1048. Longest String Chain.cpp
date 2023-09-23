@@ -60,4 +60,37 @@ public:
 
 // A 2
 
+class Solution {
+public:
+    int dfs(unordered_set<string>& ust, string word, unordered_map<string, int>& mp) {
+        if(mp.find(word) != mp.end()) return mp[word];
+        int maxLen = 1;
+        for(int i=0; i<word.size(); ++i) {
+            string succ = word.substr(0, i) + word.substr(i + 1);
+            if(ust.count(succ)) {
+                maxLen = max(maxLen, 1 + dfs(ust, succ, mp));
+            }
+        }
+        mp[word] = maxLen;
+        return maxLen;
+    }
+
+    int longestStrChain(vector<string>& words) {
+        unordered_set<string> ust(words.begin(), words.end());
+        int maxLen = 1;
+        unordered_map<string, int> mp;
+
+        for(const string& word : words) {
+            maxLen = max(maxLen, dfs(ust, word, mp));
+        }
+        return maxLen;
+    }
+};
+
+
+
+
+
+
+// A 3
 
