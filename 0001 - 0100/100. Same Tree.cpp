@@ -233,3 +233,23 @@ public:
 
 
 // A 7
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        stack<pair<TreeNode*, TreeNode*>> stk;
+        stk.push({p, q});
+
+        while(!stk.empty()) {
+            auto [nodeP, nodeQ] = stk.top();
+            stk.pop();
+
+            if(!nodeP && !nodeQ) continue;
+            if(!nodeP || !nodeQ || nodeP -> val != nodeQ -> val) return false;
+            stk.push({nodeP -> left,  nodeQ -> left});
+            stk.push({nodeP -> right, nodeQ -> right});
+        }
+        return true;
+    }
+};
+
