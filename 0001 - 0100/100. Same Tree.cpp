@@ -209,7 +209,10 @@ public:
 
 
 
-// A 6
+// A 6  -  Convert Trees to Strings and Compare:
+// This approach converts the trees into strings and then compares the strings.
+// It uses preorder traversal to create strings that represent the structure and values of the trees.
+// If the two strings are equal, the trees are considered the same.
 
 class Solution {
 public:
