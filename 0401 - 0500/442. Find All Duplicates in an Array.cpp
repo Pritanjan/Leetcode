@@ -100,7 +100,12 @@ public:
 
 
 
-// A 4
+// A 4 - Negation Method
+// It utilizes the negation of values in the array to mark visited elements. 
+// The idea is to iterate through the array and negate the value at the index corresponding
+// to the absolute value of each element. 
+// If encounter a negative value while negating, it means that you have seen that element before, 
+// so it's a duplicate. 
 
 class Solution {
 public:
