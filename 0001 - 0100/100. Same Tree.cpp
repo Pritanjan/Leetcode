@@ -122,31 +122,35 @@ public:
 
 
 
-// A 3 -  Level-Order Traversal with a Queue
+// A 3 -  BFS with Queue
 // Use a single queue to perform a level-order traversal of both trees and compare nodes as you go.
+// This approach uses a queue-based BFS traversal for both trees.
+// It compares values of nodes as it traverses.
+// If the traversal is identical for both trees and the values match, the trees are considered the same.
 
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        queue<TreeNode*> q1, q2;
-        q1.push(p);
-        q2.push(q);
-        while(!q1.empty() && !q2.empty()) {
-            TreeNode *node1 = q1.front(); q1.pop();
-            TreeNode *node2 = q2.front(); q2.pop();
-            
-            if(!node1 && !node2) continue;
-            if(!node1 || !node2 || node1 -> val != node2 -> val) return false;
-            
-            q1.push(node1 -> left);
-            q1.push(node1 -> right);
+        queue<TreeNode*> queP, queQ;
+        queP.push(p);
+        queQ.push(q);
 
-            q2.push(node2 -> left);
-            q2.push(node2 -> right);
-        }        
-        return q1.empty() && q2.empty();
+        while(!queP.empty() && !queQ.empty()) {
+            TreeNode* nodeP = queP.front();  queP.pop();
+            TreeNode* nodeQ = queQ.front();  queQ.pop();
+
+            if(!nodeP && !nodeQ) continue;
+            if(!nodeP || !nodeQ || nodeP -> val != nodeQ -> val) return false;
+
+            queP.push(nodeP -> left);
+            queP.push(nodeP -> right);
+            queQ.push(nodeQ -> left);
+            queQ.push(nodeQ -> right);
+        }
+        return true;
     }
 };
+
 
 
 
@@ -261,30 +265,4 @@ public:
 
 
 
-// A 8 - BFS with Queue
-// This approach uses a queue-based BFS traversal for both trees.
-// It compares values of nodes as it traverses.
-// If the traversal is identical for both trees and the values match, the trees are considered the same.
-
-class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        queue<TreeNode*> queP, queQ;
-        queP.push(p);
-        queQ.push(q);
-
-        while(!queP.empty() && !queQ.empty()) {
-            TreeNode* nodeP = queP.front();  queP.pop();
-            TreeNode* nodeQ = queQ.front();  queQ.pop();
-
-            if(!nodeP && !nodeQ) continue;
-            if(!nodeP || !nodeQ || nodeP -> val != nodeQ -> val) return false;
-
-            queP.push(nodeP -> left);
-            queP.push(nodeP -> right);
-            queQ.push(nodeQ -> left);
-            queQ.push(nodeQ -> right);
-        }
-        return true;
-    }
-};
+// A 8 -
