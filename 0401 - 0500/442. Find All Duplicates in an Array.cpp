@@ -170,4 +170,22 @@ public:
 
 
 
-// A 7
+// A 7 - Using Sorting and Two-Pointer
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<int> dup;
+        int n = nums.size();
+        
+        for(int i=0; i<n-1; i++) {
+            if(nums[i] == nums[i+1]) {
+                dup.push_back(nums[i]);
+                i++; // Skip the next element since it's a duplicate.
+            }
+        }        
+        return duplicates;
+    }
+};
+
