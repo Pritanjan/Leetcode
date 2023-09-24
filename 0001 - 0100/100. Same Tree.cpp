@@ -1,5 +1,4 @@
 // A 1 - Recursive Approach
-
 // use a recursive function to traverse both trees simultaneously and 
 // compare their nodes at each step
 
@@ -20,7 +19,6 @@ public:
 
 
 // A 2  - Iterative Approach using Stacks
-
 // The idea is to use two stacks to keep track of the nodes in the two trees. 
 // It starts by pushing the roots of the two trees onto the stacks (if they exist).
 // Then, it enters a loop where it pops a node from each stack, compares their values, 
@@ -29,20 +27,20 @@ public:
 // If not, the function returns false. 
 // The loop continues until the stacks are empty, at which point the function returns true.
 
+// T.C. --> O(min(n, m))
+// S.C. --> O(h)
+// Pre-order and Post-order
+
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
         stack<TreeNode*> stkP, stkQ;
-
         if(p) stkP.push(p);
         if(q) stkQ.push(q);
         
         while(!stkP.empty() && !stkQ.empty()) {
-            TreeNode* nodeP = stkP.top();
-            stkP.pop();
-
-            TreeNode* nodeQ = stkQ.top();
-            stkQ.pop();
+            TreeNode* nodeP = stkP.top(); stkP.pop();
+            TreeNode* nodeQ = stkQ.top(); stkQ.pop();
 
             if(nodeP -> val != nodeQ -> val) return false;
             if(nodeP -> left && nodeQ -> left) {
@@ -50,7 +48,6 @@ public:
                 stkQ.push(nodeQ->left);
             }
             else if(nodeP -> left || nodeQ -> left) return false;
-            
             if(nodeP -> right && nodeQ -> right) {
                 stkP.push(nodeP -> right);
                 stkQ.push(nodeQ -> right);
@@ -63,15 +60,17 @@ public:
 
 
 // OR
-
+// Iterative with Stacks
+// T.C. --> O(min(n, m))
+// S.C. --> O(h)
+// Pre-order and Post-order 
 
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
         stack<TreeNode*> s1, s2;
         s1.push(p);
-        s2.push(q);
-        
+        s2.push(q);        
         while(!s1.empty() && !s2.empty()) {
             TreeNode *node1 = s1.top(); s1.pop();
             TreeNode *node2 = s2.top(); s2.pop();
@@ -81,7 +80,7 @@ public:
             
             s1.push(node1 -> left);
             s1.push(node1 -> right);
-
+            
             s2.push(node2 -> left);
             s2.push(node2 -> right);
         }        
@@ -90,14 +89,41 @@ public:
 };
 
 
+// OR
+// Morris Traversal 
+// Inorder
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        stack<TreeNode*> stkP, stkQ;
+        while(!stkP.empty() || p || !stkQ.empty() || q) {
+            while(p || q) {
+                if(!p || !q || p -> val != q -> val) return false;
+                stkP.push(p);
+                stkQ.push(q);
+                p = p -> left;
+                q = q -> left;
+            }
+            p = stkP.top(); stkP.pop();
+            q = stkQ.top(); stkQ.pop();
+            p = p -> right;
+            q = q -> right;
+        }        
+        return true;
+    }
+};
+
+// T.C. --> O(n + m)
+// S.C. --> O(1)
+
+
 
 
 
 
 // A 3 -  Level-Order Traversal with a Queue
-
-// Use a single queue to perform a level-order traversal of both trees and
-// compare nodes as you go.
+// Use a single queue to perform a level-order traversal of both trees and compare nodes as you go.
 
 class Solution {
 public:
@@ -105,7 +131,6 @@ public:
         queue<TreeNode*> q1, q2;
         q1.push(p);
         q2.push(q);
-        
         while(!q1.empty() && !q2.empty()) {
             TreeNode *node1 = q1.front(); q1.pop();
             TreeNode *node2 = q2.front(); q2.pop();
@@ -129,9 +154,7 @@ public:
 
 
 // Inorder doesnt satisfy it conditions completely
-
 // A 4 -  Preorder Traversal
-
 // Another variation involves performing a pre-order traversal and 
 // comparing the serialized forms of the two trees.
 
@@ -159,6 +182,7 @@ public:
 
 
 
+
 // A 5  - Postorder Traversal
 
 class Solution {
@@ -172,7 +196,6 @@ public:
         postorder(node->right, result);
         result += to_string(node->val) + " ";
     }
-
     bool isSameTree(TreeNode* p, TreeNode* q) {
         string postorderP = "", postorderQ = "";
         postorder(p, postorderP);
