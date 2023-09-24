@@ -203,3 +203,30 @@ public:
         return postorderP == postorderQ;
     }
 };
+
+
+
+
+
+
+// A 6
+
+class Solution {
+public:
+    string treeToString(TreeNode* root) {
+        if(!root) return "null";
+        return to_string(root -> val) + "," + treeToString(root -> left) + "," + treeToString(root -> right);
+    }
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        string strP = treeToString(p);
+        string strQ = treeToString(q);
+        return strP == strQ;
+    }
+};
+
+
+
+
+
+
+// A 7
