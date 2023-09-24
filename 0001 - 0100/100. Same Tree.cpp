@@ -232,7 +232,10 @@ public:
 
 
 
-// A 7
+// A 7 -  DFS with Stacks 
+// This approach uses a stack-based DFS traversal for both trees.
+// It compares values of nodes as it traverses.
+// If the traversal is identical for both trees and the values match, the trees are considered the same.
 
 class Solution {
 public:
@@ -253,3 +256,35 @@ public:
     }
 };
 
+
+
+
+
+
+// A 8 - BFS with Queue
+// This approach uses a queue-based BFS traversal for both trees.
+// It compares values of nodes as it traverses.
+// If the traversal is identical for both trees and the values match, the trees are considered the same.
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        queue<TreeNode*> queP, queQ;
+        queP.push(p);
+        queQ.push(q);
+
+        while(!queP.empty() && !queQ.empty()) {
+            TreeNode* nodeP = queP.front();  queP.pop();
+            TreeNode* nodeQ = queQ.front();  queQ.pop();
+
+            if(!nodeP && !nodeQ) continue;
+            if(!nodeP || !nodeQ || nodeP -> val != nodeQ -> val) return false;
+
+            queP.push(nodeP -> left);
+            queP.push(nodeP -> right);
+            queQ.push(nodeQ -> left);
+            queQ.push(nodeQ -> right);
+        }
+        return true;
+    }
+};
