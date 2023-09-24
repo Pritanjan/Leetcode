@@ -150,3 +150,24 @@ public:
 
 
 // A 6
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> dup;
+        vector<bool> seen(nums.size(), false);
+        
+        for (int num : nums) {
+            if(seen[num - 1]) dup.push_back(num);
+            else seen[num - 1] = true;
+        }        
+        return dup;
+    }
+};
+
+
+
+
+
+
+// A 7
