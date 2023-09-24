@@ -117,9 +117,9 @@ public:
             else nums[idx] = -nums[idx];
         }      
         // Restore the original array (optional)
-        for(int& num : nums) {
-            num = abs(num);
-        }        
+        // for(int& num : nums) {
+        //     num = abs(num);
+        // }        
         return dup;
     }
 };
