@@ -50,3 +50,51 @@ public:
 
 
 // A 3
+
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        if(!root) return 0;
+
+        int maxSum = root->val;
+        queue<TreeNode*> que;
+        que.push(root);
+
+        while(!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+
+            // Calculate the maximum path sum including the current node as the root
+            int currMax = helper(node, maxSum);
+
+            // Enqueue the left and right children for further exploration
+            if(node -> left)  que.push(node -> left);
+            if(node -> right) que.push(node -> right);
+        }
+        return maxSum;
+    }
+private:
+    int helper(TreeNode* node, int& maxSum) {
+        if(!node) return 0;
+
+        // Calculate the maximum path sum in the left and right subtrees
+        int leftMax  = max(0, helper(node -> left,  maxSum));
+        int rightMax = max(0, helper(node -> right, maxSum));
+
+        // Calculate the maximum path sum that includes the current node
+        int currMax = node -> val + leftMax + rightMax;
+
+        // Update the global maxSum if the current path is greater
+        maxSum = max(maxSum, currMax);
+
+        // Return the maximum path sum that can extend upwards to the parent
+        return node -> val + max(leftMax, rightMax);
+    }
+};
+
+
+
+
+
+
+// A 4
