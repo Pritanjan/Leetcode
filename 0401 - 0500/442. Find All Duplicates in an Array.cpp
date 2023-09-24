@@ -1,6 +1,5 @@
 // SAME AS LC 287 - 287. Find the Duplicate Number
-
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -26,7 +25,6 @@ public:
     }
 };
 
-
 // T.C. --> O(n log n) due to the sorting, where n is the size of the input vector. 
 // S.C. --> O(n), due to the use of the map to store the frequency of each element.
 
@@ -35,7 +33,7 @@ public:
 
 
 
-// APPROACH 2
+// A 2
 
 class Solution {
 public:
@@ -53,7 +51,6 @@ public:
                 swap(nums[i], nums[nums[i] - 1]);
             }
         }
-        
         // Now, iterates over each number in the sorted array and checks which numbers
         // are not in their correct position. Any number that is not in its correct
         /// position is a duplicate, so the code adds it to the duplicates vector.
@@ -61,13 +58,11 @@ public:
             if(nums[i] != i + 1){
                 duplicates.push_back(nums[i]);
             }
-        }
-        
+        }        
         // Now, returns the duplicates vector containing the duplicate numbers.
         return duplicates;
     }
 };
-
 
 // T.C. --> O(n), where n is the length of the input array nums. 
 // Because the algorithm involves iterating through the array twice, and the while loop
@@ -82,8 +77,7 @@ public:
 
 
 
-
-// APPROACH 3
+// A 3
 
 class Solution {
 public:
@@ -98,10 +92,36 @@ public:
     }
 };
 
-
-
 // T.C. --> O(N)
 // S.C. --> O(N)
 
 
 
+
+
+
+// A 4
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> dup;
+        for(int num : nums) {
+            int idx = abs(num) - 1;
+            if(nums[idx] < 0) dup.push_back(idx + 1); // Duplicate found
+            else nums[idx] = -nums[idx];
+        }      
+        // Restore the original array (optional)
+        for(int& num : nums) {
+            num = abs(num);
+        }        
+        return dup;
+    }
+};
+
+
+
+
+
+
+// A 5
