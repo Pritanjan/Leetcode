@@ -130,3 +130,23 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> dup;        
+        for(int num : nums) {
+            int idx = abs(num) - 1;
+            if(nums[idx] < 0) dup.push_back(idx + 1); // Duplicate found
+            else nums[idx] = -nums[idx];
+        }        
+        return dup;
+    }
+};
+
+
+
+
+
+
+// A 6
