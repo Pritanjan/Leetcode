@@ -97,4 +97,48 @@ private:
 
 
 
-// A 4
+// A 4 - post-order traversal without recursion
+
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int maxSum = INT_MIN;
+        unordered_map<TreeNode*, int> mp;
+        stack<TreeNode*> stk;
+
+        TreeNode* prev = nullptr;
+        while(root || !stk.empty()) {
+            while(root) {
+                stk.push(root);
+                root = root -> left;
+            }
+            root = stk.top();
+
+            // Check if we should process this node
+            if(!root -> right || root -> right == prev) {
+                int leftMax  = max(0, mp[root -> left]);
+                int rightMax = max(0, mp[root -> right]);
+
+                int tmp = root->val + leftMax + rightMax;
+                maxSum = max(maxSum, tmp);
+
+                // Update the max path sum for the current node
+                mp[root] = root -> val + max(leftMax, rightMax);
+
+                stk.pop();
+                prev = root;
+                root = nullptr;
+            }
+            else root = root -> right;
+        }
+        return maxSum;
+    }
+};
+
+
+
+
+
+
+// A 5
+
