@@ -1,4 +1,4 @@
-// APPROACH 6 Brute Force
+// A 0 -  Brute Force
 
 class Solution {
 public:
@@ -15,7 +15,9 @@ public:
 
 
 
-// APPROACH 1  Using Sorting and Comparing
+
+
+// A 1  Using Sorting and Comparing
 
 class Solution {
 public:
@@ -34,23 +36,18 @@ public:
 
 
 
-// APPROACH 2
+
+
+// A 2
 
 class Solution {
 public:
     char findTheDifference(string s, string t) {        
-        // count of ASCII of s & t
-        int S = 0;
-        int T = 0;
-        
-        // count all ASCII values of string s 
-        for(char ch : s) S += ch;
-
-        // count all ASCII values of string s 
-        for(char ch : t) T += ch;
-        
-        //difference of count T-S is answer
-        return T-S;
+        int S = 0;                   // count of ASCII of s
+        int T = 0;                   // count of ASCII of t
+        for(char ch : s) S += ch;    // count all ASCII values of string s 
+        for(char ch : t) T += ch;    // count all ASCII values of string s 
+        return T - S;                // difference of count T-S is answer
     }
 };
 
@@ -74,8 +71,8 @@ public:
 
 
 
-// APPROACH 3 [ Using Character Counts ]  Hashing
 
+// A 3 [ Using Character Counts ]  Hashing
 // Count the frequency of characters in both strings.
 // Compare the character counts to find the added letter.
 
@@ -92,9 +89,8 @@ public:
 };
 
 
-
+// OR
 // Using Counting Arrays 
-
 
 class Solution {
 public:
@@ -114,8 +110,8 @@ public:
 
 
 
-// APPROACH 4 [ Using Xor ] Bit Manipulation:
 
+// A 4 [ Using Xor ] Bit Manipulation
 // XOR all the characters in both strings.
 // The result will be the ASCII value of the added letter.
 // It works because XORing a character with itself cancels out, leaving only the added letter.
@@ -135,7 +131,7 @@ public:
 
 
 
-// APPROACH 5 [ Using Set ]
+// A 5 [ Using Set ]
 
 class Solution {
 public:
