@@ -116,6 +116,40 @@ public:
 
 
 
+// A 4
+
+class Solution {
+public:    
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> res;
+        if(!root) return res;
+        
+        vector<TreeNode*> currLevel, nextLevel;
+        currLevel.push_back(root);
+
+        while(!currLevel.empty()) {
+            TreeNode* R = currLevel.back();
+            res.push_back(R->val);
+
+            // Prepare for the next level traversal
+            nextLevel.clear();
+
+            for(TreeNode* node : currLevel) {
+                if(node -> left)  nextLevel.push_back(node -> left);
+                if(node -> right) nextLevel.push_back(node -> right);
+            }
+
+            // Swap the current and next levels
+            swap(currLevel, nextLevel);
+        }
+        return res;
+    }
+};
+
+
+
+
+
 
 
 
