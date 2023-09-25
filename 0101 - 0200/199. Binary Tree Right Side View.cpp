@@ -117,6 +117,15 @@ public:
 
 
 // A 4
+// 1. Maintain two vectors, currLevel and nextLevel, to keep track of the nodes at the current level
+//    and the nodes at the next level in the binary tree.
+// 2. Start with the root node and add it to currentLevel.
+// 3. During each iteration of the while loop, process the nodes in currLevel from left to right. 
+//    The last node processed in this loop (i.e., currLevel.back()) will be the rightmost node
+//    at the current level, so we add its value to the result vector.
+// 4. Then prepare for the next level traversal by clearing the nextLevel vector and
+//    adding the left and right children of the nodes in currentLevel to nextLevel.
+// 5. Finally, swap currLevel and nextLevel to prepare for the next iteration of the loop.
 
 class Solution {
 public:    
