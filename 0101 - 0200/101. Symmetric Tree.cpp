@@ -117,6 +117,48 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+        queue<TreeNode*> que;
+        que.push(root);
+        
+        while(!que.empty()) {
+            int n = que.size();
+            vector<int> v;
+            for(int i=0; i<n; i++) {
+                TreeNode* node = que.front();  que.pop();
+                
+                if(node) {
+                    v.push_back(node -> val);
+                    que.push(node -> left);
+                    que.push(node -> right);
+                } 
+                // Use a special marker for null nodes
+                else v.push_back(INT_MIN);                 
+            }
+            if(!isSymmetricLevel(v)) return false;
+        }        
+        return true;
+    }
+    
+    bool isSymmetricLevel(vector<int>& v) {
+        int L = 0;
+        int R = v.size() - 1;
+        while(L < R) {
+            if(v[L] != v[R]) return false;
+            L++;
+            R--;
+        }
+        return true;
+    }
+};
+
+
 
 
 
