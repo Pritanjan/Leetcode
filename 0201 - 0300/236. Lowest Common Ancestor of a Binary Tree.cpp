@@ -91,8 +91,13 @@ public:
 };
 
 
-// OR
 
+
+
+
+// A 4 - Level-Order Traversal with a Queue:
+// use a level-order traversal to build a parent map that tracks the parent node for each node in the tree.
+// Then, trace back from both nodes (p and q) to find their common ancestor, which is the LCA.
 
 class Solution {
 public:
@@ -136,5 +141,45 @@ public:
 
 
 
-// A 4
+// A 5
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        unordered_map<TreeNode*, TreeNode*> parent;
+        unordered_map<TreeNode*, int> depth;
+        
+        dfs(root, nullptr, 0, parent, depth);
+        
+        // Ensure p is at least as deep as q
+        if(depth[p] < depth[q]) swap(p, q);
+                
+        // Lift p to the same depth as q
+        while(depth[p] > depth[q]) p = parent[p];
+                
+        // Move both nodes up the tree until their parent is the same
+        while(p != q) {
+            p = parent[p];
+            q = parent[q];
+        }
+        return p;
+    }
+    
+    void dfs(TreeNode* node, TreeNode* par, int d, unordered_map<TreeNode*, TreeNode*>& parent, unordered_map<TreeNode*, int>& depth) {
+        if(!node) return;
+        
+        parent[node] = par;
+        depth[node] = d;
+        
+        dfs(node -> left,  node, d+1, parent, depth);
+        dfs(node -> right, node, d+1, parent, depth);
+    }
+};
+
+
+
+
+
+
+// A 6
 
