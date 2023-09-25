@@ -91,6 +91,47 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root || root == p || root == q) return root;
+                
+        queue<TreeNode*> que;
+        que.push(root);
+        unordered_map<TreeNode*, TreeNode*> mp;  // store the parent
+
+        // Perform level-order traversal and store parent pointers
+        while(!mp.count(p) || !mp.count(q)) {
+            TreeNode* node = que.front();   que.pop();
+            if(node -> left) {
+                mp[node -> left] = node;
+                que.push(node -> left);
+            }            
+            if(node -> right) {
+                mp[node -> right] = node;
+                que.push(node -> right);
+            }
+        }
+
+        // Trace back from both nodes to find the LCA
+        unordered_set<TreeNode*> ust;  // store the ancessestor
+        
+        while(p) {
+            ust.insert(p);
+            p = mp[p];
+        }
+        
+        while(!ust.count(q)) {
+            q = mp[q];
+        }
+        return q;
+    }
+};
+
+
 
 
 
