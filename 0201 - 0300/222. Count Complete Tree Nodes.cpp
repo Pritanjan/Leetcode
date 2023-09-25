@@ -223,11 +223,8 @@ public:
 };
 
 
+// OR
 
-
-
-
-// A 7
 
 class Solution {
 public:
@@ -251,5 +248,44 @@ public:
         return count;
     }
 };
+
+
+
+
+
+
+// A 7
+
+class Solution {
+public: 
+    int countNodes(TreeNode* root) {
+        if(!root) return 0;
+        int LH = 0;
+        int RH = 0;
+        
+        TreeNode* L = root;
+        TreeNode* R = root;
+        while(L) {
+            L = L -> left;
+            LH++;
+        }
+        while(R) {
+            R = R->right;
+            RH++;
+        }
+        // If the height of the left subtree and the height of the right subtree are the same,
+        // it means the left subtree is a perfect binary tree, so we can calculate its nodes directly.
+        if(LH == RH) return (1 << LH) - 1; // 2^leftHeight - 1
+        // If the heights are not the same, we recursively count nodes in the left and right subtrees.
+        else return 1 + countNodes(root -> left) + countNodes(root -> right);
+    }
+};
+
+
+
+
+
+
+// A 8
 
 
