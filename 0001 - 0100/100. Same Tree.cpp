@@ -265,4 +265,24 @@ public:
 
 
 
-// A 8 -
+// A 8 - (DFS) without recursion and without using additional data structures like stacks or queues
+// It uses a bottom-up approach, ensuring that all nodes in the subtrees are compared before
+// moving to the parent nodes. 
+// It is an iterative version of the recursive approach mentioned above
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        while(p || q) {
+            if(!p || !q || p->val != q->val) return false;
+            bool left = isSameTree(p -> left, q -> left);
+            if(!left) return false;
+
+            p = p -> right;
+            q = q -> right;
+        }
+        return true;
+    }
+};
+
+
