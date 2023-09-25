@@ -85,7 +85,15 @@ public:
 
 
 // OR
+// It uses an iterative breadth-first traversal to compare the left and right subtrees for symmetry. 
+// Instead of using two queues, we r using a single queue and push pairs of nodes into it. 
+// Each pair consists of a node from the left subtree and a corresponding node from the right subtree. 
+// then compare these pairs for symmetry.
 
+// It uses a queue to perform a level-order traversal of the tree while comparing the corresponding
+// nodes from the left and right subtrees. 
+// If at any point the values don't match or the structure isn't mirrored, it returns false. 
+// Otherwise, it returns true if the entire tree is traversed symmetrically
 
 class Solution {
 public:
