@@ -237,7 +237,42 @@ public:
 
 
 
-// A 5
+// A 5 - Convert to Inorder and Compare:
+// Converts the tree to an inorder traversal list and then compares the list to check for symmetry.
 
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+
+        vector<int> in;
+        inOrder(root, in);
+        int L = 0;
+        int R = in.size() - 1;
+        while(L < R) {
+            if(in[L] != in[R]) return false;
+            L++;
+            R--;
+        }
+        return true;
+    }
+
+    void inOrder(TreeNode* node, vector<int>& in) {
+        // Use a special marker for null nodes
+        if(!node) {
+            in.push_back(INT_MIN); 
+            return ;
+        }
+        inOrder(node -> left, in);
+        in.push_back(node -> val);
+        inOrder(node ->right, in);
+    }
+};
+
+
+
+
+
+// A 6
 
 
