@@ -76,6 +76,62 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> res;
+        if (!root) return res;
+
+        map<int, vector<int>> mp1; // Map to store nodes at each column index
+        queue<pair<TreeNode*, int>> que1; // Queue for level order traversal
+        queue<int> que2; // Queue for column indices
+
+        que1.push({root, 0});
+        que2.push(0);
+
+        while (!que1.empty()) {
+            int n = que1.size();
+            map<int, vector<int>> mp2;
+
+            for (int i = 0; i < n; ++i) {
+                TreeNode* node = que1.front().first;
+                int col = que2.front();
+
+                que1.pop();
+                que2.pop();
+
+                mp2[col].push_back(node->val);
+
+                if(node->left) {
+                    que1.push({node->left, col - 1});
+                    que2.push(col - 1);
+                }
+                if(node->right) {
+                    que1.push({node->right, col + 1});
+                    que2.push(col + 1);
+                }
+            }
+
+            for(auto& it : mp2) {
+                vector<int>& tmp1 = mp1[it.first];
+                vector<int> tmp2 = it.second;
+                sort(tmp2.begin(), tmp2.end());
+                tmp1.insert(tmp1.end(), tmp2.begin(), tmp2.end());
+            }
+        }
+
+        for(auto& it : mp1) {
+            res.push_back(it.second);
+        }
+        return res;
+    }
+};
+
+
+
 
 
 
