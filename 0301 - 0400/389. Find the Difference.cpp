@@ -88,6 +88,33 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        vector<int> count(26, 0);
+        int n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            count[s[i] - 'a']--;
+            count[t[i] - 'a']++;
+        }
+
+        count[t[n] - 'a']++;        
+        char res;
+        for(int i=0; i<26; i++) {
+            if(count[i] == 1) {
+                res = i + 'a';
+                break;
+            }
+        }        
+        return res;
+    }
+};
+
+
 
 
 
