@@ -1,22 +1,3 @@
-// A 0 -  Brute Force
-
-class Solution {
-public:
-    char findTheDifference(string s, string t) {
-        for(char c : t) {
-            size_t pos = t.find(c);
-            string temp = t.substr(0, pos) + t.substr(pos+1);
-            if(temp == s) return c;
-        }
-        return '\0'
-    }
-};
-
-
-
-
-
-
 // A 1  Using Sorting and Comparing
 
 class Solution {
