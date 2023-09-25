@@ -10,7 +10,7 @@ public:
             if(s[i] != t[i]) return t[i];
         }
         return t[s.size()];
-        // return t.back();
+        // return t.back();     // Return the last character if no extra character is found
     }    
 };
 
