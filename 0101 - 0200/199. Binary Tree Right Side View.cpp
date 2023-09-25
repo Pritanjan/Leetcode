@@ -76,6 +76,48 @@ public:
 // S.C. O(N)
 
 
+// OR
+// 1. Use a queue for level-order traversal of the binary tree.
+// 2. Initialize the queue with the root node and an additional nullptr sentinel node
+//    to indicate the end of a level.
+// 3. During each iteration of the while loop, we pop a node from the queue.
+// 4. If the node is not sentinel node, check if the next node in the queue is a sentinel node (nullptr). 
+//    If it is, it means we have reached the last node at the current level, 
+//    so we add its value to the result vector.
+// 5. We enqueue the left and right children of each non-sentinel node if they exist.
+// 6. If the popped node is a sentinel node and there are more nodes in the queue 
+//    (i.e., it's not the end of the traversal), enqueue another sentinel node to indicate the end of
+//    the next level.
+
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<int> res;
+        
+        queue<TreeNode*> que;
+        que.push(root);
+        que.push(NULL);  // Sentinel node to indicate the end of a level
+        while(!que.empty()){
+            TreeNode* node = que.front();  que.pop();
+            if(node) {
+                // If it's not a sentinel node, add its value to the result
+                if(que.front() == nullptr) res.push_back(node -> val);
+
+                // Add the left and right children to the queue if they exist
+                if(node -> left != NULL)  que.push(node -> left);
+                if(node -> right != NULL) que.push(node -> right);
+            }
+            // If it's a sentinel node and there are more nodes in the queue,
+            // enqueue another sentinel node to indicate the end of the next level.
+            else if(!que.empty()) que.push(nullptr);
+        }
+        return res;
+    }
+};
+
+
+
 
 
 
