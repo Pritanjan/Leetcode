@@ -118,7 +118,13 @@ public:
 
 
 // OR
+// Level Order Traversal with a Queue
+// It uses level-order traversal with a queue to check for symmetry. 
+// It compares nodes at each level to ensure they are symmetric.
 
+// We perform level-order traversal using a queue and compare nodes at each level to ensure symmetry. 
+// INT_MIN are used to represent null nodes in the level vector. 
+// The isSymmetricLevel function checks if the nodes at a given level are symmetric.
 
 class Solution {
 public:
