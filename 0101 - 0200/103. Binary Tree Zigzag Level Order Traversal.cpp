@@ -292,3 +292,40 @@ public:
 
 //  A 6 - 
 
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+
+        bool LtR = true;
+        list<TreeNode*> currLevel;
+        currLevel.push_back(root);
+
+        while(!currLevel.empty()) {
+            int n = currLevel.size();
+            vector<int> v(n);   // stre the node value
+
+            for(int i=0; i<n; i++) {
+                TreeNode* node = currLevel.front();
+                currLevel.pop_front();
+
+                int idx = LtR ? i : n - 1 - i;
+                v[idx] = node -> val;
+
+                if(node -> left)  currLevel.push_back(node -> left);
+                if(node -> right) currLevel.push_back(node -> right);
+            }
+            res.push_back(v);
+            LtR = !LtR;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 7
