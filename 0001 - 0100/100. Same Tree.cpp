@@ -152,6 +152,32 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        queue<TreeNode*> que;
+        que.push(p);
+        que.push(q);
+
+        while(!que.empty()) {
+            TreeNode* nodeP = que.front(); que.pop();
+            TreeNode* nodeQ = que.front(); que.pop();
+
+            if(!nodeP && !nodeQ) continue;
+            if(!nodeP || !nodeQ || nodeP->val != nodeQ->val) return false;
+
+            que.push(nodeP->left);
+            que.push(nodeQ->left);
+            que.push(nodeP->right);
+            que.push(nodeQ->right);
+        }
+        return true;
+    }
+};
+
 
 
 
