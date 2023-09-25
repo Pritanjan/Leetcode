@@ -172,6 +172,48 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(!root) return res;
+        
+        stack<TreeNode*> stk1;
+        stack<TreeNode*> stk2;
+        stk1.push(root);
+        while(!stk1.empty() || !stk2.empty()) {
+            vector<int> level;
+            
+            while(!stk1.empty()) {
+                TreeNode* node = stk1.top();
+                stk1.pop();
+                level.push_back(node -> val);
+
+                if(node -> left)  stk2.push(node -> left);
+                if(node -> right) stk2.push(node -> right);
+            }
+            
+            if(!level.empty()) res.push_back(level);
+            level.clear();
+            
+            while(!stk2.empty()) {
+                TreeNode* node = stk2.top();
+                stk2.pop();
+                level.push_back(node -> val);
+                
+                if(node -> right) stk1.push(node -> right);
+                if(node -> left)  stk1.push(node -> left);
+            }            
+            if(!level.empty()) res.push_back(level);
+        }        
+        return res;
+    }
+};
+
+
 
 
 
