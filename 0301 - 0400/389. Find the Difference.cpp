@@ -112,19 +112,7 @@ public:
 
 
 
-// A 5 [ Using Set ]
-
-class Solution {
-public:
-    char findTheDifference(string s, string t) {
-        unordered_set<char> charSet(s.begin(), s.end());
-        for(char c : t) {
-            if(charSet.find(c) == charSet.end()) return c;
-        }
-        return '\0';        
-    }
-};
-
+// A 5 
 
 
 
