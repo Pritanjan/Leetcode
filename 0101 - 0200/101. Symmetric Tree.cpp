@@ -165,11 +165,45 @@ public:
 };
 
 
+// OR
+// Use Two Queues (Iterative Approach):
+// use 2 queues for an iterative level-order traversal of both the left and right subtrees. 
+// Then compares the nodes at each level for symmetry.
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (!root) return true;
+
+        queue<TreeNode*> LQue, RQue;
+        LQue.push(root -> left);
+        RQue.push(root -> right);
+
+        while(!LQue.empty() && !RQue.empty()) {
+            TreeNode* L = LQue.front();    LQue.pop();
+            TreeNode* R = RQue.front();    RQue.pop();
+            
+            if(!L && !R) continue;
+            if(!L || !R || L -> val != R -> val) return false;
+
+            LQue.push(L -> left);
+            LQue.push(L -> right);
+
+            RQue.push(R -> right);
+            RQue.push(R -> left);
+        }
+        return true;
+    }
+};
+
+
+
 
 
 
 
 // A 3 - Using a Stack:
+// Same as A2 d
 // Use 2 stacks for simultaneous in-order traversals of the left and right subtrees.
 // Compare corresponding nodes from both stacks in each step.
 
