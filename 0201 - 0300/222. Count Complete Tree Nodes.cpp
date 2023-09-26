@@ -116,6 +116,7 @@ public:
         //     return pow(2, lh) - 1;
         // }
         
+        // both r same
         if(lh == rh) {
            return (1 << lh) - 1;
         }
