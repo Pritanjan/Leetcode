@@ -106,52 +106,59 @@ public:
 // APPROACH 2 [ Iterative Approach ]
 // Traverse the tree iteratively to find the node to be deleted, and then delete it. 
 
-
 class Solution {
-public:        
+public:
     TreeNode* deleteNode(TreeNode* root, int key) {
-        TreeNode* parent = NULL;
+        TreeNode* parent = nullptr;
         TreeNode* curr = root;
 
-        while(curr != NULL && curr->val != key) {
+        while(curr != nullptr && curr -> val != key) {
             parent = curr;
-            if(key < curr->val) curr = curr->left;
-            else curr = curr->right;
+            if(key < curr->val) curr = curr -> left;
+            else curr = curr -> right;
         }
 
-        if(curr == NULL) return root;
+        // Key not found in the tree.
+        if(curr == nullptr) return root;
 
-        if(curr->left == NULL) {
-            if(parent == NULL) root = curr->right;
-            else if (curr == parent->left) parent->left = curr->right;
-            else parent->right = curr->right;
-
+        if(curr -> left == nullptr) {
+            // Node has no left child, replace it with its right child.
+            if(parent == nullptr) root = curr -> right;
+            else if(parent -> left == curr) parent -> left = curr -> right;
+            else parent -> right = curr -> right;
             delete curr;
-        }
-        else if(curr->right == NULL) {
-            if (parent == NULL) root = curr->left;
-            else if (curr == parent->left) parent->left = curr->left;
-            else parent->right = curr->left;
-            
+        } 
+        else if(curr -> right == nullptr) {
+            // Node has no right child, replace it with its left child.
+            if(parent == nullptr) root = curr -> left;
+            else if(parent -> left == curr) parent -> left = curr -> left;
+            else parent -> right = curr -> left;
             delete curr;
         } 
         else {
-            TreeNode* successor = curr->right;
-            parent = NULL;
-            while (successor->left != NULL) {
-                parent = successor;
-                successor = successor->left;
+            // Node has both left and right children.
+            // Find the in-order successor (smallest node in the right subtree).
+            TreeNode* succ = curr -> right;
+            TreeNode* succParent = curr;
+
+            while(succ -> left != nullptr) {
+                succParent = succ;
+                succ = succ -> left;
             }
 
-            curr->val = successor->val;
-            if(parent != NULL) parent->left = successor->right;
-            else curr->right = successor->right;
-            
-            delete successor;
+            // Replace the current node's value with the in-order successor's value.
+            curr -> val = succ -> val;
+
+            // Delete the in-order successor (it has at most one right child).
+            if(succParent -> left == succ) succParent -> left = succ -> right;
+            else succParent -> right = succ -> right;
+            delete succ;
         }
         return root;
     }
 };
+
+
 
 
 // T.C. -->  O(h) [ worst case]
