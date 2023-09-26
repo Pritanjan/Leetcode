@@ -18,7 +18,6 @@ public:
 
 
 // A 2 - Recursive DFS
-
 // It utilizes the properties of a BST to traverse the tree in a depth-first manner. 
 // It starts at the root node and recursively searches for the node with the given value.
 
@@ -44,7 +43,6 @@ public:
 
 
 // A 3 - Iterative BFS
-
 // It uses an iterative BFS to traverse the tree level by level. 
 // It searches for the node with the given value and returns the corresponding subtree.
 
@@ -54,9 +52,7 @@ public:
         queue<TreeNode*> que;
         que.push(root);     
         while(!que.empty()) {
-            TreeNode* node = que.front();
-            que.pop();
-            
+            TreeNode* node = que.front();  que.pop();
             if(node -> val == val) return node;            
             if(node -> val > val && node -> left) que.push(node -> left);
             else if(node -> val < val && node -> right) que.push(node -> right);
@@ -71,7 +67,6 @@ public:
 
 
 // A 4 -  Iterative DFS
-
 // It uses an iterative DFS with a stack to traverse the tree. 
 // Similar to the recursive approach, it searches for the node with the given value and
 // returns the corresponding subtree.
@@ -94,15 +89,38 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        stack<TreeNode*> stk;
+        while(root || !stk.empty()) {
+            while(root) {
+                stk.push(root);
+                root = root -> left;
+            }            
+            root = stk.top();
+            stk.pop();
+            
+            if(root -> val == val) {
+                return root; // Node found.
+            }
+            root = root -> right;
+        }        
+        return nullptr; // Node not found.
+    }
+};
+
+
 
 
 
 
 // A 5 - Morris Traversal
-
 // Morris Traversal is a space-efficient and in-order tree traversal method. 
-// In this approach, we modify the tree's structure temporarily to traverse it without using
-// additional space. 
+// Here, we modify tree's structure temporarily to traverse it without using additional space. 
 // While performing the traversal, we can also check for the target value & return the 
 // corresponding subtree.
 
