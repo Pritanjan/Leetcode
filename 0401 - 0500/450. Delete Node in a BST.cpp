@@ -1,11 +1,10 @@
-// APPROACH 1 [ Recursive ]
+// A 1 [ Recursive ]
 // Traverse the tree recursively to find the node to be deleted, and then delete it. 
 
 class Solution {
 public:
     TreeNode* minimum(TreeNode* root){
         TreeNode *temp = root;
-        
         while(temp -> left != NULL){
             temp = temp -> left;
         }
@@ -14,7 +13,6 @@ public:
 
     TreeNode* maximum(TreeNode* root){
         TreeNode* temp = root;
-        
         while(temp -> right != NULL){
             temp = temp -> right;
         }
@@ -22,15 +20,10 @@ public:
     }
 
     TreeNode* deleteNode(TreeNode* root, int key) {
-        if (root == NULL) {
-            return NULL;
-        }
-        
-        if (key < root->val) {
-            root->left = deleteNode(root->left, key);
-        } else if (key > root->val) {
-            root->right = deleteNode(root->right, key);
-        } else {
+        if(root == NULL) return NULL;        
+        if(key < root->val) root->left = deleteNode(root->left, key);
+        else if (key > root->val) root->right = deleteNode(root->right, key);
+        else {
             if (root->left == NULL) {
                 TreeNode* temp = root->right;
                 delete root;
@@ -50,13 +43,10 @@ public:
     }
 };
 
-
-
 // T.C. -->  O(h) [ worst case]
 
 
 // OR
-
 
 
 class Solution {
@@ -158,83 +148,14 @@ public:
     }
 };
 
-
-
-
 // T.C. -->  O(h) [ worst case]
-
-
-
-
-
-
-
-// APPROACH 3 [ Using Parent Pointers ]
-// Maintain a pointer to the parent of the node to be deleted in addition to the node itself. 
-// This allows for more efficient deletion by avoiding the need to traverse the tree again 
-// to find the parent node.
-
-// Here, each node in the tree has a pointer to its parent. This allows for more efficient
-// deletion by avoiding the need to traverse the tree again to find the parent node.
-
-// we manually find the parent node of the current node when we need to delete a node that has 2 children.
-
-
-class Solution {
-public:
-    TreeNode* deleteNode(TreeNode* root, int key) {
-        if(!root) return nullptr;
-        
-        TreeNode* curr = root;
-        TreeNode* parent = nullptr;
-        
-        while(curr && curr->val != key) {
-            parent = curr;
-            if(key < curr->val) curr = curr->left;
-            else curr = curr->right;
-        }
-        
-        if(!curr) return root;
-
-        if(curr->left && curr->right) {
-            TreeNode* successor = curr->right;
-            while (successor->left) successor = successor->left;
-            curr->val = successor->val;
-            curr = successor;
-            // Since we don't have a parent pointer, we need to find the parent node manually.
-            parent = root;
-            while(parent && parent->left != curr && parent->right != curr) {
-                if(curr->val < parent->val) parent = parent->left;
-                else parent = parent->right;
-            }
-        }
-        
-        TreeNode* child;
-        if(curr->left) child = curr->left;
-        else child = curr->right;
-        
-        
-        if(!parent) root = child;
-        else if (parent->left == curr) parent->left = child;
-        else parent->right = child;
-        
-        delete curr;
-        
-        return root;
-    }
-};
-
-
-// T.C. -->  O(h) [ worst case]
-
 
     
     
 
 
 
-
-// APPROACH 4 [ Morris Traversal ]
+// A 3 [ Morris Traversal ]
 // Using Morris Traversal to find the node to be deleted without using any extra space. 
 
 
