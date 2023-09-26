@@ -1,5 +1,4 @@
 // A 1 - Inorder traversal
-
 // Go inorder and decrease k at each node. 
 // Stop the whole search as soon as k is 0,
 // and then the k-th element is immediately returned all 
@@ -20,8 +19,7 @@ public:
         // return inorder(root -> left, k);
         if(--k == 0) return root -> val;
         else return inorder(root -> right, k);
-    }
-    
+    }    
     int kthSmallest(TreeNode* root, int k) {
         return inorder(root, k);
     }    
@@ -37,18 +35,15 @@ public:
         int i = 0;
         int res = f(root, i, k);
         return res;
-    }        
-        
+    }
     int f(TreeNode *root, int &i, int k){
         // base case
         if(root == NULL) return -1;
 
         int L = f(root -> left, i, k);   // Left
         if(L != -1) return L;
-
         i++;
         if(i == k) return root -> val;   // Node
-
         return f(root -> right, i, k);   // Right
     }
 };
@@ -88,7 +83,6 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         stack<TreeNode*> stk;
         TreeNode* curr = root;
-
         while(curr || !stk.empty()) {
             while(curr) {
                 stk.push(curr);
@@ -100,6 +94,35 @@ public:
             curr = curr -> right;
         }
         return -1; // Not found
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        stack<pair<TreeNode*, bool>> stk; // (Node, VisitedFlag)
+        TreeNode* curr = root;
+        int cnt = 0;
+
+        while(curr || !stk.empty()) {
+            while(curr) {
+                stk.push({curr, false});
+                curr = curr -> left;
+            }
+            pair<TreeNode*, bool> top = stk.top();
+            stk.pop();
+            if(!top.second) {
+                cn
+                t++;
+                if(cnt == k) return top.first -> val;
+                curr = top.first -> right;
+            }
+        }
+        return -1; // kth element not found
     }
 };
 
@@ -117,12 +140,10 @@ public:
         inorder(root, pq, k);
         return pq.top();
     }
-
     void inorder(TreeNode* node, priority_queue<int>& pq, int k) {
         if(!node) return ;
         pq.push(node -> val);
         if(pq.size() > k) pq.pop(); // Keep the priority queue size limited to k
-
         inorder(node -> left,  pq, k);
         inorder(node -> right, pq, k);
     }
@@ -139,13 +160,11 @@ class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
         if(!root) return -1; // Not found
-
         int n = countNodes(root -> left);   // leftSubtreeSize
         if(k == n + 1) return root -> val;
         else if (k <= n) return kthSmallest(root -> left, k);
         else return kthSmallest(root -> right, k - n - 1);
     }
-
 private:
     int countNodes(TreeNode* node) {
         if(!node) return 0;
@@ -159,7 +178,6 @@ private:
 
 
 // A 6 - Convert to Sorted Array
-
 // Convert the BST to a sorted array using an in-order traversal and then
 // directly access the kth smallest element from the array. 
 // While this approach isn't the most efficient, it provides a clear way to understand the process.
@@ -168,12 +186,10 @@ class Solution {
 public:
     void inorder(TreeNode* node, vector<int>& sortedArray) {
         if(!node) return ;
-
         inorder(node -> left, sortedArray);
         sortedArray.push_back(node -> val);
         inorder(node -> right, sortedArray);
     }
-
     int kthSmallest(TreeNode* root, int k) {
         vector<int> sortedArray;
         inorder(root, sortedArray);
