@@ -26,6 +26,40 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode* newNode = new TreeNode(val);
+        // If the tree is empty, create a new node and return it as the root.
+        if(!root) return newNode;
+
+        TreeNode* curr = root;
+        stack<TreeNode*> stk;
+        while(curr) {
+            stk.push(curr);
+            if(val < curr -> val) {
+                if(curr -> left) curr = curr -> left;
+                else {
+                    curr -> left = newNode;
+                    break;
+                }
+            } 
+            else {
+                if(curr -> right) curr = curr -> right;
+                else {
+                    curr -> right = newNode;
+                    break;
+                }
+            }
+        }
+        return root;
+    }
+};
+
+
 
 
 
