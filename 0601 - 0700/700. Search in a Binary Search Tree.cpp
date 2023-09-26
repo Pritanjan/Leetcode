@@ -120,14 +120,30 @@ public:
 };
  
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        TreeNode* curr = root;       
+        while(curr) {
+            if(curr -> val == val) return curr;
+            else if(val < curr -> val) curr = curr->left;
+            else curr = curr -> right;
+        }        
+        return nullptr;
+    }
+};
+ 
+
 
 
 
 
 // A 6 -  Double Recursion
-
-// This approach uses two recursive calls to explore both left and right subtrees. 
-// It combines the ideas of binary search and recursive traversal to find the desired node and
+// It uses two recursive calls to explore both left and right subtrees. 
+// It combines ideas of binary search and recursive traversal to find the desired node and
 // return the corresponding subtree.
 
 class Solution {
@@ -137,7 +153,6 @@ public:
                 
         TreeNode* leftResult = searchBST(root -> left, val);
         if(leftResult) return leftResult;
-                
         return searchBST(root -> right, val);
     }
 };
