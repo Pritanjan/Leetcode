@@ -107,19 +107,17 @@ public:
             lh++;
             L = L -> left;
         }
+        while(R) {
+            rh++;
+            R = R -> right;
+        }        
         
-        // while(R) {
-        //     rh++;
-        //     R = R -> right;
-        // }        
-        // if(lh == rh) {
-        //     return pow(2, lh) - 1;
-        // }
+        // If the height of the left subtree and the height of the right subtree are the same,
+        // it means the left subtree is a perfect binary tree, so we can calculate its nodes directly.        
+        if(lh == rh) return (1 << lh) - 1;
+        // if(lh == rh) return pow(2, lh) - 1;
         
-        // both r same
-        if(lh == rh) {
-           return (1 << lh) - 1;
-        }
+        // If the heights are not the same, we recursively count nodes in the left and right subtrees.
         return countNodes(root -> left) + countNodes(root -> right) + 1;
     }
 };
