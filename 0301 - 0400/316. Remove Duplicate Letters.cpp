@@ -128,5 +128,33 @@ public:
 // S.C. --> O(1)
 
 
+// OR
+
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        vector<int> cnt(26, 0);
+        for(char c : s) cnt[c - 'a']++;
+        
+        int pos = 0;
+        for(int i=0; i<s.length(); i++) {
+            if(s[pos] > s[i]) pos = i;
+            if(--cnt[s[i] - 'a'] == 0) break;
+        }
+        
+        if(s.empty()) return "";
+        string rem = s.substr(pos + 1);
+        char tmp = s[pos];
+        rem.erase(remove(rem.begin(), rem.end(), tmp), rem.end());
+        return tmp + removeDuplicateLetters(rem);
+    }
+};
+
+
+
+
+
+// A 4
 
 
