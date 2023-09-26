@@ -64,27 +64,27 @@ public:
 class Solution {
 public:
     int countNodes(TreeNode* root) {
-        if(root==NULL)return 0;
+        if(root == NULL)return 0;
         int lh = leftheight(root);
-        int rh=rightheight(root);
+        int rh = rightheight(root);
 
-        if(lh==rh)return ((1<<lh)-1) ;  //(2^lh-1)
+        if(lh == rh)return ((1 << lh) - 1) ;  //(2^lh-1)
 
-        return 1+countNodes(root->left)+countNodes(root->right);
+        return 1 + countNodes(root -> left) + countNodes(root -> right);
     }
     int leftheight(TreeNode* root){
-        int count=0;
-        while(root){
+        int count = 0;
+        while(root) {
             count++;
-            root=root->left;
+            root = root -> left;
         }
         return count;
     }
     int rightheight(TreeNode* root){
-        int count=0;
-        while(root){
+        int count = 0;
+        while(root) {
             count++;
-            root=root->right;
+            root = root -> right;
         }
         return count;
     }
@@ -98,34 +98,28 @@ class Solution {
 public:
     int countNodes(TreeNode* root) {
         if(root == nullptr) return 0;
+        int lh = 0;
+        int rh = 0;
+        TreeNode* L = root;
+        TreeNode* R = root;
         
-        int left_height = 0;
-        int right_height = 0;
-        TreeNode* left_node = root;
-        TreeNode* right_node = root;
-        
-        while (left_node) {
-            left_height++;
-            left_node = left_node->left;
+        while(L) {
+            lh++;
+            L = L -> left;
         }
         
-        // SAME AS LINE 67 - 70
-        // for(TreeNode* p=root; p; p=p->left) ++leftH;
-        
-        while (right_node) {
-            right_height++;
-            right_node = right_node->right;
-        }        
-        
-        if (left_height == right_height) {
-            return pow(2, left_height) - 1;
-        }
-        
-        // SAME AS LINE 72 - 79
-        // if(left_height == right_height) {
-        //    return (1 << left_height) - 1;
+        // while(R) {
+        //     rh++;
+        //     R = R -> right;
+        // }        
+        // if(lh == rh) {
+        //     return pow(2, lh) - 1;
         // }
-        return countNodes(root->left) + countNodes(root->right) + 1;
+        
+        if(lh == rh) {
+           return (1 << lh) - 1;
+        }
+        return countNodes(root -> left) + countNodes(root -> right) + 1;
     }
 };
 
