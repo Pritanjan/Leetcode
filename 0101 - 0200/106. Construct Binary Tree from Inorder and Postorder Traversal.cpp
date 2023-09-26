@@ -104,4 +104,45 @@ public:
 
 
 
-// A 3 - sing Iteration and Stack
+// A 3 - Using Iteration and Stack
+
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        if(n == 0) return nullptr;
+
+        unordered_map<int, int> mp;
+        for(int i=0; i<n; ++i) {
+            mp[inorder[i]] = i;
+        }
+
+        stack<TreeNode*> stk;
+        int postIdx = n-1;
+        TreeNode* root = new TreeNode(postorder[postIdx]);
+        stk.push(root);
+
+        for(int i=n-2; i>=0; --i) {
+            TreeNode* curr = new TreeNode(postorder[i]);
+            TreeNode* prev = nullptr;
+
+            while(!stk.empty() && mp[curr -> val] < mp[stk.top() -> val]) {
+                prev = stk.top();
+                stk.pop();
+            }
+
+            if(prev) prev -> left = curr;
+            else stk.top() -> right = curr;
+
+            stk.push(curr);
+        }
+        return root;
+    }
+};
+
+
+
+
+
+
+// 
