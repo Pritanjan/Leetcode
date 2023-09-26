@@ -4,9 +4,8 @@ class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
         if(root == NULL) return new TreeNode (val);
-        
         TreeNode* head = root;
-        while(1){
+        while(1) {
             if(root->val > val){
                 if(root->left == NULL){
                     root->left = new TreeNode(val);
@@ -30,7 +29,10 @@ public:
 
 
 
+
 // A 2 [ recursive ]
+// If the tree is empty, we'll create a new node with the given value and return it. 
+// Else, we'll recursively traverse the tree to find the appropriate position for insertion
 
 class Solution {
 public:
@@ -42,6 +44,23 @@ public:
     }
 };
 
+
+// OR
+// we r using pointers to traverse the BST iteratively. 
+// It's similar to the first iterative approach but uses pointers instead of while loops.
+
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode** curr = &root;
+        while(*curr) {
+            if(val < (*curr)->val) curr = &((*curr) -> left);
+            else curr = &((*curr) -> right);
+        }
+        *curr = new TreeNode(val);
+        return root;    
+    }
+};
 
 
 
