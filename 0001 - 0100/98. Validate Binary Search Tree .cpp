@@ -145,6 +145,35 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        vector<int> in;
+        stack<TreeNode*> stk;
+        TreeNode* curr = root;
+
+        while(curr || !stk.empty()) {
+            while(curr) {
+                stk.push(curr);
+                curr = curr -> left;
+            }
+            curr = stk.top();
+            stk.pop();
+            in.push_back(curr -> val);
+            curr = curr -> right;
+        }
+
+        for(int i=1; i<in.size(); i++) {
+            if(in[i] <= in[i-1]) return false;
+        }
+        return true;
+    }
+};
+
+
 
 
 
