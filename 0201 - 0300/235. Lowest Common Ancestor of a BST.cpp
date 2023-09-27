@@ -191,3 +191,53 @@ public:
     }
 };
 
+
+
+
+
+// A 5 - USing BFS
+
+class Solution {
+public:
+    queue<TreeNode*> que;
+    unordered_map<TreeNode*, TreeNode*> parent;
+
+    void bfs(TreeNode* root) {
+        que.push(root);
+        parent[root] = nullptr;
+
+        while(!que.empty()) {
+            TreeNode* node = que.front();
+            que.pop();
+            if(node -> left) {
+                parent[node -> left] = node;
+                que.push(node -> left);
+            }
+            if(node -> right) {
+                parent[node -> right] = node;
+                que.push(node -> right);
+            }
+        }
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        bfs(root);
+        unordered_set<TreeNode*> ancestors;
+        while (p) {
+            ancestors.insert(p);
+            p = parent[p];
+        }
+        while (q && ancestors.find(q) == ancestors.end()) {
+            q = parent[q];
+        }
+        return q;
+    }
+
+};
+
+
+
+
+
+
+// A 6
+
