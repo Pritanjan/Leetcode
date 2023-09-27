@@ -127,6 +127,35 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        TreeNode* curr = root;
+        stack<TreeNode*> st;
+        list<int> values;
+
+        while(curr || !st.empty()) {
+            while(curr) {
+                st.push(curr);
+                curr = curr -> left;
+            }
+
+            curr = st.top();
+            st.pop();
+
+            values.push_back(curr -> val);
+
+            if(values.size() == k) break;
+            curr = curr -> right;
+        }
+        return values.back();
+    }
+};
+
+
 
 
 
