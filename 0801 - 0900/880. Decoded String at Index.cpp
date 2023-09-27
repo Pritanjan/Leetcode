@@ -1,3 +1,42 @@
+// A 0 -  Decoding from Left to Right
+
+class Solution {
+public:
+    string decodeAtIndex(string s, int k) {
+        long long decodedLength = 0;
+        int n = s.size();
+        string res = "";
+
+        for(int i=0; i<n; ++i) {
+            if(isdigit(s[i])) decodedLength *= s[i] - '0';
+            else decodedLength++;
+
+            if(decodedLength >= k) {
+                for(int j=i; j>=0; --j) {
+                    if(isdigit(s[j])) {
+                        int digit = s[j] - '0';
+                        decodedLength /= digit;
+                        k %= decodedLength;
+                    } 
+                    else {
+                        if(k == 0 || k == decodedLength) {
+                            res = s[j];
+                            return res;
+                        }
+                        decodedLength--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
 // A 1 - Calculate Length Directly
 
 class Solution {
