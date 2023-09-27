@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Calculate Length Directly
 
 class Solution {
 public:
