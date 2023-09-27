@@ -1,13 +1,11 @@
 // A 1 [  Recursive Traversal with Valid Range ]
-
 // we perform a DFS on the binary tree & check if each node's value lies within a certain range.
 
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         return helper(root, LONG_MIN, LONG_MAX);
-    }
-    
+    }    
     bool helper(TreeNode* root, long min = LONG_MIN, long max = LONG_MAX){ 
         if(root == NULL) return true;
         if( (root->val >= max) || (root->val <= min) ) return false;
@@ -31,7 +29,6 @@ public:
         // The left and right subtree must also be valid.
         return validate(root->right, root, high) and validate(root->left, low, root);
     }
-
     bool isValidBST(TreeNode* root) {
         return validate(root, nullptr, nullptr);
     }
@@ -46,7 +43,6 @@ public:
 
 
 // A 2 [ INORDER TRVERSL & THEN CHECK WHTEHER RES IS SORTED OR NOT ]
-
 // IF SORTED --> BST 
 // ELSE --> NOT BST
 
@@ -58,7 +54,6 @@ public:
         res.push_back(root -> val);
         if(root -> right) inorder(root -> right, res);
     }
-
     bool isValidBST(TreeNode* root) {
         vector<int> res;
         inorder(root, res);
@@ -66,6 +61,35 @@ public:
             if(res[i-1] >= res[i]) return false;
         }
         return true;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    bool solve(TreeNode* root, vector<int>& v) {
+        if(!root) return true;
+        if(root -> left) {
+            if(!solve(root -> left, v)) return false;
+        }
+        if(v.size() && v[v.size()-1] >= root -> val) {
+            return false;
+        }
+        v.push_back(root -> val);
+        if(root -> right) {
+            if(!solve (root -> right, v)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    bool isValidBST(TreeNode* root) {
+        vector<int> v;
+        return solve(root, v);
     }
 };
 
@@ -119,7 +143,6 @@ public:
 
         stack<TreeNode*> stk1;   // store the nodes 
         stack<pair<long, long>> stk2;  // store the range of node
-
         stk1.push(root);
         stk2.push({LONG_MIN, LONG_MAX});
 
@@ -179,19 +202,17 @@ public:
 
 
 // A 4 -  Breadth-First Traversal with Range Checking
-
-// It uses a level-order traversal (breadth-first traversal) of the binary tree while
-// keeping track of the valid value range for each node. 
+// It uses level-order traversal (breadth-first traversal) of the binary tree while keeping track of
+// the valid value range for each node. 
 // At each level, we update the valid value range based on the parent node's value range.
 
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         if(!root) return true;
-
         queue<pair<TreeNode*, pair<long, long>>> que;
         que.push({root, {LONG_MIN, LONG_MAX}});
-
+        
         while(!que.empty()) {
             TreeNode* node = que.front().first;
             long mi = que.front().second.first;
