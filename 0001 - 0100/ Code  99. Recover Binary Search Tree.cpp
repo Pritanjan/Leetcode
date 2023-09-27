@@ -1,4 +1,4 @@
-// A 1
+// A 1 -  Inorder Traversal with 2 Pointers:
 
 class Solution {
 public:
@@ -29,5 +29,64 @@ public:
 
 
 
-// A 2
+// A 2 - Morris Traversal
+
+class Solution {
+public:
+    void recoverTree(TreeNode* root) {
+        TreeNode* prev = nullptr;
+        TreeNode* first = nullptr;
+        TreeNode* second = nullptr;
+        
+        TreeNode* curr = root;
+        TreeNode* pred = nullptr;
+        
+        while(curr) {
+            if(!curr -> left) {
+                // Process curr node
+                if(prev && prev -> val > curr -> val) {
+                    if(!first) first = prev;
+                    second = curr;
+                }
+                prev = curr;
+                
+                // Move to the right subtree
+                curr = curr -> right;
+            } 
+            else {
+                // Find the inorder pred
+                pred = curr -> left;
+                while(pred -> right && pred -> right != curr) {
+                    pred = pred -> right;
+                }
+                
+                if(!pred -> right) {
+                    // Set the right pointer of predecessor to the current node
+                    pred -> right = curr;
+                    curr = curr -> left;
+                } 
+                else {
+                    // Revert the right pointer of predecessor and process the current node
+                    pred -> right = nullptr;
+                    if(prev && prev -> val > curr -> val) {
+                        if(!first) first = prev;
+                        second = curr;
+                    }
+                    prev = curr;
+                    curr = curr->right;
+                }
+            }
+        }
+        // Swap the values of the misplaced nodes
+        swap(first -> val, second -> val);
+    }
+};
+
+
+
+
+
+
+// A 3
+
 
