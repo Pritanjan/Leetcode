@@ -376,6 +376,9 @@ void findClosestElementsParallelThread(vector<int>& arr, int k, int x, vector<in
 }
 
 
+
+// A 12 
+
 vector<int> findClosestElementsParallel(vector<int>& arr, int k, int x) {
     vector<int> result;
     vector<thread> threads;
@@ -402,7 +405,34 @@ vector<int> findClosestElementsParallel(vector<int>& arr, int k, int x) {
 
 
 
+// A 13 
 
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        // Handle edge cases
+        if(arr.empty() || k == 0) return {};        
+        int n = arr.size();
+        if(k >= n) return arr;
+        
+        // Create a multiset to maintain sorted order and handle duplicates
+        multiset<pair<int, int>> ms; 
+        for(int num : arr) {
+            int diff = abs(num - x);
+            ms.insert({diff, num});
+            
+            // Keep only k closest elements
+            if(ms.size() > k) ms.erase(prev(ms.end()));
+        }
+        
+        vector<int> res;
+        for(auto& p : ms) {
+            res.push_back(p.second);
+        }
+        sort(res.begin(), res.end());
+        return res;
+    }
+};
 
 
 
