@@ -87,6 +87,42 @@ public:
 
 
 
-// A 3
+// A 3 - Using a Stack
+
+class Solution {
+public:
+    void recoverTree(TreeNode* root) {
+        stack<TreeNode*> stk;
+        TreeNode* prev = nullptr;
+        TreeNode* first = nullptr;
+        TreeNode* second = nullptr;
+        
+        while(root || !stk.empty()) {
+            while(root) {
+                stk.push(root);
+                root = root -> left;
+            }
+            
+            root = stk.top();
+            stk.pop();
+            
+            if(prev && prev -> val > root -> val) {
+                if(!first) first = prev;
+                second = root;
+            }
+            prev = root;
+            root = root -> right;
+        }        
+        // Swap the values of the misplaced nodes
+        swap(first -> val, second -> val);
+    }
+};
+
+
+
+
+
+
+// A 4
 
 
