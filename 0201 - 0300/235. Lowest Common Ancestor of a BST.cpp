@@ -67,7 +67,7 @@ public:
 
 
 
-// APPROACH 3 [ fnding the path from the root to the given node ]
+// A 3 [ fnding the path from the root to the given node ]
 
 // The getPath function takes in the root of the tree and a target node, and returns a vector of nodes
 // that represents the path from the root to the target node.
@@ -157,4 +157,37 @@ public:
 };
 
 
+
+
+
+
+// A 4 - Using a Hash Table
+
+class Solution {
+public:
+    unordered_map<TreeNode*, TreeNode*> parent;
+    void dfs(TreeNode* node) {
+        if(node -> left) {
+            parent[node -> left] = node;
+            dfs(node -> left);
+        }
+        if(node -> right) {
+            parent[node -> right] = node;
+            dfs(node -> right);
+        }
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        parent[root] = nullptr;
+        dfs(root);
+        unordered_set<TreeNode*> ancestors;
+        while(p) {
+            ancestors.insert(p);
+            p = parent[p];
+        }
+        while(q && ancestors.find(q) == ancestors.end()) {
+            q = parent[q];
+        }
+        return q;
+    }
+};
 
