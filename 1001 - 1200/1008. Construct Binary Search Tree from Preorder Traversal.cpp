@@ -1,5 +1,4 @@
 // A 1 - Recursion
-
 // Give the function ma the maximum number it will handle.
 // The left recursion will take the elements smaller than node->val
 // The right recursion will take the remaining elements smaller than bound
@@ -26,7 +25,6 @@ public:
 // Binary Search and Recursion
 // we use binary search to find the correct position to insert the nodes while constructing BST.
 
-
 class Solution {
 public:
     TreeNode* insertNode(TreeNode* root, int val) {
@@ -35,7 +33,6 @@ public:
         else root -> right = insertNode(root -> right, val);
         return root;
     }
-
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         TreeNode* root = nullptr;
         for(int val : preorder) root = insertNode(root, val);
@@ -62,7 +59,6 @@ public:
         root -> right = f(preorder, root -> val, mx, i);
         return root;
     }
-
     TreeNode* bstFromPreorder(vector<int> &preorder) {
         int mi = INT_MIN;
         int mx = INT_MAX;
@@ -77,9 +73,7 @@ public:
 
 
 // A 3 - Using Stack
-
-// In this approach, we can use a stack to keep track of the nodes being built and
-// their potential positions in the tree.
+// Here, we can use a stack to keep track of the nodes and their potential positions in the tree.
 
 class Solution {
 public:
@@ -105,3 +99,39 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        if (preorder.empty()) return nullptr;
+        TreeNode* root = new TreeNode(preorder[0]);
+        stack<TreeNode*> stk;
+        stk.push(root);
+
+        for(int i=1; i<preorder.size(); ++i) {
+            TreeNode* node = new TreeNode(preorder[i]);
+            TreeNode* prev = nullptr;
+
+            while(!stk.empty() && node -> val > stk.top() -> val) {
+                prev = stk.top();
+                stk.pop();
+            }
+
+            if(prev) prev -> right = node;
+            else stk.top() -> left = node;
+            
+            stk.push(node);
+        }
+        return root;
+    }
+};
+
+
+
+
+
+
+// A 4
