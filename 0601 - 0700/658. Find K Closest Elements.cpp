@@ -39,9 +39,16 @@ public:
             if(x - nums[mid] > nums[mid + k] - x) L = mid + 1;
             else R = mid;
         }
-        return vector<int> (nums.begin() + L, nums.begin() + L + k);        
+        // return vector<int> (nums.begin() + L, nums.begin() + L + k);   
+        
+        // Modify the input vector to contain the k closest elements
+        nums.erase(nums.begin() + L + k, nums.end());
+        nums.erase(nums.begin(), nums.begin() + L);
+        return nums;
     }
 };
+
+
 
 
 
@@ -135,29 +142,7 @@ public:
 // A 5 
 
 
-// A 6 - Memory Efficiency
-// It doesn't require creating a new vector for the result, instead directly works with the input vector
-// instead of creating a new vector to store the result, the input vector arr is modified
-// in place to contain the k closest elements. This approach can be more memory-efficient
 
-void findClosestElementsInPlace(vector<int>& arr, int k, int x) {
-    int left = 0;
-    int right = arr.size() - k;
-
-    while (left < right) {
-        int mid = left + (right - left) / 2;
-
-        if (x - arr[mid] > arr[mid + k] - x) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
-    }
-
-    // Modify the input vector to contain the k closest elements
-    arr.erase(arr.begin() + left + k, arr.end());
-    arr.erase(arr.begin(), arr.begin() + left);
-}
 
 
 
