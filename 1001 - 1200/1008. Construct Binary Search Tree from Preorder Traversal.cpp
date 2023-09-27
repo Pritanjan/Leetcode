@@ -41,6 +41,28 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    TreeNode* bstFromPreorder(vector<int>& pre) {
+        if(pre.empty()) return nullptr;
+        TreeNode* root = new TreeNode(pre[0]);
+        vector<int> L, R;
+        
+        for(int i=1; i<pre.size(); ++i) {
+            if(pre[i] < pre[0]) L.push_back(pre[i]);
+            else R.push_back(pre[i]);
+        }
+        
+        root -> left  = bstFromPreorder(L);
+        root -> right = bstFromPreorder(R);
+        return root;
+    }
+};
+
+
 
 
 
@@ -135,3 +157,4 @@ public:
 
 
 // A 4
+
