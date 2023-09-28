@@ -123,6 +123,27 @@ public:
 };
 
 
+// OR 
+// Using Bitwise XOR
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int xorSum = 0;
+        for(int num : nums) {
+            xorSum ^= (num % 2);
+        }
+
+        int evenIdx = 0;
+        for(int i=0; i<nums.size(); i++) {
+            if((nums[i] % 2) == xorSum) {
+                swap(nums[i], nums[evenIdx++]);
+            }
+        }
+        return nums;
+    }
+};
+
 
 
 
@@ -186,6 +207,71 @@ public:
     }
 };
 
+
+
+
+
+
+// A 8 -  Counting 
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int evenCount = 0;
+        for(int num : nums) {
+            if(num % 2 == 0) {
+                evenCount++;
+            }
+        }
+
+        int n = nums.size();
+        vector<int> res(n);
+        int evenIdx = 0, oddIdx = evenCount;
+        for(int num : nums) {
+            if(num % 2 == 0) res[evenIdx++] = num;
+            else res[oddIdx++] = num;
+        }
+        return res;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n);
+        int evenIdx = 0, oddIdx = n-1;
+        for(int num : nums) {
+            if(num % 2 == 0) res[evenIdx++] = num;
+            else res[oddIdx--] = num;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+// A 9 - Using Iterators 
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        auto evenPos = nums.begin();
+        for (auto it = nums.begin(); it != nums.end(); ++it) {
+            if ((*it) % 2 == 0) {
+                swap(*it, *evenPos);
+                evenPos++;
+            }
+        }
+        return nums;
+    }
+};
 
 
 
