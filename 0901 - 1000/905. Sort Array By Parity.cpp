@@ -143,6 +143,22 @@ public:
 
 class Solution {
 public:
+    static bool isEven(int num) {
+        return num % 2 == 0;
+    }
+
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        stable_partition(nums.begin(), nums.end(), isEven);
+        return nums;
+    }    
+};
+
+
+// OR
+
+
+class Solution {
+public:
     vector<int> sortArrayByParity(vector<int>& nums) {
         sort(nums.begin(), nums.end(), [](int a, int b) {
             return (a % 2 == 0 && b % 2 != 0);
