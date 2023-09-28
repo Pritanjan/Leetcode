@@ -2,7 +2,8 @@
 
 class Solution {
 private: 
-    void dfs(int node, vector<int> adj_ls[], int vis[]) {
+    // void dfs(int node, vector<int> adj_ls[], int vis[]) {
+    void dfs(int node, vector<int> adj_ls[], vector<int> &vis) {
         vis[node] = 1;
         for(auto it : adj_ls[node]) {
             if(!vis[it]) {
@@ -25,11 +26,12 @@ public:
             }
         }
         
-        int* vis = new int[V]; // dynamic array
-        for(int i=0; i<V; i++) {
-            vis[i] = 0; // initialize the array
-        }
+        // int* vis = new int[V]; // dynamic array
+        // for(int i=0; i<V; i++) {
+        //     vis[i] = 0; // initialize the array
+        // }
         
+        vector<int> vis(V, 0);
         int cnt = 0;
         for(int i=0; i<V; i++) {
             if(!vis[i]) {
@@ -42,3 +44,12 @@ public:
         return cnt;
     }
 };
+
+
+
+
+
+
+// A 2
+
+
