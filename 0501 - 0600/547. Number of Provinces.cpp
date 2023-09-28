@@ -83,6 +83,78 @@ public:
 
 
 
-// A 2
 
+
+
+// A 2 - BFS 
+
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int V = isConnected.size();
+        vector<bool> vis(V, 0);
+        int cnt = 0;
+
+        for(int i=0; i<V; i++) {
+            if(!vis[i]) {
+                cnt++;
+                queue<int> que;
+                que.push(i);
+                while(!que.empty()) {
+                    int node = que.front(); que.pop();
+                    
+                    vis[node] = true;
+                    for(int j=0; j<V; j++) {
+                        if(!vis[j] && isConnected[node][j] == 1) {
+                            que.push(j);
+                        }
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 3 - Topological Sort
+
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int V = isConnected.size();
+        vector<bool> vis(V, 0);
+        int cnt = 0;
+
+        for(int i=0; i<V; i++) {
+            if(!vis[i]) {
+                cnt++;
+                stack<int> stk;
+                stk.push(i);
+                while(!stk.empty()) {
+                    int node = stk.top(); stk.pop();
+                    
+                    vis[node] = true;
+                    for(int j=0; j<V; j++) {
+                        if(!vis[j] && isConnected[node][j] == 1) {
+                            stk.push(j);
+                        }
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 4
 
