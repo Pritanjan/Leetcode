@@ -346,3 +346,50 @@ public:
         return -1; // Needle not found in haystack
     }
 };
+
+
+
+
+
+
+// A 9 - Z Function
+
+class Solution {
+public:
+    vector<int> z_function(string s) {
+        int n = s.length();
+        vector<int> z(n, 0);
+        int L = 0, R = 0;
+
+        for(int i=1; i<n; ++i) {
+            if(i <= R) z[i] = min(R-i+1, z[i-L]);
+            while(i + z[i] < n && s[z[i]] == s[i + z[i]]) z[i]++;
+            if(i + z[i] - 1 > R) {
+                L = i;
+                R = i + z[i] - 1;
+            }
+        }
+        return z;
+    }
+
+    int strStr(string haystack, string needle) {
+        if(needle.empty()) return 0;
+        string concat = needle + "$" + haystack;
+        vector<int> z_values = z_function(concat);
+
+        for(int i=0; i<z_values.size(); ++i) {
+            if(z_values[i] == needle.length()) {
+                return i - needle.length() - 1;
+            }
+        }
+        return -1;
+    }
+};
+
+
+
+
+
+
+// A 10
+
