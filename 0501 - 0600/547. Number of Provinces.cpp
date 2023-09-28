@@ -1,4 +1,8 @@
-// A 1
+// A 1 - DFS
+// It uses Adjency List
+// Dynamic Memory Alloscation (vector for adjacency list and visited array)
+// T.C. --> O(V^2) (Converting matrix to list) + O(V + E) (DFS traversal)
+// S.C. --> O(V^2) (Adjacency List) + O(V) (Visited array)
 
 class Solution {
 private: 
@@ -46,7 +50,36 @@ public:
 };
 
 
+// OR
+// Graph Representation	- Adjacency Matrix
+// Static Memory Allocation (visited array)
+// T.C. --> O(V^2) (Visiting all edges)
+// S.C. --> O(V) (Visited array)	
 
+
+class Solution {
+public:
+    void dfs(int node, vector<vector<int>> &isConnected, vector<bool> &vis){
+        vis[node] = 1;
+        for(auto i=0; i<isConnected.size(); i++) {
+            if(!vis[i] && isConnected[node][i]) 
+                dfs(i, isConnected, vis);
+        }
+    }
+
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int V = isConnected.size();
+        vector<bool> vis(V, 0);
+        int cnt = 0;
+        for(int i=0; i<V; i++) {
+            if(!vis[i]) {
+                cnt++;
+                dfs(i, isConnected, vis);
+            }
+        }
+        return cnt;
+    }
+};
 
 
 
