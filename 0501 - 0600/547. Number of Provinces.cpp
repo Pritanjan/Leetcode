@@ -158,3 +158,42 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int V = isConnected.size();
+        vector<int> parent(V);
+        for(int i=0; i<V; i++) {
+            parent[i] = i;
+        }
+
+        function<int(int)> find = [&](int x) {
+            if(parent[x] == x) return x;
+            return parent[x] = find(parent[x]);
+        };
+
+        for(int i=0; i<V; i++) {
+            for(int j=i+1; j<V; j++) {
+                if(isConnected[i][j] == 1) {
+                    if(find(i) != find(j)) {
+                        parent[find(i)] = find(j);
+                    }
+                }
+            }
+        }
+
+        set<int> st;
+        for(int i=0; i<V; i++) {
+            st.insert(find(i));
+        }
+        return st.size();        
+    }
+};
+
+
+
+
+
+
+// A  5
+
