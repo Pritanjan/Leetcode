@@ -302,5 +302,47 @@ class Solution {
 
 
 
-// A 8  Rabin-Karp Algorithm
+// A 8  Rabin-Karp Algorithm - GFG
 
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.length();
+        int n = needle.length();
+        const int prime = 101;       // A prime number for hashing
+        const int MOD = 1e9 + 7;     // A large prime number to avoid integer overflow
+
+        if(n == 0) return 0;
+
+        // Calculate the hash value for the needle and the initial substring of the haystack
+        long long needleHash = 0;
+        long long currentHash = 0;
+        long long primePower = 1;
+
+        for(int i=0; i<n; ++i) {
+            needleHash = (needleHash + needle[n-i-1] * primePower) % MOD;
+            currentHash = (currentHash + haystack[n-i-1] * primePower) % MOD;
+            if(i < n-1) {
+                primePower = (primePower * prime) % MOD;
+            }
+        }
+
+        for(int i=0; i<=m-n; ++i) {
+            // Check if the hash values match
+            if(currentHash == needleHash) {
+                int j;
+                for(j=0; j<n; ++j) {
+                    if (haystack[i+j] != needle[j]) break;
+                }
+                if(j == n) return i; // Match found
+            }
+
+            // Update the hash value for the next substring
+            if(i < m-n) {
+                currentHash = (prime * (currentHash - haystack[i] * primePower) + haystack[i+n]) % MOD;
+                ifcurrentHash < 0) currentHash += MOD; // Handle negative hash values
+            }
+        }
+        return -1; // Needle not found in haystack
+    }
+};
