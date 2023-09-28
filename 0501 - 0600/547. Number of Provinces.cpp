@@ -160,17 +160,24 @@ public:
 
 class Solution {
 public:
+    vector<int> parent;
+    int find(int x) {        
+        if (parent[x] == x) return x;
+        return parent[x] = find(parent[x]);
+    }
+
     int findCircleNum(vector<vector<int>>& isConnected) {
         int V = isConnected.size();
-        vector<int> parent(V);
+        // vector<int> parent(V);
+        parent.resize(V); // Initialize the parent vector with the correct size
         for(int i=0; i<V; i++) {
             parent[i] = i;
         }
 
-        function<int(int)> find = [&](int x) {
-            if(parent[x] == x) return x;
-            return parent[x] = find(parent[x]);
-        };
+        // function<int(int)> find = [&](int x) {
+        //     if(parent[x] == x) return x;
+        //     return parent[x] = find(parent[x]);
+        // };
 
         for(int i=0; i<V; i++) {
             for(int j=i+1; j<V; j++) {
