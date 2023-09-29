@@ -1,4 +1,4 @@
-// APPROACH 1 [ BRUTE FORCE ]
+// A 1 [ BRUTE FORCE ] - TLE
 
 class Solution {
 public:
@@ -20,11 +20,29 @@ public:
 
 // T.C. - O(N^3)
 
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        int mx = INT_MIN;
+
+        for(int i=0; i<n; i++) {
+            int currSum = 0;
+            for(int j=i; j<n; j++) {
+                currSum += nums[j];
+                mx = max(currSum, mx);
+            }
+        }
+        return mx;
+    }
+};
 
 
 
 
-// APPROACH 2 [ OPTIMISING APPROACH 1 ]
+
+
+// A 2 [ OPTIMISING APPROACH 1 ]
 
 class Solution {
 public:
@@ -42,9 +60,12 @@ public:
     }
 };
 
+
+
  
 
-// APPROACH 3 [ Kadane's Algorithm ]
+
+// A 3 [ Kadane's Algorithm ]
 
 // Iterate through the array, keeping track of the current sum (Sum).
 // Update the maximum sum (maxSum) if currentSum is greater.
@@ -75,10 +96,7 @@ public:
 
 
 
-
-
-// APPROACH 4 [ DP ]
-
+// A 4 [ DP ]
 // Create an array dp of the same size as the input array.
 // dp[i] shows maximum sum of a subarray ending at index i.
 // Iterate through the array, updating dp[i] as the maximum of dp[i-1] + nums[i] and nums[i].
@@ -106,7 +124,7 @@ public:
 
 
 
-// APPROACH 5 [ Divide and Conquer ]
+// A 5 [ Divide and Conquer ]
 
 class Solution {
 public:
@@ -139,10 +157,48 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        return maxSubArray(nums, 0, nums.size() - 1);
+    }
+
+    int maxSubArray(vector<int>& nums, int L, int R) {
+        if(L == R) return nums[L];
+        
+        int mid = L + (R - L) / 2;
+        int LMax = maxSubArray(nums, L, mid);
+        int RMax = maxSubArray(nums, mid + 1, R);
+        int crossMax = maxCrossingSum(nums, L, mid, R);
+        return max({LMax, RMax, crossMax});
+    }
+
+    int maxCrossingSum(vector<int>& nums, int L, int mid, int R) {
+        int LSum = INT_MIN;
+        int RSum = INT_MIN;
+        int sum = 0;
+        for(int i=mid; i>=L; i--) {
+            sum += nums[i];
+            LSum = max(LSum, sum);
+        }
+        sum = 0;
+        for(int i=mid+1; i<=R; i++) {
+            sum += nums[i];
+            RSum = max(RSum, sum);
+        }
+        return LSum + RSum;
+    }
+};
 
 
 
-// APPROACH 6 [ DP with Prefix Sum ]
+
+
+
+// A 6 [ DP with Prefix Sum ]
 
 class Solution {
 public:
