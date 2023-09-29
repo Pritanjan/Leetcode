@@ -88,6 +88,39 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int threshold = n / 3;
+        unordered_map<int, int> cnts;
+        unordered_map<int, int> idx;
+        
+        int i = 0;   // initilise an idx variable
+        for(auto num : nums) {
+            cnts[num]++;
+            idx[num] = i;
+            i++;     // increment an idx variable
+        }
+        // for(int i=0; i<nums.size(); i++) {
+        //     cnts[nums[i]]++;
+        //     idx[nums[i]] = i;
+        // }
+
+        vector<int> res;
+        for(auto &it : cnts) {
+            if(it.second > threshold) {
+                res.push_back(nums[idx[it.first]]);
+            }
+        }
+        return res;
+    }
+};
+
+
 
 
 
