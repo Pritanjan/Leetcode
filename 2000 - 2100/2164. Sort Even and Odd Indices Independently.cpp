@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1 - Using Two Separate Vectors for Odd and Even Indices
 
 class Solution {
 public:
@@ -24,5 +24,40 @@ public:
 
 
 
-// APPROACH 2 
+
+// A 2  - Using Priority Queues (Min and Max Heaps)
+
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        priority_queue<int, vector<int>, less<int>> maxHeap;
+        
+        for(int i=0; i<nums.size(); ++i) {
+            if(i % 2 == 0) minHeap.push(nums[i]);
+            else maxHeap.push(nums[i]);
+        }
+        
+        for(int i=0; i<nums.size(); ++i) {
+            if(i % 2 == 0) {
+                nums[i] = minHeap.top();
+                minHeap.pop();
+            } 
+            else {
+                nums[i] = maxHeap.top();
+                maxHeap.pop();
+            }
+        }        
+        return nums;
+    }
+};
+
+
+
+
+
+
+// A 3
+
+
 
