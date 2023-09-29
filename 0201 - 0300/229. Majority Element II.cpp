@@ -273,3 +273,33 @@ public:
 
 // A 6
 
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        int n = nums.size();
+        int threshold = n / 3;
+        int mi = *min_element(nums.begin(), nums.end());
+        int mx = *max_element(nums.begin(), nums.end());
+        vector<int> cnts(mx - mi + 1);
+        
+        for(auto num : nums) {
+            cnts[num - mi]++;
+        }
+        
+        for(int i=0; i<cnts.size(); i++) {
+            if(cnts[i] > threshold) {
+                res.push_back(i + mi);
+            }
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 7
+
