@@ -97,7 +97,31 @@ public:
 
 
 
-// A 3
+// A 3 - Using In-Place Sorting for Odd and Even Indices
+
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        for(int i=0; i<nums.size(); ++i) {
+            if(i % 2 == 0) {
+                for(int j=i+2; j<nums.size(); j+=2) {
+                    if(nums[i] > nums[j]) {
+                        swap(nums[i], nums[j]);
+                    }
+                }
+            } 
+            else {
+                for(int j=i+2; j<nums.size(); j+=2) {
+                    if(nums[i] < nums[j]) {
+                        swap(nums[i], nums[j]);
+                    }
+                }
+            }
+        }
+        return nums;
+    }
+};
+
 
 
 
