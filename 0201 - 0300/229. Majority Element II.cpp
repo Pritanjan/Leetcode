@@ -51,6 +51,30 @@ public:
 };
 
 
+// OR
+// Sorting and counting
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        int n = nums.size();
+        int threshold = n / 3;
+        
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<n; i++) {
+            int cnt = 1;
+            while(i < n-1 && nums[i] == nums[i+1]) {
+                cnt++;
+                i++;
+            }
+            if(cnt > threshold) res.push_back(nums[i]);
+        }
+        return res;
+    }
+};
+
+
 
 
 
