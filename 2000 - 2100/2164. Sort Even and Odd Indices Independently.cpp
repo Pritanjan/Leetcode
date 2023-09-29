@@ -21,6 +21,46 @@ public:
 // TC : O(NlogN) , SC : O(N)
 
 
+// OR
+
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        vector<int> oddIdx, evenIdx;
+        
+        for(int i=0; i<nums.size(); ++i) {
+            if(i % 2 == 0) evenIdx.push_back(nums[i]);
+            else oddIdx.push_back(nums[i]);
+        }
+        
+        // Manual sorting for evenIndices in non-decreasing order
+        for(int i=0; i<evenIdx.size(); ++i) {
+            for(int j=i+1; j<evenIdx.size(); ++j) {
+                if(evenIdx[i] > evenIdx[j]) {
+                    swap(evenIdx[i], evenIdx[j]);
+                }
+            }
+        }
+        
+        // Manual sorting for oddIndices in non-increasing order
+        for(int i=0; i<oddIdx.size(); ++i) {
+            for(int j=i+1; j<oddIdx.size(); ++j) {
+                if(oddIdx[i] < oddIdx[j]) {
+                    swap(oddIdx[i], oddIdx[j]);
+                }
+            }
+        }
+        
+        int oddIndex = 0, evenIndex = 0;
+        for(int i=0; i<nums.size(); ++i) {
+            if(i % 2 == 0) nums[i] = evenIdx[evenIndex++];
+            else nums[i] = oddIdx[oddIndex++];
+        }        
+        return nums;
+    }
+};
+
+
 
 
 
