@@ -1,4 +1,4 @@
-// APPROACH 1 
+// A 1  - Using is_sorted function
 
 class Solution {
 public:
@@ -8,9 +8,22 @@ public:
 };
 
 
+// OR
+// Using adjacent_find
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        return adjacent_find(nums.begin(), nums.end(), greater<int>()) == nums.end() || adjacent_find(nums.begin(), nums.end(), less<int>()) == nums.end();
+    }
+};
 
 
-// APPROACH 2 [ Comparing with Previous Element]
+
+
+
+
+// A 2 [ Comparing with Previous Element]
 
 class Solution {
 public:
@@ -31,7 +44,7 @@ public:
 
 
 
-// APPROACH 3 Use Set
+// A 3 Use Set
 // use a set to track the signs of differences between consecutive elements. 
 // If the size of the set is less than or equal to 2, then the array is monotonic.
 
@@ -48,5 +61,27 @@ public:
 };
 
 
+
+
+
+
+// A 4 
+// Sorting the array and comparing it with the original array
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        vector<int> res = nums;
+        sort(nums.begin(), nums.end());
+        return nums == res or vector<int> (res.rbegin(), res.rend()) == nums;
+    }
+};
+
+
+
+
+
+
+// A 5 
 
 
