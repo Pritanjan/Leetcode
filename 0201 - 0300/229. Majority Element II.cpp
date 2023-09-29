@@ -205,3 +205,71 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// A 4 Using 2 Pointer 
+// Same as A 3
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        int n = nums.size();
+        int threshold = n / 3;
+        
+        sort(nums.begin(), nums.end());
+        int L = 0;
+        int R = 0;
+        while(R < n) {
+            if(nums[R] != nums[L]) {
+                if(R - L > threshold) res.push_back(nums[L]);
+                L = R;
+            }
+            R++;
+        }
+
+        if(R - L > threshold) {
+            res.push_back(nums[L]);
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 5 - Using Multiset
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        int n = nums.size();
+        int threshold = n / 3;
+        unordered_multiset<int> umt;
+        unordered_set<int> ust; 
+        for(auto num : nums) {
+            umt.insert(num);
+            ust.insert(num);
+            if(umt.count(num) > threshold) {
+                res.push_back(num);
+                ust.erase(num);
+            }
+        }        
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 6
+
