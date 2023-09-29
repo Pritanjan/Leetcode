@@ -51,6 +51,43 @@ public:
 };
 
 
+// OR
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        unordered_map<int, int> cnts;
+        vector<int> res;
+        int threshold = nums.size() / 3;
+        
+        for(int num : nums) {
+            cnts[num]++;
+            if(cnts.size() > 2) {
+                for(auto it = cnts.begin(); it != cnts.end();) {
+                    if(--(it -> second) == 0) it = cnts.erase(it);
+                    else ++it;
+                }
+            }
+        }
+        
+        for(auto& pair : cnts) {
+            pair.second = 0;
+        }
+        
+        for(int num : nums) {
+            if(cnts.find(num) != cnts.end()) {
+                cnts[num]++;
+                if(cnts[num] > threshold) {
+                    res.push_back(num);
+                    cnts.erase(num);
+                }
+            }
+        }        
+        return res;
+    }
+};
+
+
 
 
 
