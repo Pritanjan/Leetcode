@@ -66,6 +66,22 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        vector<int> tmp(nums.begin(), nums.end());
+        next_permutation(nums.begin(), nums.end());
+        if(nums == tmp) {
+            sort(nums.begin(), nums.end());
+        }
+    }
+};
+
+
+
 
 
 
