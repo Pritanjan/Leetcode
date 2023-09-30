@@ -119,4 +119,24 @@ public:
 
 // A 6
 
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        auto maxIt = max_element(nums.begin(), nums.end());
+        return distance(nums.begin(), maxIt);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
