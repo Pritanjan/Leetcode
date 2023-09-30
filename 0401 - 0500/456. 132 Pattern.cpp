@@ -97,3 +97,37 @@ public:
     }
 };
 
+
+
+
+
+
+// A 2 - Using Priority Queue
+
+class Solution {
+public:
+    bool find132pattern(vector<int>& nums) {
+        int n = nums.size();
+        if (n < 3) return false;
+        priority_queue<int> pq;  // maxHeap
+
+        int tmp = INT_MIN;
+        for(int i=n-1; i>=0; --i) {
+            if(nums[i] < tmp) return true;
+            while(!pq.empty() && nums[i] > -pq.top()) {
+                tmp = -pq.top();
+                pq.pop();
+            }
+            pq.push(-nums[i]);
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 3
+
