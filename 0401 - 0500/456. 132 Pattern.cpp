@@ -1,3 +1,53 @@
+// A 0 - Brute Force - TLE
+
+class Solution {
+public:
+    bool find132pattern(vector<int>& nums) {
+        if(nums.size() < 3) return false;
+
+        for(size_t i=0; i<nums.size() - 2; i++) {
+            for(size_t j=i+1; j<nums.size() - 1; j++) {
+                for(size_t k=j+1; k<nums.size(); k++) {
+                    if(nums[k] > nums[i] and nums[j] > nums[k]) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+// T.C. --> O(N ^ 3)
+// S.C. --> O(1)
+
+
+// OR - TLE
+
+class Solution {
+public:
+    bool find132pattern(vector<int>& nums) {
+        int min_i = INT_MAX;
+        for(int j=0; j<nums.size() - 1; j++) {
+            min_i = min(min_i, nums[j]);
+            for(int k=j+1; k<nums.size(); k++) {
+                if(nums[k] < nums[j] and min_i < nums[k]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+// T.C. --> O(N ^ 2)
+// S.C. --> O(1)
+
+
+
+
+
+
 // A 1
 
 class Solution {
