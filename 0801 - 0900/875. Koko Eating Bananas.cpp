@@ -64,3 +64,32 @@ public:
 
 
 // A 3
+
+class Solution {
+public:
+    unordered_map<int, int> ump;
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int L = 1;
+        int R = *max_element(piles.begin(), piles.end());
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            if(ump.find(mid) == ump.end()) {
+                int hrs = 0;
+                for(int pile : piles) hrs += (pile + mid - 1) / mid;
+                ump[mid] = hrs;
+            }
+            if(ump[mid] > h) L = mid + 1;
+            else R = mid;
+        }
+        return L;
+    }
+};
+
+
+
+
+
+
+// A 4
+
+
