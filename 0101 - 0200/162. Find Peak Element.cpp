@@ -16,9 +16,8 @@ public:
     }
 };
 
-// Time complexity : O(log_2(n). We reduce the search space in 
-// half at every step. Thus, the total search space will be 
-// consumed in log_2(n)steps. Here,n refers to the size of array.
+// Time complexity : O(log_2(n). We reduce the search space in half at every step. 
+// Thus, the total search space will be consumed in log_2(n)steps. 
 // Space complexity : O(1). Constant extra space is used.
 
 
@@ -84,7 +83,6 @@ public:
         // Peak is in the right half, excluding mid
         else return recursion(nums, mid+1, R);
     }
-
     int findPeakElement(vector<int>& nums) {        
         return recursion(nums, 0, nums.size()-1);
     }
@@ -96,5 +94,26 @@ public:
 
 
 // A 5
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        srand(time(0)); // Seed for random number generation
+        int n = nums.size();
+        while(true) {
+            int idx = rand() % n;
+            if((idx == 0 || nums[idx] > nums[idx - 1]) && (idx == n - 1 || nums[idx] > nums[idx + 1])) {
+                return idx;
+            }
+        }
+    }
+};
+
+
+
+
+
+
+// A 6
 
 
