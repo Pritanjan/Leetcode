@@ -264,4 +264,39 @@ public:
 
 
 
-// A 9
+// A 9 - Binary Search with Recursion
+
+class Solution {
+public:
+    bool recursion(vector<int>& nums, int target, int L, int R) {
+        if(L > R) return false;
+        int mid = L + (R - L) / 2;
+        if(nums[mid] == target) return true;
+
+        // Handle duplicates at the beginning and end
+        if(nums[L] == nums[mid] && nums[R] == nums[mid]) {            
+            return recursion(nums, target, L+1, R-1);
+        }
+        else if(nums[L] <= nums[mid]) {
+            if(nums[L] <= target && target < nums[mid]) {
+                return recursion(nums, target, L, mid - 1);
+            } else {
+                return recursion(nums, target, mid + 1, R);
+            }
+        } 
+        else {
+            if(nums[mid] < target && target <= nums[R]) {
+                return recursion(nums, target, mid + 1, R);
+            } else {
+                return recursion(nums, target, L, mid - 1);
+            }
+        }
+    }
+
+    bool search(vector<int>& nums, int target) {
+        return recursion(nums, target, 0, nums.size() - 1);
+    }
+};
+
+
+
