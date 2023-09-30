@@ -93,7 +93,10 @@ public:
 
 
 
-// A 5
+// A 5 - Randomized Algorithm - chatgpt
+// You can also use a randomized algorithm to find a peak element in O(log n) expected time. 
+// This approach randomly selects an index and checks if it's a peak. 
+// If not, it moves toward the higher neighbor and repeats the process.
 
 class Solution {
 public:
