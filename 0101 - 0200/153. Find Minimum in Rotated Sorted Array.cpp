@@ -1,11 +1,9 @@
 // A 1 - Binary Search
-
 // Looking at subarray with index [L, R]. We can find out that if the first member < last member, 
 // Since there is no rotation in the array. So we could directly return the first element
 // in this subarray.
-
-// If the first element is larger than the last one, then we compute
-// the element in the middle, and compare it with the first element.
+// If the first element is larger than the last one, then we compute the element in the middle, 
+// and compare it with the first element.
 // If value of the element in the middle is larger than the first element,
 // we know the rotation is at the second half of this array. Else, it is in the first half in the array.
 
@@ -35,8 +33,7 @@ class Solution {
 public:
     int findMin(vector<int>& nums) {
         int L = 0;
-        int R = nums.size() - 1;
-        
+        int R = nums.size() - 1;        
         while(L < R) {
             int mid = L + (R - L) / 2;
             // The minimum element must be in the left half, excluding mid
@@ -84,7 +81,8 @@ public:
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        return *min_element(nums.begin(),nums.end());
+        // return *min_element(nums.begin(), nums.end());
+        return *min_element(nums.begin(), nums.end(), [](int a, int b) { return a < b; });
     }
 };
 
@@ -101,7 +99,6 @@ public:
     int findMin(vector<int>& nums) {
         // Use the STL rotate function to rotate the array back to its sorted order
         rotate(nums.begin(), min_element(nums.begin(), nums.end()), nums.end());
-        
         // The minimum element will now be at the beginning of the array
         return nums[0];
     }
