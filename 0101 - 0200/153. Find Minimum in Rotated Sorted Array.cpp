@@ -151,14 +151,50 @@ public:
 
 
 
-// A 6 - Using a Set 
-// Not for Large Arrays
+// A 6 - Using STL --> Not for Large Arrays
 
+// a) Using a Set 
 class Solution {
 public:
     int findMin(vector<int>& nums) {
         unordered_set<int> ust(nums.begin(), nums.end());
         return *min_element(ust.begin(), ust.end());
+    }
+};
+
+
+// b) Using MultiSet
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        multiset<int> mst(nums.begin(), nums.end());
+        return *mst.begin();
+    }
+};
+
+
+
+
+
+
+// A 7 
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        stack<int> stk;
+        int mi = INT_MAX;
+
+        for(auto num : nums) {
+            while(!stk.empty() and num < stk.top()) stk.pop();
+            stk.push(num);
+        }
+
+        while(!stk.empty()) {
+            mi = min(mi, stk.top());
+            stk.pop();
+        }
+        return mi;
     }
 };
 
