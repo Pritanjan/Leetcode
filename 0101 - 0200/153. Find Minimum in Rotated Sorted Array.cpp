@@ -151,4 +151,14 @@ public:
 
 
 
-// A 6
+// A 6 - Using a Set 
+// Not for Large Arrays
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        unordered_set<int> ust(nums.begin(), nums.end());
+        return *min_element(ust.begin(), ust.end());
+    }
+};
+
