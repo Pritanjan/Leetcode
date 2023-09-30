@@ -90,6 +90,30 @@ public:
 
 
 
-// A 4
+// A 4 - Randomized Algorithm
+
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int maxPile = *max_element(piles.begin(), piles.end());
+        int miK = 1, mxK = maxPile;
+        
+        while(miK < mxK) {
+            int midK = miK + rand() % (mxK - miK + 1);
+            long long int hrs = 0;
+            for(auto pile : piles) hrs += (pile + midK - 1) / midK;
+            if(hrs <= h) mxK = midK;
+            else miK = midK + 1;
+        }
+        return miK;
+    }
+};
+
+
+
+
+
+
+// A 5
 
 
