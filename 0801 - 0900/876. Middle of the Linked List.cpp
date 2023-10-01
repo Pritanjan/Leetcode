@@ -266,4 +266,38 @@ public:
 
 
 
-// A 7
+
+// A 7 - Using Hash Table:
+// Traverse the list and store nodes in a hash table with their indices.
+// Return the node with the idx.
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        unordered_map<int, ListNode*> mp;
+        int idx = 0;
+        ListNode* curr = head;
+        while(curr != nullptr) {
+            mp[idx] = curr;
+            idx++;
+            curr = curr -> next;
+        }
+        int midIdx = idx / 2;
+        return mp[midIdx];
+    }
+};
+
+
+
+
+
+
+// A 8
+
+
+
+
+
+
+
+
