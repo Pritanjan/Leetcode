@@ -1,5 +1,7 @@
 // A 1 [ fast & slow pointer ]
-
+// Use two pointers to create a gap of n nodes between them.
+// Move both pointers until the second one reaches the end.
+	
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -30,7 +32,10 @@ public:
 
 
 
-// A 2
+// A 2 - Two Passes with Counting:
+// Traverse the list to count the number of nodes.
+// Calculate the position of the node to remove from the start.
+// Traverse again to remove the node.
 
 class Solution {
 public:
@@ -87,7 +92,8 @@ public:
 
 
 // OR
-
+// Recursively traverse the list to reach the end.
+// Maintain a counter and remove the node when the counter matches n.
 
 class Solution {
 public:
@@ -216,7 +222,9 @@ public:
 
 
 
-// A 7  -  Using Stack
+// A 7 - Using Stack
+// Push nodes onto a stack while traversing the list.
+// Pop n nodes from the stack and update the pointers
 
 class Solution {
 public:
