@@ -115,30 +115,27 @@ public:
 
 
 
-// APPROACH 4
-
-// It uses 2 pointers a and i to iterate through each word in the string.
-// Whenever a space character is encountered, the characters in the current 
-// word are reversed using the reverse function from the algorithm library. 
+// APPROACH 4 - Using Reverse Iteration
+// It uses 2 pointers start and end to iterate through each word in the string.
+// Whenever a space character is encountered, the characters in the current word are reversed using
+// the reverse function from the algorithm library. 
 // Finally, the order of the last word is reversed after the loop end
-
 
 class Solution {
 public:
     string reverseWords(string s) {
-        int a = 0;
-        for(int i=0; i<=s.length(); ++i){
-            if(s[i] == ' '){
-                // reverse(s.begin() + a, s.begin() + i);
-                reverse(&s[a], &s[i]);
-                a = i + 1;
+        int start = 0;
+        for(int end=0; end<=s.length(); ++end) {
+            if(s[end] == ' ') { 
+                // reverse(s.begin() + start, s.begin() + end);
+                reverse(&s[start], &s[end]);
+                start = end + 1;
             }
         }
-        reverse(s.begin()+a, s.end());
+        reverse(s.begin() + start, s.end());
         return s;
     }
 };
-
 
 
 // OR 
