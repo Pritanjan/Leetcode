@@ -363,3 +363,38 @@ public:
 
 
 // A 11 
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        queue<ListNode*> que;
+        ListNode* curr = head;
+        while(curr) {
+            que.push(curr);
+            if(que.size() > n+1) que.pop();
+            curr = curr -> next;
+        }
+        if(que.size() == n) {
+            ListNode* rem = que.front();
+            if(head == rem) {
+                head = head -> next;
+                delete rem;
+                return head; // Return early if the head was removed
+            }
+        }
+
+        if(!que.empty()) {
+            ListNode* prev = que.front();
+            ListNode* rem = prev -> next;
+            prev -> next = rem -> next;
+            delete rem;
+        }
+        return head;
+    }
+};
+
+
+
+
+
+
