@@ -322,6 +322,50 @@ public:
 
 // A 8 
 
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<char> stk;
+        queue<char> que;
+        bool flag = 0;
+
+        for(char ch : s) {
+            if(ch != ' ') {
+                stk.push(ch);
+                flag = true;
+            }
+            else {
+                while(!stk.empty()) {
+                    que.push(stk.top());
+                    stk.pop();
+                }
+                if(flag) que.push(' ');
+                flag = false;
+            }
+        }
+
+        while(!stk.empty()) {
+            que.push(stk.top());
+            stk.pop();
+        }
+
+        string res;
+        while(!que.empty()) {
+            res += que.front();
+            que.pop();
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 9
+
+
 
 
 
