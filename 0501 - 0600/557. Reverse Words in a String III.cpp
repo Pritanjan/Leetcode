@@ -209,19 +209,25 @@ public:
         }
 
         words.push_back(word);
-        for(string& word : words) reverse(word.begin(), word.end());
+        for(string& word : words) {
+            reverse(word.begin(), word.end());
+        }
         
-        return accumulate(words.begin(), words.end(), string(), [](string& result, string& word) {
-            if (result.empty()) return word;
-            else return result + " " + word;
-        });
+        // return accumulate(words.begin(), words.end(), string(), [](string& res, string& word) {
+        //     if (res.empty()) return word;
+        //     else return res + " " + word;
+        // });
+
+        string res = words[0];
+        for(int i=1; i<words.size(); i++) {
+            res += ' ' + words[i];
+        }
+        return res;        
     }
 };
 
 // T.C. --> O(n * m), where n & m is the length of string s and maximum length of a word 
-
-// The for loop in the first pass iterates over each character of the string s,
-// so it has a time complexity of O(n).
+// because for loop in the first pass iterates over each character of the string s,
 
 // The second pass iterates over each word in the vector of words, and for each word, it reverses
 // the order of its characters. The T.C. complexity of reversing a string of length m is O(m/2), 
@@ -230,14 +236,15 @@ public:
 // The accumulate function concatenates all the reversed words with spaces in between, 
 // so it has a time complexity of O(n).
 
-
 // S.C. -->  O(n + m), where n & m is the length of string s and total length of all the words in s.
-
 // The vector of words stores each word in s as a separate string, so its space complexity is O(m).
 // The reversed version of each word is stored in place within the vector, so no extra space is 
 // needed for that.
 // The accumulate function concatenates all the reversed words with spaces in between, so the
 // space complexity of the resulting string is O(n + m).
+
+
+
 
 
 
@@ -252,7 +259,6 @@ public:
             last--;
         }
     }
-
     string reverseWords(string s) {
         int slow = 0, fast = 0, s_length = s.length();
         while(1) {
@@ -265,7 +271,6 @@ public:
         }
     }
 };
-
 
 // T.C. --> O(n), where n is the length of the input string. 
 // Because it iterates through the string once to reverse each word, and since each character
