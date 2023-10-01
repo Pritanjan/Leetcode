@@ -297,7 +297,35 @@ public:
 
 
 
-// APPROACH 8
+
+
+// A 8 - RRecursion with Stack
+
+class Solution {
+public:
+    bool hasCycle(ListNode* head) {
+        set<ListNode*> vis;
+        stack<ListNode*> stk;
+
+        while(head) {
+            if(vis.count(head)) return true;
+            stk.push(head);
+            vis.insert(head);
+            head = head -> next;
+        }
+        while(!stk.empty()) {
+            stk.pop();
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 9
 
 
 
