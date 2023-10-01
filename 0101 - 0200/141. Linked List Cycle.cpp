@@ -325,7 +325,43 @@ public:
 
 
 
-// A 9
+// A 9 - Flyod's Tortoise and Hare with Cycle Detection Point
+
+class Solution {
+public:
+    ListNode* hasCycle(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        bool hasCycle = false;
+        
+        while(fast && fast->next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+            
+            if(slow == fast) {
+                hasCycle = true; // Cycle detected
+                break;
+            }
+        }
+        
+        if(!hasCycle) return nullptr; // No cycle
+        
+        // Move one pointer to the head and find the intersection point
+        slow = head;
+        while(slow != fast) {
+            slow = slow -> next;
+            fast = fast -> next;
+        }        
+        return slow; // Node where the cycle starts
+    }
+};
+
+
+
+
+
+
+// A 10 
 
 
 
