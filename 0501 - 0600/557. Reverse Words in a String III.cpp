@@ -1,14 +1,11 @@
-// https://leetcode.com/problems/reverse-words-in-a-string-iii/solutions/2052689/c-2-solution-2-pointer-stl-with-explanation/
-
-
-// APPROACH 1
-
-// 1. We will traverse the string and find every word's start and end index. And then, we will reverse each word.
+// A 1
+// 1. Traverse the string and find every word's start and end index. And then, we will reverse each word.
 // 2. Find the first index and last index of every word by L and R.
 // 3. Swap the characters in the word pointed byL and R.
 // 4. Increment L by 1 and decrement R by 1.
 // 5. Repeat steps 3 and 4 until L < R.
 
+// IT same as A 4
 
 class Solution {
 public:
@@ -38,7 +35,6 @@ public:
 // Space Complexity :- O(1)
 
 
-
 // OR
 
 
@@ -62,13 +58,12 @@ public:
 
 
 
-// APPROACH 2
 
+// A 2
 // It uses a stringstream object to read each word from the input string s. 
 // Then, it reverses each word using the reverse function and
 // appends it to the result stringwith a space.
 // Finally, the last space character is removed from the result string using the pop_back function.
-
 
 class Solution {
 public:
@@ -86,11 +81,9 @@ public:
     }
 };
 
-
 // T.C. --> O(nwlog(w)), where n & w is the length of the input string & maximum word length. 
 // Because for each word, we need to reverse the characters in that word, 
 // which takes O(w * log(w)) time using the reverse function.
-
 // S.C. --> O(n), where n is the length of the input string. 
 // Because we need to store the reversed words in a result string, which can be at most 
 // as long as the input string if all words have length 1.
@@ -100,12 +93,8 @@ public:
 // since it is temporary and gets deallocated after the function call.
 
 
+// OR
 
-
-
-
-
-// APPROACH 3
 
 class Solution {
 public:
@@ -184,7 +173,7 @@ public:
 
 
 
-// APPROACH 5
+// A 5
 
 class Solution {
 public:
@@ -208,7 +197,7 @@ public:
 
 
 
-// APPROACH 6
+// A 6
 
 class Solution {
 public:
@@ -255,7 +244,7 @@ public:
 
 
 
-// APPROACH 7
+// A 7
 
 class Solution {
 public:
