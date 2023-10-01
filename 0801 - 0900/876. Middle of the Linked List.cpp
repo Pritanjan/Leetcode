@@ -214,6 +214,31 @@ public:
 // S.C. --> O(N)
 
 
+// OR
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        stack<ListNode*> stk;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            stk.push(curr);
+            curr = curr -> next;
+        }
+        
+        int mid = stk.size() / 2;
+        if(stk.size() % 2 != 0) {
+            for(int i=0; i<mid; i++) stk.pop();
+        }
+        else {
+            for(int i=0; i<mid-1; i++) stk.pop();
+        }
+        return stk.top();
+    }
+};
+
+
 
 
 
