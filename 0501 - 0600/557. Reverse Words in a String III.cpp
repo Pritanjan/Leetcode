@@ -280,7 +280,45 @@ public:
 // on the input string, without creating any additional strings or arrays, 
 
 
+// OR
 
+
+class Solution {
+public:
+    void reverse(string& s) {
+        int first = 0;
+        int last = s.size() - 1;
+        while(first < last) {
+            swap(s[first], s[last]);
+            first++;
+            last--;
+        }
+    }
+
+    string reverseWords(string s) {
+        string word, res;
+        for(char c : s) {
+            if(c != ' ') {
+                word += c;
+            }
+            else {
+                reverse(word);
+                res += word + ' ';
+                word = "";
+            }
+        }
+        reverse(word);
+        res += word;
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 8 
 
 
 
