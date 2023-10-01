@@ -334,4 +334,32 @@ public:
 
 
 
-// A 10
+// A 10 - Using a Sliding Window:
+// Maintain a window of size n+1 while traversing the list.
+// Move the window until the end is reached.
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = head;
+        ListNode* first = dummy;
+        ListNode* second = dummy;
+
+        for(int i=0; i<=n; i++) second = second -> next;
+        while(second) {
+            first = first -> next;
+            second = second -> next;
+        }
+        first -> next = first -> next -> next;
+
+        return dummy -> next;
+    }
+};
+
+
+
+
+
+
+// A 11 
