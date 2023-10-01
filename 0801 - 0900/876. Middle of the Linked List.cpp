@@ -85,11 +85,8 @@ public:
 };
 
 
-
-
-
-
-// A 3 [ Finding the length of the LL then travesrse for n/2 ]
+// OR
+// [ Finding the length of the LL then travesrse for n/2 ]
 
 class Solution {
 public:
@@ -155,6 +152,28 @@ public:
         if(!curr) return ;        
         recursion(curr -> next, mid, pos);
         if(++pos % 2 == 0) mid = mid -> next;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    ListNode* findMiddle(ListNode* head, ListNode* tail) {
+        if(head == nullptr || head -> next == nullptr) return head;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast != tail && fast -> next != tail) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+        return slow;
+    }
+
+    ListNode* middleNode(ListNode* head) {
+        return findMiddle(head, nullptr);
     }
 };
 
