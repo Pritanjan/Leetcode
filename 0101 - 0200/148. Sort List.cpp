@@ -1,11 +1,11 @@
-// A 1 [ FIND MID & THEN PERFORM MERGE SORT ]
+// A 1 - Merge Sort
+// FIND MID & THEN PERFORM MERGE SORT 
 
 class Solution {
 public:
     ListNode* findMid(ListNode* head){
         ListNode* slow = head;
-        ListNode* fast = head -> next;
-        
+        ListNode* fast = head -> next;        
         while(fast != NULL and fast -> next != NULL){
             slow = slow -> next;
             fast = fast -> next -> next;
@@ -18,8 +18,7 @@ public:
         if(R == NULL) return L; 
         
         ListNode* ans = new ListNode(-1);
-        ListNode* temp = ans;
-        
+        ListNode* temp = ans;        
         while(L != NULL and R != NULL){
             if(L -> val < R -> val){
                 temp -> next = L;
@@ -32,13 +31,11 @@ public:
                 R = R -> next;
             }
         }
-        
         while(L != NULL){
             temp -> next = L;
             temp = L;
             L = L -> next;    
         }
-
         while(R != NULL){
             temp -> next = R;
             temp = R;
@@ -47,23 +44,6 @@ public:
         ans = ans -> next;
         return ans;
     }
-
-    // OR
-    // ListNode* merge(ListNode* L, ListNode* R){
-    //     if(!L) return R;
-    //     if(!R) return L;
-        
-    //     ListNode* merged;
-    //     if(L -> val < R -> val) {
-    //         merged = L;
-    //         merged -> next = merge(L -> next, R);
-    //     } 
-    //     else {
-    //         merged = R;
-    //         merged -> next = merge(L, R -> next);
-    //     }
-    //     return merged;
-    // }
     
     ListNode* sortList(ListNode* head) {
         if(head == NULL or head -> next == NULL) return head;
@@ -84,8 +64,57 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    ListNode* findMid(ListNode* head){
+        ListNode* slow = head;
+        ListNode* fast = head -> next;
+        
+        while(fast != NULL and fast -> next != NULL){
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+        return slow;
+    }
+    
+    ListNode* merge(ListNode* L, ListNode* R){
+        if(!L) return R;
+        if(!R) return L;
+        
+        ListNode* merged;
+        if(L -> val < R -> val) {
+            merged = L;
+            merged -> next = merge(L -> next, R);
+        } 
+        else {
+            merged = R;
+            merged -> next = merge(L, R -> next);
+        }
+        return merged;
+    }
+    
+    ListNode* sortList(ListNode* head) {
+        if(head == NULL or head -> next == NULL) return head;
+        
+        ListNode* mid = findMid(head);
+        ListNode* L = head;
+        ListNode* R = mid -> next;
+        mid -> next = NULL;
+        
+        L = sortList(L);
+        R = sortList(R);
+        
+        return merge(L, R);    
+    }
+};
+
 // T.C. --> O(N Log N)
 // S.C. --> O(Log N)
+
 
 
 
