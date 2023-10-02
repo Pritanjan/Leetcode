@@ -20,6 +20,9 @@ public:
     }
 };
 
+// T.C. --> O(N)
+// S.C. --> O(N)
+
 
 
 
@@ -141,5 +144,46 @@ public:
 
 
 
-// A 5
+// A 5 -  Iterative DFS - gfg
+// T.C. --> O(N)
+// S.C. --> O(H)
+
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int mx = INT_MIN;
+        stack<pair<TreeNode*, int>> stk;
+        stk.push(make_pair(root, 0));
+
+        while(!stk.empty()) {
+            auto node = stk.top().first;
+            int state = stk.top().second;
+            stk.pop();
+
+            if(node == nullptr) continue;
+
+            if(state == 0) {
+                // First visit to the node
+                stk.push(make_pair(node, 1));
+                stk.push(make_pair(node -> left, 0));
+            }
+            else if(state == 1) {
+                // Second visit to the node
+                stk.push(make_pair(node, 2));
+                stk.push(make_pair(node -> right, 0));
+            }
+            else {
+                // Third visit to the node
+                int Lsum = (node -> left  != nullptr) ? node -> left  -> val : 0;
+                int Rsum = (node -> right != nullptr) ? node -> right -> val : 0;
+                mx = max(mx, node -> val + max(0, Lsum) + max(0, Rsum));
+                int tmpSum = max(Lsum, Rsum);
+                node -> val += max(0, tmpSum);
+            }
+        }
+        return mx;
+    }
+};
+
+
 
