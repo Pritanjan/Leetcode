@@ -1,4 +1,4 @@
-// A 1 - Recursion [ DFS ]
+// A 1 - Recursion -  DFS  -  (Top-down approah)  
 
 class Solution {
 public:
@@ -10,6 +10,7 @@ public:
         
         sum = max(sum, left + right + root->val);
         return max(left,right) + root->val;
+        // return max(left,right) + root->val;  // bottom - UP
     }
     
     int maxPathSum(TreeNode* root) {
