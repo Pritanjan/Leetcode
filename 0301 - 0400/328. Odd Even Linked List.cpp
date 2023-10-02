@@ -91,4 +91,32 @@ public:
 
 
 // A 2
+// Traverse the list, creating two separate lists for odd and even nodes.
+// Combine the two lists at the end.
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {          
+        if (!head || !head->next) return head;
+        ListNode *oddHead = new ListNode(0), *odd = oddHead;
+        ListNode *evenHead = new ListNode(0), *even = evenHead;
+        int idx = 1;
+        while(head) {
+            if(idx % 2 == 1) {
+                odd -> next = head;
+                odd = odd -> next;
+            } 
+            else {
+                even -> next = head;
+                even = even -> next;
+            }
+            head = head -> next;
+            idx++;
+        }
+        odd -> next = evenHead -> next;
+        even -> next = nullptr;
+        return oddHead->next;
+    }
+};
+
 
