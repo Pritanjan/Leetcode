@@ -73,6 +73,25 @@ public:
     }
 };
 
+
+// OR
+
+class Solution {
+public:
+    pair<int, int> helper(TreeNode* root){
+        if(root == NULL) return {0, 0};
+        pair<int, int> L = helper(root -> left);
+        pair<int, int> R = helper(root -> right);    
+        int h = 1 + max(L.first, R.first);
+        int dia = max({L.first + R.first, L.second, R.second });
+        return {h, dia};        
+    }
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        return helper(root).second;
+    }
+};
+
 // T.C. --> O(N)
 
 
