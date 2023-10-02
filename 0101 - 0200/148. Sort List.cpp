@@ -187,6 +187,50 @@ public:
 
 
 
+// A 4
+
+class Solution {
+public:    
+    struct Compare {
+        bool operator()(ListNode* a, ListNode* b) {
+            return a -> val > b -> val;
+        }
+    };
+
+    ListNode* sortList(ListNode* head) {
+        if(!head || !head->next) return head;
+        priority_queue<ListNode*, vector<ListNode*>, Compare> pq;  // min Heap
+        ListNode* curr = head;
+
+        // Push all nodes into the min heap.
+        while(curr) {
+            pq.push(curr);
+            curr = curr -> next;
+        }
+
+        // Reconstruct the sorted linked list.
+        ListNode dummy(0);
+        curr = &dummy;
+
+        while(!pq.empty()) {
+            curr -> next = pq.top();
+            pq.pop();
+            curr = curr -> next;
+        }
+        curr -> next = nullptr;
+        return dummy.next;
+    }
+};
+
+
+
+
+
+
+
+
+
+
 
 
 
