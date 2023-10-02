@@ -43,6 +43,26 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        int dia = 0;
+        function<int(TreeNode*)> dfs = [&](TreeNode* node) {
+            if(!node) return 0;
+            int L = dfs(node -> left);
+            int R = dfs(node -> right);
+            dia = max(dia, L + R);
+            return 1 + max(L, R);
+        };
+        dfs(root);
+        return dia;
+    }
+};
+
+
 
 
 
