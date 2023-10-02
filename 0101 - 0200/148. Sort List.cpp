@@ -154,6 +154,33 @@ public:
 
 
 
+// A 3  - Using Array
+
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if(!head or !head -> next) return head;
+        vector<int> v;
+        ListNode* curr = head;
+
+         // Copy the values of the linked list to a vector.
+        while(curr) {
+            v.push_back(curr -> val);
+            curr = curr -> next;
+        }
+
+        // Sorting the vator
+        sort(v.begin(), v.end());
+        
+        // Reconstruct the sorted linked list.
+        curr = head;
+        for(auto it : v) {
+            curr -> val = it;
+            curr = curr -> next;
+        }
+        return head;
+    }
+};
 
 
 
