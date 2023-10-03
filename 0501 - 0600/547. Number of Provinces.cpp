@@ -242,6 +242,44 @@ public:
 
 // A 6 
 
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int V = isConnected.size();
+        vector<vector<int>> tmp = isConnected;
+        for(int k=0; k<V; ++k) {
+            vector<vector<int>> res(V, vector<int>(V, 0));
+            for(int i=0; i<V; ++i) {
+                for(int j=0; j<V; ++j) {
+                    res[i][j] = tmp[i][j] | (tmp[i][k] & tmp[k][j]);
+                }
+            }
+            tmp = res;
+        }
+
+        int cnt = 0;
+        vector<bool> vis(V, false);
+        for(int i=0; i<V; ++i) {
+            if(!vis[i]) {
+                cnt++;
+                vis[i] = true;
+                for(int j=i+1; j<V; ++j) {
+                    if(tmp[i][j]) {
+                        vis[j] = true;
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 7
 
 
 
