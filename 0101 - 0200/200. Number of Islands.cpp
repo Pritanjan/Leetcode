@@ -1,4 +1,4 @@
-// A 1
+// A 1 - BFS
 
 class Solution {
   private:
@@ -58,7 +58,47 @@ public:
 
 
 
-// A 2
+// A 2 - DFS
+
+class Solution {
+  private:
+    void dfs(int row, int col, vector<vector<int>> &vis, vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        vis[row][col] = 1;
+        
+        // Define directions for up, down, left, and right
+        int delRow[] = {-1,  0, 0,  1};
+        int delCol[] = { 0, -1, 1, 0};
+
+        for(int i=0; i<4; i++) {
+            int nRow = row + delRow[i];
+            int nCol = col + delCol[i];
+
+            if(nRow >= 0 and nRow < n and nCol >= 0 and nCol < m and 
+                grid[nRow][nCol] == '1' and !vis[nRow][nCol]) {
+                    dfs(nRow, nCol, vis, grid);
+                }
+        }
+    }
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> vis(n, vector<int>(m, 0));
+        int cnt = 0;
+        for(int row=0; row<n; row++) {
+            for(int col=0; col<m; col++) {
+                if(!vis[row][col] and grid[row][col] == '1') {
+                    cnt++;
+                    dfs(row, col, vis, grid);
+                }
+            }
+        }
+        return cnt;
+    }
+};
 
 
 
