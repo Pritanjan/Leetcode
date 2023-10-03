@@ -202,5 +202,48 @@ public:
 
 
 
-// A  5
+// A  5 -  Floyd-Warshall Algorithm
+
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<vector<int>> dis = isConnected;
+
+        for(int k=0; k<n; ++k) {
+            for(int i=0; i<n; ++i) {
+                for(int j=0; j<n; ++j) {
+                    dis[i][j] |= (dis[i][k] & dis[k][j]);
+                }
+            }
+        }
+
+        int cnt = 0;
+        vector<bool> vis(n, false);
+        for(int i=0; i<n; ++i) {
+            if(!vis[i]) {
+                cnt++;
+                vis[i] = true;
+                for(int j=i+1; j<n; ++j) {
+                    if(dis[i][j]) {
+                        vis[j] = true;
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 6 
+
+
+
+
+
 
