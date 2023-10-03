@@ -236,6 +236,39 @@ public:
 };
 
 
+// OR
+// Floyd-Warshall Using Bit Manipulation
+
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<bitset<200>> v(n);
+
+        for(int i=0; i<n; ++i) {
+            for(int j=0; j<n; ++j) {
+                v[i][j] = isConnected[i][j];
+            }
+        }
+
+        for(int k=0; k<n; ++k) {
+            for(int i=0; i<n; ++i) {
+                if(v[i][k]) {
+                    v[i] |= v[k];
+                }
+            }
+        }
+
+        unordered_set<int> cnts;
+        for(int i=0; i<n; ++i) {
+            cnts.insert(v[i]._Find_first());
+        }
+        return cnts.size();
+    }
+};
+
+
+
 
 
 
