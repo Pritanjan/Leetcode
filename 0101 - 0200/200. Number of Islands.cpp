@@ -54,6 +54,45 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int cnt = 0;
+    int dx[4] = {0, 0, -1, 1};
+    int dy[4] = {1, -1, 0, 0};
+    
+    void bfs(vector<vector<char>>& grid,int row,int col) {
+        int m = grid.size();
+        int n = grid[0].size();
+        if(row < 0 || row >= m or 
+           col < 0 || col >= n or 
+           grid[row][col] != '1' ) return ;
+        
+        grid[row][col] = '2';
+        for(int i=0; i<4; i++) {
+            bfs(grid, row + dx[i], col + dy[i]);
+        }
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j] == '1') {                
+                    bfs(grid,i,j);    
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
 
 
 
@@ -207,54 +246,6 @@ public:
 
 
 
-
-
-
-
-
-
-
-class Solution {
-public:
-    int cnt=0;
-
-    int dx[4]={0,0,-1,1};
-    int dy[4]={1,-1,0,0};
-    int m,n;
-
-    void bfs(vector<vector<char>>& grid,int row,int col)
-    {
-
-        if(row<0||row>=m)  return;
-        if(col<0||col>=n)  return;
-        if(grid[row][col]!='1') return;
-        grid[row][col]='2';
-        for(int i=0;i<4;i++)
-        {
-            bfs(grid,row+dx[i],col+dy[i]);
-        }
-
-    }
-
-    int numIslands(vector<vector<char>>& grid)
-    {
-        m=grid.size();
-        n=grid[0].size();
-
-        cout<<m<<" "<<n<<endl;
-        for(int i=0;i<m;i++)
-        for(int j=0;j<n;j++)
-        {
-            if(grid[i][j]=='1')
-            {                cout<<"1";
-                bfs(grid,i,j);
-
-                cnt++;
-            }
-        }
-        return cnt;
-    }
-};
 
 
 
