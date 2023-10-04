@@ -1,11 +1,9 @@
 // A 1 
 
 class MyHashMap {
-public:
-    
+public:    
     vector<int> v;
     int size;
-    
     MyHashMap() {
         v.resize(1e6+1, -1);
         // size = 1e6 + 1;
