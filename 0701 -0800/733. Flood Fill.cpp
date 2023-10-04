@@ -1,4 +1,4 @@
-// A 1 - BFS
+// A 1 - BFS Using Queue
 
 class Solution {
 private:
@@ -42,6 +42,38 @@ public:
             return image;
         }
         bfs(sr, sc, image, color);
+        return image;
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int n = image.size();
+        int m = image[0].size();
+        int oldColor = image[sr][sc];
+        
+        if(oldColor != color) {
+            queue<pair<int, int>> que;
+            que.push({sr, sc});
+            
+            while(!que.empty()) {
+                auto [r, c] = que.front();
+                que.pop();
+
+                if(r < 0 or r >= n or c < 0 or c >= m or image[r][c] != oldColor) continue ;
+
+                image[r][c] = color;
+                que.push({r+1, c});
+                que.push({r-1, c});
+                que.push({r, c+1});
+                que.push({r, c-1});
+            }
+        }
         return image;
     }
 };
