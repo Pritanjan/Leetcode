@@ -235,10 +235,80 @@ public:
 
 
 
+// A 3 - using Union-Find (Disjoint Set Union) - gfg
+
+class Solution {
+private:
+    vector<int> parent, rank;
+    int find(int x) {
+        if(x != parent[x]) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+
+    void unionNodes(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if(rootX != rootY) {
+            if(rank[rootX] < rank[rootY]) swap(rootX, rootY);
+            parent[rootY] = rootX;
+            if(rank[rootX] == rank[rootY]) rank[rootX]++;
+        }
+    }
+
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        if(grid.empty() || grid[0].empty()) return 0;
+        
+        int m = grid.size();
+        int n = grid[0].size();
+        parent.resize(m * n);
+        rank.resize(m * n, 0);
+
+        int numOnes = 0;
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j] == '1') numOnes++;
+                parent[i*n + j] = i*n + j;
+            }
+        }
+
+        vector<int> dx = {-1, 1, 0, 0};
+        vector<int> dy = {0, 0, -1, 1};
+
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j] == '1') {
+                    for(int k=0; k<4; k++) {
+                        int x = i + dx[k];
+                        int y = j + dy[k];
+                        if(x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == '1') {
+                            unionNodes(i * n + j, x * n + y);
+                        }
+                    }
+                }
+            }
+        }
+
+        unordered_set<int> uqRoots;
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j] == '1') {
+                    uqRoots.insert(find(i * n + j));
+                }
+            }
+        }
+        return uqRoots.size();
+    }
+};
 
 
 
 
+
+
+// A 4
 
 
 
