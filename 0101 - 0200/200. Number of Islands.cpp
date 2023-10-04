@@ -107,29 +107,41 @@ public:
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
+        //Boundary condition 
         if(grid.empty()) return 0;
         int n = grid.size();
         int m = grid[0].size();
 
+        // Count the number of islands  
         int cnt = 0;
         for(int row=0; row<n; row++) {
             for(int col=0; col<m; col++) {
+                // Only when the current grid is 1 will the calculation start
                 if(grid[row][col] == '1') {
+                    // If the current grid is 1, add 1 to the number of islands
                     cnt++;
+                    // Then use dfs to set the four positions of the current grid, which are 1, to 0.
+                    // Because they are connected together as an island,
                     dfs(row, col, grid);
                 }
             }
         }
+        // return the number of islands
         return cnt;
     }
+
 private:
+    // This method will set the current grid and its adjacent grids with 1 to 1
     void dfs(int row, int col, vector<vector<char>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
 
+        // Boundary condition, we cannot cross the boundary   
         if(row < 0 or row >= n or col < 0 or col >= m or grid[row][col] == '0') return ;
+        
+        // Set the current grid to 0
         grid[row][col] = '0';
-
+        // traverse four directions up, down, left, and right
         dfs(row-1, col, grid);
         dfs(row+1, col, grid);
         dfs(row, col-1, grid);
@@ -197,50 +209,6 @@ public:
 
 
 
-
-
-
-class Solution {
-public:
-    int numIslands(vector<vector<char>>& grid) {
-        //Boundary condition judgment
-        if(grid.empty() || grid[0].empty()) return 0;
-        
-        // Count the number of islands
-        int count = 0;
-        
-        //Two for loops to traverse each grid
-        for (int i = 0; i < grid.size(); i++) {
-            for (int j = 0; j < grid[0].size(); j++) {
-                //Only when the current grid is 1 will the calculation start
-                if (grid[i][j] == '1') {
-                    //If the current grid is 1, add 1 to the number of islands
-                    count++;
-                    //Then use dfs to set the four positions of the current grid, which are 1, to 0.
-                    //Because they are connected together as an island,
-                    dfs(grid, i, j);
-                }
-            }
-        }
-        // Finally return the number of islands
-        return count;
-    }
-
-    // This method will set the current grid and its adjacent grids with 1 to 1
-    void dfs(vector<vector<char>>& grid, int i, int j) {
-        // Boundary condition judgment, cannot cross the boundary        
-        if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() || grid[i][j] == '0') {
-            return;
-        }
-
-        //Set the current grid to 0, and then continue traversing from its four directions up, down, left, and right
-        grid[i][j] = '0';
-        dfs(grid, i - 1, j);
-        dfs(grid, i + 1, j);
-        dfs(grid, i, j - 1);
-        dfs(grid, i, j + 1);
-    }
-};
 
 
 
