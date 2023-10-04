@@ -210,7 +210,36 @@ public:
 };
 
 
+// OR
+// Use array
 
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int m = image.size();
+        int n = image[0].size();
+        int oldColor = image[sr][sc];
+        if(oldColor != newColor) {
+            vector<vector<bool>> vis(m, vector<bool>(n, false));
+            dfs(image, sr, sc, oldColor, newColor, vis);
+        }
+        return image;
+    }
+
+    void dfs(vector<vector<int>>& image, int r, int c, int oldColor, int newColor, vector<vector<bool>>& vis) {
+        if(r < 0 || r >= image.size() || c < 0 || c >= image[0].size() || vis[r][c] || image[r][c] != oldColor) {
+            return ;
+        }
+
+        vis[r][c] = true;
+        image[r][c] = newColor;
+
+        dfs(image, r+1, c, oldColor, newColor, vis);
+        dfs(image, r-1, c, oldColor, newColor, vis);
+        dfs(image, r, c+1, oldColor, newColor, vis);
+        dfs(image, r, c-1, oldColor, newColor, vis);
+    }
+};
 
 
 
@@ -280,30 +309,3 @@ public:
 
 
 
-class Solution {
-public:
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
-        int m = image.size();
-        int n = image[0].size();
-        int oldColor = image[sr][sc];
-        if (oldColor != newColor) {
-            vector<vector<bool>> visited(m, vector<bool>(n, false));
-            dfs(image, sr, sc, oldColor, newColor, visited);
-        }
-        return image;
-    }
-
-    void dfs(vector<vector<int>>& image, int r, int c, int oldColor, int newColor, vector<vector<bool>>& visited) {
-        if (r < 0 || r >= image.size() || c < 0 || c >= image[0].size() || visited[r][c] || image[r][c] != oldColor) {
-            return;
-        }
-
-        visited[r][c] = true;
-        image[r][c] = newColor;
-
-        dfs(image, r + 1, c, oldColor, newColor, visited);
-        dfs(image, r - 1, c, oldColor, newColor, visited);
-        dfs(image, r, c + 1, oldColor, newColor, visited);
-        dfs(image, r, c - 1, oldColor, newColor, visited);
-    }
-};
