@@ -58,7 +58,7 @@ public:
 
 
 
-// A 2 - DFS
+// A 2 - DFS - Recursive
 
 class Solution {
   private:
@@ -102,7 +102,7 @@ public:
 
 
 // OR
-
+// DFS - Recursive
 
 class Solution {
 public:
@@ -138,7 +138,46 @@ private:
 };
 
 
+// OR
+// DFS - Iterative using Stack
 
+
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        int cnt = 0;
+
+        vector<vector<int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0,1}};
+        for(int row=0; row<n; row++) {
+            for(int col=0; col<m; col++) {
+                if(grid[row][col] == '1') {
+                    cnt++;
+                    stack<pair<int, int>> stkp;
+                    stkp.push({row, col});
+                    grid[row][col] = '0';
+
+                    while(!stkp.empty()) {
+                        auto [x, y] = stkp.top();
+                        stkp.pop();
+
+                        for(auto &dir : dirs) {
+                            int newX = x + dir[0];
+                            int newY = y + dir[1];
+
+                            if(newX >= 0 and newX < n and newY >=0 and newY < m and grid[newX][newY] == '1') {
+                                stkp.push({newX, newY});
+                                grid[newX][newY] = '0';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+};
 
 
 
