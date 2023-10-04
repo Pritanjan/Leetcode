@@ -101,6 +101,47 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        if(grid.empty()) return 0;
+        int n = grid.size();
+        int m = grid[0].size();
+
+        int cnt = 0;
+        for(int row=0; row<n; row++) {
+            for(int col=0; col<m; col++) {
+                if(grid[row][col] == '1') {
+                    cnt++;
+                    dfs(row, col, grid);
+                }
+            }
+        }
+        return cnt;
+    }
+private:
+    void dfs(int row, int col, vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+
+        if(row < 0 or row >= n or col < 0 or col >= m or grid[row][col] == '0') return ;
+        grid[row][col] = '0';
+
+        dfs(row-1, col, grid);
+        dfs(row+1, col, grid);
+        dfs(row, col-1, grid);
+        dfs(row, col+1, grid);
+    }
+};
+
+
+
+
+
+
 
 
 
