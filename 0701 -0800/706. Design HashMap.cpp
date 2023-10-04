@@ -34,7 +34,7 @@ public:
 class MyHashMap {
 private:
     vector<vector<pair<int, int>>> vp;
-    const int capacity = 10000; // Choose a suitable capacity
+    int capacity = 10000; // Choose a suitable capacity
 
     // Hash function to map keys to indices in the data vector
     int hash(int key) {
@@ -63,7 +63,7 @@ public:
     // Get the value to which the specified key is mapped, or -1 if this map contains no mapping for the key.
     int get(int key) {
         int idx = hash(key);
-        for (const auto &pair : vp[idx]) {
+        for(auto &pair : vp[idx]) {
             if(pair.first == key) {
                 return pair.second;
             }
