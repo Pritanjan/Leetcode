@@ -1,3 +1,52 @@
+// A 1 [ Map and Reverse Scanning ]
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        int ans = 0;
+
+        // IT gives wrong answer
+        // map<char, int> mp;
+        // mp.insert({'I', 1});
+        // mp.insert({'v', 5});
+        // mp.insert({'X', 10});
+        // mp.insert({'L', 50});
+        // mp.insert({'C', 100});
+        // mp.insert({'D', 500});
+        // mp.insert({'M', 1000});
+
+        unordered_map<char,int> mp = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+        
+        // map<char, int> mp;
+        // mp['I'] = 1;
+        // mp['V'] = 5;
+        // mp['X'] = 10;
+        // mp['L'] = 50;
+        // mp['C'] = 100;
+        // mp['D'] = 500;
+        // mp['M'] = 1000;
+
+        for(int i=0; i<s.size(); i++) {
+            if(i+1 < s.size() && mp[s[i]] < mp[s[i+1]]) ans -= mp[s[i]];
+            else ans += mp[s[i]];
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
 // A 2 [ Map and Linear Scanning ]
 
 class Solution {
@@ -22,41 +71,6 @@ public:
     }
 };
 
-
-
-
-
-// A 1 [ Map and Reverse Scanning ]
-
-class Solution {
-public:
-    int romanToInt(string s) {
-        int ans{};
-        // map<char, int> map;
-        // map.insert({'I', 1});
-        // map.insert({'v', 5});
-        // map.insert({'X', 10});
-        // map.insert({'L', 50});
-        // map.insert({'C', 100});
-        // map.insert({'D', 500});
-        // map.insert({'M', 1000});
-        unordered_map<char,int> map = {
-            {'I', 1},
-            {'V', 5},
-            {'X', 10},
-            {'L', 50},
-            {'C', 100},
-            {'D', 500},
-            {'M', 1000}
-        };
-        
-        for(int i=0;i<s.size();i++) {
-            if(map[s[i]] < map[s[i+1]]) ans -= map[s[i]];
-            else ans += map[s[i]];
-        }
-        return ans;
-    }
-};
 
 
 
