@@ -100,12 +100,24 @@ public:
             return;
         }
         image[r][c] = newColor;
-        dfs(image, r + 1, c, oldColor, newColor);
-        dfs(image, r - 1, c, oldColor, newColor);
-        dfs(image, r, c + 1, oldColor, newColor);
-        dfs(image, r, c - 1, oldColor, newColor);
+
+        // use this 4 or below 7 
+        // dfs(image, r + 1, c, oldColor, newColor);
+        // dfs(image, r - 1, c, oldColor, newColor);
+        // dfs(image, r, c + 1, oldColor, newColor);
+        // dfs(image, r, c - 1, oldColor, newColor);
+
+        int dx[] = {-1, 1, 0, 0};
+        int dy[] = {0,  0, 1, -1};
+
+        for(int i=0; i<4; i++) {
+            int nRow = r + dx[i];
+            int nCol = c + dy[i];
+            dfs(image, nRow, nCol, oldColor, newColor) ;
+        }
     }
 };
+
 
 
 
