@@ -338,4 +338,49 @@ public:
 
 
 // A 8
+// Same as A 3
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        char last = ' ';
+        int ans = 0;
+        for(char c : s){
+            if(c == 'I') ans += 1;
+            else if(c == 'V') {
+                if(last=='I') ans -= 2;
+                ans += 5;
+            }
+            else if(c == 'X') {
+                if(last=='I') ans-=2;
+                ans += 10;
+            }
+            else if(c == 'L') {
+                if(last == 'X') ans -= 20;
+                ans += 50;
+            }
+            else if(c == 'C'){
+                if(last == 'X') ans-=20;
+                ans += 100;
+            }
+            else if(c == 'D') { 
+                if(last == 'C') ans -= 200;
+                ans += 500;
+            }
+            else if(c == 'M') {
+                if(last == 'C') ans -= 200;
+                ans += 1000;
+            }
+            last = c;
+        }
+        return ans; 
+    }
+};
+
+
+
+
+
+
+// A 9
 
