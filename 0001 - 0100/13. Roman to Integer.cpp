@@ -4,26 +4,26 @@ class Solution {
 public:
     int romanToInt(string s) {
         int ans = 0;
-
-        // IT gives wrong answer
-        // map<char, int> mp;
+        
+        map<char, int> mp;
         // mp.insert({'I', 1});
-        // mp.insert({'v', 5});
-        // mp.insert({'X', 10});
-        // mp.insert({'L', 50});
-        // mp.insert({'C', 100});
-        // mp.insert({'D', 500});
-        // mp.insert({'M', 1000});
+        mp.insert(make_pair('I', 1));
+        mp.insert(make_pair('V', 5));
+        mp.insert(make_pair('X', 10));
+        mp.insert(make_pair('L', 50));
+        mp.insert(make_pair('C', 100));
+        mp.insert(make_pair('D', 500));
+        mp.insert(make_pair('M', 1000));
 
-        unordered_map<char,int> mp = {
-            {'I', 1},
-            {'V', 5},
-            {'X', 10},
-            {'L', 50},
-            {'C', 100},
-            {'D', 500},
-            {'M', 1000}
-        };
+        // unordered_map<char,int> mp = {
+        //     {'I', 1},
+        //     {'V', 5},
+        //     {'X', 10},
+        //     {'L', 50},
+        //     {'C', 100},
+        //     {'D', 500},
+        //     {'M', 1000}
+        // };
         
         // map<char, int> mp;
         // mp['I'] = 1;
