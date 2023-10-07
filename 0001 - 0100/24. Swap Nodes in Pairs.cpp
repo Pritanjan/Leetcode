@@ -226,8 +226,6 @@ public:
 
 // A 6
 
-
-
 int speed_up = []{
     ios::sync_with_stdio(false);
     cin.tie(NULL);
@@ -237,13 +235,13 @@ int speed_up = []{
 int init = []{
     ofstream out("user.out", ios::out);
 
-    string line;
-    while (getline(cin, line)) {
+    string s;
+    while(getline(cin, s)) {
         vector<int> inp1;
         vector<int> inp2;
         int curr = 0;
         bool first = true;
-        if (line.size() != 2) for (char &i : line) {
+        if(s.size() != 2) for (char &i : s) {
             if ('0' <= i && i <= '9') curr = curr * 10 + (i - '0');
             else if (i == ',' || i == ']') {
                 if (first) inp1.push_back(curr);
@@ -264,12 +262,14 @@ int init = []{
         }
         out << ']' << endl;
     }
-
     exit(0);
     return 0;
 }();
 
 class Solution{public:ListNode*swapPairs(ListNode*head){return NULL;}};
+
+
+
 
 
 
