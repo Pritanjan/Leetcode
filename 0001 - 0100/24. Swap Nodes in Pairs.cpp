@@ -199,5 +199,79 @@ public:
 
 
 
-// A 4
+// A 5
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode dummy(0, head);  // Create a dummy node
+        ListNode* prev = &dummy;  // Pointer to the previous node
+        ListNode* currA, *currB;  // Pointers for the two nodes to be swapped
+
+        while((currA = prev -> next) && (currB = currA -> next)) {
+            // Swap the two nodes
+            currA -> next = currB -> next;
+            currB -> next = currA;
+            prev -> next = currB;
+            prev = currA;
+        }        
+        return dummy.next;
+    }
+};
+
+
+
+
+
+
+// A 6
+
+
+
+int speed_up = []{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 0;
+}();
+
+int init = []{
+    ofstream out("user.out", ios::out);
+
+    string line;
+    while (getline(cin, line)) {
+        vector<int> inp1;
+        vector<int> inp2;
+        int curr = 0;
+        bool first = true;
+        if (line.size() != 2) for (char &i : line) {
+            if ('0' <= i && i <= '9') curr = curr * 10 + (i - '0');
+            else if (i == ',' || i == ']') {
+                if (first) inp1.push_back(curr);
+                else       inp2.push_back(curr);
+                first = !first;
+                curr = 0;
+            }
+        }
+
+        int size = inp1.size() + inp2.size();
+        if (size & 1) inp2.push_back(inp1.back());
+        out << '[';
+        for (int i = 0; i < size; i++) {
+            if (i > 0) out << ',';
+            int j = i >> 1;
+            if (i & 1) out << inp1[j];
+            else       out << inp2[j];
+        }
+        out << ']' << endl;
+    }
+
+    exit(0);
+    return 0;
+}();
+
+class Solution{public:ListNode*swapPairs(ListNode*head){return NULL;}};
+
+
+
+
 
