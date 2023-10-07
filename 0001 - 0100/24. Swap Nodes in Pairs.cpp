@@ -1,4 +1,5 @@
-// Iterative Approach
+// A 1 - Iterative Approach  with Pointers:
+// Use a pointer to traverse the list while swapping adjacent nodes.
 
 class Solution {
 public:
