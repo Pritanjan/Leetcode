@@ -1,4 +1,4 @@
-// A 1 - Iterative Approach  with Pointers:
+// A 0 - Iterative Approach  with Pointers:
 // Use a pointer to traverse the list while swapping adjacent nodes.
 
 class Solution {
@@ -168,4 +168,36 @@ public:
 };
 
 
+
+
+
+// A 4 - Using 3 Pointer
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(!head || !head->next) return head;
+        ListNode* first = NULL;
+        ListNode* second = head;
+        ListNode* third = head -> next;
+        while(third) {
+            second -> next = third -> next;
+            if(first) first -> next = third;
+            else head = third;
+            third -> next = second;
+            first = second;
+            second = first -> next;
+            if(!second) break;
+            third = second -> next;
+        }
+        return head;
+    }
+};
+
+
+
+
+
+
+// A 4
 
