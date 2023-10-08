@@ -24,19 +24,16 @@ public:
 
 class Solution {
 public:
-    int minProcessingTime(vector<int>& pt, vector<int>& t) {
-        sort(pt.begin(), pt.end());
-        sort(t.begin(), t.end(), [](const int a, const int b) { return a > b; });
-        int l = 0, ans = 0;
-        for(int st : pt) {
-            int curr = 0, cnt = 0;
-            while(l < t.size() && cnt < 4) {
-                curr = max(curr, st + t[l]);
-                l++;
-                cnt++;
+    int minProcessingTime(vector<int>& processorTime, vector<int>& tasks) {
+        sort(processorTime.begin(), processorTime.end());
+        sort(tasks.begin(), tasks.end(), greater());
+        int n = processorTime.size();
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 4; j++) {
+                ans = max(ans, processorTime[i] + tasks[4*i+j]);
             }
-            ans = max(ans, curr);
-        }        
+        }
         return ans;
     }
 };
