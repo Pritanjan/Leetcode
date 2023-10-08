@@ -38,45 +38,28 @@ public:
 
 
 
-// A 3
+// A 3  - dp
 
-
- // Bit Manipulation
-    int differenceOfSums8(int n, int m) {
-        int num1 = 0, num2 = 0;
-        for (int i = 1; i <= n; i++) {
-            if ((i & m) == 0) {
-                num1 += i;
-            } else {
-                num2 += i;
+class Solution {
+public:
+    int differenceOfSums(int n, int m) {
+        int NotDiv[n+1], Div[n + 1];
+        NotDiv[0] = Div[0] = 0;
+        for(int i=1; i<=n; i++) {
+            if(i % m == 0) {
+                Div[i] = Div[i-1] + i;
+                NotDiv[i] = NotDiv[i-1];
+            } 
+            else {
+                Div[i] = Div[i-1];
+                NotDiv[i] = NotDiv[i-1] + i;
             }
         }
-        return num1 - num2;
+        return NotDiv[n] - Div[n];
     }
-
-    // Dynamic Programming
-    int differenceOfSums9(int n, int m) {
-        int dpNotDivisible[n + 1], dpDivisible[n + 1];
-        dpNotDivisible[0] = dpDivisible[0] = 0;
-        for (int i = 1; i <= n; i++) {
-            if (i % m == 0) {
-                dpDivisible[i] = dpDivisible[i - 1] + i;
-                dpNotDivisible[i] = dpNotDivisible[i - 1];
-            } else {
-                dpDivisible[i] = dpDivisible[i - 1];
-                dpNotDivisible[i] = dpNotDivisible[i - 1] + i;
-            }
-        }
-        return dpNotDivisible[n] - dpDivisible[n];
-    }
-
-    // Sieve of Eratosthenes (For Prime Divisors of m)
-    int differenceOfSums10(int n, int m) {
-        // Implement Sieve of Eratosthenes to find prime divisors of m
-        // Calculate num1 and num2 based on prime divisors
-        int num1 = 0, num2 = 0;
-        return num1 - num2;
-    }
+};
+    
+   
 
 
 
