@@ -36,9 +36,26 @@ public:
 
 
 
+// A 3
+
+class Solution {
+public:
+    long long differenceOfSums(int n, int m) {
+        long long ans = 1LL * n * (n + 1) / 2;
+        for (int i = m; i <= n; i += m) {
+            ans -= i + i;
+        }
+        return ans;
+    }
+};
 
 
-// A 3  - dp
+
+
+
+
+
+// A 4  - dp
 
 class Solution {
 public:
@@ -64,31 +81,29 @@ public:
 
 
 
-// Recursion (Recursive Helper Function)
+// A 5 -  Recursion (Recursive Helper Function)
+
+class Solution {
+public:
     int sumNotDivisible(int n, int m) {
-        if (n == 0) {
-            return 0;
-        }
-        if (n % m != 0) {
-            return n + sumNotDivisible(n - 1, m);
-        }
-        return sumNotDivisible(n - 1, m);
+        if(n == 0) return 0;
+        if(n % m != 0) return n + sumNotDivisible(n-1, m);
+        return sumNotDivisible(n-1, m);
     }
 
     int sumDivisible(int n, int m) {
-        if (n == 0) {
-            return 0;
-        }
-        if (n % m == 0) {
-            return n + sumDivisible(n - 1, m);
-        }
-        return sumDivisible(n - 1, m);
+        if(n == 0) return 0;
+        if(n % m == 0) return n + sumDivisible(n-1, m);
+        return sumDivisible(n-1, m);
     }
 
-    int differenceOfSums6(int n, int m) {
+    int differenceOfSums(int n, int m) {
         return sumNotDivisible(n, m) - sumDivisible(n, m);
     }
+};
 
+
+    
 
 
 
