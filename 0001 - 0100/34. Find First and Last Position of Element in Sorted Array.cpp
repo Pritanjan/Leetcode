@@ -211,9 +211,15 @@ public:
             if(nums[i] == x) {
                 v.push_back(i);
             }
-        }        
-        if(v.empty()) return {-1, -1};
-        else return {v.front(), v.back()};
+        }
+
+        // if(v.empty()) return {-1, -1};
+        // else return {v.front(), v.back()};
+        
+        if(v.size()) return {v[0], v[v.size()-1]};
+        return {-1,-1};
     }
 };
+
+
 
