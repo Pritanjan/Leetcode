@@ -64,3 +64,55 @@ public:
 
 
 // A 2
+
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+
+        queue<pair<int, int>> que;
+        int cntFresh = 0;      
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                if(grid[i][j] == 2) que.push({i, j});
+                else if(grid[i][j] == 1) cntFresh++;
+            }
+        }
+        
+        int time = 0;
+        int dx[] = {0, 0, 1, -1};
+        int dy[] = {1, -1, 0, 0};
+        while(!que.empty() and cntFresh > 0) {
+            int size = que.size();
+            for(int i=0; i<size; i++) {
+                int row = que.front().first;
+                int col = que.front().second;
+                que.pop();
+
+                for(int j=0; j<4; j++) {
+                    int nRow = row + dx[j];
+                    int nCol = col + dy[j];
+                    if(nRow >= 0 and nRow < n and nCol >= 0 and nCol < m  and grid[nRow][nCol] == 1) {
+                        que.push({nRow, nCol});
+                        grid[nRow][nCol] = 2;
+                        cntFresh--;
+                    }
+                }
+            }          
+            time++;
+        }
+        if(cntFresh > 0) return -1;
+        return time;
+    }
+};
+
+
+
+
+
+
+// A 3
+
+
