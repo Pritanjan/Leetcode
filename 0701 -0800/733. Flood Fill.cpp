@@ -119,6 +119,42 @@ public:
 };
 
 
+// OR
+// STRIVER CODE
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int oldColor = image[sr][sc];
+        vector<vector<int>> res = image;
+
+        int dx[] = {-1, 0, +1, 0};
+        int dy[] = {0, 1, 0, -1};
+
+        dfs(sr, sc, res, image, newColor, oldColor, dx, dy);
+        return res;
+    }
+private:
+    void dfs(int row, int col, vector<vector<int>> &res, vector<vector<int>> &image, int newColor, int oldColor, int dx[], int dy[]) {
+        int n = image.size();
+        int m = image[0].size();
+
+        res[row][col] = newColor;
+
+        for(int i=0; i<4; i++) {
+            int nRow = row + dx[i];
+            int nCol = col + dy[i];
+
+            if(nRow >= 0 and nRow < n and nCol >= 0 and nCol < m and image[nRow][nCol] == oldColor and res[nRow][nCol] != newColor) {
+                dfs(nRow, nCol, res, image, newColor, oldColor, dx, dy );
+            }
+        }
+    }
+};
+
+// T.C. --> O(N*M)
+// S.C. --> O(N*M)
+
 
 
 
