@@ -58,12 +58,8 @@ public:
 };
 
 
+// OR
 
-
-
-
-
-// A 2
 
 class Solution {
 public:
@@ -109,11 +105,8 @@ public:
 };
 
 
+// OR
 
-
-
-
-// A 3
 
 class Solution {
 public:
@@ -167,7 +160,55 @@ public:
 
 
 
-// A 4
+// A 2
+
+class Solution {
+public:
+    vector<vector<int>> res;
+    int orangesRotting(vector<vector<int>>& grid) {
+        if(grid.empty() || grid[0].empty()) {
+            return 0;
+        }
+
+        res = grid;
+        for(int i=0; i<res.size(); i++) {
+            for(int j=0; j<res[0].size(); j++) {
+                if(res[i][j] == 2) {
+                    dfs(i, j, 2); // Start infection
+                }
+            }
+        }
+
+        int maxLevel = 0;
+        for(int i=0; i<res.size(); i++) {
+            for(int j=0; j<res[0].size(); j++) {
+                if(res[i][j] == 1) {
+                    return -1; // If there are fresh oranges not infected, return -1
+                } 
+                else {
+                    maxLevel = max(maxLevel, res[i][j]);
+                }
+            }
+        }
+        return maxLevel == 0 ? 0 : maxLevel - 2;
+    }
+
+    void dfs(int i, int j, int level) {
+        if(i < 0 || i >= res.size() || j < 0 || j >= res[0].size()) return;
+        if (res[i][j] != 1 && res[i][j] < level) return ;
+
+        res[i][j] = level;
+        level++;
+        
+        dfs(i-1, j, level);
+        dfs(i+1, j, level);
+        dfs(i, j-1, level);
+        dfs(i, j+1, level);
+    }
+};
+
+
+
 
 
 
