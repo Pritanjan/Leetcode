@@ -115,4 +115,59 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+
+        vector<pair<int, int>> dir{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        queue<pair<int, int>> que;
+        int cntFresh = 0;      
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                if(grid[i][j] == 2) que.push({i, j});
+                else if(grid[i][j] == 1) cntFresh++;
+            }
+        }
+        
+        int time = 0;
+        if(cntFresh == 0) return 0;
+
+        while(!que.empty()) {
+            int size = que.size();
+            bool change = false;
+
+            for(int i=0; i<size; i++) {
+                int row = que.front().first;
+                int col = que.front().second;
+                que.pop();
+
+                for(auto &d : dir) {
+                    int nRow = row + d.first;
+                    int nCol = col + d.second;
+                    if(nRow >= 0 and nRow < n and nCol >= 0 and nCol < m  and grid[nRow][nCol] == 1) {
+                        que.push({nRow, nCol});
+                        grid[nRow][nCol] = 2;
+                        cntFresh--;
+                        change = true;
+                    }
+                }
+            }
+            if(change) time++;
+        }
+        if(cntFresh > 0) return -1;
+        return time;
+    }
+};
+
+
+
+
+
+
+// A 4
+
+
 
