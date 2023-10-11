@@ -55,30 +55,6 @@ public:
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-         int totalSteps = m+n-2;
-        // Calculate the number of steps required to move down or right
-        int stepsDown  = m-1;
-        int stepsRight = n-1;
-
-        // Calculate the unique paths using combinatorics formula (totalSteps choose stepsDown)
-        long long res = 1;
-        for(int i=1; i<=stepsDown; ++i) {
-            res *= (totalSteps - stepsDown + i);
-            res /= i;
-        }
-        return res;
-    }
-};
-
-
-
-
-
-// APPROACH 4
-
-class Solution {
-public:
-    int uniquePaths(int m, int n) {
         int N=m+n-2, R=m-1, i;
         double res=1;
         for(i=1;i<=R;i++){
@@ -88,7 +64,12 @@ public:
     }
 };
 
-// 
+
+
+
+
+
+// APPROACH 4 
 
 class Solution {
 public:
