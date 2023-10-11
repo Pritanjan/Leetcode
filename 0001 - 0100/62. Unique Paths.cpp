@@ -1,7 +1,6 @@
 // https://github.com/Pritanjan/Question/blob/main/POTD/gfg/0060%20230323%20Unique%20Paths%20in%20a%20Grid.cpp
 
 // APPROACH 1
-
 class Solution {
 public:
     int uniquePaths(int m, int n) {
@@ -86,6 +85,21 @@ public:
             res=res*(N-R+i)/i;
         }
         return int(res);
+    }
+};
+
+// 
+
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int N = m+n-2, R = m-1;
+        double res = 1;
+        for(int i=R; i>0; i--) {
+            res *= N--;
+            res /= i;
+        }
+        return round(res);
     }
 };
 
