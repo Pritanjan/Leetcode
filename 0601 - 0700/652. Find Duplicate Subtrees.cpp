@@ -34,3 +34,33 @@ public:
 
 // A 2
 
+class Solution {
+private:
+    unordered_map<string, TreeNode*> seen;
+    unordered_set<TreeNode*> repeat;
+public:
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        dfs(root);
+        return {repeat.begin(), repeat.end()};
+    }
+
+    string dfs(TreeNode* node) {
+        if(!node) return "#";
+
+        string left = dfs(node->left);
+        string right = dfs(node->right);
+        string key = to_string(node->val) + "(" + left + ")(" + right + ")";
+        if(auto it = seen.find(key); it != seen.end()) repeat.insert(it->second);
+        else seen[key] = node;
+        return key;
+    }
+};
+
+
+
+
+
+
+// A 3
+
+
