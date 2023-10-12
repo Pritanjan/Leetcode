@@ -1,5 +1,4 @@
 // APPROACH 1 [ BRUTE FORCE ] TLE
-
 // Use 3 nested loops to generate all possible combinations of triplets and then check if their sum is 0
 // T.C. = O(n^3), 
 
@@ -34,38 +33,34 @@ public:
 
 
 // APPROACH 2 [ 2 POINTER ]
-
 // Use 2 pointers while iterating through the array after sorting it. 
-// T.C. =  of O(n^2).
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> res; // Container for the result
-        sort(nums.begin(), nums.end());
         int n = nums.size();
-        for(int i=0; i<n-1; i++) {
-            if(nums[i] > 0) break;
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+
+        for(int i=0; i<n-2; ++i) {
+            if(i > 0 && nums[i] == nums[i-1]) continue; // Skip duplicates
             int L = i + 1;
             int R = n - 1;
-            
+            int tgt = -nums[i];
+
             while(L < R) {
-                int sum = nums[i] + nums[L] + nums[R];
-                if(sum == 0) {
+                int sum = nums[L] + nums[R];
+                if(sum == tgt) {
                     res.push_back({nums[i], nums[L], nums[R]});
+                    while(L < R && nums[L] == nums[L+1]) L++;
+                    while(L < R && nums[R] == nums[R-1]) R--;
                     L++;
                     R--;
-                    
-                    // Skip duplicate values
-                    while(L < R && nums[L] == nums[L-1]) L++;
-                    while(L < R && nums[R] == nums[R+1]) R--;
                 } 
-                else if(sum > 0) R--;
-                else L++;
+                else if(sum < tgt) L++;
+                else R--;
             }
-            // Skip duplicate values
-            while(i < n-1 && nums[i] == nums[i+1]) i++;
-        }        
+        }
         return res;
     }
 };
@@ -110,7 +105,6 @@ public:
 
 
 // APPROACH 3 USE HASH SET
-
 // It involves using a hash set to keep track of seen elements while iterating through the array.
 // T.C. =  of O(n^2).
     
@@ -144,7 +138,6 @@ public:
 
 
 // APPRAOCH 4 [ Using Sorting and Binary Search ]
-
 // It involves sorting the array and then using binary search to find the third element that
 // complements the sum of the first two elements to zero. 
 // T.C. =  O(n^2 * log n).
