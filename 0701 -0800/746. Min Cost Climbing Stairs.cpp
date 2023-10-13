@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/min-cost-climbing-stairs/
+// A 1 
 
 class Solution {
 public:
@@ -12,4 +12,34 @@ public:
     }
 };
 
+
+
+
+
+
+// A 2
+
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
+        if(n <= 1) return 0;
+        int zero = cost[0];
+        int one = cost[1];
+
+        for(int i=2; i<n; i++) {
+            int tmp = cost[i] + min(zero, one);
+            zero = one;
+            one = tmp;
+        }
+        return min(zero, one);
+    }
+};
+
+
+
+
+
+
+// A 3
 
