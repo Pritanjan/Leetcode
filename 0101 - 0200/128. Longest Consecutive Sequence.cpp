@@ -1,7 +1,6 @@
 // APPROACH 1 
-
-// Main idea is to increase the count if consecutive difference of element is 1 if
-// at any place the difference is not equal 1 to then make the count 1 again. 
+// Main idea is to increase the count if consecutive difference of element is 1  
+// if at any place difference is not equal 1 to then make the count 1 again. 
 // and put the value of count in the priority_queue.
 
 class Solution {
@@ -26,9 +25,7 @@ public:
     }
 };
 
-
 // Reason behind using the second condition :- 
-
 // [9,1,4,7,3,-1,0,5,8,-1,6]
 // after sorting 
 // [-1,-1,0,1,3,4,5,6,7,8,9]
@@ -41,7 +38,6 @@ public:
 
 
 // APPROACH 2 Hash Set
-
 // Create an empty hash set to store the numbers from the array.
 // Insert all the numbers from the array into the hash set.
 // Initialize a variable maxLen to keep track of the maximum consecutive sequence length found.
@@ -55,7 +51,6 @@ public:
     int longestConsecutive(vector<int>& nums) {
         unordered_set<int> ust(nums.begin(), nums.end());
         int maxLen = 0;
-
         for(int num : ust) {
             if(ust.find(num - 1) == ust.end()) {
                 int currNum = num;
@@ -77,7 +72,6 @@ public:
 
 
 // APPROACH 3  : Sorting and Counting
-
 // Sort the given array.
 // Initialize a variable currLen to 1 and a variable maxLen to 1.
 // Iterate through the sorted array from index 1.
@@ -85,7 +79,6 @@ public:
 // If the current element is one more than the previous element, increment currLen.
 // If the current element is not consecutive to the previous element, update maxLen with the maximum of maxLen and currLen, and reset currLen to 1.
 // Return maxLen.
-
 
 class Solution {
 public:
@@ -112,7 +105,6 @@ public:
 
 
 // APPROACH 4 Hash Map
-
 // Create an empty hash map to store the endpoints of consecutive sequences.
 // Initialize a variable maxLen to keep track of the maximum consecutive sequence length found.
 // For each number num in the array, check if it's already in the hash map. If it's already present, skip it as it's already part of a sequence.
@@ -122,7 +114,6 @@ public:
 // - Update maxLen with the maximum of maxLen and the new sequence length.
 // - Update the endpoints of the sequence in the hash map.
 // Return maxLen.
-
 
 class Solution {
 public:
@@ -182,6 +173,42 @@ public:
             }
         }
         return maxLen ;
+    }
+};
+
+
+// or 
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);cin.tie(NULL);     // just trying to see its impact on TC and SC
+        int n = nums.size();
+
+        unordered_map<int,bool> hash;
+        for(auto num : nums) {
+            hash[num] = true;
+        }
+        
+        unordered_map<int,bool>starts;
+        for(auto p : hash) {
+            if(hash.find(p.first-1) == hash.end()) {
+                starts[p.first] = true;
+            }
+        }
+
+        int ans = 0;
+        for(auto start : starts){
+            int cnt = 0;
+            int num = start.first;
+            while(hash[num]){
+                num++;
+                cnt++;
+            }
+            ans = max(ans,cnt);
+        }
+        return ans;
     }
 };
 
