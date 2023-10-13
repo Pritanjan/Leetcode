@@ -1,3 +1,42 @@
+// A 0
+
+// Brute Force (Recursive) - TLE
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        return min(minCost(cost, 0), minCost(cost, 1));
+    }
+
+    int minCost(vector<int>& cost, int i) {
+        if(i >= cost.size()) return 0;
+        return cost[i] + min(minCost(cost, i+1), minCost(cost, i+2));
+    }
+};
+
+
+
+// Brute Force Memoization (Top-Down DP)
+class Solution {
+public:
+    vector<int> v;
+    int minCostClimbingStairs(vector<int>& cost) {
+        v.resize(cost.size(), -1);
+        return min(minCost(cost, 0), minCost(cost, 1));
+    }
+
+    int minCost(vector<int>& cost, int i) {
+        if(i >= cost.size()) return 0;
+        if(v[i] != -1) return v[i];
+        v[i] = cost[i] + min(minCost(cost, i+1), minCost(cost, i+2));
+        return v[i];
+    }
+};
+
+
+
+
+
+
 // A 1 
 
 class Solution {
