@@ -74,3 +74,55 @@ public:
 
 
 
+
+
+// A 3
+
+class Solution {
+public:
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int> list1, list2;
+        inorder(root1, list1);
+        inorder(root2, list2);
+        return merge(list1, list2);
+    }
+
+    void inorder(TreeNode* node, vector<int>& res) {
+        if(!node) return ;
+        inorder(node -> left, res);
+        res.push_back(node -> val);
+        inorder(node -> right, res);
+    }
+
+    vector<int> merge(vector<int>& list1, vector<int>& list2) {
+        vector<int> res;
+        int i=0, j=0;
+        while(i < list1.size() && j < list2.size()) {
+            if(list1[i] < list2[j]) {
+                res.push_back(list1[i]);
+                i++;
+            } 
+            else {
+                res.push_back(list2[j]);
+                j++;
+            }
+        }
+        while(i < list1.size()) {
+            res.push_back(list1[i]);
+            i++;
+        }
+        while(j < list2.size()) {
+            res.push_back(list2[j]);
+            j++;
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4 
+
