@@ -77,6 +77,7 @@ public:
 
 // A 3 - Merge Two Sorted Lists (Recursive)
 
+
 class Solution {
 public:
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
@@ -106,14 +107,10 @@ public:
                 j++;
             }
         }
-        while(i < list1.size()) {
-            res.push_back(list1[i]);
-            i++;
-        }
-        while(j < list2.size()) {
-            res.push_back(list2[j]);
-            j++;
-        }
+        
+        while(i < list1.size()) res.push_back(list1[i++]);
+        while(j < list2.size()) res.push_back(list2[j++]);
+            
         return res;
     }
 };
