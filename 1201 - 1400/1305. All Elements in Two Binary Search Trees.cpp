@@ -125,3 +125,34 @@ public:
 
 // A 4 
 
+class Solution {
+public:
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        priority_queue<int, vector<int>, greater<int>> pq;
+        inorder(root1, pq);
+        inorder(root2, pq);
+        vector<int> res;
+        while(!pq.empty()) {
+            res.push_back(pq.top());
+            pq.pop();
+        }
+        return res;
+    }
+
+    void inorder(TreeNode* node, priority_queue<int, vector<int>, greater<int>>& pq) {
+        if(!node) return ;
+        inorder(node->left, pq);
+        pq.push(node->val);
+        inorder(node->right, pq);
+    }
+};
+
+
+
+
+
+
+// A 5
+
+
+
