@@ -1,4 +1,4 @@
-// A 1
+// A 1 -  Inorder Traversal and Merge
 // Traverse both the tree and store its value in a vector.
 // Sort the vector and return.
 
@@ -28,7 +28,7 @@ public:
 
 
 
-// A 2
+// A 2 - Merge Two Sorted Lists (Iterative)
 // FYI Binary Tree inorder traversal give result in increasing order.
 // Create stack for both tree and push element until root->left is NULL.
 // Compare the top of both stack and push the smaller element in the result array.
@@ -45,8 +45,7 @@ public:
             while(root1 != NULL){
                 stk1.push(root1);
                 root1 = root1 -> left;
-            }
-            
+            }            
             while(root2 != NULL){
                 stk2.push(root2);
                 root2= root2 -> left;
@@ -76,7 +75,7 @@ public:
 
 
 
-// A 3
+// A 3 - Merge Two Sorted Lists (Recursive)
 
 class Solution {
 public:
