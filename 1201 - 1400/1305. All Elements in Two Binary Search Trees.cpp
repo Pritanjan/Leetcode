@@ -152,7 +152,30 @@ public:
 
 
 
-// A 5
+// A 5 - Merge Using Multiset
+// Same As A 1
+
+class Solution {
+public:
+    multiset<int> ans;
+    void dfs(TreeNode *root){
+        if(!root) return ;
+        dfs(root->left ); 
+        ans.insert(root->val);       
+        dfs(root->right);
+    }
+    
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        dfs(root1);
+        dfs(root2);
+        return vector<int>(ans.begin(), ans.end());
+    }
+};
 
 
+
+
+
+
+// A 6 
 
