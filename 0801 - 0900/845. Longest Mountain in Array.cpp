@@ -61,6 +61,42 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int longestMountain(vector<int>& arr) {
+        int n = arr.size();
+        int mx = 0;
+        int L = 0;
+        
+        while(L < n-2) {
+            int R = L;
+            
+            // Find the increasing part of the mountain
+            while(R < n-1 && arr[R] < arr[R+1]) R++;
+            
+            // If no increasing part is found, move the left pointer
+            if(R == L || R == n-1) {
+                L = R + 1;
+                continue;
+            }
+            
+            // Find the decreasing part of the mountain
+            while(R < n-1 && arr[R] > arr[R + 1]) R++;
+            
+            // If a mountain is found, update the maximum length
+            if(R > L) {
+                mx = max(mx, R-L+1);
+            }
+            L = R;
+        }        
+        return mx;
+    }
+};
 
 
+
+
+
+
+// A 4
 
