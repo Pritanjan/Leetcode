@@ -27,33 +27,8 @@ public:
 // j = 1
 // ans[1] = ans[1] + 1 = 1 + 1 = 2
     
+ 
 
-
-
-
-// OR
-
-
-class Solution {
-public:
-    vector<int> getRow(int rowIndex) {
-        vector<vector<int>> triangle;
-        for(int i=0; i<=rowIndex; i++) {
-            vector<int> row(i + 1, 1);
-            for(int j=1; j<i; j++) {
-                row[j] = triangle[i-1][j - 1] + triangle[i - 1][j];
-            }
-            triangle.push_back(row);
-        }
-        return triangle[rowIndex];
-    }
-};
-
-// T.C. --> O(N ^ 2)
-// S.C. --> O(N)
-
-
-    
 
 
 
@@ -118,6 +93,40 @@ public:
 
 // A 4 
 
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<vector<int>> triangle;
+        for(int i=0; i<=rowIndex; i++) {
+            vector<int> row(i + 1, 1);
+            for(int j=1; j<i; j++) {
+                row[j] = triangle[i-1][j - 1] + triangle[i - 1][j];
+            }
+            triangle.push_back(row);
+        }
+        return triangle[rowIndex];
+    }
+};
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<vector<int>> triangle(rowIndex + 1);
+        for(int i=0; i<=rowIndex; i++) {
+            triangle[i].resize(i+1);
+            triangle[i][0] = triangle[i][i] = 1;
+            for(int j=1; j<i; j++) {
+                triangle[i][j] = triangle[i-1][j - 1] + triangle[i - 1][j];
+            }
+        }
+        return triangle[rowIndex];
+    }
+};
+
+// T.C. --> O(N ^ 2)
+// S.C. --> O(N)
 
