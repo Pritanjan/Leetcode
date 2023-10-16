@@ -1,5 +1,4 @@
-// APPROACH 1
-
+// A 1
 
 class Solution {
 public:
@@ -15,10 +14,8 @@ public:
     }
 };
 
-
 // n = 2
-
-// ans(1,0,0)
+// ans(1, 0, 0)
 // i = 1
 // j = 1
 // ans[1] = ans[1] + 1  = 0 + 1 = 1
@@ -32,14 +29,35 @@ public:
     
 
 
+
+
+// OR
+
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<vector<int>> triangle;
+        for(int i=0; i<=rowIndex; i++) {
+            vector<int> row(i + 1, 1);
+            for(int j=1; j<i; j++) {
+                row[j] = triangle[i-1][j - 1] + triangle[i - 1][j];
+            }
+            triangle.push_back(row);
+        }
+        return triangle[rowIndex];
+    }
+};
+
 // T.C. --> O(N ^ 2)
 // S.C. --> O(N)
 
 
     
 
-// APPROACH 2
 
+
+// A 2
 
 class Solution {
 public:
