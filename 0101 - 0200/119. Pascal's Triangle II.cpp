@@ -63,14 +63,30 @@ class Solution {
 public:
     vector<int> getRow(int rowIndex) {
         vector<int> row(rowIndex + 1, 1);
-        for (int i = 1; i <= rowIndex / 2; i++) {
-            row[i] = row[rowIndex - i] = (long)row[i - 1] * (rowIndex - i + 1) / i;
+        for(int i=1; i<=rowIndex / 2; i++) {
+            row[i] = row[rowIndex - i] = (long)row[i-1] * (rowIndex - i+1) / i;
         }
         return row;
     }
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {        
+        vector<int> row(rowIndex + 1, 1);
+        long long val = 1;
+        for(int i=0; i<=rowIndex; i++) {
+            // row.push_back(static_cast<int> (val));
+            row[i] = static_cast<int>(val);
+            val = val * (rowIndex - i)  / (i+1);
+        }
+        return row;
+    }
+};
 
 // T.C. --> O(N)
 // S.C. --> O(N)
