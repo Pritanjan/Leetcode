@@ -1,4 +1,4 @@
-// https://www.codingninjas.com/codestudio/problems/leaders-in-an-array_873144?leftPanelTab=2
+// A 1
 
 class Solution {
 public:
@@ -22,6 +22,12 @@ public:
 };
 
 
+
+
+
+
+// A 2
+
 class Solution {
 public:
     vector<int> replaceElements(vector<int>& nums) {
@@ -34,16 +40,20 @@ public:
 
 
 
+
+
+
+// A 3
+
 class Solution {
 public:
     vector<int> replaceElements(vector<int>& arr) {
-        int temp;
-        int ma = -1;
-        
-        for(int i=arr.size()-1; i>=0; i--){
-            temp = arr[i];
-            arr[i] = ma;
-            ma = max(ma,temp);
+        int n = arr.size();
+        int mx = -1;        
+        for(int i=n-1; i>=0; i--){
+            int temp = arr[i];
+            arr[i] = mx;
+            mx = max(mx, temp);
         }
         return arr;
     }
