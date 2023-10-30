@@ -30,6 +30,7 @@ public:
 
 // A 3
 
+// Custom Comparator and Sorting with Lambda Function
 class Solution {
 public:
     static bool compare(const int& a, const int& b){
@@ -48,6 +49,7 @@ public:
 // OR
 
 
+// Lambda Function for Custom Sorting
 class Solution {
 public: 
     vector<int> sortByBits(vector<int>& arr) {
@@ -63,9 +65,10 @@ public:
 
 // OR
 
-
+// Custom Comparator and Counting Ones with Bit Shifting
 class Solution {
 public:
+    // Function to count the number of 1's in the binary representation of an integer
     static int cntOnes(int num) {
         int cnt = 0;
         while(num > 0) {
@@ -74,6 +77,8 @@ public:
         }
         return cnt;
     }
+    
+    // Custom comparator function for sort
     static bool compare(int a, int b){
         int c0 = cntOnes(a); // Count the number of one
         int c1 = cntOnes(b); // Count the number of zero
