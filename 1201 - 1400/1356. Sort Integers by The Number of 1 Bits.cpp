@@ -21,17 +21,7 @@ public:
 
 // A 2
 
-class Solution {
-public: 
-    vector<int> sortByBits(vector<int>& arr) {
-        sort(arr.begin(), arr.end(), [](const int& a, const int& b){
-            int c0 = __builtin_popcount(a); // Count the number of one
-            int c1 = __builtin_popcount(b); // Count the number of zero
-            return c0 == c1 ? a<b : c0<c1 ;
-        });
-        return arr;
-    }
-};
+
 
 
 
@@ -54,6 +44,21 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public: 
+    vector<int> sortByBits(vector<int>& arr) {
+        sort(arr.begin(), arr.end(), [](const int& a, const int& b){
+            int c0 = __builtin_popcount(a); // Count the number of one
+            int c1 = __builtin_popcount(b); // Count the number of zero
+            return c0 == c1 ? a<b : c0<c1 ;
+        });
+        return arr;
+    }
+};
 
 
 
