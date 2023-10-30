@@ -61,7 +61,37 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    static int cntOnes(int num) {
+        int cnt = 0;
+        while(num > 0) {
+            if(num & 1) cnt++;
+            num >>= 1;
+        }
+        return cnt;
+    }
+    static bool compare(int a, int b){
+        int c0 = cntOnes(a); // Count the number of one
+        int c1 = cntOnes(b); // Count the number of zero
+        // cout<<a<<" "<<b;
+        return c0 == c1 ? a<b : c0<c1 ;
+    }    
+    vector<int> sortByBits(vector<int>& arr) {
+        sort(arr.begin(), arr.end(), compare);
+        return arr;
+    }
+};
+
+
+
+
 
 
 // A 4
+
+
 
