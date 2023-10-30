@@ -92,6 +92,26 @@ public:
 };
 
 
+// OR
+
+
+struct compare {
+    bool operator()(int a, int b) const {
+        int cnt0 = __builtin_popcount(a);
+        int cnt1 = __builtin_popcount(b);
+        return cnt0 == cnt1 ? a < b : cnt0 < cnt1;
+    }
+};
+
+class Solution {
+public:
+    vector<int> sortByBits(vector<int>& arr) {
+        sort(arr.begin(), arr.end(), compare());
+        return arr;
+    }
+};
+
+
 
 
 
