@@ -47,23 +47,7 @@ public:
 
 // A 3
 
-class Solution{
-public:
-    int equalSum(vector<int>& A, int N) {
-        int i = 0, sum = 0, sum1 = 0;
-        if(N == 1) return 1;
-        while(i < N) {
-            sum += A[i];
-            i++;
-        }
-        for(i = N-1; i > 0; i--) {
-            sum -= A[i];
-            sum1 += A[i];
-            if(sum == (sum1 - A[i])) return i+1;
-        }
-        return -1;
-    }
-};
+
 
 
 
@@ -125,9 +109,9 @@ public:
   
 class Solution {
 public:
-    int findMiddleIndex(std::vector<int>& nums) {
+    int findMiddleIndex(vector<int>& nums) {
         int lsum = 0, rsum = 0;
-        for (int num : nums) {
+        for(int num : nums) {
             rsum += num;
         }
         for(int i=0; i<nums.size(); i++) {
