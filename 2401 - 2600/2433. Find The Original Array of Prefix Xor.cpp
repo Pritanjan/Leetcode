@@ -41,3 +41,34 @@ public:
 
 
 
+
+
+
+// A 3
+
+class Solution {
+public:
+    vector<int> findArray(vector<int>& pref) {
+        int n = pref.size();
+        vector<int> res(n);
+        stack<int> stk;
+
+        for(int i=0; i<n; i++) {
+            while(!stk.empty()) {
+                res[i] ^= stk.top();
+                stk.pop();
+            }
+            res[i] ^= pref[i];
+            stk.push(pref[i]);
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4
+
