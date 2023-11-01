@@ -1,4 +1,4 @@
-// APPROACH 1 
+// A 1 
 
 class Solution {
 public:
@@ -38,8 +38,8 @@ public:
 
 
 
-// APPROACH 2 INORDER TRAVERSAL WITH HASH MAP
 
+// A 2 INORDER TRAVERSAL WITH HASH MAP
 // S1 Perform inorder traversal to get array in sorted order
 // S2 Now, traverse through array & keep the freq of each element in the array 
 // S3 After trversal, find the maximum freq & collect all value witrh that freq in modes
@@ -51,13 +51,11 @@ public:
         vector<int> v;    // to store inorder valus of a trees
         vector<int> modes;
         
-        inOrder(root, v);
-        
+        inOrder(root, v);        
         for(auto val : v) freqMap[val]++;
         
         int maxFreq = 0;
         for(auto& i : freqMap) maxFreq = max(maxFreq, i.second);
-        
         for(auto& i : freqMap) {
             if(i.second == maxFreq) modes.push_back(i.first);
         }
@@ -73,9 +71,8 @@ public:
 };
 
 
-
-
 // OR
+
 
 class Solution {
 public:
@@ -96,7 +93,6 @@ public:
         }
         return modes;
     }
-
 private:
     void inOrderTraversal(TreeNode* node, unordered_map<int, int>& occurrences, int& maxCount) {
         if(node == nullptr) return ;
@@ -108,3 +104,45 @@ private:
     }
 };
 
+
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        unordered_map<int, int> counter;
+        vector<TreeNode*> stk;
+        stk.push_back(root);
+
+        while(!stk.empty()) {
+            TreeNode* node = stk.back();
+            stk.pop_back();
+
+            counter[node->val]++;
+            if(node -> left != nullptr) stk.push_back(node -> left);
+            if(node -> right != nullptr) stk.push_back(node -> right);
+        }        
+        int maxFreq = 0;
+        for(auto& [key, val] : counter) {
+            maxFreq = max(maxFreq, val);
+        }        
+        vector<int> ans;
+        for(auto& [key, val] : counter) {
+            if(val == maxFreq) {
+                ans.push_back(key);
+            } 
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+// A 4 
