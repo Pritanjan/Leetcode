@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 /*n=numRows
 ?=2n-2    1                           2n-1                         4n-3
@@ -51,36 +51,38 @@ public:
 
 
 
-// APPROACH 2
+
+
+// A 2
 
 class Solution {
 public:
     string convert(string s, int numRow) {
-        
-        if(numRow == 1)
-            return s;
+        if(numRow == 1) return s;
         
         vector<string> v(numRow);
         int row = 0;
-        int inc = -1;
-        
+        int inc = -1;        
         for(int i=0; i<s.size(); i++){
-            if(i % (numRow - 1) == 0)
-                inc *= -1;
+            if(i % (numRow - 1) == 0) inc *= -1;
             v[row].push_back(s[i]);
             row += inc;
         }
+
         string ans ;
-        for(const auto& str:v )
+        for(const auto& str : v) {
             ans += str;
-        
+        }        
         return ans;
     }
 };
 
 
-// APPROACH 3
 
+
+
+
+// A 3
 // simulate and add each character to the corresponding row
 // go down -> reach bottom -> go up -> reach top -> go down ...
 
