@@ -19,13 +19,41 @@ public:
 
 
 
-// A 2 - Stack 
+// A 2 
+
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        vector<string> res;
+        queue<int> que;
+        for(int i=1; i<=n; i++) {
+            que.push(i);
+        }
+
+        int idx = 0;
+        while(idx < target.size()) {
+            int curr = que.front();
+            que.pop();
+
+            if(curr == target[idx]) {
+                res.push_back("Push");
+                idx++;
+            }
+            else {
+                res.push_back("Push");
+                res.push_back("Pop");
+            }
+        }
+        return res;
+    }
+};
 
 
 
 
 
-// A 3  - Stack Simulation
+
+// A 3  - 
 
 class Solution {
 public:
@@ -52,7 +80,7 @@ public:
 
 
 
-// A 3
+// A 4
 
 
 
