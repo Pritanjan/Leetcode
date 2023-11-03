@@ -1,4 +1,4 @@
-// A 1
+// A 1 -  Simulation
 
 class Solution {
 public:
@@ -19,7 +19,13 @@ public:
 
 
 
-// A 2
+// A 2 - Stack 
+
+
+
+
+
+// A 3  - Optimised
 
 class Solution {
 public:
