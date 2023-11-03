@@ -19,7 +19,32 @@ string firstRepChar(string s) {
 
 
 
-// A 1 - Brute force 
+// A 0 - Brute force 
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int n = s.size();
+        for(int i=0; i<n; i++) {
+            bool isUq = true;
+            for(int j=0; j<n; j++) {
+                if(i != j and s[i] == s[j]) {
+                    isUq = false;
+                    break;
+                }
+            }
+            if(isUq) return i;
+        }
+        return -1;
+    }
+};
+
+
+
+
+
+
+// A 1 
 // Traverse string s 2 times. 
 // 1st traversal, store counts of every character into the hash table,
 // 2nd traversal, find the first character that appears only once.
