@@ -25,7 +25,7 @@ public:
 
 
 
-// A 3  - Optimised
+// A 3  - Stack Simulation
 
 class Solution {
 public:
