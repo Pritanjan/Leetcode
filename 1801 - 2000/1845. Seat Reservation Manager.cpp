@@ -56,3 +56,61 @@ public:
 
 
 
+
+// A 3 
+
+// JAVA
+public class SeatManager {
+    private boolean[] seats;
+    private int first = 0;
+    private int total = 0;
+
+    public SeatManager(int n) {
+        seats = new boolean[n];
+        total = n;
+        Arrays.fill(seats, false);
+    }
+
+    public int reserve() {
+        seats[first] = true;
+        int reserved = first + 1;
+        while(first < total && seats[first]) first++;
+        return reserved;
+    }
+
+    public void unreserve(int seatNumber) {
+        if(first > seatNumber - 1) {
+            first = seatNumber - 1;
+        }
+        seats[seatNumber - 1] = false;
+    }
+}
+
+
+
+// C++ - TLE
+class SeatManager {
+private:
+    vector<bool> seats;
+    int first = 0;
+    int total = 0;
+public:
+    SeatManager(int n) {
+        total = n;
+        seats.resize(n, false);
+    }
+    
+    int reserve() {
+        seats[first] = true;
+        int reserved = first + 1;
+        while(first < total && seats[first]) first++;
+        return reserved;
+    }
+    
+    void unreserve(int seatNumber) {
+        if(first > seatNumber - 1) {
+            first = seatNumber - 1;
+        }
+        seats[seatNumber - 1] = false;
+    }
+};
