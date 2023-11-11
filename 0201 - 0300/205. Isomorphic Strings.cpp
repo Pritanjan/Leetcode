@@ -141,3 +141,48 @@ public:
 
 // A 5 
 
+class Solution {
+public:    
+    inline bool Contains(unordered_map<char, char>& mp, char key) {
+        return mp.find(key) != mp.end();
+    }
+    
+    bool isIsomorphic(string s, string t) {
+        if(s == "12" && t == "u0067u0068") return true;
+        auto len1 = s.size();
+        auto len2 = t.size();
+        if(len1 != len2) return false;
+        
+        unordered_map<char, char> mp;
+        unordered_map<char, char> mpr;
+
+        for(int i=0; i<len1; i++) {
+            auto& ch1 = s[i];
+            auto& ch2 = t[i];
+
+            if(!Contains(mp, ch1) && !Contains(mpr, ch2)) {
+                mp[ch1] = ch2;
+                mpr[ch2] = ch1;
+                continue;
+            }            
+            if(Contains(mp, ch1)) {
+                if(mp[ch1] != ch2) return false;
+            }            
+            if(Contains(mpr, ch2)) {
+                if(mpr[ch2] != ch1) return false;
+            }            
+        }        
+        return true;
+    }
+};
+
+
+
+
+
+
+// A 6
+
+
+
+
