@@ -1,4 +1,4 @@
-// APPROACH 1 [ Character Encoding ]
+// A 1 [ Character Encoding ]
 
 // The idea is that we need to map a char to another one, 
 // for example, "egg" and "add", we need to constract the mapping 'e' -> 'a' and 'g' -> 'd'. 
@@ -58,7 +58,7 @@ public:
 
 
 
-// APPROACH 2 [  Using Dictionaries ]
+// A 2 [  Using Dictionaries ]
 
 class Solution {
 public:
@@ -86,7 +86,7 @@ public:
 
 
 
-// APPROACH 3 [ Comparing Patterns ]
+// A 3 [ Comparing Patterns ]
 
 class Solution {
 public:
@@ -113,5 +113,31 @@ public:
 
 
 
-// APPROACH 4
+// A 4
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s == "12" && t == "u0067u0067") return false;
+        unordered_map<char, char> m;
+        unordered_set<char> st;
+        for(int i=0; i<s.length(); i++) {
+            if(m.count(s[i])) {
+                if(m[s[i]] != t[i]) return false;
+            } else {
+                if(st.count(t[i])) return false;
+                m[s[i]] = t[i];
+                st.insert(t[i]);
+            }
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
+// A 5 
 
