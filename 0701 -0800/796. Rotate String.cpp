@@ -54,3 +54,34 @@ public:
 };
 
 
+
+
+
+
+// A 3 -  KMP (Knuth-Morris-Pratt)
+
+class Solution {
+public:
+    bool rotateString(string A, string B) {
+        int N = A.length();
+        if(N != B.length()) return false;
+        if(N == 0) return true;
+
+        // Compute shift table
+        vector<int> v(N + 1, 1);
+        int L = -1;
+        for(int R=0; R<N; ++R) {
+            while(L >= 0 && (B[L] != B[R])) L -= v[L];
+            v[R+1] = R - L++;
+        }
+
+        // Find match of B in A+A
+        int len = 0;
+        for(char c : (A + A)) {
+            while(len >= 0 && B[len] != c) len -= v[len];
+            if(++len == N) return true;
+        }
+        return false;
+    }
+};
+
