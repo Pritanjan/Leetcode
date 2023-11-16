@@ -1,3 +1,29 @@
+// A 0 - Brutez Force
+
+class Solution {
+public:
+    bool rotateString(string A, string B) {
+        if(A.length() != B.length()) return false;
+        if(A.size() == 0) return true;
+
+        for(int i=0; i<A.size(); i++) {
+            for(int j=0; j<A.size(); j++) {
+                if(A.at((i+j) % A.size()) != B.at(j))
+                    goto search;
+            }
+            return true;
+
+            search:;
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
 // A 1
 
 class Solution {
