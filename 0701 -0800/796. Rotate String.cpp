@@ -85,3 +85,70 @@ public:
     }
 };
 
+
+
+
+
+// A 4 - Rolling Hash  -- LC
+
+class Solution {
+public:
+    bool rotateString(string A, string B) {
+        if(A == B) return true;
+
+        int MOD = 1'000'000'007;
+        int P = 113;
+
+        // Calculate modular inverse of P
+        int Pinv = modInverse(P, MOD);
+
+        long hb = 0, pow = 1;
+        for(char x : B) {
+            hb = (hb + pow * x) % MOD;
+            pow = (pow * P) % MOD;
+        }
+
+        long ha = 0;
+        pow = 1;
+        vector<char> ca(A.begin(), A.end());
+        for (char x : ca) {
+            ha = (ha + pow * x) % MOD;
+            pow = (pow * P) % MOD;
+        }
+
+        for(int i=0; i<ca.size(); ++i) {
+            char x = ca[i];
+            ha = (ha + pow * x - x) % MOD;
+            ha = (ha + MOD) % MOD;  // Ensure ha is positive
+            ha = (ha * Pinv) % MOD;
+
+            if (ha == hb && (A.substr(i+1) + A.substr(0, i+1)) == B) return true;
+        }
+        return false;
+    }
+
+private:
+    int modInverse(int a, int m) {
+        int m0 = m, t, q;
+        int x0 = 0, x1 = 1;
+
+        if(m == 1) return 0;
+
+        while(a > 1) {
+            q = a / m;
+            t = m;
+
+            m = a % m;
+            a = t;
+            t = x0;
+
+            x0 = x1 - q * x0;
+            x1 = t;
+        }
+        if(x1 < 0) x1 += m0;
+        return x1;
+    }
+};
+
+
+    
