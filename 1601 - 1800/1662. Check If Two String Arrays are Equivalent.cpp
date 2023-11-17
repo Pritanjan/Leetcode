@@ -2,19 +2,22 @@
 
 class Solution {
 public:
-    string Concatenate(vector<string> &v){
-        string s = "";
-        for(auto i : v){
-            s += i;
-        }
-        return s;
+    string Concatenate(vector<string> &word){
+        // string s = "";
+        // for(auto i : word) s += i;
+        // return s;
+
+        return accumulate(word.begin(), word.end(), string());
     }    
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
         string s1 = Concatenate(word1);
         string s2 = Concatenate(word2);        
-        return !s1.compare(s2) ? true : false;
+        
+        // return !s1.compare(s2) ? true : false;
+        return s1 == s2;
     }
 };
+
 
 
 
@@ -77,5 +80,19 @@ public:
 
 
 
-// A 4 
+// A 4 - Concatenate and Compare USing STL
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        return accumulate(word1.begin(), word1.end(), string()) == accumulate(word2.begin(), word2.end(), string());                
+    }
+};
+
+
+
+
+
+
+// A 5 
 
