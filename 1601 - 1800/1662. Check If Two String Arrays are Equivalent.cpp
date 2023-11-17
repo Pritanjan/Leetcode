@@ -21,7 +21,7 @@ public:
 
 
 
-// A 2
+// A 2 - Concatenate and Compare
 
 class Solution {
 public:
@@ -38,10 +38,44 @@ public:
     }
 };
 
+// T.C. --> O(N*K)
+// S.C. --> O(N*K)
 
 
 
 
 
-// A 3 
+// A 3 - 2 Pointer
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        int ptr1w = 0, ptr2w = 0;
+        int ptr1s = 0, ptr2s = 0;
+        while(ptr1w < word1.size() && ptr2w < word2.size()) {
+            if(word1[ptr1w][ptr1s++] != word2[ptr2w][ptr2s++]) {
+                return false;
+            }            
+            if(ptr1s == word1[ptr1w].size()) {
+                ptr1w++;
+                ptr1s = 0;
+            }            
+            if(ptr2s == word2[ptr2w].size()) {
+                ptr2w++;
+                ptr2s = 0;
+            }
+        }
+        return ptr1w == word1.size() && ptr2w == word2.size();
+    }
+};
+
+// T.C. --> O(N*K)
+// S.C. --> O(1)
+
+
+
+
+
+
+// A 4 
 
