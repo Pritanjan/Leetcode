@@ -94,5 +94,23 @@ public:
 
 
 
-// A 5 
+// A 5 - Using stringstream
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        ostringstream oss1, oss2;
+        copy(word1.begin(), word1.end(), ostream_iterator<string>(oss1));
+        copy(word2.begin(), word2.end(), ostream_iterator<string>(oss2));
+        return oss1.str() == oss2.str();        
+    }
+};
+
+
+
+
+
+
+// A 6 
+
 
