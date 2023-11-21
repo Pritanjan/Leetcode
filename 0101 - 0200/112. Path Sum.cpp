@@ -61,6 +61,37 @@ public:
 // S.C. --> O(H), it has a recursive call stack depth of h
 
 
+// OR 
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(!root) return false;
+    
+        stack<TreeNode*> nodes;
+        stack<int> sums;
+        
+        nodes.push(root);
+        sums.push(targetSum - root -> val);
+
+        while(!nodes.empty()) {
+            TreeNode* curr = nodes.top(); nodes.pop();
+            int currSum = sums.top(); sums.pop();
+
+            if(!curr -> left && !curr -> right && currSum == 0) return true;
+            if(curr -> right) {
+                nodes.push(curr -> right);
+                sums.push(currSum - curr -> right -> val);
+            }
+            if(curr -> left) {
+                nodes.push(curr -> left);
+                sums.push(currSum - curr -> left -> val);
+            }
+        }
+        return false;
+    }
+};
+
 
 
 
