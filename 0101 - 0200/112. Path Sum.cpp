@@ -137,6 +137,25 @@ public:
 
 
 
-// A 4
+// A 4 - Memorization
 
+class Solution {
+public:
+    bool memo(TreeNode* root, int tgtSum, unordered_map<TreeNode*, bool>& mp) {
+        if(!root) return false;
+        if(mp.find(root) != mp.end()) return mp[root];
+
+        bool res = false;
+        if(!root -> left && !root -> right) res = tgtSum == root -> val;
+        else res = memo(root->left, tgtSum - root -> val, mp) || memo(root -> right, tgtSum - root -> val, mp);
+        
+        mp[root] = res;
+        return res;
+    }
+
+    bool hasPathSum(TreeNode* root, int tgtSum) {
+        unordered_map<TreeNode*, bool> mp;
+        return memo(root, tgtSum, mp);
+    }
+};
 
