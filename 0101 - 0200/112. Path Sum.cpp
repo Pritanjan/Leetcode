@@ -1,28 +1,18 @@
-// APPROACH 1 [ RECURSIVE ]
-
+// A 1 [ RECURSIVE ]
 
 // IDEA 
 // SUBTRACT THE VALUE OF CURRENT NODE FROM SUM UNTILL IT
 // REACHES A LEAF NODE & THE SUBTRACTION EQUALS TO 0, 
 // THEN WE KNOW THAT WE GOT THE PATH.
 
-
-
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        if(root == NULL)
-            return false;
-        if(root->left == NULL && root->right == NULL && targetSum  - root->val == 0)
-            return true;
-        else
-            return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val) ;
+        if(root == NULL) return false;
+        if(root->left == NULL && root->right == NULL && targetSum  - root->val == 0) return true;
+        else return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val) ;
     }
 };
-
-
-
-
 
 // root.left == null && root.right == null
 // This tells us if the current node is a leaf node
@@ -30,7 +20,6 @@ public:
 // sum - root.val == 0
 // This checks that, if we add this leaf node's value to our current sum, 
 // will it be equal to the target sum?
-
 
 
 // T.C. --> O(N), 
@@ -44,12 +33,7 @@ public:
 
 
 
-
-
-
-
-// APPROACH 2 [ Iterative solution using stack ]
-
+// A 2 [ Iterative solution using stack ]
 
 class Solution {
 public:        
@@ -73,9 +57,6 @@ public:
     }
 };
 
-
-
-
 // T.C. --> O(N)
 // S.C. --> O(H), it has a recursive call stack depth of h
 
@@ -84,9 +65,7 @@ public:
 
 
 
-
-// APPROACH 2 [ Iterative solution using queue ]
-
+// A 3 [ Iterative solution using queue ]
 
 class Solution {
 public:        
@@ -119,10 +98,6 @@ public:
     }
 };
 
-
-
-
-
 // T.C. --> O(N)
 // S.C. --> O(H), it uses stack or a queue to traverse the tree in a depth-first or breadth-first manner.
 
@@ -131,5 +106,6 @@ public:
 
 
 
+// A 4
 
 
