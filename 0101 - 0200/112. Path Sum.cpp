@@ -33,7 +33,7 @@ public:
 
 
 
-// A 2 [ Iterative solution using stack ]
+// A 2 - Iterative DFS using a stack ]
 
 class Solution {
 public:        
