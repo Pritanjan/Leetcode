@@ -29,6 +29,26 @@ public:
 // height of the tree is the max space taken up at any point in the stack
 
 
+// OR
+
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(!root) return false;
+
+        targetSum -= root->val;
+
+        if(!root -> left && !root -> right) return targetSum == 0;
+
+        bool LRes = hasPathSum(root -> left, targetSum);
+        bool RRes = hasPathSum(root -> right, targetSum);
+
+        return LRes || RResult;
+    }
+};
+
+
 
 
 
