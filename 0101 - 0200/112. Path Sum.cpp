@@ -198,3 +198,37 @@ public:
     }
 };
 
+
+
+
+
+// A 5
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(!root) return false;
+        
+        // Use a set to store the sums reached so far
+        unordered_set<int> sums;
+        sums.insert(0); // Starting with 0 as the initial sum
+
+        return helper(root, targetSum, 0, sums);
+    }
+private:
+    bool helper(TreeNode* root, int targetSum, int currSum, unordered_set<int>& sums) {
+        if(!root) return false;
+        
+        currSum += root -> val;
+
+        if(!root -> left && !root -> right) return sums.count(currSum - targetSum) > 0;
+        
+        bool LRes = helper(root -> left,  targetSum, currSum, sums);
+        bool RRes = helper(root -> right, targetSum, currSum, sums);
+
+        sums.insert(currSum);
+
+        return LRes || RRes;
+    }
+};
+
