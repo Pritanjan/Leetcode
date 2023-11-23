@@ -47,6 +47,26 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool helper(TreeNode* root, int tgtSum, int currSum) {
+        if(!root) return false;
+        
+        currSum += root -> val;
+
+        if(!root -> left && !root -> right) return currSum == tgtSum;
+        
+        return helper(root -> left, tgtSum, currSum) || helper(root -> right, tgtSum, currSum);
+    }
+
+    bool hasPathSum(TreeNode* root, int tgtSum) {
+        return helper(root, tgtSum, 0);
+    }
+};
+
 
 
 
