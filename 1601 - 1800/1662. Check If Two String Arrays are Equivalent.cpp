@@ -33,6 +33,21 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string x,y;
+        for(auto i : word1) x += i;
+        for(auto i : word2) y += i;
+
+        return x == y;
+    }
+};
+
+
 
 
 
