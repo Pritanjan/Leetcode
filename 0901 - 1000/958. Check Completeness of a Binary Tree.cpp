@@ -44,7 +44,30 @@ public:
 // Space complexity: O(W), where W is the maximum width of the binary tree.
 
 
+// OR
 
+
+class Solution {
+public:
+    bool isCompleteTree(TreeNode* root) {
+        if(!root) return true;
+
+        queue<TreeNode*> que;
+        que.push(root);
+
+        while(que.front() != nullptr) {
+            TreeNode* curr = que.front();
+            que.pop();
+            que.push(curr -> left);
+            que.push(curr -> right);
+        }
+
+        while(!que.empty() && que.front() == nullptr) {
+            que.pop();
+        }
+        return que.empty();
+    }
+};
 
 
 // Approach 2 Recursive Solution
