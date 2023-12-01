@@ -1,7 +1,10 @@
-Approach 1 Iterative Solution
-The idea is to use a queue to perform level-order traversal of the tree. And take a variable check which is used to keep track of whether any non-full node has been found in the previous level. If a non-full node is found in the current level, then function will returns false as tree is not complete. If the end of the level is reached without finding any non-full nodes, the function returns true as the tree is complete.
+// Approach 1 Iterative Solution
+// The idea is to use a queue to perform level-order traversal of the tree. And take a variable check
+// which is used to keep track of whether any non-full node has been found in the previous level. 
+// If a non-full node is found in the current level, then function will returns false as tree is 
+// not complete. If the end of the level is reached without finding any non-full nodes, 
+// the function returns true as the tree is complete.
 
-Code
 class Solution {
 public:
     bool isCompleteTree(TreeNode* root) {
@@ -34,12 +37,17 @@ public:
         return true;
     }
 };
-Complexity
-Time complexity: O(N), where N is the number of nodes in the binary tree. As it traverse each node exactly once.
-Space complexity: O(W), where W is the maximum width of the binary tree.
 
-Approach 2 Recursive Solution
-Code
+// Complexity
+// Time complexity: O(N), where N is the number of nodes in the binary tree. 
+// As it traverse each node exactly once.
+// Space complexity: O(W), where W is the maximum width of the binary tree.
+
+
+
+
+
+// Approach 2 Recursive Solution
 
 class Solution {
 public:  
@@ -66,9 +74,13 @@ public:
         return isCompleteBinaryTree(root, 0, totalNodes);
     }
 };
-Complexity
-Time complexity:- O(N), where N is the number of nodes in the binary tree, because it traverses each node of the binary tree exactly once.
-Space complexity: O(log N), as it uses recursion to traverse the binary tree, and the maximum depth of tree is log N in a balanced binary tree.
+
+
+// Complexity
+// Time complexity:- O(N), where N is the number of nodes in the binary tree, because 
+// it traverses each node of the binary tree exactly once.
+// Space complexity: O(log N), as it uses recursion to traverse the binary tree, 
+// and the maximum depth of tree is log N in a balanced binary tree.
   
   
   
