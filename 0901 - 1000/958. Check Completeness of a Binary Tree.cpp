@@ -1,4 +1,4 @@
-// Approach 1 Iterative Solution
+// Approach 1 Iterative Solution - Using Level Order Traversal with a Flag for the Last Level
 // The idea is to use a queue to perform level-order traversal of the tree. And take a variable check
 // which is used to keep track of whether any non-full node has been found in the previous level. 
 // If a non-full node is found in the current level, then function will returns false as tree is 
@@ -45,6 +45,7 @@ public:
 
 
 // OR
+// Using Level Order Traversal and a Queue
 
 
 class Solution {
@@ -70,7 +71,10 @@ public:
 };
 
 
-// Approach 2 Recursive Solution
+
+
+
+// Approach 2 Recursive & DFS
 
 class Solution {
 public:  
