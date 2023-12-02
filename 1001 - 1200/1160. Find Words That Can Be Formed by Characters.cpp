@@ -89,3 +89,18 @@ public:
 
 
 // A 4 - Using Sorting
+
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+        sort(chars.begin(), chars.end());
+        int res = 0;
+        for(string &word : words) {
+            string temp = word;
+            sort(temp.begin(), temp.end());
+            if(includes(chars.begin(), chars.end(), temp.begin(), temp.end())) res += word.length();
+        }
+        return res;
+    }
+};
+
