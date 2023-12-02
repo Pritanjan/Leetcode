@@ -67,6 +67,22 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> res;
+        transform(nums.begin(), nums.end(), back_inserter(result), [](int num) {
+            return num * num;
+        });
+        sort(res.begin(), res.end());
+        return res;
+    }
+};
+
+
 
 
 
@@ -123,29 +139,75 @@ public:
 
 
 
+// A 6 -  Binary Search Insertion
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> res;
+        for(int num : nums) {
+            int sq = num * num;
+            auto it = lower_bound(res.begin(), res.end(), sq);
+            res.insert(it, square);
+        }
+        return res;
+    }
+};
 
 
 
 
 
 
-// APPROACH 1
-// APPROACH 1
-// APPROACH 1
-// APPROACH 1
+// A 7 - Counting Sort
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        const int maxValue = 10000;  // Adjust this value based on the range of input numbers
+        vector<int> count(maxValue + 1, 0);
+
+        for (int num : nums) {
+            count[abs(num)]++;
+        }
+
+        vector<int> res;
+        for(int i = 0; i <= maxValue; ++i) {
+            res.insert(res.end(), count[i], i * i);
+        }
+        return res;
+    }
+};
 
 
 
 
 
 
+// A 8 - Sort & Mapping
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        map<int, int> squareCount;
+        for (int num : nums) {
+            squareCount[num * num]++;
+        }
+
+        vector<int> res;
+        for(auto& it : squareCount) {
+            res.insert(res.end(), it.second, it.first);
+        }
+        return res;
+    }
+};
 
 
 
 
 
 
-
+// A 9 - 
 
 
 
