@@ -1,6 +1,5 @@
-// APPROACH 1
-
-
+// APPROACH 1 - Brute Force
+ 
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
@@ -16,6 +15,7 @@ public:
 
 
 
+
 // APPROACH 2
 
 class Solution {
@@ -26,6 +26,7 @@ public:
         int R = n-1;
         vector<int> ans(n);
         int i = 0;
+        // int i = n-1; // then do i-- instead of i++
         
         while(L <= R){
             if(abs(nums[L]) < abs(nums[R])){
@@ -45,48 +46,15 @@ public:
 
 
 
-// OR
 
 
-class Solution {
-public:
-    vector<int> sortedSquares(vector<int>& nums) {
-        int n = nums.size();
-        int L = 0;
-        int R = n-1;
-        vector<int> ans(n);
-        int i = n-1;
-        
-        while(L <= R){
-            if(abs(nums[L]) < abs(nums[R])){
-                ans[i--] = nums[R] * nums[R];
-                R--;
-            }
-            else{
-                ans[i--] = nums[L] * nums[L];
-                L++;
-            }
-        }
-        return ans;
-    }
-};
-
-
-
-
-
-
-
-// APPROACH 3
-
-
+// APPROACH 3 - Optimized Sorting
 // It uses transform function to apply the square operation to each element of the input vector A.
 // The sort function is then used to sort the resulting vector in non-descending order.
 // Now, sorted vector is returned.
 
 // Lambda function used in transform to square each element of the input vector 
 // is defined using the [] notation.
-
 
 class Solution {
 public:            
@@ -97,6 +65,8 @@ public:
         return B;
     }
 };
+
+
 
 
 
@@ -127,7 +97,27 @@ public:
 
 
 
+
+
 // APPROACH 5
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        priority_queue<int, vector<int>, greater<int>> pq;
+        for(int num : nums) {
+            pq.push(num * num);
+        }
+
+        vector<int> res;
+        while(!pq.empty()) {
+            res.push_back(pq.top());
+            pq.pop();
+        }
+        return res;
+    }
+};
+
 
 
 
