@@ -57,5 +57,35 @@ public:
 
 
 
-// A 3 
+// A 3  - Using Array
 
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+        vector<int> charCnt(26, 0);
+        for(char c : chars) {
+            charCnt[c - 'a']++;
+        }
+
+        int res = 0;
+        for(string& word : words) {
+            vector<int> wordCnt(26, 0);
+            bool valid = true;
+            for(char c : word) {
+                if(++wordCnt[c - 'a'] > charCnt[c - 'a']) {
+                    valid = false;
+                    break;
+                }
+            }
+            if(valid) res += word.length();
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4 - Using Sorting
