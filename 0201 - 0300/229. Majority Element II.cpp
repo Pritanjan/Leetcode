@@ -336,3 +336,27 @@ public:
 
 // A 7
 
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int threshold = n / 3;
+        unordered_map<int, int> cnts;
+        unordered_map<int, int> idx;
+        vector<int> res;
+        
+        int i = 0;   // initilise an idx variable
+        for(auto num : nums) {
+            cnts[num]++;
+            idx[num] = i;
+            i++;     // increment an idx variable
+        }
+
+        for(auto &it : cnts) {
+            if(it.second > threshold) {
+                res.push_back(nums[idx[it.first]]);
+            }
+        }
+        return res;
+    }
+};
