@@ -97,5 +97,28 @@ public:
 
 // A 3 
 
+class Solution {
+public:
+    int nextGreaterElement(int n) {
+        string s = to_string(n);
+        int m = s.length();
+        int j = m - 2;
+        while (j >= 0 && s[j] >= s[j + 1])
+            j--;
+        if (j < 0) {
+            return -1;
+        }
+        int i = m - 1;
+        while (i >= j && s[i] <= s[j]) {
+            i--;
+        }
+        swap(s[i], s[j]);
+        sort(s.begin() + j + 1, s.end());
+        long long num = stoll(s);
+        if (num > INT_MAX)
+            return -1;
+        return num;
+    }
+};
 
 
