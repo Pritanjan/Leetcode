@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Find the Rightmost Odd Digit
 
 class Solution {
 public:
@@ -12,6 +12,10 @@ public:
         return "";
     }
 };
+
+// T.C. --> O(N)
+// S.C. --> O(1)
+
 
 
 
