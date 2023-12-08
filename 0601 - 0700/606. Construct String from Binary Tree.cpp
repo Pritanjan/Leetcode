@@ -33,3 +33,28 @@ public:
 
 // A 2
 
+class Solution {
+public:
+    string ans;
+    string tree2str(TreeNode* root) {
+        dfs(root);
+        return ans;
+    }
+
+    void dfs(TreeNode* root) {
+        if(!root) return;
+
+        ans += to_string(root -> val);
+        if(root->left || root -> right) {
+            ans += '(';
+            dfs(root -> left);
+            ans += ')';
+        }
+
+        if(root->right) {
+            ans += '(';
+            dfs(root -> right);
+            ans += ')';
+        }
+    }
+};
