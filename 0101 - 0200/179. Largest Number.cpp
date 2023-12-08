@@ -27,7 +27,7 @@ public:
         // string ans = "";
         // for(auto i : v) ans += i;
 
-        // Concatenate sorted strings to form the largest number using std::accumulate
+        // Concatenate sorted strings to form the largest number using accumulate
         string ans = accumulate(v.begin(), v.end(), string(""));
     
         return ans[0] == '0' ? "0" : ans;
