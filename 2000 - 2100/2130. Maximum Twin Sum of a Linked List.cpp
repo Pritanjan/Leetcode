@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Use an Array
 
 class Solution {
 public:
@@ -69,4 +69,40 @@ private:
 
 
 
+// A 3
+
+class Solution {
+public:
+    int getSize(ListNode* head) {
+        int size = 0;
+        ListNode* curr = head;
+        while(curr != nullptr) {
+            size++;
+            curr = curr -> next;
+        }
+        return size;
+    }
+
+    int pairSum(ListNode* head) {
+        int n = getSize(head);
+        int mid = n / 2;
+
+        stack<int> stk;
+        ListNode* curr = head;
+        for (int i = 0; i < mid; ++i) {
+            stk.push(curr -> val);
+            curr = curr -> next;
+        }
+
+        int maxSum = INT_MIN;
+        for(int i=mid; i<n; ++i) {
+            int tmp = stk.top();
+            stk.pop();
+            int currSum = tmp + curr -> val;
+            maxSum = max(maxSum, currSum);
+            curr = curr -> next;
+        }
+        return maxSum;
+    }
+};
 
