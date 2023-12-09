@@ -1,4 +1,20 @@
-// QUCIK SORT
+// A 1 STL
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        // stable_sort(nums.begin(), nums.end());
+        return {nums.begin(),nums.end()} ;
+    }
+};
+
+
+
+
+
+
+// A 2 - QUCIK SORT
 
 class Solution {
 public:
@@ -31,7 +47,10 @@ public:
 
 
 
-// HEAP SORT
+
+
+
+// A 3 - HEAP SORT
 
 class Solution {
 private:
@@ -47,7 +66,6 @@ private:
             heapify(arr, n, largest);
         }
     }
-
 public:
     void buildHeap(std::vector<int>& arr, int n) {
         for(int i=(n/2)-1; i>=0; i--) heapify(arr, n, i);
@@ -56,7 +74,6 @@ public:
             heapify(arr, i, 0);
         }
     }
-
     vector<int> sortArray(vector<int>& arr) {
         int n = arr.size();
         buildHeap(arr, n);
@@ -68,8 +85,8 @@ public:
 
 
 
-// MERGE SORT
 
+// A 4 - MERGE SORT
 
 class Solution {
     // Function to merge two sub-arrays in sorted order.
@@ -133,4 +150,10 @@ public:
         mergeSort(nums, 0, nums.size() - 1, tempArr);
         return nums;
     }
-}; 
+};
+
+
+
+
+
+
