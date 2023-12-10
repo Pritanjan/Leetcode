@@ -69,14 +69,16 @@ public:
         
         for(int i=0; i<A.size(); i++){
             sum += A[i];
-            if (ump.find(sum - k) != ump.end()) {
+            // if (ump.find(sum - k) != ump.end()) {
                 ans += ump[sum - k];
-            }
+            // }
             ump[sum]++;
         }
         return ans; 
     }
 };
+
+
 
 
 
