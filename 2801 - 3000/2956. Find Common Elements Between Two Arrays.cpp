@@ -1,3 +1,5 @@
+// https://leetcode.com/contest/biweekly-contest-119/ranking/
+
 // A 1 
 
 class Solution {
@@ -30,19 +32,58 @@ public:
 class Solution {
 public:
     vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {        
-        set<int> A;
-        set<int> B;
+        set<int> A, B;
         for (int x : nums1) A.emplace(x);
         for (int x : nums2) B.emplace(x);
+        
         int c = 0, d = 0;
-        for(int x : nums1) {
-            if(B.contains(x)) c++;
-        }
-
-        for(int x : nums2){
-            if(A.contains(x)) d++;
-        }
+        for(int x : nums1) if(B.contains(x)) c++;
+        for(int x : nums2) if(A.contains(x)) d++;
         return vector<int>{c, d};
     }
 };
+
+// OR
+
+// class Solution {
+// public:
+//     vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {        
+//         set<int> A, B;
+//         for (int x : nums1) A.insert(x);
+//         for (int x : nums2) B.insert(x);
+        
+//         int c = 0, d = 0;
+//         for(int x : nums1) if(B.count(x)) c++;
+//         for(int x : nums2) if(A.count(x)) d++;
+//         return {c, d};
+//     }
+// };
+
+
+
+
+
+
+// A 3
+
+class Solution {
+public:
+    vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ans{0, 0};
+        for(int num : nums1) {
+          ans[0] += count(nums2.begin(), nums2.end(), num) > 0;
+        }
+        for(int num : nums2) {
+          ans[1] += count(nums1.begin(), nums1.end(), num) > 0;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+// A 4
 
