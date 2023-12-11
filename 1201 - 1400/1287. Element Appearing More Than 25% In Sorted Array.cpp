@@ -51,13 +51,10 @@ public:
 class Solution {
 public:
     int findSpecialInteger(vector<int>& arr) {
-        int size = arr.size() / 4;
-        for (int i = 0; i < arr.size() - size; i++) {
-            if (arr[i] == arr[i + size]) {
-                return arr[i];
-            }
-        }
-        
+        int n = arr.size() / 4;
+        for(int i=0; i<arr.size() - n; i++) {
+            if(arr[i] == arr[i+n]) {]return arr[i];
+        }        
         return -1;
     }
 };
