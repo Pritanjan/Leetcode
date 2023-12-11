@@ -219,3 +219,33 @@ public:
     }
 };
 
+
+
+
+
+
+// https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
+// Max Sum Subarray of size K
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int n){
+        long sum = 0;
+        // sum of the first K elements
+        for(int i=0; i<K; i++) {
+            sum += Arr[i];
+        }
+        
+        // now we are adding next arr element to the sum and 
+        // then subtract first arr element after that we check 
+        // the prev sum is greater than the curr sum or not if it's greater than update it 
+        long maxSum = sum;
+        for(int i=K; i<n; i++) {
+            sum += Arr[i];
+            sum -= Arr[i-K];
+            maxSum = max(maxSum, sum);
+        }
+        
+        return maxSum;
+    }
+};
