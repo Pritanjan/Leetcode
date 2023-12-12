@@ -1,4 +1,4 @@
-// A 0
+// A 0 - Brute Force
 
 class Solution {
 public:
@@ -65,9 +65,8 @@ class Solution {
 public:
     int maxProduct(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        int x = nums[nums.size() - 1];
-        int y = nums[nums.size() - 2];
-        return (x - 1) * (y - 1);
+        int n = nums.size();
+        return (nums[n - 1] - 1) * (nums[n - 2] - 1);
     }
 };
 
@@ -76,5 +75,58 @@ public:
 
 
 
+
+
+
+// A 3  - Priority Queue
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        priority_queue<int> pq(nums.begin(), nums.end());
+        int max1 = pq.top(); pq.pop();
+        int max2 = pq.top(); pq.pop();
+        return (max1 - 1) * (max2 - 1);
+    }
+};
+
+
+
+
+
+
+// A 4  - Find Maximums
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int max1 = *max_element(nums.begin(), nums.end());
+        nums.erase(max_element(nums.begin(), nums.end()));
+        int max2 = *max_element(nums.begin(), nums.end());
+        return (max1 - 1) * (max2 - 1);
+    }
+};
+
+
+
+
+
+
+// A 5 - DP 
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, 0);
+
+        for(int i=0; i<n; ++i) {
+            for (int j=i+1; j<n; ++j) {
+                dp[j] = max(dp[j], (nums[i] - 1) * (nums[j] - 1));
+            }
+        }
+        return *max_element(dp.begin(), dp.end());
+    }
+};
 
 
