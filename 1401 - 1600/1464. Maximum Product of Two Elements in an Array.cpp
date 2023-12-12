@@ -91,6 +91,25 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        priority_queue<int> pq;
+        for(int i : nums) pq.push(i);
+        
+        int p = 2;
+        int res = 1;
+        while(p--) {
+            res *= pq.top() - 1;
+            pq.pop();
+        }
+        return res;
+    }
+};
+
 
 
 
@@ -130,3 +149,27 @@ public:
 };
 
 
+
+
+
+
+// A 6 
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int max1 = numeric_limits<int>::min();
+        int max2 = numeric_limits<int>::min();
+
+        for(int num : nums) {
+            if(num > max1) {
+                max2 = max1;
+                max1 = num;
+            } 
+            else if(num > max2) {
+                max2 = num;
+            }
+        }
+        return (max1 - 1) * (max2 - 1);
+    }
+};
