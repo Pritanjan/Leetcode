@@ -287,6 +287,50 @@ public:
 
 
 
+// 
+// Aa 1
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        int* nums3 = new int[m + n];
+
+        for(int i=0; i<m; ++i) {
+            nums3[i] = nums1[i];
+        }
+
+        int k = 0;
+        for(int j=m; j<m+n; ++j) {
+            nums3[j] = nums2[k];
+            k++;
+        }
+
+        sort(nums3, nums3 + m + n);
+
+        // If the total number of elements is even, return the average of the middle two elements.
+        if((m + n) % 2 == 0) return (nums3[(m+n) / 2 - 1] + nums3[(m+n) / 2]) / 2.0;        
+        // If the total number of elements is odd, return the middle element.
+        else return nums3[(m + n) / 2];
+        
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
