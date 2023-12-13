@@ -5,7 +5,8 @@
 // SOLUTION 
 // https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/
 
-// APPROACH 1 using MAX_HEAP priority_queue 
+
+// A 1 - Using MAX_HEAP priority_queue 
 
 class Solution {
 public:
@@ -26,7 +27,11 @@ public:
 };
 
 
-// APPROACH 2 by using a temp array
+
+
+
+
+// A 2  - Using a temp array
 
 class Solution {
 public:
@@ -50,4 +55,33 @@ public:
 
 
 
+
+
+
+// A 3 - Binary Search 
+
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int n = matrix.size();
+        int L = matrix[0][0];
+        int R = matrix[n-1][n-1];
+        while(L < R) {
+            int mid = L + (R - L) / 2;
+            int cnt = 0;
+            for(int i=0; i<n; ++i)
+                cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+            if(cnt < k) L = mid + 1;
+            else R = mid;
+        }
+        return L;
+    }
+};
+
+
+
+
+
+
+// A 4
 
