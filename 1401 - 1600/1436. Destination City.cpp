@@ -1,4 +1,29 @@
-// A 1
+// A 0 - Brute Force
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        for(int i=0; i<paths.size(); i++) {
+            string candidate = paths[i][1];
+            bool good = true;
+            for(int j=0; j<paths.size(); j++) {
+                if(paths[j][0] == candidate) {
+                    good = false;
+                    break;
+                }
+            }
+            if(good) return candidate;
+        }        
+        return "";
+    }
+};
+
+
+
+
+
+
+// A 1 - Using Hash Map
 
 class Solution {
 public:
@@ -43,7 +68,7 @@ public:
 
 
 
-// A 2
+// A 2 Hash Set
 
 class Solution {
 public:
