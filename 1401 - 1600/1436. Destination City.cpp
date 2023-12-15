@@ -64,6 +64,32 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    string dfs(const string& city, const unordered_map<string, string>& graph) {
+        if(graph.find(city) == graph.end()) {
+            return city;
+        }
+        return dfs(graph.at(city), graph);
+    }
+
+    string destCity(vector<vector<string>>& paths) {
+        unordered_map<string, string> graph;
+        for(auto& path : paths) {
+            string& cityA = path[0];
+            string& cityB = path[1];
+            graph[cityA] = cityB;
+        }
+        string& startCity = paths[0][0];
+
+        return dfs(startCity, graph);
+    }
+};
+
+
 
 
 
