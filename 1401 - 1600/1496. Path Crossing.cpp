@@ -29,5 +29,30 @@ public:
 
 // A 2 
 
+class Solution {
+private:
+    void coordinates(int& x, int& y, char dir) {
+        if(dir == 'N') y++;
+        else if(dir == 'S') y--;
+        else if(dir == 'E') x++;
+        else if(dir == 'W') x--;
+    }
+public:
+    bool isPathCrossing(string path) {
+        int size = 2001; // Adjust based on the constraints
+        vector<vector<bool>> vis(size, vector<bool>(size, false));
+        int x = size / 2, y = size / 2;
+
+        vis[x][y] = true;
+        for(char c : path) {
+            coordinates(x, y, c);
+            if(vis[x][y]) return true;
+            else vis[x][y] = true;
+        }
+        return false;
+    }
+};
+
+
 
 
