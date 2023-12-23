@@ -56,3 +56,37 @@ public:
 
 
 
+
+
+// A 3 
+
+class Solution {
+private:
+    int getDir(char c) {
+        if(c == 'N') return 0;
+        else if(c == 'S') return 1;
+        else if(c == 'E') return 2;
+        else if(c == 'W') return 3;
+        return -1;
+    }
+public:
+    bool isPathCrossing(string path) {
+        int dx[] = {0, 0, 1, -1}; // E, W
+        int dy[] = {1, -1, 0, 0}; // N, S
+        int x = 0, y = 0;
+
+        unordered_set<string> set;
+        set.insert(to_string(x) + "#" + to_string(y));
+        for(char c : path) {
+            int dir = getDir(c);
+            x += dx[dir];
+            y += dy[dir];
+            string str = to_string(x) + "#" + to_string(y);
+            if(set.count(str)) return true;
+            else set.insert(str);
+        }
+        return false;
+    }
+};
+
+
