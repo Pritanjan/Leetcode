@@ -56,3 +56,29 @@ public:
 
 // A 3 
 
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n = s.length();
+        int twoBack = 1, oneBack = 1;
+
+        for(int i=0; i<n; ++i) {
+            int curr = 0;
+            if(s[i] != '0') curr += oneBack;
+            if(i > 0 && (s[i-1] == '1' || (s[i-1] == '2' && s[i] <= '6'))) {
+                curr += twoBack;
+            }
+            twoBack = oneBack;
+            oneBack = curr;
+        }
+        return oneBack;
+    }
+};
+
+
+
+
+
+
+// A 4 
+
