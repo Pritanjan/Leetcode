@@ -1,4 +1,4 @@
-// A 0
+// A 0 - Brute Force
 
 class Solution {
 public:
@@ -23,7 +23,7 @@ public:
 
 
 
-// A 1
+// A 1  Find Max Candy Count
 
 class Solution {
 public:
@@ -48,20 +48,29 @@ public:
 
 
 
-// APPROACH 2 [ STL ]
+// A 2 [ STL ]  Find Max Candy Count
 
 class Solution {
 public:
     vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
-        // Find the maximum number of candies among all kids
         int maxCandies = *max_element(candies.begin(), candies.end());
+        vector<bool> res;
         
-        // Check which kids can have the greatest number of candies after adding the extra candies
-        vector<bool> res(candies.size());
-
         transform(candies.begin(), candies.end(), res.begin(), [extraCandies, maxCandies](int candy) {
             return candy + extraCandies >= maxCandies;
         });
+        
+        // transform(candies.begin(), candies.end(), back_inserter(res), [extraCandies, maxCandies](int candy) {
+            // return candy + extraCandies >= maxCandies;
+        // });
+
+        // transform(candies, back_inserter(res), [extraCandies, maxCandies](int candy) {
+            // return candy + extraCandies >= maxCandies;
+        // });
+   
+        // transform(candies.begin(), candies.end(), res.begin(), [=](int candy) { 
+            // return candy + extraCandies >= maxCandies; 
+        // });
         
         return res;
     }
@@ -70,4 +79,7 @@ public:
 
 
 
+
+
+// A 3 
 
