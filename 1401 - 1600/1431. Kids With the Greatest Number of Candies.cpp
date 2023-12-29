@@ -63,10 +63,6 @@ public:
         // transform(candies.begin(), candies.end(), back_inserter(res), [extraCandies, maxCandies](int candy) {
             // return candy + extraCandies >= maxCandies;
         // });
-
-        // transform(candies, back_inserter(res), [extraCandies, maxCandies](int candy) {
-            // return candy + extraCandies >= maxCandies;
-        // });
    
         // transform(candies.begin(), candies.end(), res.begin(), [=](int candy) { 
             // return candy + extraCandies >= maxCandies; 
