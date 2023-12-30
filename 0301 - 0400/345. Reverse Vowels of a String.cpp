@@ -134,8 +134,78 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        unordered_set<char> vowels{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+
+        auto isVowel = [&](char c) { return vowels.find(c) != vowels.end(); };
+        int i = 0;
+        int j = s.length() - 1;
+        while (i < j) {
+            while (i < j && !isVowel(s[i])) i++;
+            while (i < j && !isVowel(s[j])) j--;
+            swap(s[i++], s[j--]);
+        }
+        return s;
+    }
+};
+
+
 
 
 
 
 // A 6 
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        // to Store vowels 
+        unordered_set<char> ust{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        stack<char> stk;
+        for(char c : s) {
+            if(ust.find(c) != ust.end()) {
+                stk.push(c);
+            }
+        }
+
+        for(char &c : s) {
+            if(ust.find(c) != ust.end()) {
+                c = stk.top();
+                stk.pop();
+            }
+        }
+        return s;
+    }
+};
+
+
+
+
+
+
+// A 7 
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        unordered_set<char> ust{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        auto isVowel = [&](char c) { return ust.find(c) != ust.end(); };
+
+        string vow;
+        copy_if(s.begin(), s.end(), back_inserter(vow), isVowel);
+        reverse(vow.begin(), vow.end());
+
+        auto vowelIt = vow.begin();
+        for (char &c : s) {
+            if (isVowel(c)) {
+                c = *vowelIt++;
+            }
+        }
+        return s;
+    }
+};
