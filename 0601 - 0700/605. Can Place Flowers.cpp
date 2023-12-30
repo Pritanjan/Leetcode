@@ -84,3 +84,28 @@ public:
 
 
 
+// A 4 
+
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& v, int n) {
+        int N = v.size();
+        if(n == 0) return true;
+        if(N < n) return false;
+        if(N == 1) return v[0]==0;
+        int prev = 0;
+        int next;
+        
+        for(int i=0; i<N; i++) {
+            if(i == N - 1) next=0;
+            else next = v[i+1];
+            if(v[i] == 0 && prev == 0 && next == 0) {
+                n--;
+                v[i] = 1;
+            }
+            prev = v[i];
+            if(n == 0) break;
+        }
+        return n <= 0;
+    }
+};
