@@ -45,5 +45,48 @@ public:
 
 
 
-// A 2 
+// A 2  - Min-Max Values
+
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int small = INT_MAX, mid = INT_MAX;
+        for(int num : nums) {
+            if(num <= small) small = num;
+            else if(num <= mid) mid = num;
+            else return true;
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 3 - Binary Search
+
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> v;
+        for(int num : nums) {
+            auto it = lower_bound(v.begin(), v.end(), num);
+            if(it == v.end()) v.push_back(num);
+            else *it = num;
+                        
+            if(v.size() == 3) return true;
+        }
+        return false;
+    }
+};
+
+
+
+
+
+
+// A 4
 
