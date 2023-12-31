@@ -59,7 +59,7 @@ public:
 
 
 
-// A 3 
+// A 3  -  Left and Right Product Arrays
 
 class Solution {
 public:
@@ -98,3 +98,23 @@ public:
 
 // A 4
 
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, 1);
+
+        int L = 1;
+        int R = 1;
+        for(int i=0; i<n; ++i) {
+            res[i] *= L;
+            L *= nums[i];
+        }
+
+        for(int i=n-1; i>=0; --i) {
+            res[i] *= R;
+            R *= nums[i];
+        }
+        return res;
+    }
+};
