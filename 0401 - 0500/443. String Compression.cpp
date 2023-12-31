@@ -1,4 +1,4 @@
-// A 1
+// A 1 - Two Pointers
 
 class Solution {
 public:
@@ -33,8 +33,11 @@ public:
 };
 
 
-// OR
 
+
+
+
+// A 2 -  In-Place Compression
 
 class Solution {
 public:
@@ -67,5 +70,6 @@ public:
 
 
 
-// A 2 
+// A 3
+
 
