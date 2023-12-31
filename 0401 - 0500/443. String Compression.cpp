@@ -72,4 +72,35 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int index = 0, i = 0;
+        while(i < chars.size()) {
+            char currentChar = chars[i];
+            int count = 0;
 
+            while (i < chars.size() && chars[i] == currentChar) {
+                i++;
+                count++;
+            }
+            chars[index++] = currentChar;
+            if (count > 1) {
+                int start = index;
+                while (count > 0) {
+                    chars[index++] = '0' + count % 10;
+                    count /= 10;
+                }
+                reverse(chars.begin() + start, chars.begin() + index);
+            }
+        }
+        return index;
+    }
+};
+
+
+
+
+
+
+// A 4
