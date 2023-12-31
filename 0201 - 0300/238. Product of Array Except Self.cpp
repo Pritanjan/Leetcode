@@ -60,3 +60,41 @@ public:
 
 
 // A 3 
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> LPdt(n, 1);
+        vector<int> RPdt(n, 1);
+        vector<int> res(n, 1);
+
+        // Calculate the product of all elements to the left of each element
+        int L = 1;
+        for(int i=1; i<n; ++i) {
+            L *= nums[i-1];
+            LPdt[i] = L;
+        }
+
+        // Calculate the product of all elements to the right of each element
+        int R = 1;
+        for(int i=n-2; i>=0; --i) {
+            R *= nums[i+1];
+            RPdt[i] = R;
+        }
+
+        // Multiply the left and right products to get the final result
+        for(int i=0; i<n; ++i) {
+            res[i] = LPdt[i] * RPdt[i];
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 4
+
