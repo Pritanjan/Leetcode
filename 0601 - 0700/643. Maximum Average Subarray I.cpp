@@ -1,4 +1,4 @@
-// A 0 
+// A 0 - Brute Force
 
 class Solution {
 public:
@@ -21,7 +21,7 @@ public:
 
 
 
-// A 1 
+// A 1 - Sliding Window
 
 class Solution {
 public:
