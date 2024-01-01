@@ -1,4 +1,4 @@
-// APPROACH 1 [ 2 Pointer ] 
+// A 1 [ 2 Pointer ] 
 
 class Solution {
 public:
@@ -79,8 +79,6 @@ public:
 
 
 
-
-
 // APPROACH 4 DP
 
 class Solution {
@@ -103,6 +101,7 @@ public:
         return dp[m][n];
     }
 };
+
 
 
 
@@ -137,6 +136,7 @@ public:
 
 
 
+
 // A 6
 
 class Solution {
@@ -152,3 +152,4 @@ public:
         return isSubsequence(s.c_str(), t.c_str());
     }
 };
+
