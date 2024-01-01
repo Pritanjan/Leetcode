@@ -24,8 +24,9 @@ public:
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        size_t pos = 0; // Position to search for character in t
+        int pos = 0; // Position to search for character in t
         for(char c : s) {
+            // pos = t.find_first_of(c, pos);
             pos = t.find(c, pos); // Search for the character in t starting from pos
             if(pos == string::npos) {
                 return false; // Character not found in t
@@ -152,4 +153,39 @@ public:
         return isSubsequence(s.c_str(), t.c_str());
     }
 };
+
+
+
+
+
+
+// A 7  - Binary Search
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        vector<vector<int>> index(26);
+        for (int i = 0; i < t.length(); i++) {
+            index[t[i] - 'a'].push_back(i);
+        }
+
+        int pos = -1;
+        for (char c : s) {
+            auto it = upper_bound(index[c - 'a'].begin(), index[c - 'a'].end(), pos);
+            if (it == index[c - 'a'].end()) {
+                return false;
+            }
+            pos = *it;
+        }
+
+        return true;
+    }
+};
+
+
+
+
+
+
+// A 8 
 
