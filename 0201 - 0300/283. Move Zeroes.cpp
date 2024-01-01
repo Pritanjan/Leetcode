@@ -118,6 +118,23 @@ public:
 // The total operations (array writes) that code does is nn (Total number of elements).
 
 
+// OR
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int nonZero = count_if(nums.begin(), nums.end(), [](int num) { return num != 0; });
+        int idx = 0;
+        for(int i=0; i<nums.size(); ++i) {
+            if(nums[i] != 0) {
+                nums[idx++] = nums[i];
+            }
+        }
+        fill(nums.begin() + nonZero, nums.end(), 0);
+    }
+};
+
+
 
 
 
@@ -153,6 +170,24 @@ public:
         nums.insert(nums.end(), zeroesCount, 0);
     }
 };
+
+
+// OR
+
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        for (int i = n - 1; i >= 0; --i) {
+            if (nums[i] == 0) {
+                nums.erase(nums.begin() + i);
+                nums.push_back(0);
+            }
+        }
+    }
+};
+
 
 
 
@@ -339,5 +374,5 @@ public:
 
 
 
-// A 13
+// 
 
