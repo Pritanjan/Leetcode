@@ -47,6 +47,25 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
+        set<pair<int,int>> s;
+        int i = 0, j = nums.size()-1;
+        while(i < j) {
+            if(nums[i] + nums[j] == k) s.insert(make_pair(i++, j--));
+            else if(nums[i] + nums[j] < k) i++;
+            else j--;
+        }
+        return s.size();
+    }
+};
+
+
 
 
 
