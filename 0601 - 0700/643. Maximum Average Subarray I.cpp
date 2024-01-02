@@ -122,3 +122,21 @@ public:
 
 // A 4 
 
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        double avg = 0, K = static_cast<double>(k);
+        for (int i = 0; i < k; ++i) avg += nums[i];
+
+        int i = k;
+        double next = avg;
+        while (i < nums.size()) {
+            next += (nums[i] - nums[i-k]);
+            avg = max(avg, next);
+            i++;
+        }
+        return avg / K;
+    }
+};
+
+
