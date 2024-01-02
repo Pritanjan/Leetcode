@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -12,15 +12,12 @@ public:
                     flag = true;
                     break;
                 }
-            }
-            
-            if(!flag) res.push_back({nums[i]});
-            
+            }            
+            if(!flag) res.push_back({nums[i]});            
         }
         return res;
     }
 };
-
 
 
 // OR
@@ -28,7 +25,6 @@ public:
 
 const int N=205;
 int cnt[N];
-
 class Solution {
 public:
     vector<vector<int>> findMatrix(vector<int>& nums) {
@@ -47,11 +43,45 @@ public:
 };
 
 
+// OR
+
+
+const int N = 205;
+int cnt[N];
+
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        int n = nums.size();
+
+        // Initialize cnt array
+        memset(cnt, 0, sizeof(cnt));
+        for(int i=0; i<n; i++) cnt[nums[i]]++;
+
+        vector<vector<int>> ans;
+        while(true) {
+            bool ok = true;
+            vector<int> res;
+            for(int i=1; i<=n; i++) {
+                if(cnt[i]) {
+                    res.push_back(i);
+                    cnt[i]--;
+                    ok = false; // Set ok to false as we found a non-empty element
+                }
+            }
+            if(ok) break; // Break if we didn't find any non-empty elements
+            ans.push_back(res);
+        }
+        return ans;
+    }
+};
 
 
 
 
-// APPROACH 2
+
+
+// A 2
 
 class Solution {
 public:
