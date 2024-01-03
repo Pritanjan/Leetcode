@@ -34,15 +34,22 @@ public:
             int temp = i;
             while(temp > 0) {
                 // if(temp & 1) cnt++;
-                cnt += temp % 2;
                 // temp /= 2;
-                temp >>= 1;
+                
+                // cnt += temp % 2;
+                // temp >>= 1;
+
+                temp &= (temp - 1);
+                cnt++;
             }
             ans[i] = cnt;
         }
         return ans;
     }
 };
+
+
+
 
 
 
