@@ -1,5 +1,4 @@
 // A 1
-
 // It works by traversing the binary representation of the number from the least significant
 // bit to the most significant bit. If the bit is 1, the count is incremented.
 
@@ -13,7 +12,6 @@ public:
         }
         return cnt;
     }
-
     vector<int> countBits(int n) {
         vector<int> res;
         for(int i=0; i<=n; i++) {
@@ -35,33 +33,14 @@ public:
             int cnt = 0;
             int temp = i;
             while(temp > 0) {
-                if(temp & 1) cnt++;
+                // if(temp & 1) cnt++;
+                cnt += temp % 2;
+                // temp /= 2;
                 temp >>= 1;
             }
             ans[i] = cnt;
         }
         return ans;
-    }
-};
-
-
-// OR
-
-
-class Solution {
-public:
-    vector<int> countBits(int n) {
-        vector<int> res;
-        for(int i=0; i<=n; i++) {
-            int sum = 0;
-            int num = i;
-            while(num != 0) {
-                sum += num % 2;
-                num = num / 2;
-            }
-            res.push_back(sum);
-        } 
-        return res;
     }
 };
 
@@ -82,7 +61,6 @@ public:
     int countOne(int n) {
         return __builtin_popcount(n);
     }
-
     vector<int> countBits(int n) {
         vector<int> res;
         for(int i=0; i<=n; i++) {
@@ -98,7 +76,6 @@ public:
 
 
 // A 3 - Using DP
-
 // It works by creating a table that stores the number of 1's in the 
 // binary representation of the numbers from 0 to n. 
 // The table can be constructed recursively or iteratively
@@ -121,7 +98,6 @@ public:
 
 
 // A 4 - Dp memoization 
-
 // It works by storing the results of previously computed subproblems in a table. 
 // it help to improve the performance of the algorithm
 
