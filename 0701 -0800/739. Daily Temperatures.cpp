@@ -1,4 +1,28 @@
-// A 1
+// A 0 - Brute Force
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        int n = temp.size();
+        vector<int> res(n, 0);
+        for(int i=0; i<n; i++) {
+            for(int j=i+1; j<n; j++) {
+                if(temp[i] < temp[j]) {
+                    res[i] = j-i;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 1 - Using Stack
 
 class Solution {
 public:
@@ -29,8 +53,7 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temp) {
         int n = temp.size();
-        vector<int> ans(n);
-        
+        vector<int> ans(n);        
         for(int i=n-1; i>=0; --i){
             int j = i+1;
             while(j < n && temp[i] >= temp[j] ){
