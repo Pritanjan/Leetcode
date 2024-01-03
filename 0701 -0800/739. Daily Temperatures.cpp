@@ -1,11 +1,9 @@
-// https://leetcode.com/problems/daily-temperatures/
-// GOOGLE LINKDEIN MICROSOFT UBER
+// A 1
 
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temp) {
-        int n = temp.size();
-        
+        int n = temp.size(); 
         stack<int> st;
         st.push(0);
         vector<int> ans(n,0);
@@ -20,6 +18,12 @@ public:
     }
 };
 
+
+
+
+
+
+// A 2 
 
 class Solution {
 public:
@@ -38,3 +42,39 @@ public:
         return ans;
     }
 }; 
+
+
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& t) {
+        int s[1 << 17];
+        int j = 0;
+        int n = t.size();
+        for(int i=0; i<n; i++) {
+            while(j != 0 && t[s[j-1]] < t[i]) {
+                j--;
+                t[s[j]] = i - s[j];
+            }
+            s[j] = i;
+            j++;
+        }
+        while(j != 0) {
+            j--;
+            t[s[j]] = 0; 
+        }        
+        return t;
+    }
+};
+
+
+
+
+
+
+// A 4 
