@@ -1,5 +1,6 @@
-// A 0 - Brute Force
+// A 0 - Brute Force 
 
+// TLE
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temp) {
@@ -14,6 +15,28 @@ public:
             }
         }
         return res;
+    }
+};
+
+
+// Optimised
+
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        int n = temp.size();
+        vector<int> ans(n, 0);
+        for(int i=n-2; i>=0; --i) {
+            for(int j=i+1; j<n; j += ans[j]) {
+                if(temp[j] > temp[i]) {
+                    ans[i] = j - i;
+                    break;
+                }
+                else if(ans[j] == 0) break;
+            }
+        }
+        return ans;
     }
 };
 
