@@ -66,6 +66,25 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        int n = temp.size();
+        vector<int> ans(n, 0);
+        stack<pair<int, int>> stk; // pair<temp, index>
+        for(int i=0; i<n; ++i) {
+            while(!stk.empty() && temp[i] > stk.top().first) {
+                ans[stk.top().second] = i - stk.top().second;
+                stk.pop();
+            }
+            stk.push({temp[i], i});
+        }
+        return ans;
+    }
+};
 
 
 
@@ -124,3 +143,4 @@ public:
 
 
 // A 4 
+
