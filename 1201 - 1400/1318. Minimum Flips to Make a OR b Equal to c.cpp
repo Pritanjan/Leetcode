@@ -27,3 +27,30 @@ public:
 
 // A 2
 
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        int mx = max({a, b, c});
+        int x, y, ans = 0;
+        while(mx > 0) {
+            x = a % 2, y = b % 2;
+            if(c & 1) {
+                if(x == 0 && y == 0) ans++;
+            } 
+            else {
+                if(x == 1) ans++;
+                if(y == 1) ans++;
+            }
+            a /= 2, b /= 2, c /= 2, mx /= 2;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+// A 3 
+
