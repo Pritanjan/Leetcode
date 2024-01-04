@@ -1,4 +1,4 @@
-// APPROACH 1
+// A 1
 
 class Solution {
 public:
@@ -11,7 +11,6 @@ public:
             res[i+1] = res[i] + gain[i];
             // res.push_back(res[i] + gain[i]);
         }
-
         int p = *max_element(res.begin(), res.end());
         return p;
     }
@@ -22,21 +21,32 @@ public:
 
 
 
-
-// APPROACH 2
+// A 2
 
 class Solution {
-    public int largestAltitude(int[] gain) {
+public:
+    int largestAltitude(vector<int>& gain) {
         int currentAltitude = 0;
         int highestAltitude = 0;
-
         for (int g : gain) {
             currentAltitude += g;
-            if(currentAltitude > highestAltitude) {
+            if (currentAltitude > highestAltitude) {
                 highestAltitude = currentAltitude;
             }
         }
         return highestAltitude;
     }
-}
+};
+
+
+
+
+
+
+// A 3 
+
+
+
+
+
 
