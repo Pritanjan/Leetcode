@@ -54,3 +54,32 @@ public:
 
 // A 3 
 
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        int ans = 0;
+        for(int i=0; (1<<i) <= max(max(a, b), c); i++) {
+            int check = 1<<i;
+            int bitA = a & check ? 1 : 0;
+            int bitB = b & check ? 1 : 0;
+            int bitC = c & check ? 1 : 0;
+
+            if(bitC == 1) {
+                if(bitA == 0 && bitB == 0) ans++;
+            }
+            else if(bitC == 0) {
+                if(bitA == 1 && bitB == 1) ans += 2;
+                else if(bitA == 1 || bitB == 1) ans++;
+            }
+        }
+        return ans;
+    }
+}; 
+
+
+
+
+
+
+// A 4 
+
