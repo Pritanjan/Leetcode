@@ -45,8 +45,31 @@ public:
 
 // A 3 
 
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+        int n = gain.size();
+        int sum = 0;
+        vector<int> tmp;
+        for(int i=0; i<n; i++) {
+            sum += gain[i];
+            tmp.push_back(sum);
+        }
+
+        // int res =  max_element(tmp.begin(), tmp.end()); 
+        int res = 0;
+        for(int i=0; i<n; i++) {
+            res = max(res, tmp[i]);
+        }
+        return res;
+    }
+};
 
 
 
+
+
+
+// A 4 
 
 
