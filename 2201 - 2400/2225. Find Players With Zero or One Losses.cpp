@@ -1,3 +1,5 @@
+// A 1 
+
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
@@ -10,8 +12,7 @@ public:
             
             if(!mp.count(win)) mp[win] = 0;
             mp[los]++;
-        }
-        
+        }        
         for (auto& [player, nLosses] : mp){
             if (nLosses < 2){
                 ans[nLosses].push_back(player);
@@ -21,10 +22,13 @@ public:
     }
 };
 
-
-
 // Time: O(nlogn)
 // Space: O(n)
 
 
+
+
+
+
+// A 2 
 
