@@ -75,6 +75,28 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    string removeStars(string s) {
+        vector<pair<char, int>> ch;
+        for(char c : s) {
+            if(c == '*') ch.pop_back();
+            else ch.push_back({c, ch.size()});
+        }
+
+        string res;
+        for(auto& p : ch) {
+            res += p.first;
+        }
+        return res;
+    }
+};
+
+
 // T.C. --> O(N)
 // S.C. --> O(N)
 
