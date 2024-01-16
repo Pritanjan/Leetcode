@@ -1,44 +1,23 @@
 // A 1
 
 class Solution {
-public:  
-    bool uniqueOccurrences(vector<int>& arr) {
-        map<int, int> mp;
-        for (int i=0; i<arr.size(); i++)
-            mp[arr[i]]++;
-        
-        set<int> unq;
-        for(auto [first, second] : mp){
-            unq.insert(second);
-        }
-            
-        return unq.size() == mp.size();
-    }
-};
-
-
-
-
-
-
-// A 2 
-
-class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
         int n = arr.size();
         map<int,int> mp;
-        for(int i = 0 ; i < n ; i ++)
-            mp[arr[i]]++;
+        for(int i=0; i<n; i ++) mp[arr[i]]++;
         
-        set<int> st;
-        n=0;
-        
+        // set<int> unq;
+        // for(auto [first, second] : mp){
+        //     unq.insert(second);
+        // }    
+        // return unq.size() == mp.size();
+
+        n = 0;
         for(auto &m : mp){
             n++;
-            st.insert(m.second);
-        }
-        
+            uq.insert(m.second);
+        }        
         return n == st.size();
     }
 };
@@ -48,7 +27,7 @@ public:
 
 
 
-// A 3 
+// A 2
 
 class Solution {
 public:
@@ -74,7 +53,5 @@ public:
 
 
 
-
-
-// A 4
+// A 3
 
