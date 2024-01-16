@@ -14,6 +14,23 @@ public:
     }
 };
 
+
+// OR
+
+
+class Solution {
+public:
+    string removeStars(string s) {
+        string res;
+        auto it = res.begin();
+        for(char c : s) {
+            if(c == '*') it = res.erase(it - 1, it);
+            else it = res.insert(it, c), ++it;
+        }
+        return res;
+    }
+};
+
 // T.C. --> O(N)
 // S.C. --> O(N)
 
