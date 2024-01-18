@@ -1,4 +1,4 @@
-// APPROACH1 USING 2 STACK
+// A1 USING 2 STACK
 
 class Solution {
 public:
@@ -48,8 +48,7 @@ public:
 
 
 
-// APPROACH 2 RECURSION
-
+// A 2 RECURSION
 
 class Solution {
 public:
@@ -61,7 +60,6 @@ public:
 private:
     string decodeHelper(const string& s, int& i) {
         string res = "";
-
         while(i < s.length() && s[i] != ']') {
             if(isdigit(s[i])) {
                 int cnt = 0;
@@ -82,10 +80,67 @@ private:
                 i++;
             }
         }
-
         return res;
     }
 };
 
-
 // T.C. --> O(N^2)
+
+
+
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    string getDigits(string &s, size_t &ptr) {
+        string res = "";
+        while(isdigit(s[ptr])) res.push_back(s[ptr++]);
+        return res;
+    }
+    
+    string getString(vector<string> &v) {
+        string res;
+        for(auto &s: v) res += s;
+        return res;
+    }
+
+    string decodeString(string s) {
+        vector<string> stk;
+        int ptr = 0;
+
+        while(ptr < s.size()) {
+            char cur = s[ptr];
+            if(isdigit(cur)) {
+                string digits = getDigits(s, ptr);
+                stk.push_back(digits);
+            }
+            else if(isalpha(cur) || cur == '[') {
+                stk.push_back(string(1, s[ptr++])); 
+            }
+            else {
+                ++ptr;
+                vector<string> sub;
+                while(stk.back() != "[") {
+                    sub.push_back(stk.back());
+                    stk.pop_back();
+                }
+
+                reverse(sub.begin(), sub.end());
+                stk.pop_back();
+                
+                int repTime = stoi(stk.back()); 
+                stk.pop_back();
+                string t, o = getString(sub);
+                
+                while (repTime--) t += o;                
+                stk.push_back(t);
+            }
+        }
+        return getString(stk);
+    }
+};
+
