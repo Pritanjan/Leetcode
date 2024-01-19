@@ -1,5 +1,6 @@
-// Recursive
+// A 1 - Recursive
 // Exponential Time Complexity: O(2^N)
+
 class Solution {
 public:
     int tribonacci(int n) {
@@ -13,20 +14,20 @@ public:
 
 
 
-// Memoization
+
+
+// A 2 - Memoization
 // Time Complexity: O(N)
 // Space Complexity: O(N)
+
 class Solution {
 public:
     int tribonacciHelper(int n, vector<int> &dp) {
         if(n == 0) return 0;
         if(n == 1 || n == 2) return 1;
-
         if(dp[n] != -1) return dp[n];
-
         return dp[n] = tribonacciHelper(n-1, dp) + tribonacciHelper(n-2, dp) + tribonacciHelper(n-3, dp);
     }
-
     int tribonacci(int n) {
         vector<int> dp(n+1, -1);
         return tribonacciHelper(n, dp);
@@ -35,9 +36,13 @@ public:
 
 
 
-// Tabulation
+
+
+
+// A 3 - Tabulation
 // Time Complexity: O(N)
 // Space Complexity: O(N)
+
 class Solution {
 public:
     int tribonacci(int n) {
@@ -49,14 +54,16 @@ public:
         for(int i=3;i<=n;i++) {
             dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
         }
-
         return dp[n];
     }
 };
 
 
 
-// Space Optimized
+
+
+
+// A 4 - Space Optimized
 // Time Complexity: O(N)
 // Space Complexity: O(1)
 class Solution {
