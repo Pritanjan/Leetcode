@@ -4,7 +4,7 @@
 // https://github.com/Pritanjan/Leetcode/blob/main/2401%20-%202600/2583.%20Kth%20Largest%20Sum%20in%20a%20Binary%20Tree.cpp
 
 
-// BFS
+// A 1 - BFS
 
 class Solution{
   public:
@@ -36,14 +36,12 @@ class Solution{
                 if (temp->left != NULL) q.push(temp->left);
                 if (temp->right != NULL) q.push(temp->right);
             }
-    
             // Update the maximum node count value
             result = max(sum, result);
         }
         return result;
     }
 };
-
 
 // Time Complexity: O(N), Here every node of the tree is processed once, and
 // hence the complexity due to the level order traversal is O(N) if there are
@@ -54,10 +52,49 @@ class Solution{
 // can go up to the maximum width of the binary tree.
 
 
+// OR
+
+
+class Solution {
+public:
+    int maxLevelSum(TreeNode* root) {
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        int level = 1;
+        int max_sum = root->val;
+        int max_level = 1;
+
+        while (!q.empty()) {
+            int n = q.size();
+            int sum = 0;
+        
+            for(int i = 0; i < n; i++) {
+                TreeNode* node = q.front();
+                q.pop();
+                sum += node->val;
+
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+
+            if(sum > max_sum) {
+                max_sum = sum;
+                max_level = level;
+            }    
+            level++;
+        }
+        
+        return max_level;
+    }
+};
 
 
 
-// DFS
+
+
+
+// A 2 - DFS
 class Solution {
 public:
     void dfs(TreeNode* node, int level, vector<int>& level_sum) {
