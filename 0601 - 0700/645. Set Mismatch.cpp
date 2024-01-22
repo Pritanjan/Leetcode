@@ -1,12 +1,11 @@
 // SEE EDITORIL
 
-// APPROACH 1 [ BRUTE FORCE - TLE ]
+// A 0 [ BRUTE FORCE - TLE ]
 
 // The most naive solution is to consider each number from 1 to N, and
 // traverse over the whole nums array to check if the current number occurs twice in nums
 // or doesn't occur at all. We need to set the duplicate number, dup and the missing number, 
 // missing, appropriately in such cases respectively.
-
 
 class Solution {
 public:
@@ -27,7 +26,6 @@ public:
     }
 };
 
-
 // T.C. --> O(N^2) 
 // S.C. --> O(1) 
 
@@ -35,12 +33,12 @@ public:
 
 
 
-// APPROACH 2 [ BETTER BRUTE FORCE ]
+
+// A 1 [ BETTER BRUTE FORCE ]
 
 // In the previous code, I continued the search process, even after finding the duplicate and
 // the missing number. Since, only one no is repeated missing. 
 // Thus, It can be optimize by stopping the search process as soon as we find these two numbers.
-
 
 class Solution {
 public:
@@ -63,14 +61,15 @@ public:
     }
 };
 
-
 // T.C. --> O(N^2) 
 // S.C. --> O(1) 
 
 
 
 
-// APPROACH 3
+
+
+// A 2
 
 class Solution {
 public:
@@ -85,14 +84,12 @@ public:
                     ans[1] = i + 1;
                     break;
                 }
-                else
-                    swap(nums[i], nums[nums[i] - 1]);
+                else swap(nums[i], nums[nums[i] - 1]);
             }
         }
         return ans;
     }
 };
-
 
 // T.C. --> O(N) 
 // since it involves only one loop through the nums array. 
@@ -109,7 +106,7 @@ public:
 
 
 
-// APPROACH 2
+// A 3
 
 // The code first creates a boolean array found of size n+1, where found[i] 
 // represents whether the number i has been found in the nums array.
@@ -122,7 +119,6 @@ public:
 // where found[i] is false, then i is the missing number, and is stored in res[1].
 
 // The function returns the res array containing the duplicate and missing numbers.
-
 
 class Solution {
 public:
@@ -148,8 +144,6 @@ public:
     }
 };
 
-
-
 // T.C. --> O(N), where n is the size of the nums vector.
 // This is because the solution iterates through the nums vector twice,
 
@@ -162,7 +156,8 @@ public:
 
 
 
-// APPROACH 3
+
+// A 4
 
 class Solution {
 public:
