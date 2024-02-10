@@ -66,5 +66,33 @@ public:
 
 
 
-// A 2 
+// A 3 - DP
+
+// Use a dynamic programming approach to store whether a substring is a palindrome.
+
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int n = s.length();
+        vector<vector<bool>> dp(n, vector<bool>(n, false));
+        int cnt = 0;
+        for (int j = 1; j <= n; ++j) {
+            for (int k = 0; k + j - 1 < n; ++k) {
+                int l = k + j - 1;
+                if (j == 1 || (s[k] == s[l] && (j == 2 || dp[k + 1][l - 1]))) {
+                    dp[k][l] = true;
+                    ++cnt;
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+
+
+
+
+// A 4 
 
