@@ -1,10 +1,42 @@
-// A 1
+// A 1 - Brute Force
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int L = 0, R = s.length() - 1;
+        while (L < R) {
+            if (s[L] != s[R])
+                return false;
+            ++L;
+            --R;
+        }
+        return true;
+    }
+
+    int countSubstrings(string s) {
+        int count = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            for (int j = i; j < s.length(); ++j) {
+                string sub = s.substr(i, j - i + 1);
+                if (isPalindrome(sub))
+                    ++count;
+            }
+        }
+        return count;
+    }
+};
+
+
+
+
+
+
+// A 2 - Recursion
 
 // Iterate the word, for each character, judge palindromic substrings by applying a fucntion palindrom. 
 // There are two cases, the palindromic string length is odd or even. 
 // For example aaa, aa. The fucntion palindrom checks from the center to end. If the two
 // character equals, move on, left pointer moves left, right pointer moves right, if not, break the loop.
-
 
 class Solution {
 public:
