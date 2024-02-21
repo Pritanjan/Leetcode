@@ -32,5 +32,20 @@ public:
 
 
 
-// A 3 
+// A 3  - Recurstion
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int L, int R) {
+        if(R > L) return (rangeBitwiseAnd(L >> 1, R >> 1) << 1);
+        return L;
+    }
+};
+
+
+
+
+
+
+// A 4 
 
