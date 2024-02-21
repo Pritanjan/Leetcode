@@ -1,4 +1,4 @@
-// A 1 - Simulation - TLE
+// A 0 - Simulation - TLE
 
 class Solution {
 public:
@@ -15,7 +15,7 @@ public:
 
 
 
-// A 2 - Bit Manipulation
+// A 1 - Bit Manipulation
 
 class Solution {
 public:
@@ -32,7 +32,7 @@ public:
 
 
 
-// A 3  - Recurstion
+// A 2  - Recurstion
 
 class Solution {
 public:
@@ -47,5 +47,18 @@ public:
 
 
 
-// A 4 
+// A 3 - Shiftting
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int L, int R) {
+        int shift = 0;
+        while(L < R) {
+            L >>= 1;
+            R >>= 1;
+            ++shift;
+        }
+        return L << shift;
+    }
+};
 
