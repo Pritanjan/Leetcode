@@ -9,7 +9,7 @@ public:
         // Relax edges k + 1 times
         for (int i = 0; i <= k; ++i) {
             vector<int> temp = dist;
-            for (const auto& flight : flights) {
+            for(auto& flight : flights) {
                 int u = flight[0];
                 int v = flight[1];
                 int w = flight[2];
