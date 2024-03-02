@@ -93,15 +93,16 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& A) {
         int n = A.size();
-        vector<int> result(n);
+        vector<int> res(n);
         int j;
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             A[i] = A[i] * A[i];
         }
-        for(int i = 1; i < n; i++){
+
+        for (int i = 1; i < n; i++) {
             int temp = A[i];
-            for(j=i- 1; j>=0; j--){
-                if(temp < A[j]) A[j + 1] = A[j];
+            for (j = i - 1; j >= 0; j--) {
+                if (temp < A[j]) A[j + 1] = A[j];
                 else break;
             }
             A[j + 1] = temp;
@@ -109,6 +110,7 @@ public:
         return A;
     }
 };
+
 
 
 
