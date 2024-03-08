@@ -14,12 +14,16 @@ public:
             mx1 = max(mx1, pair.second);
         }
         
+        int cnt = 0;
         int mx2 = 0;
         // Count how many elements have the maximum frequency
         for (auto& pair : ump) {
-            if (pair.second == mx1) mx2++;
-        }        
-        return mx1 * mx2;
+            if (pair.second == mx1) 
+                // mx2++;
+                cnt += pair.second;            
+        }
+        // return mx1 * mx2;
+        return cnt;
     }
 };
 
