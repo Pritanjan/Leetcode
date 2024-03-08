@@ -32,5 +32,34 @@ public:
 
 
 
-// A 2 - 
+// A 2 - Sort Frequencies and Sum Max Frequencies
+
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        // Find the frequency of each element
+        vector<int> freq(100, 0);
+        for(auto num : nums) freq[num - 1]++;
+
+        // Determine the maximum frequency, stored in the last index of the sorted array
+        sort(freq.begin(), freq.end());
+        int mxFreqIdx = freq.size() - 1;
+        int totalFreq = freq[mxFreqIdx];
+
+        // Calculate the total frequencies of elements with the maximum frequency
+        // Start from the last index and iterate right to left
+        while (mxFreqIdx > 0 && freq[mxFreqIdx] == freq[mxFreqIdx - 1]) {
+            totalFreq += freq[mxFreqIdx];
+            mxFreqIdx--;
+        }
+        return totalFreq;
+    }
+};
+
+
+
+
+
+
+// A 3 
 
