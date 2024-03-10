@@ -53,3 +53,44 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    bool binary_search(vector<int>& arr, int target) {
+        int L = 0;
+        int R = arr.size() - 1;
+        while (L <= R) {
+            int mid = L + (R - L) / 2;
+            if(arr[mid] == target) return true;
+            else if(arr[mid] < target) L = mid + 1;
+            else R = mid - 1;
+        }
+        return false;
+    }
+
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(), nums1.end());
+        set<int> res;
+        for(int num : nums2) {
+            if(binary_search(nums1, num)) {
+                res.insert(num);
+            }
+        }
+        return vector<int> (res.begin(), res.end());
+    }
+};
+
+
+
+
+
+
+// A 4 
+
