@@ -59,7 +59,7 @@ public:
 
 
 
-// A 3 
+// A 3  - Binary Search
 
 class Solution {
 public:
@@ -92,5 +92,48 @@ public:
 
 
 
-// A 4 
+// A 4  - STL set_intersection
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int> set1(nums1.begin(), nums1.end());
+        set<int> set2(nums2.begin(), nums2.end());
+
+        vector<int> res;
+        set_intersection(set1.begin(), set1.end(), set2.begin(), set2.end(), back_inserter(res));
+        return res;
+    }
+};
+
+
+
+
+
+
+// A 5
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> cnt;
+        vector<int> res;
+
+        for (int num : nums1) {
+            cnt[num]++;
+        }
+        for (int num : nums2) {
+            if (cnt[num] > 0) {
+                res.push_back(num);
+                cnt[num]--;
+            }
+        }
+
+        // Remove duplicates from the result
+        sort(res.begin(), res.end());
+        res.erase(unique(res.begin(), res.end()), res.end());
+        
+        return res;
+    }
+};
 
