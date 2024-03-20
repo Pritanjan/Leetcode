@@ -51,3 +51,35 @@ public:
 
 // A 2 
 
+class Solution {
+public:
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        stack<ListNode*> st;
+        ListNode* dummy = new ListNode(0);
+        dummy -> next = list1;
+        ListNode* prev = dummy;
+
+        for (int i = 0; i < a; ++i) {
+            prev = prev -> next;
+        }
+
+        ListNode* curr = prev->next;
+        for (int i = 0; i <= b - a; ++i) {
+            st.push(curr);
+            curr = curr -> next;
+        }
+
+        prev -> next = list2;
+        while (!st.empty()) {
+            st.top()->next = nullptr;
+            st.pop();
+        }
+
+        while (list2->next) {
+            list2 = list2->next;
+        }
+
+        list2->next = curr;
+        return dummy->next;
+    }
+};
