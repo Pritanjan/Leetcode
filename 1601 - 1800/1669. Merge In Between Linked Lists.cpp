@@ -83,3 +83,46 @@ public:
         return dummy->next;
     }
 };
+
+
+
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        ListNode* dummy = new ListNode(0);
+        dummy->next = list1;
+        ListNode* prev = dummy;
+        int count = 0;
+
+        while (prev && count < a) {
+            prev = prev->next;
+            count++;
+        }
+
+        ListNode* curr = prev;
+        while (curr && count <= b) {
+            curr = curr->next;
+            count++;
+        }
+
+        prev->next = list2;
+
+        // Traverse till the end of list2
+        ListNode* list2End = list2;
+        while (list2End && list2End->next) {
+            list2End = list2End->next;
+        }
+
+        // Connect the end of list2 to the node following the bth node
+        list2End->next = curr->next;
+
+        return dummy->next;
+    }
+};
+
