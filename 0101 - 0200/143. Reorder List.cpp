@@ -1,19 +1,16 @@
 // https://practice.geeksforgeeks.org/problems/reorder-list/1
-
 // https://www.geeksforgeeks.org/rearrange-a-given-linked-list-in-place/
 
-// APPROACH 1    using stack
+// A 1  -  using stack
 
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if(!head or !head -> next or !head -> next -> next )
-            return ;
+        if(!head or !head -> next or !head -> next -> next ) return ;
         
         stack<ListNode*> st;
         ListNode* temp = head;
         int size = 0;
-        
         while(temp != NULL){
             st.push(temp);
             size++;
@@ -21,16 +18,13 @@ public:
         }
         
         ListNode* ptr = head;
-        
         for(int i=0; i<size/2; i++){
-            // ListNode* 
             st.top() -> next = ptr -> next;
             ptr -> next = st.top();
             ptr = ptr -> next -> next;
             st.pop();
         }
         ptr -> next = NULL;
-        
     }
 };
 
@@ -38,7 +32,8 @@ public:
 
 
 
-// APPROACH 2   Using deque T.C O(N)   S.C O(N)
+
+// A 2 -  Using deque T.C O(N)   S.C O(N)
  
 class Solution {
 public:   
