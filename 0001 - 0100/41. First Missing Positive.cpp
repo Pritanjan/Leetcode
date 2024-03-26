@@ -7,8 +7,7 @@ public:
             if(A[i] == tgt) return true;
         }
         return false;
-    }
-        
+    }        
     int firstMissingPositive(vector<int>& nums) {
         for(int i=1; i<=nums.size(); i++){
             if(search(nums, i) == false) return i;
@@ -17,10 +16,8 @@ public:
     }
 };
 
-
 // Time Complexity : - O(N ^ 2) 
 // Space Complexity : - O(1) 
-
 
 
 
@@ -46,9 +43,7 @@ public:
 };
 
 
-
 // OR
-
 
 
 class Solution {
@@ -74,11 +69,7 @@ public:
     }
 };
 
-
 // Time Complexity : - O(N) .
-
-
-
 
 
 // OR
@@ -88,7 +79,6 @@ class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
         int n = nums.size();
-
         // Step 1: Remove negative numbers and zeros
         for(int i=0; i<n; ) {
             if(nums[i] <= 0 || nums[i] > n) {
@@ -96,9 +86,7 @@ public:
                 swap(nums[i], nums[n - 1]);
                 n--; // Reduce the size of the array
             } 
-            else {
-                i++;
-            }
+            else i++;
         }
 
         // Step 2: Rearrange positive numbers
@@ -145,7 +133,6 @@ public:
     }
 };
 
-
 // Time Complexity : - O(N log(N)), as we are sorting & iterating the whole array.
 // Space Complexity : - O(1) .
 
@@ -172,8 +159,7 @@ public:
                 // delete[] val; // Deallocate the dynamically allocated memory
                 return i + 1;
             }
-        }
-        
+        }        
         // delete[] val; // Deallocate the dynamically allocated memory
         return n + 1;
     }
@@ -205,25 +191,17 @@ public:
 
 
 
-
-
 // A 6 - gfg
 
-
-Intuition:
 The idea is to use array elements as an index. To mark the presence of an element x,
 change the value at the index x to negative. But this approach doesn’t work if
 there are non-positive (-ve and 0) numbers. So segregate positive from negative numbers as
 the first step and then apply the approach.
 
-
-
-Implementation:
 Segregate positive numbers from others i.e., move all non-positive numbers to the left side
 Now ignore non-positive elements and consider only the part of the array which contains all positive elements.
 Traverse the array containing all positive numbers and to mark the presence of an element x, change the sign of value at index x to negative.
 Traverse the array again and print the first index which has a positive value. 
-
 
 class Solution {
 public:
@@ -277,3 +255,24 @@ public:
 
 
 
+
+
+// A 7 
+// Cycle Sort : Constant space soln & T.C. = O(n).
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        int i = 0;
+        while (i < n) { 
+            if (nums[i] <= 0) i++;
+            else if (nums[i] > n || nums[i] == nums[nums[i] - 1] || nums[i] == i + 1) i++;
+            else swap(nums[i], nums[nums[i] - 1]);
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1) return i + 1;
+        }
+        return n + 1;
+    }
+};
