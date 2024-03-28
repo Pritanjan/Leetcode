@@ -25,3 +25,55 @@ public:
     }
 };
 
+
+
+
+// LC - Editorial
+// A 2  Counting and Sliding Window
+
+class Solution {
+public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        int ans = 0, start = -1;
+        unordered_map<int, int> freq;
+        
+        for (int end = 0; end < nums.size(); end++) {
+            freq[nums[end]]++;
+            while (freq[nums[end]] > k) {
+                start++;
+                freq[nums[start]]--;
+            }
+            ans = max(ans, end - start);
+        }        
+        return ans;
+    }
+};
+
+
+
+// A 3 - Counting and Sliding Window without Nested Loops
+
+class Solution {
+public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        int n = nums.size(); 
+        unordered_map<int, int> frequency; 
+        int start = 0;
+        int charsWithFreqOverK = 0;
+        
+        for (int end = 0; end < n; end++) {
+            frequency[nums[end]]++;
+            if (frequency[nums[end]] == k + 1) {
+                charsWithFreqOverK++;
+            }
+            if (charsWithFreqOverK > 0) {
+                frequency[nums[start]]--;
+                if (frequency[nums[start]] == k) {
+                    charsWithFreqOverK--;
+                }
+                start++;
+            }
+        }
+        return n - start;
+    }
+};
