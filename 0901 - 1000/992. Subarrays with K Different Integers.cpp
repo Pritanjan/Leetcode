@@ -66,3 +66,59 @@ public:
         return totalCount;
     }
 };
+
+// T.C. -- O(N)
+// S.C. -- O(N)3
+
+
+
+
+
+
+// A 2 
+
+class Solution {
+public:
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        // Array to store the count of distinct values encountered
+        vector<int> cnt(nums.size() + 1, 0);
+
+        int totalCnt = 0;
+        int L = 0, R = 0;
+        int currCnt = 0;
+
+        while (R < nums.size()) {
+            // Increment the count of the current element in the window
+            if (++cnt[nums[R++]] == 1) {
+                // If encountering a new distinct element, decrement K
+                k--;
+            }
+
+            // If K becomes negative, adjust the window from the left
+            if (k < 0) {
+                // Move the left pointer until the count of distinct elements
+                // becomes valid again
+                --cnt[nums[L++]];
+                k++;
+                currCnt = 0;
+            }
+
+            // If K becomes zero, calculate subarrays
+            if (k == 0) {
+                // While the count of left remains greater than 1, keep
+                // shrinking the window from the left
+                while (cnt[nums[L]] > 1) {
+                    --cnt[nums[L++]];
+                    currCnt++;
+                }
+                // Add the count of subarrays with k distinct elements to the
+                // total count
+                totalCnt += (currCnt + 1);
+            }
+        }
+        return totalCnt;
+    }
+};
+
+// T.C. -- O(N)
+// S.C. -- O(N)
