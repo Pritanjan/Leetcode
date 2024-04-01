@@ -52,3 +52,17 @@ public:
 
 
 
+
+
+
+// A 4 - STL
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        auto it = find_if(s.rbegin(), s.rend(), ::isalpha);
+        auto it_end = find_if_not(it, s.rend(), ::isalpha);
+        return distance(it, it_end);
+    }
+};
+
