@@ -1,15 +1,14 @@
 // APPROACH 1 [ Splitting the String ]
-
 // Split the input string into words using space as a delimiter.
 // Find the last non-empty word after splitting and return its length.
 
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        stringstream s1(s);
-        string s2;
-        while(s1 >> s2){}
-        return s2.size();
+        istringstream iss(s);
+        string word;
+        while (iss >> word) {}
+        return word.size();
     }
 };
 
@@ -63,6 +62,43 @@ public:
         auto it = find_if(s.rbegin(), s.rend(), ::isalpha);
         auto it_end = find_if_not(it, s.rend(), ::isalpha);
         return distance(it, it_end);
+    }
+};
+
+
+// OR
+
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        auto lastSpace = find_if(s.rbegin(), s.rend(), [](char c) { return c != ' '; });
+        auto firstSpace = find_if(lastSpace, s.rend(), [](char c) { return c == ' '; });
+        return distance(lastSpace, firstSpace);
+    }
+};
+
+
+
+
+
+
+// A 5 
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int length = 0;
+        bool found = false;
+        for (int i = s.size() - 1; i >= 0; i--) {
+            if (s[i] != ' ') {
+                found = true;
+                length++;
+            } else if (found) {
+                break;
+            }
+        }
+        return length;
     }
 };
 
