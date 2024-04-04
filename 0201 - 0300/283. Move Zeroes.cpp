@@ -53,6 +53,26 @@ public:
 };
 
 
+// OR
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        
+        vector<int> res;
+        for(int i=0; i<n; i++) {
+            if(nums[i] != 0) res.push_back(nums[i]);
+        }
+
+        int tmp = n - res.size();
+        while(tmp--) res.push_back(0);
+        
+        nums = res;
+    }
+};
+
+
 
 
 // APPROACH 2 [ 2 pointer ]
