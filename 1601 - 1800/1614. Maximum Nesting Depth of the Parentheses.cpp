@@ -41,16 +41,15 @@ public:
 class Solution {
 public:
     int maxDepth(string s) {
-        stack<char> stack;
-        int max = 0;
-        for (char c : s) {
-            if (c == '(') {
-                stack.push(c);
-                max = max > stack.size() ? max : stack.size();
-            }
-            else if (c == ')') stack.pop();
+        stack<char> stk; 
+        int cnt = 0;
+        for(auto i : s){
+            if(i == '(' ) stk.push(i);
+            else if(i == ')' ) stk.pop();
+
+            cnt = max(cnt, (int)stk.size());
         }
-        return max; 
+        return cnt;
     }
 };
 
