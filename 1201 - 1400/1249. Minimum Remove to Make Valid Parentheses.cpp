@@ -168,7 +168,7 @@ public:
 
 
 
-// APPROACH 3 SAME AS ABOVE ONLY DIFF ON IS STACK
+// APPROACH 4 SAME AS ABOVE ONLY DIFF ON IS STACK
     
 class Solution {
 public:
@@ -198,7 +198,7 @@ public:
 
 
 
-// APPROACH 4
+// APPROACH 5
 
 class Solution {
 public:
