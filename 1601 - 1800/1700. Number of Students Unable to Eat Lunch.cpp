@@ -58,3 +58,24 @@ public:
 };
 
 
+
+
+
+
+// A 3 
+
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        int unableToEat = 0;
+        for (int i = 0; i < sandwiches.size(); ++i) {
+            auto it = find(students.begin(), students.end(), sandwiches[i]);
+            if (it == students.end()) {
+                unableToEat = sandwiches.size() - i;
+                break;
+            }
+            students.erase(it);
+        }
+        return unableToEat;
+    }
+};
