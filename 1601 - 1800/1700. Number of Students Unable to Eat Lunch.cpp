@@ -30,6 +30,31 @@ public:
 // and then subtract the total number of students' demand for sandwiches, and the remaining 
 // students cannot be satisfied.
 
-
 // Time O(n)
 // Space O(2)
+
+
+
+
+
+
+// A 2 - Hash Map
+
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        unordered_map<int, int> freq;
+        for (int student : students) {
+            freq[student]++;
+        }
+        
+        int i = 0;
+        while (i < sandwiches.size() && freq[sandwiches[i]] > 0) {
+            freq[sandwiches[i]]--;
+            i++;
+        }
+        return students.size() - i;
+    }
+};
+
+
