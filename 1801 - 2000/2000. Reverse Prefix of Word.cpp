@@ -1,4 +1,19 @@
-//https://leetcode.com/problems/reverse-prefix-of-word
+// A 1 
+
+class Solution {
+public:
+    string reversePrefix(string word, char ch) {        
+        int p = word.find(ch);            
+        reverse(word.begin(), word.begin() + p+1);
+        return word;
+    }
+};
+
+
+
+
+
+// A 2
 
 class Solution {
 public:
@@ -8,9 +23,9 @@ public:
                 reverse(word.begin(), word.begin() + i + 1);
                 break;
             }
-                
-        }
-        
+        }        
         return word;
     }
 };
+
+
