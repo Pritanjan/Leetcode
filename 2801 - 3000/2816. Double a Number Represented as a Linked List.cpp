@@ -146,3 +146,64 @@ public:
         return newTail;
     }
 };
+
+
+
+
+
+// A 4 - Reverse List
+
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        // Reverse the linked list
+        ListNode* rev = reverseList(head);
+
+        // Initialize variables to track carry and previous node
+        int carry = 0;
+        ListNode* curr = rev, *prev = nullptr;
+
+        // Traverse the reversed linked list
+        while (curr != nullptr) {
+            // Calculate the new value for the current node
+            int newValue = curr -> val * 2 + carry;
+            // Update the current node's value
+            curr -> val = newValue % 10;
+            // Update carry for the next iteration
+            if (newValue > 9) carry = 1;
+            else carry = 0;
+        
+            // Move to the next node
+            prev = curr;
+            curr = curr -> next;
+        }
+
+        // If there's a carry after the loop, add an extra node
+        if (carry != 0) {
+            ListNode* extraNode = new ListNode(carry);
+            prev -> next = extraNode;
+        }
+
+        // Reverse the list again to get the original order
+        ListNode* res = reverseList(rev);
+        return res;
+    }
+
+    // Method to reverse the linked list
+    ListNode* reverseList(ListNode* node) {
+        ListNode* prev = nullptr, *curr = node, *nextNode;
+
+        // Traverse the original linked list
+        while (curr != nullptr) {
+            // Store the next node
+            nextNode = curr -> next;
+            // Reverse the link
+            curr -> next = prev;
+            // Move to the next nodes
+            prev = curr;
+            curr = nextNode;
+        }
+        // Previous becomes the new head of the reversed list
+        return prev;
+    }
+};
