@@ -27,7 +27,7 @@ public:
 class Solution {
 public:
     TreeNode* removeLeafNodes(TreeNode* root, int target) {
-        std::stack<TreeNode*> stk;
+        stack<TreeNode*> stk;
         TreeNode* curr = root, *lst = nullptr;
 
         while (!stk.empty() || curr != nullptr) {
