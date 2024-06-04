@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/longest-palindrome/
+// A 1 
 
 class Solution {
 public:
@@ -12,4 +12,41 @@ public:
     }
 };
 
+
+
+
+
+
+// A 2 -  Greedy (Hash Table)
+
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        // Map to store frequency of occurrence of each character
+        unordered_map<char, int> freq;
+        // Count frequencies
+        for (char c : s) {
+            freq[c]++;
+        }
+
+        int res = 0;
+        bool OddFreq = false;
+        for (auto& it : freq) {
+            int f = it.second;
+            // Check if the frequency is even
+            if (f % 2 == 0) res += f;
+            else {
+                // If the frequency is odd, one occurrence of the
+                // character will remain without a match
+                res += f - 1;
+                OddFreq = true;
+            }
+        }
+        // If hasOddFrequency is true, we have at least one unmatched
+        // character to make the center of an odd length palindrome.
+        if (OddFreq) return res + 1;
+
+        return res;
+    }
+};
 
