@@ -125,6 +125,33 @@ public:
 };
 
 
+// OR
+
+
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int cnt = 0;
+        int n = nums.size();
+        int sum = 0;
+        vector<int> prefixSum(n, 0);
+        for(int i=0; i<n; ++i) {
+            sum += nums[i];
+            prefixSum[i] = (sum % k + k) % k;
+        }
+
+        vector<int> modCount(k, 0);
+
+        for (int i = 0; i < n; ++i) {
+            if (prefixSum[i] == 0)
+                cnt++;
+
+            cnt += modCount[prefixSum[i]];
+            modCount[prefixSum[i]]++;
+        }
+        return cnt;
+    }
+};
 
 
 
