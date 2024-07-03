@@ -29,3 +29,22 @@ public:
 // change 3 element
 // 3L + 0S  OR 2L + 1S OR 1L + 2S OR 0L + 3S
 
+
+
+// OR
+
+class Solution {
+public:
+    int minDifference(vector<int>& nums) {
+        int n = nums.size();
+        if(n <= 4) return 0;
+        int ans = INT_MAX;
+        sort(nums.begin(), nums.end());
+        for(int L=0, R=n-4; L<4; L++, R++){ 
+            ans = min(ans, nums[R] - nums[L]);
+        }
+        return ans;
+    }
+};
+
+
