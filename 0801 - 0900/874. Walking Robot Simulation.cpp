@@ -1,3 +1,55 @@
+// A 1
+
+class Solution {
+public:
+    int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
+        unordered_set<string> obstaclePairs;
+        for (auto& obs : obstacles) {
+            obstaclePairs.insert(to_string(obs[0]) + "," + to_string(obs[1]));
+        }
+
+        int x = 0;
+        int y = 0;
+        int dir = 0;
+        int mxSqDist = 0;
+
+        vector<vector<int>> dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        for (auto cmd : commands) {
+            if (cmd == -2)
+                dir = (dir + 3) % 4;  // Turn left
+            else if (cmd == -1)
+                dir = (dir + 1) % 4;  // Turn right
+            else {
+                for (int i = 0; i < cmd; i++) {
+                    int nx = x + dirs[dir][0];
+                    int ny = y + dirs[dir][1];
+
+                    if (obstaclePairs.find(to_string(nx) + "," + to_string(ny)) == obstaclePairs.end()) {
+                        x = nx;
+                        y = ny;
+                        mxSqDist = max(mxSqDist, x * x + y * y);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return mxSqDist;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
 public:
     int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
