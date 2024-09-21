@@ -63,3 +63,25 @@ public:
         return res;
     }
 };
+
+// A 4 
+
+class Solution {
+public:
+    vector<int> lexicalOrder(int n) {
+        vector<int> res;
+        vector<int> nums(n);
+        for (int i = 1; i <= n; ++i) {
+            nums[i - 1] = i;
+        }
+
+        // Step 2: Sort the numbers lexicographically by converting them to
+        // strings
+        sort(nums.begin(), nums.end(), [](int a, int b) {
+            return to_string(a) < to_string(b); // Lexicographical comparison
+        });
+
+        // Step 3: Return the sorted vector
+        return nums;
+    }
+};
