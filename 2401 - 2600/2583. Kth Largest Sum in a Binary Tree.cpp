@@ -74,3 +74,26 @@ public:
 
 // A 3
 
+class Solution {
+public:
+    long long kthLargestLevelSum(TreeNode* root, int k) {
+        priority_queue<long> pq;
+        queue<TreeNode*> que;
+        que.push(root);
+        while (!que.empty()) {
+            long size = que.size();
+            long sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode* pop = que.front();
+                que.pop();
+                sum += pop->val;
+                if (pop->left != NULL) que.push(pop->left);
+                if (pop->right != NULL) que.push(pop->right);
+            }
+            pq.push(sum);
+        }
+        if (pq.size() < k) return -1;
+        for (int i = 0; i < k - 1; i++) pq.pop();
+        return pq.top();
+    }
+};
