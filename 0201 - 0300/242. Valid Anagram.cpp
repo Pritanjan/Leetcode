@@ -198,6 +198,34 @@ public:
 };
 
 
+
+
+
+// java 
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] freq1 = getFrequencyArray(s);
+        int[] freq2 = getFrequencyArray(t);        
+        for (int i = 0; i < freq1.length; i++) {
+            if (freq1[i] != freq2[i])
+                return false;
+        }
+        return true;
+    }
+
+    public static int[] getFrequencyArray(String s1) {
+        int[] freq = new int[26];
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+            if (ch >= 65 && ch <= 90)
+                freq[ch - 65]++;
+            else if (ch >= 97 && ch <= 122)
+                freq[ch - 97]++;
+        }
+        return freq;
+    }
+}
+
 //  Prime Number Multiplication: WRONG
 class Solution {
 public:
