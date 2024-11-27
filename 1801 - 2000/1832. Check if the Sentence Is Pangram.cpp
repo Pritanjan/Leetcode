@@ -1,3 +1,5 @@
+// A 1 
+
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
@@ -12,6 +14,35 @@ public:
 };
 
 
+
+
+// A 2 
+
+class Solution {
+    public boolean checkIfPangram(String sentence) {
+        int[] freq = getFrequencyArray(sentence);
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] == 0)
+                return false;
+        }
+        return true;
+
+    }
+
+    public static int[] getFrequencyArray(String s1) {
+        int[] freq = new int[26];
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+            freq[ch - 97]++;
+        }
+        return freq;
+    }
+}
+
+
+
+// A 3 
+
 class Solution {
 public:
     bool checkIfPangram(string s) {
@@ -19,6 +50,11 @@ public:
     }
 };
 
+
+
+
+
+// A 4 
 
 
 class Solution {
